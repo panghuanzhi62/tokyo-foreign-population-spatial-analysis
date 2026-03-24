@@ -1,0 +1,11 @@
+geopandas
+pandas
+numpy
+matplotlib
+scikit-learn
+statsmodels
+libpysal
+esda
+mgwr
+openpyxl
+jupyter

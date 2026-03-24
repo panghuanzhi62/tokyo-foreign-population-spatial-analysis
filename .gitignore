@@ -1,0 +1,39 @@
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# raw / large data
+data/raw/
+data/processed/
+data_raw/
+data_processed/
+*.zip
+*.7z
+*.rar
+*.shp
+*.dbf
+*.shx
+*.prj
+*.cpg
+*.gml
+*.xml
+*.csv
+*.geojson
+
+# environments
+geo_env/
+.venv/
+venv/
+
+# local / temporary folders
+HDDSWH5339/
+tblT001141H5339/
+
+# output caches / generated heavy files
+outputs/html/
+outputs/maps/
+docs/weekly_notes/
+# optional
+.vscode/
