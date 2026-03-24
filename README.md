@@ -4,12 +4,14 @@
 
 This project examines the spatial concentration of foreign population in the Tokyo metropolitan mainland area using official Japanese spatial and statistical data. It integrates administrative boundaries, foreign population attributes, railway station accessibility, and residential land-price data into a municipal-level spatial dataset.
 
+This repository presents a compact academic portfolio relevant to urban environment, environmental geography, land-related spatial interpretation, and place-based analysis in metropolitan Japan.
+
 The analysis combines global and local spatial methods, including OLS, Moran’s I, LISA, and MGWR, in order to identify:
 - whether foreign population concentration is spatially clustered,
 - how it is associated with railway accessibility and residential land price,
 - and whether these relationships vary across municipalities.
 
-This repository is designed as a compact academic portfolio for research applications in urban geography, environmental geography, spatial data science, and migration-related spatial analysis.
+It is intended as a concise research portfolio for applications in urban geography, environmental geography, spatial data science, and migration-related spatial analysis.
 
 ## Research Questions
 
