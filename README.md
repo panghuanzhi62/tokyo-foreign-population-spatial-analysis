@@ -58,14 +58,6 @@ The current results show that:
 
 These findings suggest that foreign population concentration in metropolitan Japan cannot be understood through a single global mechanism. Instead, it is shaped by spatially differentiated combinations of accessibility, land value, and local urban context.
 
-## Selected Figures
-
-### LISA Cluster Map
-![LISA Cluster Map](outputs/figures/lisa_cluster_map.png)
-
-### MGWR Local Coefficients: Log Distance to Station
-![MGWR Log Distance](outputs/figures/mgwr_logdist_map.png)
-
 ## Repository Structure
 
 ```text
@@ -94,3 +86,17 @@ These findings suggest that foreign population concentration in metropolitan Jap
    ├─ future_research_plan_en.pdf
    ├─ cv_en.pdf
    └─ project_brief_en.pdf
+```
+
+## Selected Figures
+### LISA Cluster Map of OLS Residuals
+![LISA Cluster Map of OLS Residuals](outputs/figures/lisa_cluster_map.png)
+### MGWR Local Coefficients: Log Distance to Station
+![MGWR Local Coefficients: Log Distance to Station](outputs/figures/mgwr_logdist_map.png)
+
+
+## Supporting Documents
+English academic CV
+Research summary
+Future research plan
+Project brief
