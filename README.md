@@ -51,12 +51,11 @@ The analytical workflow consists of the following stages:
 
 The current results show that:
 
-- Foreign population concentration is spatially clustered rather than randomly distributed.
-- Baseline OLS captures a meaningful global relationship, but leaves significant spatial structure unexplained.
-- OLS residuals show statistically significant positive spatial autocorrelation.
-- MGWR reveals substantial local heterogeneity in the effects of station accessibility and residential land price.
+- In municipalities such as Kawaguchi, concentration appears to be supported by near-core accessibility and settlement capacity rather than by low land value alone, suggesting the combined importance of commuting conditions, employment structure, and migrant networks.
+- In eastern inner metropolitan areas such as Edogawa, higher land value does not translate into a straightforward negative effect on foreign concentration. This challenges a simple cost-exclusion narrative and points to the importance of rental-market segmentation, service infrastructure, and established settlement effects.
 
-These findings suggest that foreign population concentration in metropolitan Japan cannot be understood through a single global mechanism. Instead, it is shaped by spatially differentiated combinations of accessibility, land value, and local urban context.
+The identified concentration clusters should therefore be interpreted as land-system units in which demographic concentration, housing conditions, transport dependence, and environmental exposure may overlap. This provides a strong basis for future research linking migrant settlement to flood risk, heat stress, evacuation accessibility, and socio-ecological vulnerability.
+
 
 ## Repository Structure
 
@@ -81,11 +80,8 @@ These findings suggest that foreign population concentration in metropolitan Jap
 ├─ outputs/
 │  ├─ figures/
 │  └─ tables/
-└─ docs/
-   ├─ research_summary_en.pdf
-   ├─ future_research_plan_en.pdf
-   ├─ cv_en.pdf
-   └─ project_brief_en.pdf
+└─ docs/   
+   └─ project_brief_en.md
 ```
 
 ## Selected Figures
@@ -96,7 +92,4 @@ These findings suggest that foreign population concentration in metropolitan Jap
 
 
 ## Supporting Documents
-English academic CV
-Research summary
-Future research plan
-Project brief
+- [Project Brief](docs/project_brief_en.md)
