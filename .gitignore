@@ -34,6 +34,8 @@ tblT001141H5339/
 # output caches / generated heavy files
 outputs/html/
 outputs/maps/
+docs/proposal/
 docs/weekly_notes/
 # optional
 .vscode/
+docs/proposal/
