@@ -1,64 +1,51 @@
 # Project Brief
 
-## Title
-Spatial Concentration and Heterogeneous Mechanisms of Foreign Population Distribution in the Tokyo Metropolitan Mainland Area
+## Tokyo Foreign Population Spatial Analysis Repository
 
-## Project Summary
-This project investigates how foreign population concentration is distributed across the Tokyo metropolitan mainland area and how it is shaped by transport accessibility and residential land value.
+**Repository basis:** current public GitHub README describing a project on the spatial concentration of foreign population in the Tokyo metropolitan mainland area.
 
-Using official Japanese spatial and statistical data, I constructed a municipal-level spatial dataset integrating administrative boundaries, foreign population attributes, railway station accessibility, and residential land-price information. The analytical workflow combines OLS, spatial residual diagnostics, and MGWR in order to move from global association to local spatial heterogeneity.
+**Repository Title:**  
+*Spatial Concentration and Heterogeneous Mechanisms of Foreign Population Distribution in the Tokyo Metropolitan Mainland Area*
 
-## Research Motivation
-Foreign population concentration in metropolitan Japan is relevant not only to migration studies, but also to urban governance, labor mobility, housing, accessibility, and place-based public policy. Rather than assuming a single metropolitan process, this project asks whether different municipalities follow different socio-spatial mechanisms.
+## 1. Project Objective
 
-## Methods
-The project proceeds through the following stages:
+This project examines whether foreign population concentration in metropolitan Japan is spatially clustered and whether its association with railway accessibility and residential land price is globally stable or locally variable. The repository presents the work as a compact academic portfolio relevant to urban geography, environmental geography, spatial data science, and migration-related spatial analysis.
 
-1. Administrative boundary processing
-2. Population attribute merging
-3. Nearest-station accessibility calculation
-4. Exploratory spatial analysis
-5. Residential land-price integration
-6. Baseline OLS modeling
-7. Spatial residual diagnostics using Moran’s I and LISA
-8. MGWR estimation
+## 2. Study Area and Data
 
-## Main Results
-The current results show that foreign population concentration is spatially clustered rather than randomly distributed.
+- **Study area:** the mainland part of the Tokyo metropolitan area, excluding outlying islands to avoid distortion in accessibility and distance-based measures.
+- **Data categories:** administrative boundaries, foreign population statistics, railway station data, and official residential land-price data.
+- **Analytical unit:** a municipal-level spatial dataset assembled from official Japanese spatial and statistical sources.
 
-The baseline OLS model identifies:
-- a negative association between foreign population ratio and distance to the nearest station,
-- and a positive association between foreign population ratio and residential land price.
+## 3. Analytical Workflow
 
-However, significant spatial autocorrelation remains in the OLS residuals, indicating that the global model is incomplete.
+| Stage | Description |
+|------:|-------------|
+| 1 | Administrative boundary processing |
+| 2 | Population attribute merging |
+| 3 | Station accessibility feature engineering |
+| 4 | Exploratory spatial data analysis |
+| 5 | Residential land-price integration |
+| 6 | Baseline OLS modeling |
+| 7 | Spatial residual diagnostics using Moran's *I* and LISA |
+| 8 | MGWR estimation for local spatial heterogeneity |
 
-The MGWR results show that the effects of station accessibility and residential land price vary substantially across municipalities. This suggests that foreign population concentration in metropolitan Japan is shaped by spatially differentiated combinations of accessibility, land value, and local urban context.
+## 4. Current Findings
 
-## Relevance to Urban and Environmental Geography
-This project is relevant to urban environment and environmental geography in three ways.
+- In municipalities such as Kawaguchi, concentration appears to be supported by near-core accessibility and settlement capacity rather than by low land value alone, suggesting the combined importance of commuting conditions, employment structure, and migrant networks.
+- In eastern inner metropolitan areas such as Edogawa, higher land value does not translate into a straightforward negative effect on foreign concentration. This challenges a simple cost-exclusion narrative and points to the importance of rental-market segmentation, service infrastructure, and established settlement effects.
+- The identified concentration clusters should therefore be interpreted as land-system units in which demographic concentration, housing conditions, transport dependence, and environmental exposure may overlap. This provides a strong basis for future research linking migrant settlement to flood risk, heat stress, evacuation accessibility, and socio-ecological vulnerability.
 
-First, it provides a spatially explicit interpretation of urban differentiation within a major metropolitan system.
+## 5. Why this Repository Matters
 
-Second, it links land-related conditions and transport accessibility to socio-spatial concentration patterns.
+As a portfolio piece, the repository demonstrates the full chain from data assembly to spatial diagnosis, local modeling, figure production, and structured documentation. Its value is not limited to one empirical case; it also shows methodological readiness for broader work on migration, urban structure, land-related processes, and place-sensitive policy analysis.
 
-Third, it demonstrates how spatial data science and spatial econometric methods can be applied to policy-relevant urban questions using official Japanese data.
+## 6. Materials Visible in the Repository
 
-## Technical Strengths Demonstrated
-- GeoPandas-based spatial data integration
-- Official Japanese spatial data handling
-- Distance-based accessibility feature engineering
-- OLS and regression diagnostics
-- Moran’s I and LISA
-- MGWR for local spatial heterogeneity
-- Map-based interpretation for place-based analysis
+- Notebook-based workflow from project setup through MGWR analysis.
+- Output folders for figures and tables, including selected maps shown in the README.
+- A `docs` folder listing supporting application materials such as the project brief.
 
-## Future Extensions
-Planned extensions include:
-- comparison with Chinese-population-specific proxies,
-- broader metropolitan and inter-regional comparison,
-- additional explanatory variables related to labor and housing,
-- and future predictive or scenario-based spatial modeling.
+## Repository URL
 
-## Author
-Jun Li, Ph.D.  
-Human Geography / GIS / Spatial Econometrics / Spatial Data Science
+`https://github.com/panghuanzhi62/tokyo-foreign-population-spatial-analysis`
