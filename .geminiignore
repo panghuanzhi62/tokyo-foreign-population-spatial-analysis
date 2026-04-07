@@ -1,0 +1,14 @@
+geo_env/
+.git/
+__pycache__/
+.ipynb_checkpoints/
+*.zip
+*.7z
+*.rar
+*.gpkg
+*.parquet
+HDDSWH5339/
+tblT001141H5339/
+outputs/figures/
+outputs/maps/
+outputs/html/
