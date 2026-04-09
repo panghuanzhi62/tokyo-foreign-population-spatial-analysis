@@ -43,3 +43,20 @@ def load_boundaries(
     gdf = read_boundary_file(path)
     gdf = ensure_crs(gdf, target_crs=target_crs)
     return gdf
+
+
+def project_gdf(
+    gdf: gpd.GeoDataFrame,
+    epsg: int,
+) -> gpd.GeoDataFrame:
+    """Project a GeoDataFrame to a target EPSG code."""
+    if gdf.crs is None:
+        raise ValueError(
+            "Input GeoDataFrame has no CRS; cannot safely project."
+        )
+
+    target_crs = f"EPSG:{epsg}"
+    if str(gdf.crs) == target_crs:
+        return gdf
+
+    return gdf.to_crs(epsg=epsg)
