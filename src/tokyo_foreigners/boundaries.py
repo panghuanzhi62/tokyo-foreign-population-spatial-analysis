@@ -60,3 +60,26 @@ def project_gdf(
         return gdf
 
     return gdf.to_crs(epsg=epsg)
+
+
+def filter_tokyo_metro_by_prefecture(
+    gdf: gpd.GeoDataFrame,
+    prefectures: list[str],
+    prefecture_col: str = "N03_001",
+) -> gpd.GeoDataFrame:
+    """Filter boundary polygons to the specified prefectures."""
+    if prefecture_col not in gdf.columns:
+        raise KeyError(f"Column not found: {prefecture_col}")
+
+    return gdf[gdf[prefecture_col].isin(prefectures)].copy()
+
+
+def clip_mainland_bbox(
+    gdf: gpd.GeoDataFrame,
+    xmin: float,
+    xmax: float,
+    ymin: float,
+    ymax: float,
+) -> gpd.GeoDataFrame:
+    """Slice a GeoDataFrame by bounding box using GeoPandas .cx."""
+    return gdf.cx[xmin:xmax, ymin:ymax].copy()
