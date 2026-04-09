@@ -83,3 +83,22 @@ def clip_mainland_bbox(
 ) -> gpd.GeoDataFrame:
     """Slice a GeoDataFrame by bounding box using GeoPandas .cx."""
     return gdf.cx[xmin:xmax, ymin:ymax].copy()
+
+
+def select_case_areas_by_keywords(
+    gdf: gpd.GeoDataFrame,
+    keywords_pattern: str = "川口|江戸川",
+    col_primary: str = "N03_004",
+    col_secondary: str = "N03_005",
+) -> gpd.GeoDataFrame:
+    """Select case areas by keyword matching across two name columns."""
+    missing = [col for col in [col_primary, col_secondary] if col not in gdf.columns]
+    if missing:
+        raise KeyError(f"Missing required columns: {missing}")
+
+    mask = (
+        gdf[col_primary].astype(str).str.contains(keywords_pattern, na=False)
+        | gdf[col_secondary].astype(str).str.contains(keywords_pattern, na=False)
+    )
+
+    return gdf[mask].copy()
