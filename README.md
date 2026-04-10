@@ -4,9 +4,10 @@
 
 This project examines the spatial concentration of foreign population in the Tokyo metropolitan mainland area using official Japanese spatial and statistical data. It integrates administrative boundaries, foreign population attributes, railway station accessibility, and residential land-price data into a municipal-level spatial dataset.
 
-This repository presents a compact academic portfolio relevant to urban environment, environmental geography, land-related spatial interpretation, and place-based analysis in metropolitan Japan.
+The repository presents a compact academic portfolio relevant to urban geography, environmental geography, spatial data science, migration-related spatial analysis, and land-related place-based interpretation in metropolitan Japan.
 
 The analysis combines global and local spatial methods, including OLS, Moran’s I, LISA, and MGWR, in order to identify:
+
 - whether foreign population concentration is spatially clustered,
 - how it is associated with railway accessibility and residential land price,
 - and whether these relationships vary across municipalities.
@@ -21,7 +22,7 @@ It is intended as a concise research portfolio for applications in urban geograp
 
 ## Study Area
 
-The study focuses on the mainland part of the Tokyo metropolitan area, covering Tokyo and surrounding municipalities in the wider metropolitan belt. Outlying islands were excluded in order to avoid distortion in accessibility and distance-based measures.
+The study focuses on the mainland part of the Tokyo metropolitan area, covering Tokyo and surrounding municipalities in the wider metropolitan belt. Outlying islands are excluded in order to avoid distortion in accessibility and distance-based measures.
 
 ## Data
 
@@ -32,7 +33,7 @@ This project integrates the following categories of data:
 - Railway station data
 - Official residential land-price data
 
-A separate file, `data/data_sources.md`, documents the datasets and their roles in the workflow.
+The datasets and their roles in the workflow are reflected in the notebook pipeline and supporting project documents.
 
 ## Methods
 
@@ -56,17 +57,14 @@ The current results show that:
 
 The identified concentration clusters should therefore be interpreted as land-system units in which demographic concentration, housing conditions, transport dependence, and environmental exposure may overlap. This provides a strong basis for future research linking migrant settlement to flood risk, heat stress, evacuation accessibility, and socio-ecological vulnerability.
 
-
 ## Repository Structure
 
 ```text
 .
 ├─ README.md
 ├─ requirements.txt
-├─ data/
-│  ├─ raw/
-│  ├─ processed/
-│  └─ data_sources.md
+├─ data_raw/
+├─ data_processed/
 ├─ notebooks/
 │  ├─ 00_project_setup.ipynb
 │  ├─ 01_boundary_processing.ipynb
@@ -80,16 +78,15 @@ The identified concentration clusters should therefore be interpreted as land-sy
 ├─ outputs/
 │  ├─ figures/
 │  └─ tables/
-└─ docs/   
+├─ src/
+│  └─ tokyo_foreigners/
+│     ├─ __init__.py
+│     ├─ paths.py
+│     ├─ boundaries.py
+│     ├─ station_accessibility.py
+│     ├─ land_price.py
+│     ├─ ols.py
+│     ├─ spatial_diagnostics.py
+│     └─ mgwr.py
+└─ docs/
    └─ project_brief_en.md
-```
-
-## Selected Figures
-### LISA Cluster Map of OLS Residuals
-![LISA Cluster Map of OLS Residuals](outputs/figures/lisa_cluster_map.png)
-### MGWR Local Coefficients: Log Distance to Station
-![MGWR Local Coefficients: Log Distance to Station](outputs/figures/mgwr_logdist_map.png)
-
-
-## Supporting Documents
-- [Project Brief](docs/project_brief_en.md)
