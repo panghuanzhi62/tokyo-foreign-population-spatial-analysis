@@ -82,9 +82,7 @@ def merge_median_land_price_by_district(
         raise KeyError(f"Area id column not found in tokyo_gdf: {area_id_col}")
 
     if price_col not in residential_landprice_gdf.columns:
-        raise KeyError(
-            f"Price column not found in residential_landprice_gdf: {price_col}"
-        )
+        raise KeyError(f"Price column not found in residential_landprice_gdf: {price_col}")
 
     joined_lp = gpd.sjoin(
         residential_landprice_gdf,

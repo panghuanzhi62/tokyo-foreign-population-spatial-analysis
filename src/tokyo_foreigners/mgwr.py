@@ -35,9 +35,7 @@ def prepare_mgwr_inputs(
         raise KeyError(f"Missing required columns for MGWR prep: {missing}")
 
     if gdf.crs is None:
-        raise ValueError(
-            "Input GeoDataFrame has no CRS. MGWR prep expects projected geometries."
-        )
+        raise ValueError("Input GeoDataFrame has no CRS. MGWR prep expects projected geometries.")
 
     out = gdf.copy()
 
@@ -57,12 +55,8 @@ def prepare_mgwr_inputs(
     X_std = X.std(axis=0)
 
     if np.any(X_std == 0):
-        zero_std_cols = [
-            predictor_cols[i] for i, std in enumerate(X_std) if std == 0
-        ]
-        raise ValueError(
-            f"Predictor columns have zero standard deviation: {zero_std_cols}"
-        )
+        zero_std_cols = [predictor_cols[i] for i, std in enumerate(X_std) if std == 0]
+        raise ValueError(f"Predictor columns have zero standard deviation: {zero_std_cols}")
 
     return out, coords, y, X, X_mean, X_std
 

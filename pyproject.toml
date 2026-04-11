@@ -22,6 +22,7 @@ dependencies = [
 dev = [
   "jupyterlab",
   "ipykernel",
+  "ruff>=0.15.10",
 ]
 
 [tool.uv]
@@ -31,3 +32,22 @@ package = false
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 addopts = "-q"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+extend-exclude = [
+  ".venv",
+  "data",
+  "data_raw",
+  "data_processed",
+  "outputs",
+  "notebooks",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

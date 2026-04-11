@@ -73,8 +73,7 @@ def nearest_station_join(
 
     if str(centroids_gdf.crs) != str(stations_gdf.crs):
         raise ValueError(
-            f"CRS mismatch: centroids={centroids_gdf.crs}, "
-            f"stations={stations_gdf.crs}"
+            f"CRS mismatch: centroids={centroids_gdf.crs}, stations={stations_gdf.crs}"
         )
 
     if area_id_col not in centroids_gdf.columns:
@@ -108,9 +107,7 @@ def attach_station_attributes(
         raise KeyError(f"Area id column not found in base_gdf: {area_id_col}")
 
     if area_id_col not in nearest_station_gdf.columns:
-        raise KeyError(
-            f"Area id column not found in nearest_station_gdf: {area_id_col}"
-        )
+        raise KeyError(f"Area id column not found in nearest_station_gdf: {area_id_col}")
 
     required_cols = [
         distance_col,

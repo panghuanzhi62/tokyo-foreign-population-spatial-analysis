@@ -51,9 +51,7 @@ def project_gdf(
 ) -> gpd.GeoDataFrame:
     """Project a GeoDataFrame to a target EPSG code."""
     if gdf.crs is None:
-        raise ValueError(
-            "Input GeoDataFrame has no CRS; cannot safely project."
-        )
+        raise ValueError("Input GeoDataFrame has no CRS; cannot safely project.")
 
     target_crs = f"EPSG:{epsg}"
     if str(gdf.crs) == target_crs:
@@ -96,9 +94,8 @@ def select_case_areas_by_keywords(
     if missing:
         raise KeyError(f"Missing required columns: {missing}")
 
-    mask = (
-        gdf[col_primary].astype(str).str.contains(keywords_pattern, na=False)
-        | gdf[col_secondary].astype(str).str.contains(keywords_pattern, na=False)
-    )
+    mask = gdf[col_primary].astype(str).str.contains(keywords_pattern, na=False) | gdf[
+        col_secondary
+    ].astype(str).str.contains(keywords_pattern, na=False)
 
     return gdf[mask].copy()
