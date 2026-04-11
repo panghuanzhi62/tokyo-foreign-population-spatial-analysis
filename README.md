@@ -1,18 +1,26 @@
 # Spatial Concentration and Heterogeneous Mechanisms of Foreign Population Distribution in the Tokyo Metropolitan Mainland Area
 
-This repository examines whether foreign population concentration in the Tokyo metropolitan mainland area is spatially clustered, and whether its association with railway accessibility and residential land price is globally stable or locally heterogeneous. The project is organized as a notebook-centered spatial analysis workflow with reusable helpers under `src/tokyo_foreigners/`.
+This repository examines whether foreign population concentration in the Tokyo metropolitan mainland area is spatially clustered, and whether its association with railway accessibility and residential land price is globally stable or locally heterogeneous.
+
+The repository is intentionally organized as a notebook-centered spatial analysis workflow, with reusable helper logic extracted to `src/tokyo_foreigners/`. It is designed as a compact research portfolio that demonstrates the full chain from spatial data assembly to exploratory analysis, baseline modeling, spatial residual diagnostics, and MGWR-based local interpretation.
+
+---
 
 ## Research focus
 
-This project asks three linked questions:
+This project addresses three linked questions:
 
 1. Is foreign population concentration spatially clustered across municipalities in the Tokyo metropolitan mainland area?
 2. How is foreign population concentration associated with station accessibility and residential land price?
 3. Are these relationships globally stable, or do they vary locally across municipalities?
 
+---
+
 ## Study area
 
-The study focuses on the mainland part of the Tokyo metropolitan area. Outlying islands are excluded to avoid distortion in distance-based and accessibility-based measures.
+The study focuses on the mainland part of the Tokyo metropolitan area. Outlying islands are excluded in order to avoid distortion in distance-based and accessibility-based measures.
+
+---
 
 ## Data
 
@@ -26,7 +34,11 @@ The repository integrates municipal-scale spatial and statistical data from offi
 Current project convention:
 
 - `data_raw/` is the canonical raw-data directory
-- `data_processed/` stores intermediate and derived datasets used in later analysis stages
+- `data_processed/` stores intermediate and derived datasets used in later analytical stages
+
+Existing `data/` subdirectories remain in the repository, but they are not the current canonical path policy used by the refactored helper layer.
+
+---
 
 ## Analytical workflow
 
@@ -59,7 +71,11 @@ The core workflow is organized across notebooks `00` to `08`:
 - `08_mgwr_analysis.ipynb`  
   MGWR estimation and local interpretation
 
-## Current repository structure
+The notebooks remain the reference orchestration and interpretation layer for this project.
+
+---
+
+## Repository structure
 
 ```text
 .
@@ -67,6 +83,7 @@ The core workflow is organized across notebooks `00` to `08`:
 ├── data_processed/
 ├── data_raw/
 ├── docs/
+│   └── refactor_status.md
 ├── notebooks/
 │   ├── 00_project_setup.ipynb
 │   ├── 01_boundary_processing.ipynb
@@ -93,6 +110,10 @@ The core workflow is organized across notebooks `00` to `08`:
 │       ├── paths.py
 │       ├── spatial_diagnostics.py
 │       └── station_accessibility.py
+├── tests/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
 ├── pyproject.toml
 ├── uv.lock
 ├── requirements.txt
