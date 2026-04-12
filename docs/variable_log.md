@@ -7,13 +7,13 @@
 | log_median_land_price_jpy | Explanatory / Predictive | Predictor | Existing land-price integration pipeline | current baseline year | JPY | log | existing | current land-value variable |
 | ols_resid | Explanatory | Diagnostic | derived from baseline OLS | current baseline year | residual | none | existing | used in Moran / LISA diagnostics |
 | lisa_cluster | Explanatory | Diagnostic / interpretation | derived from Local Moran | current baseline year | class | none | existing | used for cluster interpretation and MGWR-ready export |
-| distance_to_central_tokyo | Explanatory / Predictive | Added predictor candidate | To be derived from municipal centroid to Tokyo Station (or fixed central-Tokyo point) | current baseline year | meters / km | likely log | ready to derive | separates near-core location from simple nearest-station accessibility |
-| population_density | Explanatory / Predictive | Added predictor candidate | To be derived if total population and municipal area are available in current or mergeable data | current baseline year | persons per km² | maybe log | candidate | urban scale / built-up intensity proxy |
+| distance_to_central_tokyo | Explanatory / Predictive | Added predictor candidate | Derived from municipal centroid distance to Tokyo Station using existing municipal geometry | current baseline year | km | log available | derived / retained | first confirmed urban-context extension variable; strong and stable negative association in extended OLS |
+| population_density | Explanatory / Predictive | Added predictor candidate | Derived from `total_pop` in `tokyo_pop_dissolved.geojson` and municipal area from geometry | current baseline year | persons per km² | log tested | derived / tested candidate | successfully derived from existing merged data, but not retained in current core explanatory specification |
 | rental_housing_share | Explanatory / Predictive | Added predictor candidate | External housing statistics table to be harmonized to municipality | current baseline year | share | none | source-pending | settlement capacity / housing structure variable |
-| future_foreign_ratio | Predictive | Preferred target | Requires at least two comparable time points | t+1 | ratio | none | target candidate | preferred predictive target |
+| future_foreign_ratio | Predictive | Preferred target | Requires at least two comparable time points | t+1 | ratio | none | target candidate | preferred predictive target if comparable multi-period municipal data can be assembled |
 | foreign_population_growth_rate | Predictive | Target candidate | Requires at least two comparable time points | interval | rate | maybe log-difference or pct change | target candidate | second-choice predictive target |
 | hotspot_emergence | Predictive | Target candidate | Requires multi-period hotspot definition | interval | binary class | none | target candidate | useful if continuous target is unstable |
-| current_hotspot_class | Predictive | Temporary pilot target | Current cross-sectional clustering output | current baseline year | class | none | fallback only | not a true future forecast, only pipeline pilot |
+| current_hotspot_class | Predictive | Temporary pilot target | Current cross-sectional clustering output | current baseline year | class | none | fallback only | not a true future forecast; only a temporary pipeline pilot if multi-period data are unavailable |
 
 ## Variable decisions already fixed
 
@@ -33,22 +33,46 @@
 3. hotspot_emergence
 4. current_hotspot_class only as a temporary pipeline test
 
+## Current post-test decisions
+
+### distance_to_central_tokyo
+- derived successfully from existing municipal geometry
+- no external source required
+- retained as the first confirmed urban-context extension variable
+- should remain in the next explanatory specification
+
+### population_density
+- derived successfully by merging `tokyo_pop_dissolved.geojson` back to the MGWR-ready municipal layer
+- total population and foreign population aligned exactly with the existing `foreign_ratio`
+- tested in the extended specification using `log_population_density`
+- not retained in the current core explanatory specification because the independent contribution is weak and model improvement is negligible
+
+### rental_housing_share
+- still not ready
+- do not block the explanatory paper on this variable
+- include only if source harmonization is fast and clean
+
+### future_foreign_ratio / growth_rate / hotspot_emergence
+- still require target-definition and data-availability audit
+- no RF/XGBoost training before this audit is complete
+
 ## Immediate next actions by variable
 
 ### distance_to_central_tokyo
-- derive directly from municipal centroid geometry
-- no waiting for external source
-- should be implemented first
+- keep in the explanatory track
+- use in the next round of interpretation and portfolio-facing write-up
+- consider helper extraction into `src/` only if the same derivation proves reusable across later notebooks
 
 ### population_density
-- check whether total population is already available in the merged municipal dataset
-- if yes, derive density immediately
-- if no, identify the minimal additional population table needed
+- keep as a documented tested candidate
+- do not promote to the current core explanatory model
+- revisit only if later model restructuring or additional urban-context variables make density more interpretable
 
 ### rental_housing_share
-- do not block the explanatory paper on this variable
-- only include in phase 1 if source harmonization is fast and clean
+- identify the lightest possible municipal-level source
+- stop immediately if harmonization becomes slow or messy
 
-### future_foreign_ratio / growth_rate / hotspot_emergence
-- first audit whether comparable multi-period foreign-population data can be assembled at the same municipal unit
-- no RF/XGBoost training before this audit is complete
+### future_foreign_ratio / foreign_population_growth_rate / hotspot_emergence
+- complete data audit in `11_prediction_target_design.ipynb`
+- determine whether the current repo has only single-period foreign-population data
+- only after target feasibility is confirmed should predictive modeling begin

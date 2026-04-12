@@ -8,6 +8,14 @@
 | 2026-04-11 | Explanatory | current interpretation stage | discussion memo | Clustered municipalities should be interpreted as land-system units where demographic concentration, housing, transport dependence, and environmental exposure may overlap. | main text / discussion | connect later explanatory expansion to socio-environmental variables |
 | 2026-04-11 | Predictive | planning stage | target design | Prediction target is not yet fixed; current repository is stronger as a cross-sectional explanatory workflow than as a finished forecasting workflow. | methods note | first complete target-definition and data-availability audit |
 | 2026-04-11 | Predictive | planning stage | methods design | Random Forest / XGBoost should begin only after a municipality-level future target is defined; CA-Markov and agent-based extensions are later-stage methods. | methods note / future work | keep predictive line staged rather than jumping to full simulation |
+| 2026-04-12 | Explanatory | 09_extended_ols_variable_prep.ipynb | variable derivation | `distance_to_central_tokyo` was successfully derived from municipal centroid distance to Tokyo Station using the existing municipal geometry. | appendix / methods note | retain as the first confirmed urban-context extension variable |
+| 2026-04-12 | Explanatory | 09_extended_ols_variable_prep.ipynb | extended OLS (baseline + centrality) | `log_distance_to_central_tokyo` shows a clear negative and statistically significant association with `foreign_ratio`, indicating that relative position within the metropolitan core-periphery structure matters beyond the baseline specification. | main text | keep this variable in the next explanatory specification and reflect it in README / project memo |
+| 2026-04-12 | Explanatory | 09_extended_ols_variable_prep.ipynb | case interpretation memo | The new centrality result strengthens the current reading that Kawaguchi and Edogawa should not be interpreted through a simple low-cost or cost-exclusion story, but through near-core metropolitan position and broader urban opportunity structure. | main text / discussion | preserve as an updated interpretation anchor in later write-up |
+| 2026-04-12 | Explanatory | 09_extended_ols_variable_prep.ipynb | data validation | `tokyo_pop_dissolved.geojson` was successfully merged back to the MGWR-ready municipal layer; `total_pop`, `foreign_pop`, and recomputed `foreign_ratio` aligned exactly with the existing ratio field. | appendix / methods note | use this as the validated source for any later population-based extensions |
+| 2026-04-12 | Explanatory | 09_extended_ols_variable_prep.ipynb | variable derivation | `population_density` was successfully derived from `total_pop` and municipal area using existing merged data. | appendix | keep as a tested candidate variable |
+| 2026-04-12 | Explanatory | 09_extended_ols_variable_prep.ipynb | extended OLS (baseline + centrality + density) | `log_population_density` did not show a statistically significant independent association and produced negligible model improvement; it should not be promoted to the current core explanatory specification. | dropped result / internal record | keep documented, but do not make it part of the current headline explanatory story |
+| 2026-04-12 | Explanatory | 09_extended_ols_variable_prep.ipynb | model comparison memo | After adding both centrality and density, the explanatory story is better framed as a metropolitan structure story rather than a simple accessibility-plus-cost story; centrality remains stable while density does not materially strengthen the specification. | main text / discussion | next priority is consolidation of outputs and write-up, not mechanical variable accumulation |
+| 2026-04-12 | Predictive | 11_prediction_target_design.ipynb | target audit stage | Predictive work remains at the audit stage; no genuine future target should be claimed until multi-period municipal foreign-population data are confirmed to be comparable and available. | methods note | complete data inventory and target-feasibility judgment before any RF/XGBoost work |
 
 ---
 
@@ -65,8 +73,8 @@ Use this label when the result:
 ## Immediate next entries expected
 
 The next few rows should most likely record:
-1. whether `distance_to_central_tokyo` was successfully derived
-2. whether `population_density` was added or delayed
-3. whether the expanded OLS improves on the baseline
-4. whether residual Moran's I decreases after model expansion
-5. whether multi-period foreign-population data can support a genuine future target
+1. whether the README / portfolio note was updated to reflect the centrality finding
+2. whether a new figure or coefficient table from Round 09 becomes paper-candidate material
+3. whether expanded residual Moran's I is tested after the new explanatory specification
+4. whether `rental_housing_share` is added or deliberately deferred
+5. whether multi-period foreign-population data can support a genuine future target in notebook 11
