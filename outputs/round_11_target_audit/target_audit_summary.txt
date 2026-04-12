@@ -1,0 +1,8 @@
+Heuristic assessment
+{'detected_years_from_names': [], 'detected_years_from_columns': [], 'all_detected_years': [], 'multi_period_signal': False}
+
+Suggested rule
+{'Q1_single_period_only': 'Likely yes in the current repo state', 'Q2_multi_period_feasible': 'Not yet demonstrated', 'Q3_most_realistic_first_target': 'current_hotspot_class only as a temporary pilot target'}
+
+Manual assessment template
+{'Q1_single_period_only': 'TO_FILL', 'Q2_multi_period_feasible': 'TO_FILL', 'Q3_most_realistic_first_target': 'TO_FILL', 'recommended_target_options': ['future_foreign_ratio', 'foreign_population_growth_rate', 'hotspot_emergence', 'current_hotspot_class (fallback only)'], 'notes': ['If only one comparable municipal foreign-population period exists in the current repo, do not pretend to define a genuine future forecast target.', 'If at least two comparable municipal periods can be assembled cleanly, prefer future_foreign_ratio first.', 'If the continuous target is unstable or the time interval is irregular, foreign_population_growth_rate is the second choice.', 'If multi-period continuous targets are not feasible now, current_hotspot_class may be used only as a temporary pilot target, not as a genuine forecast target.']}
