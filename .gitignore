@@ -38,4 +38,25 @@ docs/proposal/
 docs/weekly_notes/
 # optional
 .vscode/
-docs/proposal/
+# local env
+geo_env/
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# heavy data / geospatial binaries
+*.zip
+*.7z
+*.rar
+*.gpkg
+*.parquet
+
+# outputs
+outputs/html/
+outputs/maps/
+outputs/figures/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/.history/
