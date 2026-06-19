@@ -1,37 +1,39 @@
-TOKYO-CHINA LITERATURE WORKBENCH SCAFFOLD - CHANGED FILES
+TOKYO-CHINA AUTOMATED LITERATURE DISCOVERY - CHANGED FILES
 Generated: 2026-06-20
 
-CREATED FILES (this task)
+CREATED FILES STAGED (7)
+  scripts/10_literature_discovery/harvest_literature_metadata.py
+  literature/03_notes/automated_literature_discovery_protocol.md
+  literature/03_notes/round01_api_search_queries.md
+  literature/03_notes/automated_discovery_next_steps.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
-MODIFIED FILES (this task)
-  .gitignore
+MODIFIED FILES
+  (none)
 
 DELETED FILES
   (none)
 
-UNTRACKED FILES LEFT UNTOUCHED
+UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx
   ref/
+  outputs/literature_discovery/round01_api/candidates.csv (git-ignored)
+  outputs/literature_discovery/round01_api/candidates.jsonl
+  outputs/literature_discovery/round01_api/direct_overlap_candidates.md
+  outputs/literature_discovery/round01_api/source_coverage_summary.md
+  outputs/literature_discovery/round01_api/run_manifest.json
+  outputs/literature_discovery/round01_api/raw/openalex.jsonl
+  outputs/literature_discovery/round01_api/raw/crossref.jsonl
+  outputs/literature_discovery/round01_api/raw/semantic_scholar.jsonl
 
-FILES STAGED (exactly 11)
-  .gitignore
-  literature/02_matrices/literature_matrix.csv
-  literature/02_matrices/gap_verification_matrix.csv
-  literature/03_notes/literature_search_protocol.md
-  literature/03_notes/sun_2026_positioning_note.md
-  literature/03_notes/provisional_topic_status.md
-  literature/03_notes/topic_selection_for_japan_canada_applications.md
-  literature/04_synthesis/workbench_status.md
-  outputs/claude_reports/latest_verification_summary.txt
-  outputs/claude_reports/latest_changed_files.txt
-  outputs/claude_reports/latest_safety_check.txt
+FILES STAGED
+  Exactly the 7 created files listed above (no others).
 
 FILES COMMITTED
-  The 11 staged files above, in commit:
-  "Add Tokyo-China literature workbench scaffold"
+  The 7 staged files in commit:
+  "Add automated literature discovery pipeline"
 
 FILES PUSHED
   Same commit pushed to origin agentic-upgrade.

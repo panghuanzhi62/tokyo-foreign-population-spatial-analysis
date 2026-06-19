@@ -1,4 +1,4 @@
-TOKYO-CHINA LITERATURE WORKBENCH SCAFFOLD - PUBLIC REPO SAFETY CHECK
+TOKYO-CHINA AUTOMATED LITERATURE DISCOVERY - PUBLIC REPO SAFETY CHECK
 Generated: 2026-06-20
 
 PUBLIC REPO SAFETY CHECK: PASS
@@ -8,16 +8,22 @@ PDF FILES STAGED: NO
 DOCX FILES STAGED: NO
 REF/ STAGED: NO
 DATA FILES STAGED: NO
-SCRIPTS MODIFIED: NO
+SCRIPTS MODIFIED OUTSIDE scripts/10_literature_discovery/: NO
 MANUSCRIPT MODIFIED: NO
-GIT ADD . USED: NO (only the 11 explicitly approved files were staged)
+RAW API OUTPUTS STAGED: NO (JSONL, candidate tables, run reports left untracked)
+GIT ADD . USED: NO (only the 7 explicitly approved files were staged)
 MOJIBAKE PATTERNS FOUND: NO
-LINE ENDING WARNING: YES (informational only; git autocrlf will store
-  .gitignore as LF and present CRLF in the working tree - benign,
-  no content corruption)
+LINE ENDING WARNING: YES (informational only; git autocrlf will store new
+  text files as LF and present CRLF in the working tree - benign, no content
+  corruption)
+
+CREDENTIALS / KEYS
+  The harvester stores no API keys, writes no credentials, and prints none.
+  CiNii is only enabled if CINII_APP_ID is present in the environment; the app
+  id is never written to any output file. Google Scholar is never scraped.
 
 FINAL SAFETY CONCLUSION
-  Safe to commit and push. Only structural scaffold files (header-only CSV
-  templates, ASCII-safe protocol/notes, and ASCII-safe report files) plus a
-  narrow .gitignore exception were staged. No sensitive, copyrighted, binary,
-  manuscript, data, or script content was included.
+  Safe to commit and push. Only the stdlib harvester script, three ASCII-safe
+  protocol/notes documents, and three ASCII-safe report files were staged. No
+  raw literature outputs, sensitive, copyrighted, binary, manuscript, data, or
+  out-of-scope script content was included.
