@@ -1,17 +1,15 @@
-TOKYO-CHINA AUTOMATED LITERATURE DISCOVERY - CHANGED FILES
+TOKYO-CHINA ROUND 01 B-CANDIDATE REVIEW - CHANGED FILES
 Generated: 2026-06-20
 
-CREATED FILES STAGED (7)
-  scripts/10_literature_discovery/harvest_literature_metadata.py
-  literature/03_notes/automated_literature_discovery_protocol.md
-  literature/03_notes/round01_api_search_queries.md
-  literature/03_notes/automated_discovery_next_steps.md
+CREATED FILES STAGED (4)
+  literature/04_synthesis/round01_b_candidate_review.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 MODIFIED FILES
-  (none)
+  (the three report files existed from prior tasks and are overwritten;
+   the review note is new)
 
 DELETED FILES
   (none)
@@ -29,11 +27,11 @@ UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   outputs/literature_discovery/round01_api/raw/semantic_scholar.jsonl
 
 FILES STAGED
-  Exactly the 7 created files listed above (no others).
+  Exactly the 4 files listed above (no others).
 
 FILES COMMITTED
-  The 7 staged files in commit:
-  "Add automated literature discovery pipeline"
+  The 4 staged files in commit:
+  "Add Round 01 B-candidate literature review note"
 
 FILES PUSHED
   Same commit pushed to origin agentic-upgrade.

@@ -1,4 +1,4 @@
-TOKYO-CHINA AUTOMATED LITERATURE DISCOVERY - PUBLIC REPO SAFETY CHECK
+TOKYO-CHINA ROUND 01 B-CANDIDATE REVIEW - PUBLIC REPO SAFETY CHECK
 Generated: 2026-06-20
 
 PUBLIC REPO SAFETY CHECK: PASS
@@ -8,22 +8,23 @@ PDF FILES STAGED: NO
 DOCX FILES STAGED: NO
 REF/ STAGED: NO
 DATA FILES STAGED: NO
-SCRIPTS MODIFIED OUTSIDE scripts/10_literature_discovery/: NO
+SCRIPTS MODIFIED: NO
 MANUSCRIPT MODIFIED: NO
-RAW API OUTPUTS STAGED: NO (JSONL, candidate tables, run reports left untracked)
-GIT ADD . USED: NO (only the 7 explicitly approved files were staged)
+RAW API OUTPUTS STAGED: NO
+  (nothing under outputs/literature_discovery/round01_api/ was staged)
+GIT ADD . USED: NO (only the 4 explicitly approved files were staged)
 MOJIBAKE PATTERNS FOUND: NO
-LINE ENDING WARNING: YES (informational only; git autocrlf will store new
-  text files as LF and present CRLF in the working tree - benign, no content
-  corruption)
+LINE ENDING WARNING: YES (informational only; git autocrlf will store new text
+  files as LF and present CRLF in the working tree - benign, no corruption)
 
-CREDENTIALS / KEYS
-  The harvester stores no API keys, writes no credentials, and prints none.
-  CiNii is only enabled if CINII_APP_ID is present in the environment; the app
-  id is never written to any output file. Google Scholar is never scraped.
+CONTENT SAFETY
+  The review note is source-light: it reuses only metadata fields already
+  retrieved (title, year, venue, DOI, source api, query group) plus analyst
+  commentary. It contains no full text, no PDF content, and no API keys. Two
+  likely geographic false positives (US, Spain) are labelled as such rather than
+  presented as Tokyo evidence.
 
 FINAL SAFETY CONCLUSION
-  Safe to commit and push. Only the stdlib harvester script, three ASCII-safe
-  protocol/notes documents, and three ASCII-safe report files were staged. No
-  raw literature outputs, sensitive, copyrighted, binary, manuscript, data, or
-  out-of-scope script content was included.
+  Safe to commit and push. Only one ASCII-safe public synthesis note and three
+  ASCII-safe report files were staged. No raw literature outputs, sensitive,
+  copyrighted, binary, manuscript, data, or out-of-scope content was included.

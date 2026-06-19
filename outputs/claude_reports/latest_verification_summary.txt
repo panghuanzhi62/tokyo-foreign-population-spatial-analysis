@@ -1,4 +1,4 @@
-TOKYO-CHINA AUTOMATED LITERATURE DISCOVERY - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 01 B-CANDIDATE REVIEW - VERIFICATION SUMMARY
 Generated: 2026-06-20
 
 REPO PATH
@@ -8,76 +8,70 @@ BRANCH
   agentic-upgrade
 
 LATEST COMMIT HASH
-  This task commit: "Add automated literature discovery pipeline"
+  This task commit: "Add Round 01 B-candidate literature review note"
   (see git log -1 on agentic-upgrade; hash reported in final response)
 
 PUSHED TO REMOTE: YES
   origin agentic-upgrade
 
 TASK OBJECTIVE
-  Build an API-first automated literature discovery pipeline (protocol, query
-  set, and stdlib Python harvester) and run a small test harvest. This is
-  first-round discovery only, NOT manuscript writing and NOT gap confirmation.
+  Inspect the local, uncommitted Round 01 API discovery outputs and produce a
+  public, source-light review note covering the 21 preliminary
+  B_partial_overlap_candidate records. This is preliminary metadata triage only
+  and does NOT confirm the research gap.
 
-API TEST RUN
-  Command: python scripts/10_literature_discovery/harvest_literature_metadata.py
-           --project-root E:\rsch\laborJapan --run-id round01_api --max-per-query 10
-  Completed: YES
-  APIs reached: openalex, crossref, semantic_scholar
-  CiNii: SKIPPED (no CINII_APP_ID in environment)
-  Google Scholar: NEVER queried (scraping prohibited by design)
+INPUTS INSPECTED (local, not committed)
+  outputs/literature_discovery/round01_api/candidates.csv
+  outputs/literature_discovery/round01_api/direct_overlap_candidates.md
+  outputs/literature_discovery/round01_api/source_coverage_summary.md
+  (harvester was NOT re-run; outputs already present)
+
+ROUND 01 COVERAGE (as reviewed)
+  APIs reached: OpenAlex, Crossref, Semantic Scholar (Semantic Scholar partial, HTTP 429)
+  APIs skipped: CiNii (no CINII_APP_ID); Google Scholar never queried
   Unique candidates after dedup: 262
   Preliminary A_direct_overlap_candidate: 0
-  Preliminary B_partial_overlap_candidate: 21
-  NOTE: categories are preliminary keyword triage and are NOT evidence; 0 A
-  candidates does NOT confirm the gap.
+  Preliminary B_partial_overlap_candidate: 21 (all reviewed)
+  NOTE: 0 A candidates is NOT evidence that no direct-overlap literature exists.
+
+DIRECT-OVERLAP RISK CONCLUSION (cautious)
+  No clear direct-overlap item was identified in this preliminary metadata
+  screen. This does not prove that no such literature exists. Manual deep review
+  and additional databases are still required.
 
 FILES CREATED (staged in this task)
-  scripts/10_literature_discovery/harvest_literature_metadata.py
-  literature/03_notes/automated_literature_discovery_protocol.md
-  literature/03_notes/round01_api_search_queries.md
-  literature/03_notes/automated_discovery_next_steps.md
+  literature/04_synthesis/round01_b_candidate_review.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
-RAW DISCOVERY OUTPUTS (created on disk, NOT staged)
-  outputs/literature_discovery/round01_api/candidates.csv (git-ignored by *.csv)
-  outputs/literature_discovery/round01_api/candidates.jsonl (untracked, left untouched)
-  outputs/literature_discovery/round01_api/direct_overlap_candidates.md (untracked)
-  outputs/literature_discovery/round01_api/source_coverage_summary.md (untracked)
-  outputs/literature_discovery/round01_api/run_manifest.json (untracked)
-  outputs/literature_discovery/round01_api/raw/openalex.jsonl (untracked)
-  outputs/literature_discovery/round01_api/raw/crossref.jsonl (untracked)
-  outputs/literature_discovery/round01_api/raw/semantic_scholar.jsonl (untracked)
-
-FILES MODIFIED
-  (none; only new files created)
+RAW DISCOVERY OUTPUTS (left local, NOT staged)
+  outputs/literature_discovery/round01_api/ (candidates.csv [git-ignored],
+  candidates.jsonl, direct_overlap_candidates.md, source_coverage_summary.md,
+  run_manifest.json, raw/*.jsonl)
 
 FILES INTENTIONALLY NOT TOUCHED
-  TokyoProject.docx, ref/, docs/claude_execution_report_protocol.md,
-  scripts outside scripts/10_literature_discovery/, data/, data_raw/,
-  data_processed/, manuscript files, PDF files, DOCX files, existing outputs.
+  TokyoProject.docx, ref/, scripts/, data/, data_raw/, data_processed/,
+  manuscript files, PDF/DOCX files, raw API outputs.
 
 CHECKS RUN
-  git status --short, git diff --check, mojibake scan, sensitive-file check,
-  py_compile on the harvester.
+  git status --short, git diff --check, mojibake scan, sensitive-file check.
 
 MOJIBAKE SCAN RESULT: PASS
 GIT DIFF --CHECK RESULT: PASS
-PY_COMPILE RESULT: PASS
 
-SCRIPTS MODIFIED OUTSIDE scripts/10_literature_discovery/: NO
+B CANDIDATES REVIEWED: 21
+SCRIPTS MODIFIED: NO
 DATA MODIFIED: NO
 MANUSCRIPT FILES MODIFIED: NO
 PDF OR DOCX FILES MODIFIED: NO
 REF/ MODIFIED: NO
+RAW API OUTPUTS STAGED: NO
 
 SENSITIVE-FILE CHECK RESULT: PASS
 
 NEXT RECOMMENDED STEP
-  Inspect A_direct_overlap_candidate first (none this run), then manually verify
-  DOIs and publisher pages for the 21 B_partial candidates, deep-read the
-  high-risk items in SciSpace, and only then promote verified records into
+  Manually verify the 13 prioritized B candidates via DOI/publisher pages and
+  deep-read the highest-risk items in SciSpace, then populate
   literature_matrix.csv and gap_verification_matrix.csv. Do not write the
-  manuscript introduction before this review is complete.
+  manuscript introduction yet.
