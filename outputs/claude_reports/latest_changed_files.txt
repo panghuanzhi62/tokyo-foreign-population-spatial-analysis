@@ -1,0 +1,40 @@
+TOKYO-CHINA LITERATURE WORKBENCH SCAFFOLD - CHANGED FILES
+Generated: 2026-06-20
+
+CREATED FILES (this task)
+  outputs/claude_reports/latest_verification_summary.txt
+  outputs/claude_reports/latest_changed_files.txt
+  outputs/claude_reports/latest_safety_check.txt
+
+MODIFIED FILES (this task)
+  .gitignore
+
+DELETED FILES
+  (none)
+
+UNTRACKED FILES LEFT UNTOUCHED
+  TokyoProject.docx
+  ref/
+
+FILES STAGED (exactly 11)
+  .gitignore
+  literature/02_matrices/literature_matrix.csv
+  literature/02_matrices/gap_verification_matrix.csv
+  literature/03_notes/literature_search_protocol.md
+  literature/03_notes/sun_2026_positioning_note.md
+  literature/03_notes/provisional_topic_status.md
+  literature/03_notes/topic_selection_for_japan_canada_applications.md
+  literature/04_synthesis/workbench_status.md
+  outputs/claude_reports/latest_verification_summary.txt
+  outputs/claude_reports/latest_changed_files.txt
+  outputs/claude_reports/latest_safety_check.txt
+
+FILES COMMITTED
+  The 11 staged files above, in commit:
+  "Add Tokyo-China literature workbench scaffold"
+
+FILES PUSHED
+  Same commit pushed to origin agentic-upgrade.
+
+EXACT COMMIT HASH
+  See git log -1 on agentic-upgrade (reported in final response).

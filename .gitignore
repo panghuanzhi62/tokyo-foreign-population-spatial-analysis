@@ -60,3 +60,8 @@ outputs/figures/
 .DS_Store
 Thumbs.db
 .vscode/.history/
+
+# Tokyo-China literature matrix templates (structural exception to *.csv)
+!literature/02_matrices/
+!literature/02_matrices/literature_matrix.csv
+!literature/02_matrices/gap_verification_matrix.csv

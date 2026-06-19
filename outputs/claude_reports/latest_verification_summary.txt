@@ -1,0 +1,64 @@
+TOKYO-CHINA LITERATURE WORKBENCH SCAFFOLD - VERIFICATION SUMMARY
+Generated: 2026-06-20
+
+REPO PATH
+  E:\rsch\laborJapan
+
+BRANCH
+  agentic-upgrade
+
+LATEST COMMIT HASH
+  This task commit: "Add Tokyo-China literature workbench scaffold"
+  (see git log -1 on agentic-upgrade)
+
+PUSHED TO REMOTE: YES
+  origin agentic-upgrade
+
+TASK OBJECTIVE
+  Finish and commit the interrupted Tokyo-China literature workbench scaffold.
+  The Claude execution report protocol task is intentionally NOT continued here.
+
+FILES CREATED (this task)
+  outputs/claude_reports/latest_verification_summary.txt
+  outputs/claude_reports/latest_changed_files.txt
+  outputs/claude_reports/latest_safety_check.txt
+
+FILES MODIFIED (this task)
+  .gitignore (added narrow exception so the two matrix CSV templates are trackable)
+
+FILES COMMITTED FROM PRIOR INTERRUPTED RUN (now finalized)
+  literature/02_matrices/literature_matrix.csv (header only)
+  literature/02_matrices/gap_verification_matrix.csv (header only)
+  literature/03_notes/literature_search_protocol.md
+  literature/03_notes/sun_2026_positioning_note.md
+  literature/03_notes/provisional_topic_status.md
+  literature/03_notes/topic_selection_for_japan_canada_applications.md
+  literature/04_synthesis/workbench_status.md
+
+FILES INTENTIONALLY NOT TOUCHED
+  TokyoProject.docx
+  ref/
+  docs/claude_execution_report_protocol.md
+  scripts/, data/, data_raw/, data_processed/
+  existing model outputs, manuscript files, PDF/DOCX files
+
+CHECKS RUN
+  git status --short, git diff --check, mojibake scan, sensitive-file staging check
+
+MOJIBAKE SCAN RESULT: PASS (no broken-encoding patterns found)
+GIT DIFF --CHECK RESULT: PASS
+
+SCRIPTS MODIFIED: NO
+DATA MODIFIED: NO
+MANUSCRIPT FILES MODIFIED: NO
+PDF OR DOCX FILES MODIFIED: NO
+REF/ MODIFIED: NO
+
+SENSITIVE-FILE CHECK RESULT: PASS
+  No DOCX, PDF, ref/, data, or script files staged.
+
+NEXT RECOMMENDED STEP
+  Begin systematic literature search (SciSpace / Google Scholar / CiNii /
+  J-STAGE) and populate literature_matrix.csv and gap_verification_matrix.csv.
+  Do not assert the research gap or begin manuscript writing until the
+  verification matrix and deep-reading notes are complete.
