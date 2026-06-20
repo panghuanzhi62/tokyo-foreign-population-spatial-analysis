@@ -1,53 +1,63 @@
-TOKYO-CHINA ROUND 02 - J-STAGE PRIORITY-CANDIDATE VERIFICATION - CHANGED FILES
+TOKYO-CHINA ROUND 02 - NDL METADATA-ONLY SEARCH - CHANGED FILES
 Generated: 2026-06-21
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/literature_matrix.csv                            [modified]
-  literature/02_matrices/gap_verification_matrix.csv                      [modified]
-  literature/04_synthesis/round02_jstage_priority_candidate_verification.md [new]
-  outputs/claude_reports/latest_verification_summary.txt                  [modified]
-  outputs/claude_reports/latest_changed_files.txt                         [modified]
-  outputs/claude_reports/latest_safety_check.txt                          [modified]
+  scripts/10_literature_discovery/harvest_ndl_round02.py        [new]
+  literature/02_matrices/round02_japanese_source_tracking.csv   [modified]
+  literature/02_matrices/official_source_registry.csv           [modified]
+  literature/04_synthesis/round02_ndl_search_status.md          [new]
+  outputs/claude_reports/latest_verification_summary.txt        [modified]
+  outputs/claude_reports/latest_changed_files.txt               [modified]
+  outputs/claude_reports/latest_safety_check.txt                [modified]
 
 DETAIL
 
-literature/02_matrices/literature_matrix.csv  [modified]
-  - R02_CINII_001 supplemented (same study as J-STAGE R02_JSTAGE_002):
-    doi NA -> 10.24528/lifology.40.0_54; verified partial -> yes; notes record
-    the J-STAGE DOI/URL and the single-author-vs-two-author metadata difference.
-    URL field left as the CiNii crid (provenance preserved).
-  - Added 2 rows (background/comparator; not in gap matrix):
-    R02_JSTAGE_007 (Abe 1999; historical Chinese-worker residential
-      differentiation in Tokyo Prefecture; DOI 10.4200/jjhg1948.51.23).
-    R02_JSTAGE_011 (Wang 2026; Chinese-newcomer dispersed residence in Osaka;
-      DOI 10.4200/jjhg.78.01_023; study area Osaka, NOT Tokyo).
-  - Header unchanged (26 cols). Data rows 17 -> 19.
+scripts/10_literature_discovery/harvest_ndl_round02.py  [new]
+  NDL-only Round 02 metadata harvester. Standard library only. Queries the NDL
+  Search OpenSearch API (free-word "any") for the 21 Round 02 Japanese queries,
+  parses RSS/Dublin Core metadata, triages candidates, and writes raw +
+  normalized outputs under outputs/literature_discovery/round02_ndl/ (NOT
+  staged). Appends academic rows to the tracking CSV and official rows to the
+  registry, with within-run and cross-source (CiNii/J-STAGE) deduplication.
+  Conservative official-source detector (academic/commercial publishers
+  excluded; no single-character false positives). Never downloads PDFs, never
+  scrapes HTML, no browser automation, no paid APIs, no credentials.
 
-literature/02_matrices/gap_verification_matrix.csv  [modified]
-  - R02_CINII_001 supplemented: verified_source updated to note the J-STAGE DOI
-    10.24528/lifology.40.0_54 (resolves); notes record the same-study
-    relationship with R02_JSTAGE_002 and that no duplicate gap row was added.
-  - Header unchanged (22 cols). Data rows unchanged at 12 (no new rows).
+literature/02_matrices/round02_japanese_source_tracking.csv  [modified]
+  Appended 106 NDL academic candidate rows (source_id R02_NDL_001 ..
+  R02_NDL_106). Header unchanged (23 columns). Total data rows now 486
+  (102 CiNii + 278 J-STAGE + 106 NDL). 15 NDL records that duplicated existing
+  CiNii/J-STAGE titles/DOIs were dropped, not re-added.
 
-literature/04_synthesis/round02_jstage_priority_candidate_verification.md  [new]
-  - Public synthesis note: purpose, evidence status, candidate verification
-    table, the R02_JSTAGE_002 / R02_CINII_001 equivalence check and decision,
-    matrix additions/updates, direct-overlap caution, and next steps.
+literature/02_matrices/official_source_registry.csv  [modified]
+  Appended 2 official-source rows (source_id R02_NDL_OFF_001, R02_NDL_OFF_002).
+  Header unchanged (14 columns). Data rows 0 -> 2.
+
+literature/04_synthesis/round02_ndl_search_status.md  [new]
+  Public synthesis note: purpose, evidence status, search coverage, important
+  candidates, important official sources, limitations, and next steps. States
+  clearly that this is metadata discovery, not a gap confirmation.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  - Refreshed to describe this priority-candidate verification pass.
+  Refreshed to describe this NDL search pass and its counts/checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
-  - This file.
+  This file.
 
 outputs/claude_reports/latest_safety_check.txt  [modified]
-  - Refreshed public-repo safety check for this pass.
+  Refreshed public-repo safety check for this pass.
+
+GENERATED BUT NOT STAGED (untracked; under outputs/literature_discovery/)
+  outputs/literature_discovery/round02_ndl/raw/ndl_raw.jsonl
+  outputs/literature_discovery/round02_ndl/ndl_candidates.csv
+  outputs/literature_discovery/round02_ndl/ndl_candidates.jsonl
+  outputs/literature_discovery/round02_ndl/ndl_source_coverage_summary.md
+  (any temporary local analysis helpers under outputs/ were also not staged)
 
 NOT MODIFIED (per task constraints)
-  round02_japanese_source_tracking.csv (not staged; left as-is from the J-STAGE
-    harvest pass), TokyoProject.docx, ref/, scripts/, data/, data_raw/,
-    data_processed/, manuscript files, PDF/DOCX files, and all raw outputs under
-    outputs/literature_discovery/ and outputs/literature_verification/.
+  TokyoProject.docx, ref/, data/, data_raw/, data_processed/, manuscript files,
+  PDF/DOCX files, prior-round raw outputs, and all scripts outside
+  scripts/10_literature_discovery/.
 
 UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx

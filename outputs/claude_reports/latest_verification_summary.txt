@@ -1,14 +1,13 @@
-TOKYO-CHINA ROUND 02 - J-STAGE PRIORITY-CANDIDATE VERIFICATION - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - NDL METADATA-ONLY SEARCH - VERIFICATION SUMMARY
 Generated: 2026-06-21
 
 TASK OBJECTIVE
-  Verify four priority Round 02 J-STAGE candidates (R02_JSTAGE_002, _007, _011,
-  _021) and resolve overlap with existing CiNii records. Main priority: confirm
-  whether R02_JSTAGE_002 and R02_CINII_001 refer to the same study and decide
-  whether the J-STAGE DOI should supplement the existing record or justify a
-  separate matrix row. Candidate-level metadata/source verification only. NOT a
-  full-text review. Does NOT confirm the research gap. Status: gap under
-  verification.
+  Run the Round 02 NDL Search metadata-only search for Japanese-language books,
+  reports, theses, institutional records, and official/public materials relevant
+  to the Tokyo-China opportunity-risk mismatch project, using the NDL Search
+  OpenSearch API (metadata only). This is metadata discovery only. It is NOT a
+  literature review, NOT a full-text review, and does NOT confirm the research
+  gap. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -16,71 +15,75 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-PRIORITY J-STAGE CANDIDATES VERIFIED (4)
-  R02_JSTAGE_002  verified_by_doi_and_jstage_metadata; same study as R02_CINII_001
-                  -> supplement_existing_record (no duplicate row)
-  R02_JSTAGE_007  verified_by_doi_and_jstage_metadata (Crossref-confirmed)
-                  -> add_to_literature_matrix_only (historical Tokyo background)
-  R02_JSTAGE_011  verified_by_doi_and_jstage_metadata (Crossref-confirmed)
-                  -> add_to_literature_matrix_only (Osaka comparator; NOT Tokyo)
-  R02_JSTAGE_021  verified_by_doi_and_jstage_metadata (source); coding held
-                  -> keep_hold_for_translation_or_manual_check (study area unclear)
+SCRIPT ADDED
+  scripts/10_literature_discovery/harvest_ndl_round02.py
+  - Standard-library only (urllib + xml.etree.ElementTree + csv + json).
+  - Queries the NDL Search OpenSearch API (free-word "any" parameter; closest
+    metadata-supported mode) for the 21 Round 02 Japanese queries.
+  - Probes the current host (ndlsearch.ndl.go.jp) with a legacy fallback.
+  - Parses RSS/Dublin Core metadata; never downloads PDFs or full text; never
+    scrapes HTML; no browser automation; no paid APIs; no credentials.
+  - Routes official/government/municipal records to the official-source
+    registry; academic/library records to the tracking CSV. The official
+    detector is conservative (excludes academic/commercial publishers; avoids
+    single-character false positives such as the bare character in "shutoken").
 
-VERIFICATION ROUTES (public metadata only)
-  - J-STAGE stable URLs + locally saved J-STAGE WebAPI metadata (round02_jstage)
-  - DOI resolver (doi.org): R02_JSTAGE_002 and _021 DOIs resolve via 302 to their
-    J-STAGE article pages (JaLC-registered DOIs; not in Crossref/OpenAlex)
-  - Crossref: confirmed R02_JSTAGE_007 and _011 (title, author, journal, year,
-    volume, pages)
-  - OpenAlex: queried for the two JaLC DOIs (404, as expected for JaLC)
-  No PDFs downloaded, no J-STAGE HTML scraping, no Google Scholar scraping, no
-  browser automation, no paid APIs, no credentials stored.
+SEARCH COVERAGE
+  Query groups attempted ............ 7 (QG-A through QG-G)
+  Queries attempted ................. 21 (R02-Q01 through R02-Q21)
+  NDL Search OpenSearch reached ..... YES (https://ndlsearch.ndl.go.jp/api/opensearch)
+  Candidate records retrieved ....... 123 (post within-run dedup)
+  Academic rows appended (tracking) . 106
+  Official rows appended (registry) . 2
 
-R02_JSTAGE_002 vs R02_CINII_001 - SAME STUDY (decision A: supplement)
-  Evidence: identical main title and subtitle (only the subtitle separator
-  differs), same year (2021), same first author (Wang Shuang; CiNii also lists
-  co-author Fujii), same society/journal (Japan Society of Lifology / Journal of
-  Lifology, vol. 40, p. 54). J-STAGE supplies DOI 10.24528/lifology.40.0_54
-  (resolves), which the CiNii record lacked (DOI was NA).
-  Action: supplemented R02_CINII_001 in literature_matrix.csv (added DOI; raised
-  verified partial -> yes; notes) and in gap_verification_matrix.csv (updated
-  verified_source; notes). NO duplicate matrix row was added.
+TRIAGE COUNTS (over 123 retrieved candidates; cautious metadata coding)
+  A_direct_overlap_candidate ........ 0
+  B_partial_overlap_candidate ....... 9  (4 appended; 5 were CiNii/J-STAGE dups)
+  E_background_candidate ............ 15 appended
+  held for translation/manual check . 87 (85 appended)
+  excluded as not relevant .......... 0
+  duplicate/complementary w/ CiNii/J-STAGE 15 (all dropped; none stronger)
+  official data/policy sources identified  6 (by category); 2 routed to registry,
+    2 kept in tracking as official_policy_context (non-official publisher), 2 dups
 
-DECISION COUNTS
-  Priority J-STAGE candidates verified ........ 4
-  R02_JSTAGE_002 same as R02_CINII_001 ........ YES
-  Existing R02_CINII_001 supplemented ......... YES (both matrices)
-  Added to literature_matrix .................. 2 (R02_JSTAGE_007, R02_JSTAGE_011)
-  Added to gap_verification_matrix ............ 0
-  Held for translation/manual check ........... 1 (R02_JSTAGE_021)
-  Excluded duplicate/complementary (no new row) 1 (R02_JSTAGE_002)
-  A_direct_overlap_candidate .................. 0
-  B_partial_overlap_candidate ................. 4 (all four; none promoted to A)
+OFFICIAL SOURCES ROUTED TO REGISTRY (2)
+  R02_NDL_OFF_002  Jichitai Kokusaika Kyokai (CLAIR), 2005, multilingual /
+    municipal international support - quasi-official local-government body.
+  R02_NDL_OFF_001  administrative/legal directive referencing Chinese residents,
+    year NA - low relevance; official-context candidate pending manual check.
+
+IMPORTANT CANDIDATES (require manual verification + translation)
+  R02_NDL_043 | 2026 | B_partial - migrants' residence / housing-market
+    residential disparity in Japan (housing module; Japan-wide, not Chinese-specific).
+  R02_NDL_087 | 2006 | B_partial - forum/report on education of foreign children
+    (service-access module; Tokyo signal).
+  R02_NDL_088 | 2006 | B_partial - pre-school education for foreign children
+    (service-access module; Tokyo signal).
 
 DIRECT-OVERLAP CAUTION
-  None of the four approaches the full provisional combination (Chinese
-  residents in Metropolitan Tokyo + Chinese-vs-non-Chinese comparison + housing
-  + transit/accessibility + services + disaster/risk + opportunity-risk
-  typology). R02_JSTAGE_002/_007 are single-/partial-module; _011 is Osaka;
-  _021 has an unclear study area. No A_direct_overlap is asserted and no gap
-  claim is made. Status remains: gap under verification.
+  No item integrates the full provisional combination (Chinese residents in
+  Metropolitan Tokyo + Chinese-vs-non-Chinese comparison + housing + transit/
+  accessibility + services + disaster/risk + opportunity-risk typology). Strong
+  Chinese-in-Tokyo titles surfaced by NDL duplicated existing CiNii/J-STAGE
+  records and were dropped, not re-added. No A_direct_overlap is asserted and no
+  gap claim is made. The gap is neither confirmed nor refuted. Status remains:
+  gap under verification.
 
-CHECKS (this pass, Python csv.reader)
-  CSV validation result: PASS
-    literature_matrix.csv             : 26 cols, 19 data rows, no ragged rows
-    gap_verification_matrix.csv       : 22 cols, 12 data rows, no ragged rows
-    round02_japanese_source_tracking.csv: 23 cols, 380 data rows, no ragged rows
-  duplicate check result: PASS
-    no duplicate record_id / source_id; no unjustified duplicate title rows
-    (R02_JSTAGE_002 not duplicated - folded into R02_CINII_001)
-  mojibake scan result: PASS (strict UTF-8; no replacement char or CP1252/GBK
-    markers; Japanese titles decode cleanly)
-  git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS
-  raw J-STAGE / CiNii outputs staged: NO
-  PDFs downloaded: NO
+CHECKS (this pass)
+  py_compile (harvest_ndl_round02.py) : PASS
+  CSV validation (csv.reader) ......... PASS
+    round02_japanese_source_tracking.csv: 23 cols, 486 data rows, no ragged rows
+    official_source_registry.csv ........ 14 cols, 2 data rows, no ragged rows
+  duplicate source_id check ........... PASS (none in either file)
+  duplicate title rows (unjustified) .. PASS (none)
+  mojibake scan ....................... PASS (strict UTF-8; no replacement char
+                                        or CP1252/GBK markers)
+  git diff --check .................... PASS (exit 0)
+  sensitive-file check ................ PASS
+  raw NDL outputs staged .............. NO
+  PDFs downloaded ..................... NO
 
 NEXT RECOMMENDED STEP
-  Manually translate/read R02_CINII_001 (= R02_JSTAGE_002) if used as housing
-  evidence; check held item R02_JSTAGE_021; then proceed to NDL metadata-only
-  search. Do not write the Introduction. Do not assert novelty.
+  Manually verify the NDL candidates (Section D) and official sources (CLAIR
+  item first), decide matrix routing, and continue official-source targeted
+  search where needed. Do not write the Introduction. Do not assert novelty.
