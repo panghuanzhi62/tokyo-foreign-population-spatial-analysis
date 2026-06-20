@@ -1,68 +1,59 @@
-TOKYO-CHINA ROUND 02 - NDL PRIORITY-CANDIDATE AND OFFICIAL-SOURCE VERIFICATION - CHANGED FILES
+TOKYO-CHINA ROUND 02 - TARGETED OFFICIAL-SOURCE SEARCH - CHANGED FILES
 Generated: 2026-06-21
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/literature_matrix.csv                              [modified]
-  literature/02_matrices/gap_verification_matrix.csv                        [modified]
-  literature/02_matrices/official_source_registry.csv                       [modified]
-  literature/02_matrices/round02_japanese_source_tracking.csv               [modified - correction]
-  literature/04_synthesis/round02_ndl_priority_candidate_verification.md    [new]
-  outputs/claude_reports/latest_verification_summary.txt                    [modified]
-  outputs/claude_reports/latest_changed_files.txt                           [modified]
-  outputs/claude_reports/latest_safety_check.txt                            [modified]
+  scripts/10_literature_discovery/targeted_official_source_search_round02.py   [new]
+  literature/02_matrices/official_source_registry.csv                          [modified]
+  literature/04_synthesis/round02_targeted_official_source_search_status.md     [new]
+  outputs/claude_reports/latest_verification_summary.txt                       [modified]
+  outputs/claude_reports/latest_changed_files.txt                              [modified]
+  outputs/claude_reports/latest_safety_check.txt                               [modified]
 
 DETAIL
 
-literature/02_matrices/literature_matrix.csv  [modified]
-  - Added 4 NDL rows: R02_NDL_043 (immigrant housing-market disparity book,
-    Keio Univ Press 2026), R02_NDL_087 and R02_NDL_088 (foreign-children
-    education reports, Tokyo Gakugei Univ 2006), R02_NDL_068 (Brazilian-resident
-    language support, Okayama 2014; DOI 10.19024/jajls.17.1_36).
-  - Header unchanged (26 cols). Data rows 19 -> 23.
-
-literature/02_matrices/gap_verification_matrix.csv  [modified]
-  - Added 1 NDL row: R02_NDL_043 (B_partial_overlap; housing module; Japan-wide).
-  - Header unchanged (22 cols). Data rows 12 -> 13.
+scripts/10_literature_discovery/targeted_official_source_search_round02.py  [new]
+  Targeted official-source discovery script. Standard library only. Verifies a
+  curated list of known official/quasi-official landing/catalogue pages with a
+  single lightweight reachability check (HTTP status only), classifies each by
+  domain, and appends new rows to official_source_registry.csv. No crawling, no
+  PDF/dataset download, no browser automation, no paid APIs, no credentials.
 
 literature/02_matrices/official_source_registry.csv  [modified]
-  - Updated R02_NDL_OFF_002 (CLAIR / 自治体国際化フォーラム): institution, year,
-    domain (multilingual/municipal), use_in_analysis = service_infrastructure_context,
-    verified_status = verified_by_institution_metadata.
-  - Updated R02_NDL_OFF_001 (MOJ adoption directive): institution + year corrected,
-    domain corrected from false-positive "housing" to administrative/family-
-    registration law, use_in_analysis = weak_background_only,
-    verified_status = weak_relevance.
-  - Header unchanged (14 cols). Data rows remain 2 (both kept in registry).
+  - Appended 21 official-source rows (R02_OFF_TGT_001 .. R02_OFF_TGT_021) across
+    population/nationality statistics, open/spatial data, housing, disaster/risk,
+    multilingual administrative services, health/welfare/education, and
+    prefectural/municipal sources (Tokyo, Saitama, Chiba, Kanagawa).
+  - Updated 1 row (R02_NDL_OFF_002, CLAIR): notes clarified to confirm municipal
+    multilingual/multicultural policy-context support and cross-referenced to the
+    live CLAIR portal record R02_OFF_TGT_016.
+  - Header unchanged (14 cols). Data rows 2 -> 23.
 
-literature/02_matrices/round02_japanese_source_tracking.csv  [modified - correction]
-  - R02_NDL_068 corrected: year NA -> 2014; doi NA -> 10.19024/jajls.17.1_36
-    (OpenAlex W571395046). One row changed; all other rows byte-identical.
-
-literature/04_synthesis/round02_ndl_priority_candidate_verification.md  [new]
-  - Public synthesis note: purpose, evidence status, academic candidate table,
-    official-source table, matrix additions/updates, direct-overlap caution,
-    next steps.
+literature/04_synthesis/round02_targeted_official_source_search_status.md  [new]
+  Public synthesis note: purpose, evidence status, search coverage, important
+  official sources, weak/held sources, methodological relevance, limitations,
+  next steps.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  - Refreshed to describe this NDL priority-candidate verification pass.
+  Refreshed to describe this targeted official-source search pass.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
-  - This file.
+  This file.
 
 outputs/claude_reports/latest_safety_check.txt  [modified]
-  - Refreshed public-repo safety check for this pass.
-
-LOCAL OUTPUTS WRITTEN BUT NOT STAGED (under outputs/literature_verification/)
-  outputs/literature_verification/round02_ndl_priority_verify/ndl_priority_verification.csv
-  outputs/literature_verification/round02_ndl_priority_verify/ndl_priority_verification.jsonl
-  outputs/literature_verification/round02_ndl_priority_verify/ndl_priority_manual_checklist.md
-  outputs/literature_verification/round02_ndl_priority_verify/ndl_priority_verification_manifest.json
-  (plus temporary local helper scripts; all under outputs/, never staged)
+  Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints)
-  TokyoProject.docx, ref/, scripts/, data/, data_raw/, data_processed/,
-  manuscript files, PDF/DOCX files, and all raw outputs under
-  outputs/literature_discovery/.
+  literature_matrix.csv and gap_verification_matrix.csv (UNCHANGED vs HEAD -
+  no official source was added to the academic matrices),
+  round02_japanese_source_tracking.csv (not changed this pass), TokyoProject.docx,
+  ref/, data/, data_raw/, data_processed/, manuscript files, PDF/DOCX files, and
+  all raw outputs under outputs/literature_discovery/.
+
+LOCAL DISCOVERY OUTPUTS WRITTEN BUT NOT STAGED (under outputs/literature_discovery/)
+  outputs/literature_discovery/round02_official_targeted/official_source_candidates.csv
+  outputs/literature_discovery/round02_official_targeted/official_source_candidates.jsonl
+  outputs/literature_discovery/round02_official_targeted/official_source_coverage_summary.md
+  (plus temporary local helper scripts; all under outputs/, never staged)
 
 UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx

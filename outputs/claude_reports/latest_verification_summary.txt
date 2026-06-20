@@ -1,13 +1,13 @@
-TOKYO-CHINA ROUND 02 - NDL PRIORITY-CANDIDATE AND OFFICIAL-SOURCE VERIFICATION - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - TARGETED OFFICIAL-SOURCE SEARCH - VERIFICATION SUMMARY
 Generated: 2026-06-21
 
 TASK OBJECTIVE
-  Round 02 NDL priority-candidate and official-source verification. Verify only
-  the four priority NDL academic candidates (R02_NDL_043, _087, _088, _068) and
-  the two priority official-source candidates (R02_NDL_OFF_002, R02_NDL_OFF_001)
-  from the NDL search status note. Candidate-level metadata/source verification
-  only. NOT a full-text review. Does NOT confirm the research gap. Status: gap
-  under verification.
+  Targeted official-source search for the Tokyo-China opportunity-risk mismatch
+  project: discover and register official / quasi-official data, policy, and
+  service-infrastructure sources in official_source_registry.csv. No ordinary
+  academic literature was added to literature_matrix.csv or
+  gap_verification_matrix.csv. This is official-source discovery only. It does
+  NOT confirm the research gap. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -15,77 +15,75 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-PRIORITY NDL ACADEMIC CANDIDATES VERIFIED (4)
-  R02_NDL_043  verified_by_ndl_metadata        -> add_to_both_matrices (housing)
-  R02_NDL_087  verified_by_ndl_metadata        -> add_to_literature_matrix_only
-  R02_NDL_088  verified_by_ndl_metadata        -> add_to_literature_matrix_only
-  R02_NDL_068  verified_by_doi_and_metadata    -> add_to_literature_matrix_only
+SCRIPT ADDED
+  scripts/10_literature_discovery/targeted_official_source_search_round02.py
+  - Standard-library only. Conservative semi-automated approach: a curated list
+    of KNOWN stable official/quasi-official landing/catalogue pages, each
+    verified with a single lightweight reachability check (HTTP status only).
+  - No crawling, no PDF download, no dataset download, no browser automation,
+    no paid APIs, no credentials.
 
-PRIORITY NDL OFFICIAL SOURCES VERIFIED (2)
-  R02_NDL_OFF_002  verified_by_institution_metadata -> kept/updated (CLAIR;
-                   service_infrastructure_context)
-  R02_NDL_OFF_001  weak_relevance                   -> kept but marked
-                   weak_background_only (MOJ adoption directive; off-topic)
+SEARCH COVERAGE
+  Official institutions / sources checked .... 21
+  Official source candidates identified ...... 21
+  Rows appended to official_source_registry .. 21 (R02_OFF_TGT_001..R02_OFF_TGT_021)
+  Rows updated in official_source_registry ... 1 (R02_NDL_OFF_002, CLAIR notes)
+  Official sources added to academic matrices  0
 
-VERIFICATION ROUTES (public metadata only)
-  - NDL stable URLs ("books" permalinks) + locally saved NDL metadata
-  - OpenAlex title search: exact match for R02_NDL_068 supplied DOI
-    10.19024/jajls.17.1_36 and year 2014 (W571395046; Japanese Journal of
-    Language in Society 17(1):36)
-  - Crossref title search (no matches for the three Japanese books/reports)
-  No PDFs downloaded, no NDL HTML scraping, no Google Scholar scraping, no
-  browser automation, no paid APIs, no credentials stored.
+SOURCES BY DOMAIN (mutually exclusive grouping)
+  official data sources (population + spatial/open data) . 6
+  service infrastructure (multilingual + municipal) ..... 7
+  disaster / risk ....................................... 3
+  housing ............................................... 3
+  health / welfare / education (policy/context) ......... 2
+  weak / held (hold_for_manual_check) ................... 3
 
-KEY VERIFICATION NOTES
-  R02_NDL_043  Keio University Press book (2026), 金希相; immigrants + housing
-    residential disparity in Japan; Japan-wide, not Chinese/Tokyo-specific.
-  R02_NDL_068  DOI/year recovered via OpenAlex; Brazilian residents in Soja City,
-    Okayama (not Tokyo, not Chinese); background comparator.
-  R02_NDL_OFF_001  the earlier "housing" domain was a FALSE POSITIVE from the
-    word 居住 (residing); corrected to administrative/family-registration law.
+VERIFICATION STATUS (of the 21 appended)
+  verified_by_official_catalogue ... 5
+  verified_by_official_page ........ 13
+  hold_for_manual_check ............ 3 (auto-reachability not confirmed this run)
 
-DECISION COUNTS
-  Priority NDL academic candidates verified ... 4
-  Priority NDL official sources verified ...... 2
-  Added to literature_matrix .................. 4 (R02_NDL_043, _087, _088, _068)
-  Added to gap_verification_matrix ............ 1 (R02_NDL_043)
-  Academic candidates held .................... 0
-  Academic candidates excluded ................ 0
-  Official sources kept/updated ............... 1 (R02_NDL_OFF_002)
-  Official sources held ....................... 0
-  Official sources excluded/marked weak ....... 1 (R02_NDL_OFF_001, weak_relevance)
-  A_direct_overlap_candidate .................. 0
-  B_partial_overlap_candidate ................. 4
+HELD FOR MANUAL CHECK (well-known sites; likely network/blocking artifacts)
+  R02_OFF_TGT_006  国土地理院 GSI Maps          https://www.gsi.go.jp/
+  R02_OFF_TGT_011  ハザードマップポータルサイト    https://disaportal.gsi.go.jp/
+  R02_OFF_TGT_013  東京都つながり創成財団 Tsunagari https://www.tsunagari-tokyo.jp/
 
-TRACKING CORRECTION
-  round02_japanese_source_tracking.csv R02_NDL_068: year NA -> 2014,
-  doi NA -> 10.19024/jajls.17.1_36 (OpenAlex-confirmed). Staged as a correction.
+MOST RELEVANT OFFICIAL SOURCES
+  R02_OFF_TGT_001  e-Stat ................. foreign-resident population baseline
+  R02_OFF_TGT_002  ISA 在留外国人統計 ...... Chinese/foreign counts by nationality/area
+  R02_OFF_TGT_004  東京都の統計 ............ Tokyo ward/municipality population
+  R02_OFF_TGT_005  MLIT 国土数値情報 ....... national GIS layers (accessibility/exposure)
+  R02_OFF_TGT_007  東京都住宅政策本部 ...... Tokyo housing / public-housing policy
+  R02_OFF_TGT_010  東京都防災 ............. disaster prevention + multilingual info
+  R02_OFF_TGT_013  Tsunagari .............. Tokyo multilingual service infrastructure (held)
 
-DIRECT-OVERLAP CAUTION
-  No candidate integrates the full provisional combination (Chinese residents in
-  Metropolitan Tokyo + Chinese-vs-non-Chinese comparison + housing + transit/
-  accessibility + services + disaster/risk + opportunity-risk typology). All are
-  single-/partial-module; _068 is non-Tokyo/non-Chinese; the official sources are
-  context only. No A_direct_overlap is asserted and no gap claim is made. Status
-  remains: gap under verification.
+DIRECT-OVERLAP / GAP CAUTION
+  These are context and potential data-construction sources, not academic
+  evidence. None bears on the gap claim. No academic literature was added to the
+  matrices. No A_direct_overlap is asserted. Status remains: gap under
+  verification.
 
-CHECKS (this pass, Python csv.reader)
-  CSV validation result: PASS
+CHECKS (this pass)
+  py_compile (targeted_official_source_search_round02.py) : PASS
+  CSV validation (csv.reader) ............................. PASS
+    official_source_registry.csv      : 14 cols, 23 data rows, no ragged rows
+    round02_japanese_source_tracking.csv: 23 cols, 486 data rows, no ragged rows
     literature_matrix.csv             : 26 cols, 23 data rows, no ragged rows
     gap_verification_matrix.csv       : 22 cols, 13 data rows, no ragged rows
-    round02_japanese_source_tracking.csv: 23 cols, 486 data rows, no ragged rows
-    official_source_registry.csv      : 14 cols, 2 data rows, no ragged rows
-  duplicate check result: PASS (no duplicate record_id/source_id; no unjustified
-    duplicate titles)
-  mojibake scan result: PASS (strict UTF-8; no replacement char or CP1252/GBK)
-  git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS
-  raw outputs staged: NO
-  PDF/DOCX/ref/data/manuscript staged: NO
+  duplicate check ........................................ PASS (no dup source_id;
+    no unjustified duplicate source_title)
+  official sources in academic matrices ................. 0 (none; matrices
+    unchanged vs HEAD)
+  mojibake scan ......................................... PASS (strict UTF-8)
+  git diff --check ...................................... PASS (exit 0)
+  sensitive-file check .................................. PASS
+  PDFs downloaded ....................................... NO
+  datasets downloaded ................................... NO
+  raw outputs staged .................................... NO
 
 NEXT RECOMMENDED STEP
-  Manually translate/read R02_NDL_043 (housing) first; check R02_NDL_OFF_002
-  (CLAIR) if used as official context; then consider a targeted official-source
-  search for Tokyo metropolitan municipalities (disaster prevention, multilingual
-  services, housing support, welfare/education/health access). Do not write the
+  Manually verify the highest-value official sources (held items first: Hazard
+  Map Portal, GSI, Tsunagari; then population/spatial-data catalogues); decide
+  which sources support variable construction versus policy/context; then prepare
+  a Round 02 synthesis across all Japanese-source searches. Do not write the
   Introduction. Do not assert novelty.
