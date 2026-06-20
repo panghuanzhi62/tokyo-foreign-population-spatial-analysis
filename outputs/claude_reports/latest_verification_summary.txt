@@ -1,4 +1,4 @@
-TOKYO-CHINA REMAINING ROUND 01 B MATRIX ROWS - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 01 REMAINING B-CANDIDATE MATRIX UPDATE - VERIFICATION SUMMARY
 Generated: 2026-06-20
 
 REPO PATH
@@ -8,77 +8,58 @@ BRANCH
   agentic-upgrade
 
 LATEST COMMIT HASH
-  This task commit: "Add remaining Round 01 B-candidate matrix rows"
+  This task commit: "Repair remaining B-candidate matrix update reports"
   (see git log -1 on agentic-upgrade; hash reported in final response)
 
 PUSHED TO REMOTE: YES
   origin agentic-upgrade
 
 TASK OBJECTIVE
-  Process the remaining 10 prioritized Round 01 B candidates (the 13 minus the
-  three already entered: R01_HRB_001/002/003) and extend the literature and
-  gap-verification matrices with verified rows. NOT gap confirmation.
+  Round 01 remaining B-candidate matrix update: validate the matrix CSVs and
+  refresh the fixed Claude report files so they describe the remaining
+  B-candidate matrix update (not the earlier web-verified high-risk B task).
+  This is NOT gap confirmation.
 
 REMAINING B CANDIDATES REVIEWED: 10
 
-DISPOSITIONS
-  add_to_both_matrices (5): R01_RB_004, R01_RB_005, R01_RB_006, R01_RB_007, R01_RB_008
-  add_to_literature_matrix_only (4): R01_RB_009, R01_RB_010, R01_RB_011, R01_RB_012
-  hold_for_manual_check (1): R01_RB_013 (round01_api-0156; study area unconfirmed)
-  exclude_duplicate_or_preprint (0): none (the preprint round01_api-0080 was
-    already represented by the published version under R01_HRB_002)
-  exclude_false_positive_or_out_of_scope (0): none
+MATRIX ENTRY OUTCOME
+  literature_matrix rows added (in the prior task): 9 (R01_RB_004..R01_RB_012)
+  gap_verification_matrix rows added (in the prior task): 5 (R01_RB_004..R01_RB_008)
+  candidates held for manual check: 1 (R01_RB_013 = round01_api-0156)
+  candidates excluded as duplicate/preprint/out of scope: 0
+  R01_RB_013: HELD FOR MANUAL CHECK (not added to either matrix yet)
 
-MATRIX ROWS ADDED
-  literature_matrix.csv: 9 rows added (total data rows now 12)
-  gap_verification_matrix.csv: 5 rows added (total data rows now 8)
+CSV VALIDATION (Python csv.DictReader)
+  literature_matrix.csv: header 26 cols; 12 data rows; all rows 26 fields;
+    no embedded newlines; record_ids = R01_HRB_001..003 + R01_RB_004..012 (12 expected, all present).
+  gap_verification_matrix.csv: header 22 cols; 8 data rows; all rows 22 fields;
+    no embedded newlines; record_ids = R01_HRB_001..003 + R01_RB_004..008 (8 expected; the four
+    R01_RB_009..012 are intentionally literature-matrix-only background and correctly absent here).
+  CSV VALIDATION RESULT: PASS
+  CSV REPAIR PERFORMED: NO (no malformed rows or embedded-newline issues found)
 
-CSV VALIDATION
-  literature_matrix.csv: 26 cols, 12 data rows, all rows 26 fields, no dup ids, no dup titles
-  gap_verification_matrix.csv: 22 cols, 8 data rows, all rows 22 fields, no dup ids, no dup titles
-  Result: PASS
-
-SYNTHESIS NOTE
-  literature/04_synthesis/round01_remaining_b_matrix_update.md created.
-
-DIRECT-OVERLAP CAUTION (preliminary)
-  None of the remaining candidates approaches the full provisional-topic
-  combination on metadata alone; each covers one or two modules (housing OR
-  disaster OR services) and is generally not Chinese-specific. This does NOT
-  confirm the gap and does NOT prove absence of direct-overlap literature.
-
-FILES CREATED OR MODIFIED (staged)
-  literature/02_matrices/literature_matrix.csv (9 rows appended)
-  literature/02_matrices/gap_verification_matrix.csv (5 rows appended)
-  literature/04_synthesis/round01_remaining_b_matrix_update.md (new)
-  outputs/claude_reports/latest_verification_summary.txt
-  outputs/claude_reports/latest_changed_files.txt
-  outputs/claude_reports/latest_safety_check.txt
-
-FILES INTENTIONALLY NOT TOUCHED
-  TokyoProject.docx, ref/, scripts/, data/, data_raw/, data_processed/,
-  manuscript files, PDF/DOCX files, raw outputs under outputs/literature_discovery/
-  and outputs/literature_verification/.
-
-CHECKS RUN
-  git status --short, git diff --check, mojibake scan, sensitive-file check,
-  CSV header/field-count/duplicate validation.
+DUPLICATE CHECK
+  No duplicate record_id in either file. No duplicate title rows in either file.
+  DUPLICATE CHECK RESULT: PASS
 
 MOJIBAKE SCAN RESULT: PASS
 GIT DIFF --CHECK RESULT: PASS
-CSV VALIDATION RESULT: PASS
-DUPLICATE CHECK RESULT: PASS
-
-SCRIPTS MODIFIED: NO
-DATA MODIFIED: NO
-MANUSCRIPT FILES MODIFIED: NO
-PDF OR DOCX FILES MODIFIED: NO
-REF/ MODIFIED: NO
-RAW API / VERIFICATION OUTPUTS STAGED: NO
-
 SENSITIVE-FILE CHECK RESULT: PASS
 
+RAW API / VERIFICATION OUTPUTS STAGED: NO
+SCRIPTS MODIFIED: NO
+DATA MODIFIED: NO
+MANUSCRIPT MODIFIED: NO
+PDF OR DOCX MODIFIED: NO
+REF/ MODIFIED: NO
+
+FILES UPDATED THIS TASK (staged)
+  outputs/claude_reports/latest_verification_summary.txt
+  outputs/claude_reports/latest_changed_files.txt
+  outputs/claude_reports/latest_safety_check.txt
+  (the two matrix CSVs were validated only; they required no repair and were NOT staged)
+
 NEXT RECOMMENDED STEP
-  Manually confirm the study area for the held item R01_RB_013, then run a
-  second-round search for Japanese-language sources (CiNii, J-STAGE, official
-  reports). Do not write the Introduction and do not assert novelty yet.
+  Manually verify R01_RB_013 (confirm its study area is Japan/Tokyo), then begin a
+  Japanese-language / CiNii / J-STAGE / official-source search round. Do not write
+  the Introduction yet; do not assert novelty yet.

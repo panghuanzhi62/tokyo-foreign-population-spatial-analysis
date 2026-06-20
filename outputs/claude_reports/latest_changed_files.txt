@@ -1,15 +1,15 @@
-TOKYO-CHINA REMAINING ROUND 01 B MATRIX ROWS - CHANGED FILES
+TOKYO-CHINA ROUND 01 REMAINING B-CANDIDATE MATRIX UPDATE - CHANGED FILES
 Generated: 2026-06-20
 
-MODIFIED FILES STAGED (2)
-  literature/02_matrices/literature_matrix.csv (9 data rows appended; 12 total)
-  literature/02_matrices/gap_verification_matrix.csv (5 data rows appended; 8 total)
-
-CREATED FILES STAGED (4)
-  literature/04_synthesis/round01_remaining_b_matrix_update.md
+MODIFIED FILES STAGED (3)
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
+
+VALIDATED BUT NOT MODIFIED (NOT staged)
+  literature/02_matrices/literature_matrix.csv (12 rows; valid; no repair needed)
+  literature/02_matrices/gap_verification_matrix.csv (8 rows; valid; no repair needed)
+  literature/04_synthesis/round01_remaining_b_matrix_update.md (already committed; unchanged)
 
 DELETED FILES
   (none)
@@ -21,11 +21,11 @@ UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   outputs/literature_verification/ (B-verify detailed outputs)
 
 FILES STAGED
-  Exactly the 6 files listed above (no others).
+  Exactly the 3 report files listed above (no others).
 
 FILES COMMITTED
-  The 6 staged files in commit:
-  "Add remaining Round 01 B-candidate matrix rows"
+  The 3 staged files in commit:
+  "Repair remaining B-candidate matrix update reports"
 
 FILES PUSHED
   Same commit pushed to origin agentic-upgrade.

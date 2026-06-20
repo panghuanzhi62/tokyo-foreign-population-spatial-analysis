@@ -1,4 +1,4 @@
-TOKYO-CHINA REMAINING ROUND 01 B MATRIX ROWS - PUBLIC REPO SAFETY CHECK
+TOKYO-CHINA ROUND 01 REMAINING B-CANDIDATE MATRIX UPDATE - PUBLIC REPO SAFETY CHECK
 Generated: 2026-06-20
 
 PUBLIC REPO SAFETY CHECK: PASS
@@ -12,19 +12,19 @@ SCRIPTS MODIFIED: NO
 MANUSCRIPT MODIFIED: NO
 RAW API / VERIFICATION OUTPUTS STAGED: NO
   (nothing under outputs/literature_discovery/ or outputs/literature_verification/ was staged)
-GIT ADD . USED: NO (only the 6 explicitly approved files were staged)
+GIT ADD . USED: NO (only the 3 explicitly approved report files were staged)
 MOJIBAKE PATTERNS FOUND: NO
-LINE ENDING WARNING: YES (informational only; git autocrlf will store new text
-  and CSV files as LF and present CRLF in the working tree - benign, no corruption)
+LINE ENDING WARNING: YES (informational only; git autocrlf will store the report
+  files as LF and present CRLF in the working tree - benign, no corruption)
 
-CONTENT SAFETY
-  The new matrix rows and synthesis note contain only bibliographic metadata
-  (author, title, source, year, DOI, URL) plus cautious analyst coding. No PDF
-  full text was downloaded or reproduced. The two matrix CSVs are tracked via the
-  existing narrow .gitignore exception; no other CSV is affected.
+CSV INTEGRITY
+  Both matrix CSVs were validated with Python csv.DictReader: correct header and
+  field counts, no malformed rows, no embedded newlines, no duplicate record_ids,
+  no duplicate titles. No repair was required, so the CSVs were not modified or
+  staged. R01_RB_013 remains held for manual check and is not present in either
+  matrix.
 
 FINAL SAFETY CONCLUSION
-  Safe to commit and push. Only the two structural matrix CSVs (with verified
-  rows), one ASCII-safe public synthesis note, and three ASCII-safe report files
-  were staged. No raw outputs, sensitive, copyrighted, binary, manuscript, data,
-  or script content was included.
+  Safe to commit and push. Only the three ASCII-safe report files were staged. No
+  CSV, raw output, sensitive, copyrighted, binary, manuscript, data, or script
+  content was included.
