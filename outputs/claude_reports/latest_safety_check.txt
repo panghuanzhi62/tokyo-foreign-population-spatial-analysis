@@ -1,4 +1,4 @@
-TOKYO-CHINA WEB-VERIFIED HIGH-RISK B MATRIX ROWS - PUBLIC REPO SAFETY CHECK
+TOKYO-CHINA REMAINING ROUND 01 B MATRIX ROWS - PUBLIC REPO SAFETY CHECK
 Generated: 2026-06-20
 
 PUBLIC REPO SAFETY CHECK: PASS
@@ -18,14 +18,13 @@ LINE ENDING WARNING: YES (informational only; git autocrlf will store new text
   and CSV files as LF and present CRLF in the working tree - benign, no corruption)
 
 CONTENT SAFETY
-  The matrix rows and synthesis note contain only bibliographic metadata (author,
-  title, source, year, DOI, volume/issue/pages) plus cautious analyst coding. No
-  PDF full text was downloaded or reproduced. The two matrix CSV files are
-  tracked via the narrow .gitignore exception added earlier; no other CSV is
-  affected.
+  The new matrix rows and synthesis note contain only bibliographic metadata
+  (author, title, source, year, DOI, URL) plus cautious analyst coding. No PDF
+  full text was downloaded or reproduced. The two matrix CSVs are tracked via the
+  existing narrow .gitignore exception; no other CSV is affected.
 
 FINAL SAFETY CONCLUSION
-  Safe to commit and push. Only the two structural matrix CSVs (with 3 verified
-  rows each), one ASCII-safe public synthesis note, and three ASCII-safe report
-  files were staged. No raw outputs, sensitive, copyrighted, binary, manuscript,
-  data, or script content was included.
+  Safe to commit and push. Only the two structural matrix CSVs (with verified
+  rows), one ASCII-safe public synthesis note, and three ASCII-safe report files
+  were staged. No raw outputs, sensitive, copyrighted, binary, manuscript, data,
+  or script content was included.

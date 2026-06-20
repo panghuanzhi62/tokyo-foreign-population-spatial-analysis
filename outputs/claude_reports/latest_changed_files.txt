@@ -1,12 +1,12 @@
-TOKYO-CHINA WEB-VERIFIED HIGH-RISK B MATRIX ROWS - CHANGED FILES
+TOKYO-CHINA REMAINING ROUND 01 B MATRIX ROWS - CHANGED FILES
 Generated: 2026-06-20
 
 MODIFIED FILES STAGED (2)
-  literature/02_matrices/literature_matrix.csv (3 data rows appended)
-  literature/02_matrices/gap_verification_matrix.csv (3 data rows appended)
+  literature/02_matrices/literature_matrix.csv (9 data rows appended; 12 total)
+  literature/02_matrices/gap_verification_matrix.csv (5 data rows appended; 8 total)
 
 CREATED FILES STAGED (4)
-  literature/04_synthesis/round01_high_risk_b_web_verified_note.md
+  literature/04_synthesis/round01_remaining_b_matrix_update.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
@@ -25,7 +25,7 @@ FILES STAGED
 
 FILES COMMITTED
   The 6 staged files in commit:
-  "Add web-verified high-risk B literature matrix rows"
+  "Add remaining Round 01 B-candidate matrix rows"
 
 FILES PUSHED
   Same commit pushed to origin agentic-upgrade.
