@@ -1,15 +1,15 @@
-TOKYO-CHINA ROUND 02 - CiNii METADATA-ONLY SEARCH - PUBLIC REPO SAFETY CHECK
+TOKYO-CHINA ROUND 02 - CiNii PRIORITY CANDIDATE VERIFICATION - PUBLIC REPO SAFETY CHECK
 Generated: 2026-06-20
 
 PUBLIC REPO SAFETY CHECK: PASS
 
 CREDENTIAL SAFETY
-  CINII_APP_ID present: YES (value not revealed)
-  CINII_APP_ID source: environment variable only
+  CINII_APP_ID used this task: NO (verification used local CiNii metadata plus
+    the Crossref DOI resolver; the appid was not needed)
   CINII_APP_ID printed to stdout: NO
-  CINII_APP_ID written to any output/report/script: NO
-  CINII_APP_ID leak check: scanned the script, tracking CSV, synthesis note,
-    all round02_cinii raw/normalized outputs, and the claude_reports txt files
+  CINII_APP_ID written to any output/report/matrix: NO
+  CINII_APP_ID leak check: scanned the two matrices, the synthesis note, all
+    round02_cinii_priority_verify outputs, and the claude_reports txt files
     (10 files) for the literal appid value. RESULT: NO leak.
 
 STAGING SAFETY
@@ -18,42 +18,45 @@ STAGING SAFETY
   DOCX FILES STAGED: NO
   REF/ STAGED: NO
   DATA FILES STAGED: NO
-  RAW CiNii OUTPUTS STAGED: NO
-    (nothing under outputs/literature_discovery/ was staged)
-  SCRIPTS STAGED: only scripts/10_literature_discovery/harvest_cinii_round02.py
+  SCRIPTS STAGED: NO
+  RAW CiNii OUTPUTS STAGED: NO (nothing under outputs/literature_discovery/)
+  LOCAL VERIFICATION OUTPUTS STAGED: NO (nothing under outputs/literature_verification/)
   MANUSCRIPT MODIFIED: NO
   GIT ADD . USED: NO (only the 6 explicitly approved files were staged)
 
 ENCODING / MOJIBAKE
   MOJIBAKE PATTERNS FOUND: NO
   Markers scanned: replacement char and gbk mojibake markers.
-  CJK CONTENT: present in literature/02_matrices/round02_japanese_source_tracking.csv
-    (Japanese titles), literature/04_synthesis/round02_cinii_search_status.md
-    (highlighted titles), and Japanese keyword constants in the harvester.
+  CJK CONTENT: present in literature_matrix.csv and gap_verification_matrix.csv
+    (Japanese titles of the 4 added rows) and in the synthesis note.
   CJK FILE ENCODING: UTF-8, LF line endings, valid decode, no U+FFFD.
   OTHER EDITED FILES: ASCII-safe.
-  LINE ENDING WARNING: YES on the tracking CSV (informational; git stores LF; benign).
+  LINE ENDING WARNING: YES on the two matrices (informational; git stores LF; benign).
 
 EXTERNAL ACCESS THIS TASK
-  Public bibliographic metadata only via CiNii Research OpenSearch (authenticated
-  with the environment appid). No PDFs downloaded. No pages scraped. No Google
-  Scholar query. No browser automation. No paid APIs. No credentials stored.
+  Public bibliographic metadata only: local CiNii records, CiNii stable URLs,
+  and the Crossref DOI resolver for two DOIs. No PDFs downloaded. No pages
+  scraped. No Google Scholar query. No browser automation. No paid APIs. No
+  SciSpace. No credentials stored.
 
 CSV INTEGRITY
-  round02_japanese_source_tracking.csv: 23-column header, 102 data rows, valid,
-    no ragged rows, 0 duplicate source_id, 0 duplicate titles.
-  official_source_registry.csv: 14-column header, 0 data rows, valid (unchanged).
+  literature_matrix.csv: 26-column header, 17 data rows, valid, no ragged rows,
+    0 duplicate record_id, 0 duplicate titles.
+  gap_verification_matrix.csv: 22-column header, 12 data rows, valid, no ragged
+    rows, 0 duplicate record_id, 0 duplicate titles.
+  round02_japanese_source_tracking.csv: 23-column header, 102 data rows, valid
+    (unchanged this task).
 
 FILES STAGED THIS TASK
-  scripts/10_literature_discovery/harvest_cinii_round02.py
-  literature/02_matrices/round02_japanese_source_tracking.csv
-  literature/04_synthesis/round02_cinii_search_status.md
+  literature/02_matrices/literature_matrix.csv
+  literature/02_matrices/gap_verification_matrix.csv
+  literature/04_synthesis/round02_cinii_priority_candidate_verification.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 FINAL SAFETY CONCLUSION
   Safe to commit and push. Only the six files above were staged. No raw output,
-  credential, sensitive, copyrighted, binary, manuscript, data, or out-of-scope
-  script content was included. TokyoProject.docx and ref/ remain untracked and
-  untouched.
+  credential, sensitive, copyrighted, binary, manuscript, data, or script
+  content was included. TokyoProject.docx and ref/ remain untracked and
+  untouched. No research-gap confirmation or A_direct_overlap claim was made.
