@@ -1,4 +1,4 @@
-TOKYO-CHINA ROUND 01 - R01_RB_013 SINGLE-CANDIDATE VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - JAPANESE-SOURCE SEARCH SETUP - VERIFICATION SUMMARY
 Generated: 2026-06-20
 
 REPO PATH
@@ -11,104 +11,78 @@ PUSHED TO REMOTE: YES
   origin agentic-upgrade
 
 TASK OBJECTIVE
-  Verify the one held Round 01 B candidate (R01_RB_013) and decide its matrix
-  disposition. Single-candidate bibliographic and overlap verification only.
-  This task does NOT confirm or invalidate the research gap.
+  Create the Round 02 Japanese-language / CiNii / J-STAGE / official-source
+  search setup: a protocol, a Japanese-language query list, and header-only
+  tracking templates. This is search SETUP, not a completed review.
 
-CANDIDATE
-  record_id:     R01_RB_013
-  discovery id:  round01_api-0156
-  Title:         Disentangling transaction-stage and management-stage
-                 discrimination in the rental housing market: evidence from a
-                 correspondence experiment in Tokyo
-  Author-year:   Sugasawa and Harano 2026 (Takeru Sugasawa; Kei Harano)
-  Year:          2026
-  Source:        Journal of Housing Economics
-  Document type: journal article
-  DOI:           10.1016/j.jhe.2026.102134
-  Stable URL:    https://doi.org/10.1016/j.jhe.2026.102134
-  Landing page:  https://linkinghub.elsevier.com/retrieve/pii/S105113772600015X
+GAP STATUS
+  Gap under verification. No final gap claim is made or allowed. The final
+  research gap must not be asserted until supported by verified literature-matrix
+  records and deep-reading notes, positioned against Sun 2026.
 
-REASON IT WAS HELD
-  The prior remaining-B matrix update held R01_RB_013 because the metadata title
-  did not state the study area; geography (Japan/Tokyo) needed confirmation
-  before entry. Automated triage had flagged it false_positive_or_out_of_scope.
+BOUNDARY CONDITION (Sun 2026, Cities)
+  Sun 2026 already covers Tokyo immigrant location choice, co-ethnic networks,
+  spatial assimilation, Chinese/Vietnamese/Filipino/Brazilian immigrants,
+  Tokyo-area municipalities, and dynamic spatial Durbin modeling. Round 02
+  items overlapping that scope are positioned against Sun 2026, not claimed novel.
 
-VERIFICATION (public metadata only)
-  DOI resolver:     resolves
-  Crossref:         matched by DOI; full title includes "evidence from a
-                    correspondence experiment in Tokyo" (study area confirmed);
-                    authors Sugasawa; Harano; year 2026; Journal of Housing Economics
-  OpenAlex:         matched by DOI; same title/authors/year/venue; type article;
-                    concepts include rental housing, property management,
-                    landlord, ethnic discrimination
-  Semantic Scholar: matched (prior automated run)
-  verification_status: verified_by_doi_and_metadata
+DELIVERABLES CREATED
+  1. literature/03_notes/round02_japanese_source_search_protocol.md
+       Sections A-G: purpose, evidence status, source categories, source-handling
+       rules, search domains, decision logic (overlap coding), and minimum
+       evidence before final topic decision.
+  2. literature/03_notes/round02_japanese_search_queries.md
+       21 Japanese queries (R02-Q01..R02-Q21) in 7 groups QG-A..QG-G, each with
+       Japanese string, English working translation, source priority, expected
+       relevance, and matrix target. UTF-8 with LF; Japanese recorded in Japanese.
+  3. literature/02_matrices/round02_japanese_source_tracking.csv
+       Header-only, 23 columns.
+  4. literature/02_matrices/official_source_registry.csv
+       Header-only, 14 columns.
+  5. literature/04_synthesis/round02_japanese_source_search_status.md
+       Source-light status note (initialized; no gap claim; next steps).
 
-  No PDFs downloaded. No paid APIs. No credentials stored. No raw API output
-  files modified. No Google Scholar scraping. SciSpace not used automatically.
+OPTIONAL FEASIBILITY TEST: PERFORMED (metadata-only, counts only)
+  Platform: OpenAlex public API (mailto), counts only. No PDFs downloaded. No
+  scraping. Google Scholar NOT queried.
+  Findings: API responds (broad query "foreigners rental housing discrimination
+  Japan" returned a non-zero count ~731); narrow Tokyo-and-foreign-resident
+  multi-term queries returned near-zero on the English index, reinforcing the
+  need for Japanese-source search. No results were entered into the tracking CSVs.
+  CiNii API: SKIPPED (requires CINII_APP_ID, absent in environment). Handled by
+  manual search. J-STAGE / NDL: not API-queried this round.
 
-OVERLAP CODING (cautious)
-  covers_chinese_residents:           unclear
-  covers_foreign_residents:           partial (ethnic/foreign applicants; confirm in full text)
-  covers_tokyo:                       yes
-  covers_japan:                       yes
-  covers_chinese_non_chinese_compare: no
-  covers_housing:                     yes
-  covers_transit_accessibility:       no
-  covers_service_accessibility:       no
-  covers_disaster_risk:               no
-  covers_arrival_settlement_infra:    no
-  covers_opportunity_risk_mismatch:   no
-  covers_gis_spatial:                 no
-
-MATRIX DISPOSITION
-  Decision: add_to_both_matrices
-  Duplicate or preprint? NO (distinct 2026 article; not a preprint of R01_RB_005).
-  Reason: Tokyo geography confirmed; anchors the housing-discrimination module
-  for Tokyo with current (2026) evidence, consistent with R01_RB_005 /
-  R01_RB_006 / R01_RB_007.
-
-  Added to literature_matrix.csv:       YES (R01_RB_013)
-  Added to gap_verification_matrix.csv: YES (R01_RB_013, B_partial_overlap)
-
-CSV VALIDATION (Python csv reader)
-  literature_matrix.csv: header 26 cols; 13 data rows; all rows 26 fields;
-    no ragged rows; R01_RB_013 present; no duplicate ids/titles.
-  gap_verification_matrix.csv: header 22 cols; 9 data rows; all rows 22 fields;
-    no ragged rows; R01_RB_013 present; no duplicate ids/titles.
+CHECKS
   CSV VALIDATION RESULT: PASS
+    tracking CSV: 23 cols, 0 data rows, header valid.
+    official registry CSV: 14 cols, 0 data rows, header valid.
+  DUPLICATE SOURCE_ID CHECK: PASS (no data rows yet; not applicable).
+  MOJIBAKE SCAN RESULT: PASS (CJK file is valid UTF-8, no replacement chars,
+    no gbk mojibake markers; only the queries file contains Japanese).
+  GIT DIFF --CHECK RESULT: PASS
+  SENSITIVE-FILE CHECK RESULT: PASS
 
-DUPLICATE CHECK
-  No duplicate record_id in either file. No duplicate title rows in either file.
-  DUPLICATE CHECK RESULT: PASS
+SAFETY
+  RAW API / VERIFICATION OUTPUTS STAGED: NO
+  SCRIPTS CREATED OR MODIFIED: NO (no helper script needed)
+  DATA MODIFIED: NO
+  MANUSCRIPT MODIFIED: NO
+  PDF OR DOCX STAGED: NO
+  REF/ MODIFIED OR STAGED: NO
+  GIT ADD . USED: NO
 
-MOJIBAKE SCAN RESULT: PASS
-GIT DIFF --CHECK RESULT: PASS
-SENSITIVE-FILE CHECK RESULT: PASS
-
-RAW API / VERIFICATION OUTPUTS STAGED: NO
-SCRIPTS MODIFIED: NO
-DATA MODIFIED: NO
-MANUSCRIPT MODIFIED: NO
-PDF OR DOCX MODIFIED: NO
-REF/ MODIFIED: NO
-
-FILES CHANGED AND STAGED THIS TASK
-  literature/02_matrices/literature_matrix.csv
-  literature/02_matrices/gap_verification_matrix.csv
-  literature/04_synthesis/round01_r01_rb_013_verification_note.md
+FILES STAGED THIS TASK
+  literature/03_notes/round02_japanese_source_search_protocol.md
+  literature/03_notes/round02_japanese_search_queries.md
+  literature/02_matrices/round02_japanese_source_tracking.csv
+  literature/02_matrices/official_source_registry.csv
+  literature/04_synthesis/round02_japanese_source_search_status.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
-GAP CAUTION
-  This single item does not confirm or invalidate the research gap. It covers
-  one module (housing discrimination) in Tokyo and is not an integrated
-  Chinese-resident opportunity-risk mismatch study.
-
 NEXT RECOMMENDED STEP
-  R01_RB_013 was added to both matrices. Proceed to the Japanese-language /
-  CiNii / J-STAGE / official-source search round. On full-text availability,
-  confirm the exact target group of the correspondence experiment. Do not write
-  the Introduction yet; do not assert novelty yet.
+  Run the targeted Japanese-source search (CiNii manual, J-STAGE, NDL, e-Stat,
+  ISA, MLIT, GSI, TMG, ward/city pages) and populate the tracking CSVs,
+  separating academic records from official data/policy sources. Do not write
+  the Introduction; do not assert novelty; do not confirm the gap.

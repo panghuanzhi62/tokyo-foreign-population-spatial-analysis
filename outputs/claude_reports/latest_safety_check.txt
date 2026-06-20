@@ -1,4 +1,4 @@
-TOKYO-CHINA ROUND 01 - R01_RB_013 VERIFICATION - PUBLIC REPO SAFETY CHECK
+TOKYO-CHINA ROUND 02 - JAPANESE-SOURCE SEARCH SETUP - PUBLIC REPO SAFETY CHECK
 Generated: 2026-06-20
 
 PUBLIC REPO SAFETY CHECK: PASS
@@ -8,38 +8,44 @@ PDF FILES STAGED: NO
 DOCX FILES STAGED: NO
 REF/ STAGED: NO
 DATA FILES STAGED: NO
-SCRIPTS MODIFIED: NO
+SCRIPTS CREATED OR MODIFIED: NO (no helper script needed this task)
 MANUSCRIPT MODIFIED: NO
 RAW API / VERIFICATION OUTPUTS STAGED: NO
   (nothing under outputs/literature_discovery/ or outputs/literature_verification/ was staged)
-GIT ADD . USED: NO (only the 6 explicitly approved files were staged)
-MOJIBAKE PATTERNS FOUND: NO
-NON-ASCII CHARACTERS IN EDITED FILES: NO (ASCII-safe)
-LINE ENDING WARNING: YES (informational only; git autocrlf will store the text
-  files as LF and present CRLF in the working tree - benign, no corruption)
+GIT ADD . USED: NO (only the 8 explicitly approved files were staged)
 
-EXTERNAL METADATA ACCESS
-  Public bibliographic metadata only: DOI resolver, Crossref, OpenAlex.
-  No PDFs downloaded. No paid APIs. No credentials stored or written. No Google
-  Scholar scraping. SciSpace not used automatically. Raw API output files were
-  inspected (read-only) but not modified and not staged.
+ENCODING / MOJIBAKE
+  MOJIBAKE PATTERNS FOUND: NO
+  CJK CONTENT: present only in literature/03_notes/round02_japanese_search_queries.md
+  CJK FILE ENCODING: UTF-8, LF line endings, no BOM, valid decode, no U+FFFD
+    replacement characters, no gbk mojibake markers. Written via a UTF-8-safe
+    path per the Windows encoding protocol (not PowerShell string arrays).
+  OTHER EDITED FILES: ASCII-safe.
+  LINE ENDING WARNING: YES (informational only; git autocrlf store-as-LF; benign).
+
+EXTERNAL ACCESS THIS TASK
+  Public bibliographic metadata only: OpenAlex feasibility test (counts only,
+  with mailto). No PDFs downloaded. No pages scraped. No Google Scholar query.
+  No browser automation. No paid APIs. No API keys or credentials stored.
+  CiNii API skipped (no CINII_APP_ID); recorded as skipped and handled manually.
 
 CSV INTEGRITY
-  Both matrix CSVs validated with the Python csv reader: correct header and
-  field counts (26 and 22), no ragged rows, no embedded-newline problems, no
-  duplicate record_ids, no duplicate titles. One row (R01_RB_013) was appended
-  to each file.
+  round02_japanese_source_tracking.csv: 23-column header, 0 data rows, valid.
+  official_source_registry.csv: 14-column header, 0 data rows, valid.
+  Both validated with the Python csv reader: no ragged rows. Duplicate source_id
+  check not applicable (no data rows yet).
 
 FILES STAGED THIS TASK
-  literature/02_matrices/literature_matrix.csv
-  literature/02_matrices/gap_verification_matrix.csv
-  literature/04_synthesis/round01_r01_rb_013_verification_note.md
+  literature/03_notes/round02_japanese_source_search_protocol.md
+  literature/03_notes/round02_japanese_search_queries.md
+  literature/02_matrices/round02_japanese_source_tracking.csv
+  literature/02_matrices/official_source_registry.csv
+  literature/04_synthesis/round02_japanese_source_search_status.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 FINAL SAFETY CONCLUSION
-  Safe to commit and push. Only the six ASCII-safe files above were staged. No
-  raw output, sensitive, copyrighted, binary, manuscript, data, or script
-  content was included. TokyoProject.docx and ref/ remain untracked and
-  untouched.
+  Safe to commit and push. Only the eight files above were staged. No raw output,
+  sensitive, copyrighted, binary, manuscript, data, or script content was
+  included. TokyoProject.docx and ref/ remain untracked and untouched.
