@@ -1,78 +1,79 @@
-TOKYO-CHINA ROUND 02 - J-STAGE METADATA-ONLY SEARCH - PUBLIC REPO SAFETY CHECK
+TOKYO-CHINA ROUND 02 - J-STAGE PRIORITY-CANDIDATE VERIFICATION - PUBLIC REPO SAFETY CHECK
 Generated: 2026-06-21
 
 PUBLIC REPO SAFETY CHECK: PASS
 
 TASK OBJECTIVE
-  Round 02 J-STAGE metadata-only search via the J-STAGE WebAPI. Metadata only.
-  No PDF download, no HTML scraping, no Google Scholar scraping, no browser
-  automation, no paid APIs, no credentials.
+  Verify four priority Round 02 J-STAGE candidates and resolve overlap with
+  existing CiNii records, using public metadata only. No PDF download, no J-STAGE
+  HTML scraping, no Google Scholar scraping, no browser automation, no paid APIs,
+  no credentials.
 
 SOURCE-ACCESS SAFETY
-  J-STAGE access method ............ public WebAPI (service=3 article search)
-  Endpoint used .................... https://api.jstage.jst.go.jp/searchapi/do
-  Search mode ...................... "text" parameter (closest metadata-supported
-                                     mode; J-STAGE has no single AND "q" field)
+  J-STAGE pages scraped ............ NO (used locally saved WebAPI metadata only)
   PDFs / full text downloaded ...... NO
-  J-STAGE HTML pages scraped ....... NO
   Google Scholar scraped ........... NO
+  SciSpace called .................. NO
   Browser automation used .......... NO
   Paid APIs used ................... NO
-  API key / credential required .... NO (the WebAPI needs none)
+  API key / credential required .... NO
   API key / credential stored ...... NO
-  Rate limiting respected .......... YES (1.5s sleep between requests)
+  External metadata calls this pass  Crossref (4 DOIs), OpenAlex (2 DOIs),
+                                     doi.org resolver (2 DOIs). Public, no key.
+                                     Polite spacing (~1s) between calls.
+
+VERIFICATION OUTCOME
+  R02_JSTAGE_002 = R02_CINII_001 (same study); supplemented existing record;
+    no duplicate matrix row.
+  R02_JSTAGE_007, R02_JSTAGE_011 added to literature_matrix only (background /
+    Osaka comparator).
+  R02_JSTAGE_021 held for translation/manual check (study area unclear).
 
 STAGING SAFETY
   git add . used ................... NO (only 6 explicit files staged)
   raw J-STAGE outputs staged ....... NO (outputs/literature_discovery/ untracked)
+  raw CiNii outputs staged ......... NO
+  round02_japanese_source_tracking.csv staged: NO (not modified this pass)
   PDF files staged ................. NO
   DOCX files staged ................ NO
   TokyoProject.docx staged ......... NO
   ref/ staged ...................... NO
   data files staged ................ NO
+  scripts staged ................... NO
 
 FILES STAGED THIS PASS (6)
-  scripts/10_literature_discovery/harvest_jstage_round02.py
-  literature/02_matrices/round02_japanese_source_tracking.csv
-  literature/04_synthesis/round02_jstage_search_status.md
+  literature/02_matrices/literature_matrix.csv
+  literature/02_matrices/gap_verification_matrix.csv
+  literature/04_synthesis/round02_jstage_priority_candidate_verification.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NOT MODIFIED (per task constraints)
-  scripts outside scripts/10_literature_discovery/ : NO
-  data/, data_raw/, data_processed/ ............... NO
-  manuscript files ................................ NO
-  PDF / DOCX files (incl. TokyoProject.docx) ...... NO
-  ref/ ............................................ NO
-  prior-round raw outputs ......................... NO
+  TokyoProject.docx, ref/, scripts/, data/, data_raw/, data_processed/,
+  manuscript files, PDF/DOCX files, raw outputs under
+  outputs/literature_discovery/ and outputs/literature_verification/.
 
 ENCODING / MOJIBAKE
   mojibake scan result: PASS
   Markers scanned: U+FFFD replacement char and CP1252/GBK mojibake markers.
-  All staged text and CSV files decode cleanly as strict UTF-8.
-  Japanese titles are stored as valid UTF-8 in the tracking CSV (console
-  rendering under a non-UTF-8 codepage is a display artifact only, not a file
-  corruption; verified by strict UTF-8 decode + kanji presence checks).
-  Edited report files: ASCII-safe.
+  All staged text and CSV files decode cleanly as strict UTF-8. Japanese titles
+  in the matrices and the synthesis note are valid UTF-8 (console rendering under
+  a non-UTF-8 codepage is a display artifact only). Edited report files are
+  ASCII-safe.
 
 CSV INTEGRITY (Python csv.reader, this pass)
-  CSV validation result: PASS. CSV repair performed: NO.
+  CSV validation result: PASS.
+  literature_matrix.csv             : 26 cols, 19 data rows, no ragged rows,
+    0 duplicate record_id, 0 unjustified duplicate titles.
+  gap_verification_matrix.csv       : 22 cols, 12 data rows, no ragged rows,
+    0 duplicate record_id, 0 unjustified duplicate titles.
   round02_japanese_source_tracking.csv: 23 cols, 380 data rows, no ragged rows,
-    0 duplicate source_id, 0 unmarked duplicate titles.
-  official_source_registry.csv: 14 cols, 0 data rows, no ragged rows (header
-    only; not modified this pass).
-
-DEDUPLICATION / DUPLICATE HANDLING
-  Within-run dedup by DOI then normalized title.
-  Cross-source dedup against existing tracking rows (incl. CiNii):
-    10 J-STAGE records matched a prior CiNii record with no stronger metadata
-    and were dropped (not appended); 1 (R02_JSTAGE_002) was appended as a
-    complement because it adds a DOI the CiNii record lacked, and is flagged in
-    its notes for manual confirmation.
+    0 duplicate source_id (read-only validation; not modified/staged).
 
 EVIDENCE-CLAIM SAFETY
   No item coded as final A_direct_overlap: confirmed (0 A_direct_overlap).
+  No A_direct_overlap_candidate assigned this pass.
   No gap claim made. No novelty asserted.
   Status remains: gap under verification.
 
@@ -82,13 +83,9 @@ GIT CHECKS
     outputs/literature_discovery/, and outputs/literature_verification/ remain
     (left untouched).
 
-EXTERNAL ACCESS THIS PASS
-  J-STAGE WebAPI metadata queries only (21 queries, <=20 records each, 1.5s
-  apart). No full text retrieved, no pages scraped, no credentials used.
-
 FINAL SAFETY CONCLUSION
   Safe to commit and push. Only the six intended files were staged. No raw
   output, credential, sensitive, copyrighted, binary, manuscript, data, or
-  out-of-scope script content was included. TokyoProject.docx and ref/ remain
-  untracked and untouched. No research-gap confirmation or A_direct_overlap
-  claim was made.
+  script content was included. The tracking CSV was validated read-only and not
+  staged. TokyoProject.docx and ref/ remain untracked and untouched. No
+  research-gap confirmation or A_direct_overlap claim was made.
