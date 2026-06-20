@@ -1,13 +1,13 @@
-TOKYO-CHINA ROUND 02 - NDL METADATA-ONLY SEARCH - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - NDL PRIORITY-CANDIDATE AND OFFICIAL-SOURCE VERIFICATION - VERIFICATION SUMMARY
 Generated: 2026-06-21
 
 TASK OBJECTIVE
-  Run the Round 02 NDL Search metadata-only search for Japanese-language books,
-  reports, theses, institutional records, and official/public materials relevant
-  to the Tokyo-China opportunity-risk mismatch project, using the NDL Search
-  OpenSearch API (metadata only). This is metadata discovery only. It is NOT a
-  literature review, NOT a full-text review, and does NOT confirm the research
-  gap. Status: gap under verification.
+  Round 02 NDL priority-candidate and official-source verification. Verify only
+  the four priority NDL academic candidates (R02_NDL_043, _087, _088, _068) and
+  the two priority official-source candidates (R02_NDL_OFF_002, R02_NDL_OFF_001)
+  from the NDL search status note. Candidate-level metadata/source verification
+  only. NOT a full-text review. Does NOT confirm the research gap. Status: gap
+  under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -15,75 +15,77 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-SCRIPT ADDED
-  scripts/10_literature_discovery/harvest_ndl_round02.py
-  - Standard-library only (urllib + xml.etree.ElementTree + csv + json).
-  - Queries the NDL Search OpenSearch API (free-word "any" parameter; closest
-    metadata-supported mode) for the 21 Round 02 Japanese queries.
-  - Probes the current host (ndlsearch.ndl.go.jp) with a legacy fallback.
-  - Parses RSS/Dublin Core metadata; never downloads PDFs or full text; never
-    scrapes HTML; no browser automation; no paid APIs; no credentials.
-  - Routes official/government/municipal records to the official-source
-    registry; academic/library records to the tracking CSV. The official
-    detector is conservative (excludes academic/commercial publishers; avoids
-    single-character false positives such as the bare character in "shutoken").
+PRIORITY NDL ACADEMIC CANDIDATES VERIFIED (4)
+  R02_NDL_043  verified_by_ndl_metadata        -> add_to_both_matrices (housing)
+  R02_NDL_087  verified_by_ndl_metadata        -> add_to_literature_matrix_only
+  R02_NDL_088  verified_by_ndl_metadata        -> add_to_literature_matrix_only
+  R02_NDL_068  verified_by_doi_and_metadata    -> add_to_literature_matrix_only
 
-SEARCH COVERAGE
-  Query groups attempted ............ 7 (QG-A through QG-G)
-  Queries attempted ................. 21 (R02-Q01 through R02-Q21)
-  NDL Search OpenSearch reached ..... YES (https://ndlsearch.ndl.go.jp/api/opensearch)
-  Candidate records retrieved ....... 123 (post within-run dedup)
-  Academic rows appended (tracking) . 106
-  Official rows appended (registry) . 2
+PRIORITY NDL OFFICIAL SOURCES VERIFIED (2)
+  R02_NDL_OFF_002  verified_by_institution_metadata -> kept/updated (CLAIR;
+                   service_infrastructure_context)
+  R02_NDL_OFF_001  weak_relevance                   -> kept but marked
+                   weak_background_only (MOJ adoption directive; off-topic)
 
-TRIAGE COUNTS (over 123 retrieved candidates; cautious metadata coding)
-  A_direct_overlap_candidate ........ 0
-  B_partial_overlap_candidate ....... 9  (4 appended; 5 were CiNii/J-STAGE dups)
-  E_background_candidate ............ 15 appended
-  held for translation/manual check . 87 (85 appended)
-  excluded as not relevant .......... 0
-  duplicate/complementary w/ CiNii/J-STAGE 15 (all dropped; none stronger)
-  official data/policy sources identified  6 (by category); 2 routed to registry,
-    2 kept in tracking as official_policy_context (non-official publisher), 2 dups
+VERIFICATION ROUTES (public metadata only)
+  - NDL stable URLs ("books" permalinks) + locally saved NDL metadata
+  - OpenAlex title search: exact match for R02_NDL_068 supplied DOI
+    10.19024/jajls.17.1_36 and year 2014 (W571395046; Japanese Journal of
+    Language in Society 17(1):36)
+  - Crossref title search (no matches for the three Japanese books/reports)
+  No PDFs downloaded, no NDL HTML scraping, no Google Scholar scraping, no
+  browser automation, no paid APIs, no credentials stored.
 
-OFFICIAL SOURCES ROUTED TO REGISTRY (2)
-  R02_NDL_OFF_002  Jichitai Kokusaika Kyokai (CLAIR), 2005, multilingual /
-    municipal international support - quasi-official local-government body.
-  R02_NDL_OFF_001  administrative/legal directive referencing Chinese residents,
-    year NA - low relevance; official-context candidate pending manual check.
+KEY VERIFICATION NOTES
+  R02_NDL_043  Keio University Press book (2026), 金希相; immigrants + housing
+    residential disparity in Japan; Japan-wide, not Chinese/Tokyo-specific.
+  R02_NDL_068  DOI/year recovered via OpenAlex; Brazilian residents in Soja City,
+    Okayama (not Tokyo, not Chinese); background comparator.
+  R02_NDL_OFF_001  the earlier "housing" domain was a FALSE POSITIVE from the
+    word 居住 (residing); corrected to administrative/family-registration law.
 
-IMPORTANT CANDIDATES (require manual verification + translation)
-  R02_NDL_043 | 2026 | B_partial - migrants' residence / housing-market
-    residential disparity in Japan (housing module; Japan-wide, not Chinese-specific).
-  R02_NDL_087 | 2006 | B_partial - forum/report on education of foreign children
-    (service-access module; Tokyo signal).
-  R02_NDL_088 | 2006 | B_partial - pre-school education for foreign children
-    (service-access module; Tokyo signal).
+DECISION COUNTS
+  Priority NDL academic candidates verified ... 4
+  Priority NDL official sources verified ...... 2
+  Added to literature_matrix .................. 4 (R02_NDL_043, _087, _088, _068)
+  Added to gap_verification_matrix ............ 1 (R02_NDL_043)
+  Academic candidates held .................... 0
+  Academic candidates excluded ................ 0
+  Official sources kept/updated ............... 1 (R02_NDL_OFF_002)
+  Official sources held ....................... 0
+  Official sources excluded/marked weak ....... 1 (R02_NDL_OFF_001, weak_relevance)
+  A_direct_overlap_candidate .................. 0
+  B_partial_overlap_candidate ................. 4
+
+TRACKING CORRECTION
+  round02_japanese_source_tracking.csv R02_NDL_068: year NA -> 2014,
+  doi NA -> 10.19024/jajls.17.1_36 (OpenAlex-confirmed). Staged as a correction.
 
 DIRECT-OVERLAP CAUTION
-  No item integrates the full provisional combination (Chinese residents in
+  No candidate integrates the full provisional combination (Chinese residents in
   Metropolitan Tokyo + Chinese-vs-non-Chinese comparison + housing + transit/
-  accessibility + services + disaster/risk + opportunity-risk typology). Strong
-  Chinese-in-Tokyo titles surfaced by NDL duplicated existing CiNii/J-STAGE
-  records and were dropped, not re-added. No A_direct_overlap is asserted and no
-  gap claim is made. The gap is neither confirmed nor refuted. Status remains:
-  gap under verification.
+  accessibility + services + disaster/risk + opportunity-risk typology). All are
+  single-/partial-module; _068 is non-Tokyo/non-Chinese; the official sources are
+  context only. No A_direct_overlap is asserted and no gap claim is made. Status
+  remains: gap under verification.
 
-CHECKS (this pass)
-  py_compile (harvest_ndl_round02.py) : PASS
-  CSV validation (csv.reader) ......... PASS
+CHECKS (this pass, Python csv.reader)
+  CSV validation result: PASS
+    literature_matrix.csv             : 26 cols, 23 data rows, no ragged rows
+    gap_verification_matrix.csv       : 22 cols, 13 data rows, no ragged rows
     round02_japanese_source_tracking.csv: 23 cols, 486 data rows, no ragged rows
-    official_source_registry.csv ........ 14 cols, 2 data rows, no ragged rows
-  duplicate source_id check ........... PASS (none in either file)
-  duplicate title rows (unjustified) .. PASS (none)
-  mojibake scan ....................... PASS (strict UTF-8; no replacement char
-                                        or CP1252/GBK markers)
-  git diff --check .................... PASS (exit 0)
-  sensitive-file check ................ PASS
-  raw NDL outputs staged .............. NO
-  PDFs downloaded ..................... NO
+    official_source_registry.csv      : 14 cols, 2 data rows, no ragged rows
+  duplicate check result: PASS (no duplicate record_id/source_id; no unjustified
+    duplicate titles)
+  mojibake scan result: PASS (strict UTF-8; no replacement char or CP1252/GBK)
+  git diff --check result: PASS (exit 0)
+  sensitive-file check result: PASS
+  raw outputs staged: NO
+  PDF/DOCX/ref/data/manuscript staged: NO
 
 NEXT RECOMMENDED STEP
-  Manually verify the NDL candidates (Section D) and official sources (CLAIR
-  item first), decide matrix routing, and continue official-source targeted
-  search where needed. Do not write the Introduction. Do not assert novelty.
+  Manually translate/read R02_NDL_043 (housing) first; check R02_NDL_OFF_002
+  (CLAIR) if used as official context; then consider a targeted official-source
+  search for Tokyo metropolitan municipalities (disaster prevention, multilingual
+  services, housing support, welfare/education/health access). Do not write the
+  Introduction. Do not assert novelty.
