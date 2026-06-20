@@ -1,16 +1,15 @@
-TOKYO-CHINA ROUND 01 B-CANDIDATE VERIFICATION - CHANGED FILES
+TOKYO-CHINA WEB-VERIFIED HIGH-RISK B MATRIX ROWS - CHANGED FILES
 Generated: 2026-06-20
 
-CREATED FILES STAGED (5)
-  scripts/10_literature_discovery/verify_b_candidates.py
-  literature/04_synthesis/round01_b_candidate_verification_status.md
+MODIFIED FILES STAGED (2)
+  literature/02_matrices/literature_matrix.csv (3 data rows appended)
+  literature/02_matrices/gap_verification_matrix.csv (3 data rows appended)
+
+CREATED FILES STAGED (4)
+  literature/04_synthesis/round01_high_risk_b_web_verified_note.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
-
-MODIFIED FILES
-  (the three report files existed from prior tasks and are overwritten;
-   the script and verification-status note are new)
 
 DELETED FILES
   (none)
@@ -19,14 +18,14 @@ UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx
   ref/
   outputs/literature_discovery/ (Round 01 raw API outputs)
-  outputs/literature_verification/round01_b_verify/ (all detailed outputs)
+  outputs/literature_verification/ (B-verify detailed outputs)
 
 FILES STAGED
-  Exactly the 5 files listed above (no others).
+  Exactly the 6 files listed above (no others).
 
 FILES COMMITTED
-  The 5 staged files in commit:
-  "Add Round 01 B-candidate verification pipeline"
+  The 6 staged files in commit:
+  "Add web-verified high-risk B literature matrix rows"
 
 FILES PUSHED
   Same commit pushed to origin agentic-upgrade.

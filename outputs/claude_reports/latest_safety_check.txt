@@ -1,4 +1,4 @@
-TOKYO-CHINA ROUND 01 B-CANDIDATE VERIFICATION - PUBLIC REPO SAFETY CHECK
+TOKYO-CHINA WEB-VERIFIED HIGH-RISK B MATRIX ROWS - PUBLIC REPO SAFETY CHECK
 Generated: 2026-06-20
 
 PUBLIC REPO SAFETY CHECK: PASS
@@ -8,23 +8,24 @@ PDF FILES STAGED: NO
 DOCX FILES STAGED: NO
 REF/ STAGED: NO
 DATA FILES STAGED: NO
-SCRIPTS MODIFIED OUTSIDE scripts/10_literature_discovery/: NO
+SCRIPTS MODIFIED: NO
 MANUSCRIPT MODIFIED: NO
-RAW VERIFICATION OUTPUTS STAGED: NO
-  (nothing under outputs/literature_verification/ or outputs/literature_discovery/ was staged)
-GIT ADD . USED: NO (only the 5 explicitly approved files were staged)
+RAW API / VERIFICATION OUTPUTS STAGED: NO
+  (nothing under outputs/literature_discovery/ or outputs/literature_verification/ was staged)
+GIT ADD . USED: NO (only the 6 explicitly approved files were staged)
 MOJIBAKE PATTERNS FOUND: NO
 LINE ENDING WARNING: YES (informational only; git autocrlf will store new text
-  files as LF and present CRLF in the working tree - benign, no corruption)
+  and CSV files as LF and present CRLF in the working tree - benign, no corruption)
 
-CREDENTIALS / KEYS
-  The verification script stores no API keys, writes no credentials, and prints
-  none. CiNii is only enabled if CINII_APP_ID is present in the environment.
-  Google Scholar is never scraped; SciSpace is never called automatically; no
-  PDFs are downloaded.
+CONTENT SAFETY
+  The matrix rows and synthesis note contain only bibliographic metadata (author,
+  title, source, year, DOI, volume/issue/pages) plus cautious analyst coding. No
+  PDF full text was downloaded or reproduced. The two matrix CSV files are
+  tracked via the narrow .gitignore exception added earlier; no other CSV is
+  affected.
 
 FINAL SAFETY CONCLUSION
-  Safe to commit and push. Only the stdlib verification script, one ASCII-safe
-  public verification-status note, and three ASCII-safe report files were
-  staged. No raw verification or discovery outputs, sensitive, copyrighted,
-  binary, manuscript, data, or out-of-scope content was included.
+  Safe to commit and push. Only the two structural matrix CSVs (with 3 verified
+  rows each), one ASCII-safe public synthesis note, and three ASCII-safe report
+  files were staged. No raw outputs, sensitive, copyrighted, binary, manuscript,
+  data, or script content was included.
