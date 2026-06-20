@@ -1,4 +1,4 @@
-TOKYO-CHINA ROUND 01 B-CANDIDATE REVIEW - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 01 B-CANDIDATE VERIFICATION - VERIFICATION SUMMARY
 Generated: 2026-06-20
 
 REPO PATH
@@ -8,70 +8,78 @@ BRANCH
   agentic-upgrade
 
 LATEST COMMIT HASH
-  This task commit: "Add Round 01 B-candidate literature review note"
+  This task commit: "Add Round 01 B-candidate verification pipeline"
   (see git log -1 on agentic-upgrade; hash reported in final response)
 
 PUSHED TO REMOTE: YES
   origin agentic-upgrade
 
 TASK OBJECTIVE
-  Inspect the local, uncommitted Round 01 API discovery outputs and produce a
-  public, source-light review note covering the 21 preliminary
-  B_partial_overlap_candidate records. This is preliminary metadata triage only
-  and does NOT confirm the research gap.
+  Automate first-stage bibliographic and overlap-risk verification of the 13
+  prioritized B_partial_overlap_candidate records from
+  literature/04_synthesis/round01_b_candidate_review.md. This is NOT final gap
+  confirmation; it is bibliographic and overlap-risk verification only.
 
-INPUTS INSPECTED (local, not committed)
-  outputs/literature_discovery/round01_api/candidates.csv
-  outputs/literature_discovery/round01_api/direct_overlap_candidates.md
-  outputs/literature_discovery/round01_api/source_coverage_summary.md
-  (harvester was NOT re-run; outputs already present)
+TEST RUN
+  Command: python scripts/10_literature_discovery/verify_b_candidates.py
+           --project-root E:\rsch\laborJapan --run-id round01_b_verify --max-records 13
+  Completed: YES
+  Candidates processed: 13
+  Endpoints attempted: doi_resolver, crossref, openalex, semantic_scholar
+  CiNii: not used (no CINII_APP_ID); Google Scholar never queried; SciSpace not called
+  Verified by DOI and metadata: 8
+  Verified by metadata only: 4
+  Partially verified: 0
+  Not verified: 0
+  Duplicate or preprint: 1 (round01_api-0080, SocArXiv/OSF preprint)
+  Network skipped: 0
+  High-risk items for SciSpace: 3 (round01_api-0018, 0080, 0001)
 
-ROUND 01 COVERAGE (as reviewed)
-  APIs reached: OpenAlex, Crossref, Semantic Scholar (Semantic Scholar partial, HTTP 429)
-  APIs skipped: CiNii (no CINII_APP_ID); Google Scholar never queried
-  Unique candidates after dedup: 262
-  Preliminary A_direct_overlap_candidate: 0
-  Preliminary B_partial_overlap_candidate: 21 (all reviewed)
-  NOTE: 0 A candidates is NOT evidence that no direct-overlap literature exists.
-
-DIRECT-OVERLAP RISK CONCLUSION (cautious)
-  No clear direct-overlap item was identified in this preliminary metadata
-  screen. This does not prove that no such literature exists. Manual deep review
-  and additional databases are still required.
+DIRECT-OVERLAP CAUTION (preliminary)
+  No B candidate appears, on metadata alone, to approach the full provisional
+  topic combination. Verified items cluster on single modules (housing OR
+  disaster OR services). This does NOT prove no such literature exists and does
+  NOT confirm the gap; SciSpace and manual full-text review are still required.
 
 FILES CREATED (staged in this task)
-  literature/04_synthesis/round01_b_candidate_review.md
+  scripts/10_literature_discovery/verify_b_candidates.py
+  literature/04_synthesis/round01_b_candidate_verification_status.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
-RAW DISCOVERY OUTPUTS (left local, NOT staged)
-  outputs/literature_discovery/round01_api/ (candidates.csv [git-ignored],
-  candidates.jsonl, direct_overlap_candidates.md, source_coverage_summary.md,
-  run_manifest.json, raw/*.jsonl)
+DETAILED VERIFICATION OUTPUTS (created on disk, NOT staged)
+  outputs/literature_verification/round01_b_verify/verified_b_candidates.csv (git-ignored by *.csv)
+  outputs/literature_verification/round01_b_verify/verified_b_candidates.jsonl
+  outputs/literature_verification/round01_b_verify/overlap_risk_scores.csv (git-ignored)
+  outputs/literature_verification/round01_b_verify/verification_run_manifest.json
+  outputs/literature_verification/round01_b_verify/scispace_deep_review_prompts.md
+  outputs/literature_verification/round01_b_verify/manual_fulltext_checklist.md
 
 FILES INTENTIONALLY NOT TOUCHED
-  TokyoProject.docx, ref/, scripts/, data/, data_raw/, data_processed/,
-  manuscript files, PDF/DOCX files, raw API outputs.
+  TokyoProject.docx, ref/, scripts outside scripts/10_literature_discovery/,
+  data/, data_raw/, data_processed/, manuscript files, PDF/DOCX files, raw API
+  outputs under outputs/literature_discovery/.
 
 CHECKS RUN
-  git status --short, git diff --check, mojibake scan, sensitive-file check.
+  git status --short, git diff --check, mojibake scan, sensitive-file check,
+  py_compile on the new script.
 
 MOJIBAKE SCAN RESULT: PASS
 GIT DIFF --CHECK RESULT: PASS
+PY_COMPILE RESULT: PASS
 
-B CANDIDATES REVIEWED: 21
-SCRIPTS MODIFIED: NO
+SCRIPTS MODIFIED OUTSIDE scripts/10_literature_discovery/: NO
 DATA MODIFIED: NO
 MANUSCRIPT FILES MODIFIED: NO
 PDF OR DOCX FILES MODIFIED: NO
 REF/ MODIFIED: NO
-RAW API OUTPUTS STAGED: NO
+RAW VERIFICATION OUTPUTS STAGED: NO
 
 SENSITIVE-FILE CHECK RESULT: PASS
 
 NEXT RECOMMENDED STEP
-  Manually verify the 13 prioritized B candidates via DOI/publisher pages and
-  deep-read the highest-risk items in SciSpace, then populate
-  literature_matrix.csv and gap_verification_matrix.csv. Do not write the
-  manuscript introduction yet.
+  Run SciSpace Deep Review on the 3 high-risk items, manually check publisher
+  pages/abstracts, then populate literature_matrix.csv and
+  gap_verification_matrix.csv only after verification. Do not write the
+  manuscript introduction yet; the research gap must not be asserted.
