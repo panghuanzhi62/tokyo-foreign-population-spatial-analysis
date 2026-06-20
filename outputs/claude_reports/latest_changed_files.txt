@@ -1,31 +1,44 @@
-TOKYO-CHINA ROUND 01 REMAINING B-CANDIDATE MATRIX UPDATE - CHANGED FILES
+TOKYO-CHINA ROUND 01 - R01_RB_013 VERIFICATION - CHANGED FILES
 Generated: 2026-06-20
 
-MODIFIED FILES STAGED (3)
+MODIFIED FILES STAGED (2)
+  literature/02_matrices/literature_matrix.csv
+    - Appended 1 row: record_id R01_RB_013 (Sugasawa and Harano 2026, Journal
+      of Housing Economics; Tokyo rental-housing discrimination correspondence
+      experiment). Now 13 data rows; 26 columns; no ragged rows; no duplicates.
+  literature/02_matrices/gap_verification_matrix.csv
+    - Appended 1 row: record_id R01_RB_013, overlap category B_partial_overlap.
+      Now 9 data rows; 22 columns; no ragged rows; no duplicates.
+
+CREATED FILES STAGED (4)
+  literature/04_synthesis/round01_r01_rb_013_verification_note.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
-VALIDATED BUT NOT MODIFIED (NOT staged)
-  literature/02_matrices/literature_matrix.csv (12 rows; valid; no repair needed)
-  literature/02_matrices/gap_verification_matrix.csv (8 rows; valid; no repair needed)
-  literature/04_synthesis/round01_remaining_b_matrix_update.md (already committed; unchanged)
-
 DELETED FILES
   (none)
+
+NOT MODIFIED (per task constraints)
+  TokyoProject.docx
+  ref/
+  scripts/, data/, data_raw/, data_processed/
+  manuscript / PDF / DOCX files
+  raw API outputs under outputs/literature_discovery/
+  raw verification outputs under outputs/literature_verification/
 
 UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx
   ref/
-  outputs/literature_discovery/ (Round 01 raw API outputs)
-  outputs/literature_verification/ (B-verify detailed outputs)
+  outputs/literature_discovery/
+  outputs/literature_verification/
 
 FILES STAGED
-  Exactly the 3 report files listed above (no others).
+  Exactly the 6 files listed above (2 modified + 4 created). git add . was NOT used.
 
 FILES COMMITTED
-  The 3 staged files in commit:
-  "Repair remaining B-candidate matrix update reports"
+  The 6 staged files in commit:
+  "Verify held Round 01 B candidate R01_RB_013"
 
 FILES PUSHED
   Same commit pushed to origin agentic-upgrade.

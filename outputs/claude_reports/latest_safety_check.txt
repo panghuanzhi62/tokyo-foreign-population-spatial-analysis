@@ -1,4 +1,4 @@
-TOKYO-CHINA ROUND 01 REMAINING B-CANDIDATE MATRIX UPDATE - PUBLIC REPO SAFETY CHECK
+TOKYO-CHINA ROUND 01 - R01_RB_013 VERIFICATION - PUBLIC REPO SAFETY CHECK
 Generated: 2026-06-20
 
 PUBLIC REPO SAFETY CHECK: PASS
@@ -12,19 +12,34 @@ SCRIPTS MODIFIED: NO
 MANUSCRIPT MODIFIED: NO
 RAW API / VERIFICATION OUTPUTS STAGED: NO
   (nothing under outputs/literature_discovery/ or outputs/literature_verification/ was staged)
-GIT ADD . USED: NO (only the 3 explicitly approved report files were staged)
+GIT ADD . USED: NO (only the 6 explicitly approved files were staged)
 MOJIBAKE PATTERNS FOUND: NO
-LINE ENDING WARNING: YES (informational only; git autocrlf will store the report
+NON-ASCII CHARACTERS IN EDITED FILES: NO (ASCII-safe)
+LINE ENDING WARNING: YES (informational only; git autocrlf will store the text
   files as LF and present CRLF in the working tree - benign, no corruption)
 
+EXTERNAL METADATA ACCESS
+  Public bibliographic metadata only: DOI resolver, Crossref, OpenAlex.
+  No PDFs downloaded. No paid APIs. No credentials stored or written. No Google
+  Scholar scraping. SciSpace not used automatically. Raw API output files were
+  inspected (read-only) but not modified and not staged.
+
 CSV INTEGRITY
-  Both matrix CSVs were validated with Python csv.DictReader: correct header and
-  field counts, no malformed rows, no embedded newlines, no duplicate record_ids,
-  no duplicate titles. No repair was required, so the CSVs were not modified or
-  staged. R01_RB_013 remains held for manual check and is not present in either
-  matrix.
+  Both matrix CSVs validated with the Python csv reader: correct header and
+  field counts (26 and 22), no ragged rows, no embedded-newline problems, no
+  duplicate record_ids, no duplicate titles. One row (R01_RB_013) was appended
+  to each file.
+
+FILES STAGED THIS TASK
+  literature/02_matrices/literature_matrix.csv
+  literature/02_matrices/gap_verification_matrix.csv
+  literature/04_synthesis/round01_r01_rb_013_verification_note.md
+  outputs/claude_reports/latest_verification_summary.txt
+  outputs/claude_reports/latest_changed_files.txt
+  outputs/claude_reports/latest_safety_check.txt
 
 FINAL SAFETY CONCLUSION
-  Safe to commit and push. Only the three ASCII-safe report files were staged. No
-  CSV, raw output, sensitive, copyrighted, binary, manuscript, data, or script
-  content was included.
+  Safe to commit and push. Only the six ASCII-safe files above were staged. No
+  raw output, sensitive, copyrighted, binary, manuscript, data, or script
+  content was included. TokyoProject.docx and ref/ remain untracked and
+  untouched.

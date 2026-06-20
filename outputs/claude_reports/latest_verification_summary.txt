@@ -1,4 +1,4 @@
-TOKYO-CHINA ROUND 01 REMAINING B-CANDIDATE MATRIX UPDATE - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 01 - R01_RB_013 SINGLE-CANDIDATE VERIFICATION SUMMARY
 Generated: 2026-06-20
 
 REPO PATH
@@ -7,36 +7,77 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-LATEST COMMIT HASH
-  This task commit: "Repair remaining B-candidate matrix update reports"
-  (see git log -1 on agentic-upgrade; hash reported in final response)
-
 PUSHED TO REMOTE: YES
   origin agentic-upgrade
 
 TASK OBJECTIVE
-  Round 01 remaining B-candidate matrix update: validate the matrix CSVs and
-  refresh the fixed Claude report files so they describe the remaining
-  B-candidate matrix update (not the earlier web-verified high-risk B task).
-  This is NOT gap confirmation.
+  Verify the one held Round 01 B candidate (R01_RB_013) and decide its matrix
+  disposition. Single-candidate bibliographic and overlap verification only.
+  This task does NOT confirm or invalidate the research gap.
 
-REMAINING B CANDIDATES REVIEWED: 10
+CANDIDATE
+  record_id:     R01_RB_013
+  discovery id:  round01_api-0156
+  Title:         Disentangling transaction-stage and management-stage
+                 discrimination in the rental housing market: evidence from a
+                 correspondence experiment in Tokyo
+  Author-year:   Sugasawa and Harano 2026 (Takeru Sugasawa; Kei Harano)
+  Year:          2026
+  Source:        Journal of Housing Economics
+  Document type: journal article
+  DOI:           10.1016/j.jhe.2026.102134
+  Stable URL:    https://doi.org/10.1016/j.jhe.2026.102134
+  Landing page:  https://linkinghub.elsevier.com/retrieve/pii/S105113772600015X
 
-MATRIX ENTRY OUTCOME
-  literature_matrix rows added (in the prior task): 9 (R01_RB_004..R01_RB_012)
-  gap_verification_matrix rows added (in the prior task): 5 (R01_RB_004..R01_RB_008)
-  candidates held for manual check: 1 (R01_RB_013 = round01_api-0156)
-  candidates excluded as duplicate/preprint/out of scope: 0
-  R01_RB_013: HELD FOR MANUAL CHECK (not added to either matrix yet)
+REASON IT WAS HELD
+  The prior remaining-B matrix update held R01_RB_013 because the metadata title
+  did not state the study area; geography (Japan/Tokyo) needed confirmation
+  before entry. Automated triage had flagged it false_positive_or_out_of_scope.
 
-CSV VALIDATION (Python csv.DictReader)
-  literature_matrix.csv: header 26 cols; 12 data rows; all rows 26 fields;
-    no embedded newlines; record_ids = R01_HRB_001..003 + R01_RB_004..012 (12 expected, all present).
-  gap_verification_matrix.csv: header 22 cols; 8 data rows; all rows 22 fields;
-    no embedded newlines; record_ids = R01_HRB_001..003 + R01_RB_004..008 (8 expected; the four
-    R01_RB_009..012 are intentionally literature-matrix-only background and correctly absent here).
+VERIFICATION (public metadata only)
+  DOI resolver:     resolves
+  Crossref:         matched by DOI; full title includes "evidence from a
+                    correspondence experiment in Tokyo" (study area confirmed);
+                    authors Sugasawa; Harano; year 2026; Journal of Housing Economics
+  OpenAlex:         matched by DOI; same title/authors/year/venue; type article;
+                    concepts include rental housing, property management,
+                    landlord, ethnic discrimination
+  Semantic Scholar: matched (prior automated run)
+  verification_status: verified_by_doi_and_metadata
+
+  No PDFs downloaded. No paid APIs. No credentials stored. No raw API output
+  files modified. No Google Scholar scraping. SciSpace not used automatically.
+
+OVERLAP CODING (cautious)
+  covers_chinese_residents:           unclear
+  covers_foreign_residents:           partial (ethnic/foreign applicants; confirm in full text)
+  covers_tokyo:                       yes
+  covers_japan:                       yes
+  covers_chinese_non_chinese_compare: no
+  covers_housing:                     yes
+  covers_transit_accessibility:       no
+  covers_service_accessibility:       no
+  covers_disaster_risk:               no
+  covers_arrival_settlement_infra:    no
+  covers_opportunity_risk_mismatch:   no
+  covers_gis_spatial:                 no
+
+MATRIX DISPOSITION
+  Decision: add_to_both_matrices
+  Duplicate or preprint? NO (distinct 2026 article; not a preprint of R01_RB_005).
+  Reason: Tokyo geography confirmed; anchors the housing-discrimination module
+  for Tokyo with current (2026) evidence, consistent with R01_RB_005 /
+  R01_RB_006 / R01_RB_007.
+
+  Added to literature_matrix.csv:       YES (R01_RB_013)
+  Added to gap_verification_matrix.csv: YES (R01_RB_013, B_partial_overlap)
+
+CSV VALIDATION (Python csv reader)
+  literature_matrix.csv: header 26 cols; 13 data rows; all rows 26 fields;
+    no ragged rows; R01_RB_013 present; no duplicate ids/titles.
+  gap_verification_matrix.csv: header 22 cols; 9 data rows; all rows 22 fields;
+    no ragged rows; R01_RB_013 present; no duplicate ids/titles.
   CSV VALIDATION RESULT: PASS
-  CSV REPAIR PERFORMED: NO (no malformed rows or embedded-newline issues found)
 
 DUPLICATE CHECK
   No duplicate record_id in either file. No duplicate title rows in either file.
@@ -53,13 +94,21 @@ MANUSCRIPT MODIFIED: NO
 PDF OR DOCX MODIFIED: NO
 REF/ MODIFIED: NO
 
-FILES UPDATED THIS TASK (staged)
+FILES CHANGED AND STAGED THIS TASK
+  literature/02_matrices/literature_matrix.csv
+  literature/02_matrices/gap_verification_matrix.csv
+  literature/04_synthesis/round01_r01_rb_013_verification_note.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
-  (the two matrix CSVs were validated only; they required no repair and were NOT staged)
+
+GAP CAUTION
+  This single item does not confirm or invalidate the research gap. It covers
+  one module (housing discrimination) in Tokyo and is not an integrated
+  Chinese-resident opportunity-risk mismatch study.
 
 NEXT RECOMMENDED STEP
-  Manually verify R01_RB_013 (confirm its study area is Japan/Tokyo), then begin a
-  Japanese-language / CiNii / J-STAGE / official-source search round. Do not write
+  R01_RB_013 was added to both matrices. Proceed to the Japanese-language /
+  CiNii / J-STAGE / official-source search round. On full-text availability,
+  confirm the exact target group of the correspondence experiment. Do not write
   the Introduction yet; do not assert novelty yet.
