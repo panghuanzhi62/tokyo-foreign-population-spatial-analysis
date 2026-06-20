@@ -1,62 +1,81 @@
-TOKYO-CHINA ROUND 02 - CiNii PRIORITY CANDIDATE VERIFICATION - PUBLIC REPO SAFETY CHECK
-Generated: 2026-06-20
+TOKYO-CHINA ROUND 02 - CiNii PRIORITY-CANDIDATE VERIFICATION - PUBLIC REPO SAFETY CHECK
+Generated: 2026-06-20 (report repair / validation pass)
 
 PUBLIC REPO SAFETY CHECK: PASS
 
+TASK OBJECTIVE
+  Round 02 CiNii priority-candidate verification: validate matrix updates and
+  refresh the standing report files. No harvester rerun, no broad search, no PDF
+  download, no Google Scholar scraping, no browser automation.
+
 CREDENTIAL SAFETY
-  CINII_APP_ID used this task: NO (verification used local CiNii metadata plus
-    the Crossref DOI resolver; the appid was not needed)
+  CINII_APP_ID leaked to files: NO
+  CINII_APP_ID used this pass: NO (validation used local CiNii metadata and the
+    Crossref DOI resolver; the appid was not needed)
   CINII_APP_ID printed to stdout: NO
   CINII_APP_ID written to any output/report/matrix: NO
-  CINII_APP_ID leak check: scanned the two matrices, the synthesis note, all
-    round02_cinii_priority_verify outputs, and the claude_reports txt files
-    (10 files) for the literal appid value. RESULT: NO leak.
+  CINII_APP_ID leak check: the literal env-var value was scanned against the 3
+    report files, the 3 matrix CSVs, and the synthesis note (7 files). RESULT:
+    NO leak. (The string "CINII_APP_ID" appears only as the variable NAME inside
+    this safety report, never a value.)
 
 STAGING SAFETY
-  SENSITIVE FILES STAGED: NO
-  PDF FILES STAGED: NO
-  DOCX FILES STAGED: NO
-  REF/ STAGED: NO
-  DATA FILES STAGED: NO
-  SCRIPTS STAGED: NO
-  RAW CiNii OUTPUTS STAGED: NO (nothing under outputs/literature_discovery/)
-  LOCAL VERIFICATION OUTPUTS STAGED: NO (nothing under outputs/literature_verification/)
-  MANUSCRIPT MODIFIED: NO
-  GIT ADD . USED: NO (only the 6 explicitly approved files were staged)
+  sensitive files staged: NO
+  raw outputs staged: NO
+  PDF files staged: NO
+  DOCX files staged: NO
+  ref/ staged: NO
+  data files staged: NO
+  scripts staged: NO
+  git add . used: NO (only the 3 report files were staged)
+
+NOT MODIFIED (per task constraints)
+  scripts modified: NO
+  data modified: NO (data/, data_raw/, data_processed/)
+  manuscript modified: NO
+  PDF/DOCX modified: NO (incl. TokyoProject.docx)
+  ref/ modified: NO
 
 ENCODING / MOJIBAKE
-  MOJIBAKE PATTERNS FOUND: NO
-  Markers scanned: replacement char and gbk mojibake markers.
-  CJK CONTENT: present in literature_matrix.csv and gap_verification_matrix.csv
-    (Japanese titles of the 4 added rows) and in the synthesis note.
-  CJK FILE ENCODING: UTF-8, LF line endings, valid decode, no U+FFFD.
-  OTHER EDITED FILES: ASCII-safe.
-  LINE ENDING WARNING: YES on the two matrices (informational; git stores LF; benign).
+  mojibake scan result: PASS (no replacement char or gbk mojibake markers)
+  Markers scanned: U+FFFD replacement char and gbk markers.
+  CJK content: Japanese titles present in literature_matrix.csv and
+    gap_verification_matrix.csv (the added rows) and in the synthesis note;
+    all decode cleanly as UTF-8.
+  Edited report files: ASCII-safe.
 
-EXTERNAL ACCESS THIS TASK
-  Public bibliographic metadata only: local CiNii records, CiNii stable URLs,
-  and the Crossref DOI resolver for two DOIs. No PDFs downloaded. No pages
-  scraped. No Google Scholar query. No browser automation. No paid APIs. No
-  SciSpace. No credentials stored.
-
-CSV INTEGRITY
-  literature_matrix.csv: 26-column header, 17 data rows, valid, no ragged rows,
+CSV INTEGRITY (Python csv.DictReader, this pass)
+  CSV validation result: PASS. CSV repair performed: NO.
+  literature_matrix.csv             : 26 cols, 17 data rows, no ragged rows,
     0 duplicate record_id, 0 duplicate titles.
-  gap_verification_matrix.csv: 22-column header, 12 data rows, valid, no ragged
-    rows, 0 duplicate record_id, 0 duplicate titles.
-  round02_japanese_source_tracking.csv: 23-column header, 102 data rows, valid
-    (unchanged this task).
+  gap_verification_matrix.csv       : 22 cols, 12 data rows, no ragged rows,
+    0 duplicate record_id, 0 duplicate titles.
+  round02_japanese_source_tracking.csv: 23 cols, 102 data rows, no ragged rows,
+    0 duplicate source_id.
+  Expected R02_CINII rows present in correct matrices: PASS.
+  R02_CINII_015 held, absent from both matrices: PASS.
 
-FILES STAGED THIS TASK
-  literature/02_matrices/literature_matrix.csv
-  literature/02_matrices/gap_verification_matrix.csv
-  literature/04_synthesis/round02_cinii_priority_candidate_verification.md
+EVIDENCE-CLAIM SAFETY
+  No item coded as final A_direct_overlap: confirmed (0 A_direct_overlap).
+  No gap claim made.
+  Status remains: gap under verification.
+
+GIT CHECKS
+  git diff --check result: PASS (clean, exit 0)
+  git status --short: only untracked TokyoProject.docx, ref/,
+    outputs/literature_discovery/, outputs/literature_verification/ remain.
+
+EXTERNAL ACCESS THIS PASS
+  None beyond reading local files. No metadata fetched, no pages scraped, no
+  Google Scholar query, no browser automation, no paid APIs, no credentials used.
+
+FILES STAGED THIS PASS
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 FINAL SAFETY CONCLUSION
-  Safe to commit and push. Only the six files above were staged. No raw output,
-  credential, sensitive, copyrighted, binary, manuscript, data, or script
-  content was included. TokyoProject.docx and ref/ remain untracked and
+  Safe to commit and push. Only the three report files were staged. No raw
+  output, credential, sensitive, copyrighted, binary, manuscript, data, or
+  script content was included. TokyoProject.docx and ref/ remain untracked and
   untouched. No research-gap confirmation or A_direct_overlap claim was made.

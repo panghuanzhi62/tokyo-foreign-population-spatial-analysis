@@ -1,45 +1,50 @@
-TOKYO-CHINA ROUND 02 - CiNii PRIORITY CANDIDATE VERIFICATION - CHANGED FILES
-Generated: 2026-06-20
+TOKYO-CHINA ROUND 02 - CiNii PRIORITY-CANDIDATE VERIFICATION - CHANGED FILES
+Generated: 2026-06-20 (report repair / validation pass)
 
-MODIFIED FILES STAGED (2)
-  literature/02_matrices/literature_matrix.csv
-    - 4 rows appended (R02_CINII_001, R02_CINII_022, R02_CINII_018,
-      R02_CINII_019). 26 columns. Japanese titles preserved; English
-      official/working titles recorded in notes.
-  literature/02_matrices/gap_verification_matrix.csv
-    - 3 rows appended (R02_CINII_001, R02_CINII_022, R02_CINII_018). 22 columns.
-      All coded overlap_with_our_topic = B_partial_overlap.
+TASK OBJECTIVE
+  Round 02 CiNii priority-candidate verification. Validate the matrix updates and
+  refresh the standing report files. The CiNii harvester was not rerun, no broad
+  search redone, no PDFs downloaded, no Google Scholar scraped, no browser
+  automation used.
 
-CREATED FILES STAGED (1)
-  literature/04_synthesis/round02_cinii_priority_candidate_verification.md
-    - Public synthesis note (sections A-G). Metadata/source-level verification;
-      no gap claim; no A_direct_overlap.
-
-MODIFIED FILES STAGED (3)
+FILES CHANGED AND STAGED THIS PASS (3)
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
-    - Standing Tokyo reporting-convention report files, refreshed for this task.
+    - Standing Tokyo reporting-convention report files, refreshed to accurately
+      describe the Round 02 CiNii priority-candidate verification task and to
+      record this validation pass.
+
+MATRICES VALIDATED, UNCHANGED THIS PASS (no repair needed)
+  literature/02_matrices/literature_matrix.csv
+    - Already contains the 4 appended rows (R02_CINII_001, _022, _018, _019).
+      26 columns, 17 data rows. Validation PASS. Not restaged.
+  literature/02_matrices/gap_verification_matrix.csv
+    - Already contains the 3 appended rows (R02_CINII_001, _022, _018), all coded
+      overlap_with_our_topic = B_partial_overlap. 22 columns, 12 data rows.
+      Validation PASS. Not restaged.
+  literature/02_matrices/round02_japanese_source_tracking.csv
+    - 23 columns, 102 data rows. Unchanged. Validation PASS. Not restaged.
+  CSV repair performed: NO (CSVs passed validation; not staged this pass).
+
+SYNTHESIS NOTE (already committed, unchanged this pass)
+  literature/04_synthesis/round02_cinii_priority_candidate_verification.md
+    - Public synthesis note (sections A-G). Metadata/source-level verification;
+      no gap claim; no A_direct_overlap. Not restaged.
 
 LOCAL OUTPUTS WRITTEN BUT NOT STAGED
-  outputs/literature_verification/round02_cinii_priority_verify/
-    cinii_priority_verification.csv
-    cinii_priority_verification.jsonl
-    cinii_priority_manual_checklist.md
-    cinii_priority_verification_manifest.json
-    - Detailed per-candidate verification artifacts; intentionally NOT staged.
-
-DELETED FILES
-  (none)
+  outputs/literature_verification/  (priority-verify artifacts)
+  outputs/literature_discovery/     (raw CiNii harvest outputs)
+    - Intentionally NOT staged.
 
 NOT MODIFIED (per task constraints)
-  TokyoProject.docx
-  ref/
-  scripts/
-  data/, data_raw/, data_processed/
-  manuscript / PDF / DOCX files
-  round02_japanese_source_tracking.csv (unchanged this task)
-  raw API outputs under outputs/literature_discovery/
+  scripts modified: NO
+  data modified: NO (data/, data_raw/, data_processed/)
+  manuscript modified: NO
+  PDF/DOCX modified: NO (incl. TokyoProject.docx)
+  ref/ modified: NO
+  raw outputs under outputs/literature_discovery/: NO
+  raw outputs under outputs/literature_verification/: NO
 
 UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx
@@ -47,16 +52,15 @@ UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   outputs/literature_discovery/
   outputs/literature_verification/
 
-FILES STAGED
-  Exactly the 6 files listed above (2 modified matrices + 1 created note + 3
-  reports). git add . was NOT used.
+STAGING
+  Exactly the 3 report files above were staged. git add . was NOT used.
+  Raw outputs staged: NO. TokyoProject.docx staged: NO. ref/ staged: NO.
 
-FILES COMMITTED
-  The 6 staged files in commit:
-  "Verify priority Round 02 CiNii candidates"
+COMMIT
+  Repair CiNii priority candidate verification reports
 
-FILES PUSHED
-  Same commit pushed to origin agentic-upgrade.
+DELETED FILES
+  (none)
 
 EXACT COMMIT HASH
   Reported in final response.
