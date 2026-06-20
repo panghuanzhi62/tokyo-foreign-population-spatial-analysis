@@ -1,20 +1,19 @@
-TOKYO-CHINA ROUND 02 - JAPANESE-SOURCE SEARCH SETUP - CHANGED FILES
+TOKYO-CHINA ROUND 02 - CiNii METADATA-ONLY SEARCH - CHANGED FILES
 Generated: 2026-06-20
 
-CREATED FILES STAGED (5)
-  literature/03_notes/round02_japanese_source_search_protocol.md
-    - Round 02 protocol (sections A-G). ASCII-safe English.
-  literature/03_notes/round02_japanese_search_queries.md
-    - 21 Japanese queries (R02-Q01..R02-Q21) across 7 groups. UTF-8/LF; Japanese
-      strings plus English working translations. Only file containing CJK.
-  literature/02_matrices/round02_japanese_source_tracking.csv
-    - Header-only CSV, 23 columns. No data rows.
-  literature/02_matrices/official_source_registry.csv
-    - Header-only CSV, 14 columns. No data rows.
-  literature/04_synthesis/round02_japanese_source_search_status.md
-    - Source-light Round 02 status note.
+CREATED FILES STAGED (2)
+  scripts/10_literature_discovery/harvest_cinii_round02.py
+    - CiNii Research OpenSearch metadata-only harvester. Standard-library only.
+      Reads CINII_APP_ID from the environment (never printed/written/committed).
+      Parses Round 02 Japanese queries from the query markdown, retrieves
+      metadata, applies cautious triage, appends to the tracking CSV with dedup.
+  literature/04_synthesis/round02_cinii_search_status.md
+    - Public synthesis note (sections A-F). Metadata-only; no gap claim.
 
-MODIFIED FILES STAGED (3)
+MODIFIED FILES STAGED (4)
+  literature/02_matrices/round02_japanese_source_tracking.csv
+    - 102 candidate rows appended (R02_CINII_001..R02_CINII_102). 23 columns.
+      Japanese titles preserved in original_title (UTF-8/LF).
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
@@ -23,14 +22,21 @@ MODIFIED FILES STAGED (3)
 DELETED FILES
   (none)
 
+NOT STAGED (local, intentionally left untracked)
+  outputs/literature_discovery/round02_cinii/cinii_candidates.csv
+  outputs/literature_discovery/round02_cinii/cinii_candidates.jsonl
+  outputs/literature_discovery/round02_cinii/cinii_source_coverage_summary.md
+  outputs/literature_discovery/round02_cinii/raw/cinii_raw.jsonl
+    - Raw / normalized CiNii outputs. Generated locally; NOT committed.
+
 NOT MODIFIED (per task constraints)
   TokyoProject.docx
   ref/
-  scripts/, data/, data_raw/, data_processed/
+  scripts outside scripts/10_literature_discovery/
+  data/, data_raw/, data_processed/
   manuscript / PDF / DOCX files
-  literature_matrix.csv and gap_verification_matrix.csv (unchanged this round)
-  raw API outputs under outputs/literature_discovery/
-  raw verification outputs under outputs/literature_verification/
+  official_source_registry.csv (unchanged this round)
+  raw outputs from previous rounds
 
 UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx
@@ -39,14 +45,14 @@ UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   outputs/literature_verification/
 
 FILES STAGED
-  Exactly the 8 files listed above (5 created + 3 reports). git add . was NOT used.
+  Exactly the 6 files listed above (2 created + 4 modified). git add . was NOT used.
 
 FILES COMMITTED
-  The 8 staged files in commit:
-  "Add Round 02 Japanese source search setup"
+  The 6 staged files in commit:
+  "Add Round 02 CiNii metadata search results"
 
 FILES PUSHED
   Same commit pushed to origin agentic-upgrade.
 
 EXACT COMMIT HASH
-  See git log -1 on agentic-upgrade (reported in final response).
+  Reported in final response.

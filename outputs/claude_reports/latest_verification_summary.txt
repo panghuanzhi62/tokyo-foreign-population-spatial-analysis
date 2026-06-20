@@ -1,5 +1,10 @@
-TOKYO-CHINA ROUND 02 - JAPANESE-SOURCE SEARCH SETUP - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - CiNii METADATA-ONLY SEARCH - VERIFICATION SUMMARY
 Generated: 2026-06-20
+
+TASK OBJECTIVE
+  Round 02 CiNii metadata-only search for the Tokyo-China opportunity-risk
+  mismatch project. Metadata discovery only. This does NOT confirm the research
+  gap. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -7,82 +12,54 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-PUSHED TO REMOTE: YES
-  origin agentic-upgrade
+CREDENTIAL HANDLING
+  CINII_APP_ID present: YES (value not revealed)
+  CINII_APP_ID source: environment variable only
+  CINII_APP_ID leaked to files: NO
 
-TASK OBJECTIVE
-  Create the Round 02 Japanese-language / CiNii / J-STAGE / official-source
-  search setup: a protocol, a Japanese-language query list, and header-only
-  tracking templates. This is search SETUP, not a completed review.
+SEARCH RESULTS
+  Search platform: CiNii Research OpenSearch (metadata only)
+  CiNii reached: YES
+  Query groups attempted: 7 (QG-A..QG-G)
+  Queries attempted: 21 (R02-Q01..R02-Q21)
+  Candidate records retrieved (post within-run dedup): 102
+  Tracking CSV rows appended: 102
+  A_direct_overlap_candidate: 0
+  B_partial_overlap_candidate: 32
+  D_method_support_candidate: 2
+  E_background_candidate: 32
+  official_policy_context: 1
+  Held for translation/manual check: 35
+  Excluded as not relevant: 0
 
-GAP STATUS
-  Gap under verification. No final gap claim is made or allowed. The final
-  research gap must not be asserted until supported by verified literature-matrix
-  records and deep-reading notes, positioned against Sun 2026.
-
-BOUNDARY CONDITION (Sun 2026, Cities)
-  Sun 2026 already covers Tokyo immigrant location choice, co-ethnic networks,
-  spatial assimilation, Chinese/Vietnamese/Filipino/Brazilian immigrants,
-  Tokyo-area municipalities, and dynamic spatial Durbin modeling. Round 02
-  items overlapping that scope are positioned against Sun 2026, not claimed novel.
-
-DELIVERABLES CREATED
-  1. literature/03_notes/round02_japanese_source_search_protocol.md
-       Sections A-G: purpose, evidence status, source categories, source-handling
-       rules, search domains, decision logic (overlap coding), and minimum
-       evidence before final topic decision.
-  2. literature/03_notes/round02_japanese_search_queries.md
-       21 Japanese queries (R02-Q01..R02-Q21) in 7 groups QG-A..QG-G, each with
-       Japanese string, English working translation, source priority, expected
-       relevance, and matrix target. UTF-8 with LF; Japanese recorded in Japanese.
-  3. literature/02_matrices/round02_japanese_source_tracking.csv
-       Header-only, 23 columns.
-  4. literature/02_matrices/official_source_registry.csv
-       Header-only, 14 columns.
-  5. literature/04_synthesis/round02_japanese_source_search_status.md
-       Source-light status note (initialized; no gap claim; next steps).
-
-OPTIONAL FEASIBILITY TEST: PERFORMED (metadata-only, counts only)
-  Platform: OpenAlex public API (mailto), counts only. No PDFs downloaded. No
-  scraping. Google Scholar NOT queried.
-  Findings: API responds (broad query "foreigners rental housing discrimination
-  Japan" returned a non-zero count ~731); narrow Tokyo-and-foreign-resident
-  multi-term queries returned near-zero on the English index, reinforcing the
-  need for Japanese-source search. No results were entered into the tracking CSVs.
-  CiNii API: SKIPPED (requires CINII_APP_ID, absent in environment). Handled by
-  manual search. J-STAGE / NDL: not API-queried this round.
+CONSTRAINTS HONORED
+  PDFs downloaded: NO
+  Google Scholar scraped: NO
+  Browser automation used: NO
+  Paid APIs used: NO
+  Raw CiNii outputs staged: NO
 
 CHECKS
-  CSV VALIDATION RESULT: PASS
-    tracking CSV: 23 cols, 0 data rows, header valid.
-    official registry CSV: 14 cols, 0 data rows, header valid.
-  DUPLICATE SOURCE_ID CHECK: PASS (no data rows yet; not applicable).
-  MOJIBAKE SCAN RESULT: PASS (CJK file is valid UTF-8, no replacement chars,
-    no gbk mojibake markers; only the queries file contains Japanese).
-  GIT DIFF --CHECK RESULT: PASS
-  SENSITIVE-FILE CHECK RESULT: PASS
+  py_compile: PASS
+  mojibake scan: PASS
+  git diff --check: PASS
+  CSV validation: PASS
+    tracking CSV: 23 cols, 102 data rows, no ragged rows.
+    official registry CSV: 14 cols, 0 data rows, valid header.
+  duplicate source_id check: PASS (0 duplicates)
+  duplicate title check: PASS (0 duplicates)
+  sensitive-file check: PASS
+  CINII_APP_ID leak check: PASS (NO leak across scanned files and raw outputs)
 
-SAFETY
-  RAW API / VERIFICATION OUTPUTS STAGED: NO
-  SCRIPTS CREATED OR MODIFIED: NO (no helper script needed)
-  DATA MODIFIED: NO
-  MANUSCRIPT MODIFIED: NO
-  PDF OR DOCX STAGED: NO
-  REF/ MODIFIED OR STAGED: NO
-  GIT ADD . USED: NO
-
-FILES STAGED THIS TASK
-  literature/03_notes/round02_japanese_source_search_protocol.md
-  literature/03_notes/round02_japanese_search_queries.md
-  literature/02_matrices/round02_japanese_source_tracking.csv
-  literature/02_matrices/official_source_registry.csv
-  literature/04_synthesis/round02_japanese_source_search_status.md
-  outputs/claude_reports/latest_verification_summary.txt
-  outputs/claude_reports/latest_changed_files.txt
-  outputs/claude_reports/latest_safety_check.txt
+NOTE ON CLASSIFICATION
+  All coding is preliminary metadata triage. No item is coded as final
+  A_direct_overlap. Keyword triage can produce geographic/population false
+  positives; study_area, population_group, and overlap_category must be
+  confirmed manually. All candidate rows carry translation_needed = yes and
+  manual_check_needed = yes.
 
 NEXT RECOMMENDED STEP
-  Run the targeted Japanese-source search (CiNii manual, J-STAGE, NDL, e-Stat,
-  ISA, MLIT, GSI, TMG, ward/city pages) and populate the tracking CSVs,
-  separating academic records from official data/policy sources. Do not write
-  the Introduction; do not assert novelty; do not confirm the gap.
+  Manually verify the high-priority CiNii candidates (synthesis note Section D),
+  decide literature_matrix.csv vs gap_verification_matrix.csv routing, then
+  continue J-STAGE and NDL metadata search. Do not write the Introduction; do
+  not assert novelty; do not confirm the gap.
