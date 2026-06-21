@@ -1,38 +1,36 @@
-TOKYO-CHINA ROUND 02 - DATA ACQUISITION READINESS CHECKLIST - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - DATA ACQUISITION CONTROL FILES - SAFETY CHECK
 Generated: 2026-06-22
 
 TASK OBJECTIVE
-  Data acquisition readiness checklist (planning artifact). Translate the variable
-  blueprint into a pre-download readiness checklist CSV + note. No new broad
-  searches, no downloads, no scraping, no browser automation.
+  Official data source metadata template and download decision log (control
+  files). Create pre-acquisition governance templates. No new broad searches, no
+  downloads, no API extraction, no scraping, no browser automation.
 
 ARTIFACT STATUS
-  readiness checklist CSV created: YES
-  readiness note created: YES
-  readiness rows: 30
+  metadata template created: YES (header-only)
+  decision log created: YES (8 planned rows)
+  control note created: YES
 
-READINESS COUNTS
-  P1_before_download rows: 2
-  P1_before_api rows: 4
-  P1_before_spatial_analysis rows: 10
-  P2_context rows: 7
-  P3_background rows: 1
-  hold / not-ready rows: 6
-  rows needing exact table identification: 7
-  rows needing exact layer identification: 6
-  rows needing license check: 14
-  rows needing CRS / spatial check: 11
-  rows marked context-only: 6
+CONTROL-FILE COUNTS
+  metadata template rows: 0 (header-only)
+  decision log rows: 8
+  decision log approved downloads: 0
+  decision log completed downloads: 0
+  decision_status: pending_user_approval 7; hold 1
+  all decision-log rows download_completed = no: YES
 
 COPYRIGHT / DATA SAFETY
   datasets downloaded: NO
   PDFs downloaded or staged: NO
+  APIs called for extraction: NO
+  credentials or API keys written: NO
   DOCX files staged: NO
   TokyoProject.docx staged: NO
   ref/ staged: NO
   data/ data_raw/ data_processed/ staged: NO
   scripts/ staged: NO
   raw outputs (literature_discovery / literature_verification) staged: NO
+  public_repo_commit_allowed default policy: do_not_commit_raw_data / metadata-only
 
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
   existing matrices modified: NO (literature_matrix.csv, gap_verification_matrix.csv,
@@ -42,34 +40,38 @@ READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
     manual_official_source_verification_results_round01.md unchanged)
   usability inventory modified: NO (official_data_usability_inventory.csv unchanged)
   variable blueprint modified: NO (official_data_variable_blueprint.csv unchanged)
+  readiness checklist modified: NO (data_acquisition_readiness_checklist.csv unchanged)
 
 EVIDENCE-CLAIM SAFETY
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
   final gap claimed: NO
-  Note: readiness checklist is acquisition-readiness planning only; it does not
-  acquire, download, or analyze data, and does not confirm the gap or novelty.
+  Note: control files are governance/reproducibility planning only; no data is
+  acquired, downloaded, or analyzed; gap and novelty are not claimed.
 
 CHECKS
-  CSV validation result: PASS (checklist + blueprint + usability inventory + 5
-    existing matrices parse via csv.DictReader)
-  duplicate readiness_id check: PASS (0 duplicates)
-  duplicate source_id + candidate_variable_name check: PASS (0 duplicates)
-  mojibake scan result: PASS (ASCII-safe checklist CSV, note, reports)
+  CSV validation result: PASS (metadata template + decision log + readiness
+    checklist + blueprint + usability inventory + registry + manual results +
+    literature_matrix + gap_verification_matrix parse via csv.DictReader)
+  duplicate decision_id check: PASS (0 duplicates)
+  duplicate metadata_record_id check: PASS (no data rows in template)
+  decision-log download_completed = no check: PASS (all 8 rows)
+  mojibake scan result: PASS (ASCII-safe control CSVs, note, reports)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
   no PDFs/datasets downloaded or staged: PASS
   no DOCX staged: PASS
 
 FILES STAGED (explicit; no `git add .`)
-  literature/02_matrices/data_acquisition_readiness_checklist.csv
-  literature/04_synthesis/data_acquisition_readiness_checklist.md
+  metadata/official_data_source_metadata_template.csv
+  metadata/data_download_decision_log.csv
+  literature/04_synthesis/data_acquisition_control_files.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  Prepare official_data_source_metadata_template.csv and
-  data_download_decision_log.csv before any actual data acquisition. No data
-  download yet; no Introduction; no novelty.
+  Prepare a .gitignore and local data-folder safety audit for future data
+  acquisition (ignored folders for raw downloads, local full text, temporary
+  outputs, credentials). No data download yet; no Introduction; no novelty.

@@ -1,13 +1,12 @@
-TOKYO-CHINA ROUND 02 - DATA ACQUISITION READINESS CHECKLIST - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - DATA ACQUISITION CONTROL FILES - VERIFICATION SUMMARY
 Generated: 2026-06-22
 
 TASK OBJECTIVE
-  Data acquisition readiness checklist. Translate the official data variable
-  blueprint into a readiness checklist that identifies, for each P1 official data
-  source, what must be confirmed before any download or API extraction: exact
-  table/layer, year, geography, license, access route, join key, CRS,
-  preprocessing, and reproducibility metadata. This is readiness/reproducibility
-  planning only - NO data downloaded. Status: gap under verification.
+  Official data source metadata template and download decision log. Create two
+  governance/control files that must exist before any official data download or
+  API extraction: a per-source metadata template and a download decision log.
+  This is a reproducibility-control task before data acquisition - NO data
+  downloaded or extracted. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -16,37 +15,26 @@ BRANCH
   agentic-upgrade
 
 ARTIFACTS
-  readiness checklist CSV created: YES
-    literature/02_matrices/data_acquisition_readiness_checklist.csv (27 cols x 30 rows)
-  readiness note created: YES
-    literature/04_synthesis/data_acquisition_readiness_checklist.md
+  metadata template created: YES
+    metadata/official_data_source_metadata_template.csv (41 cols, header-only, 0 rows)
+  decision log created: YES
+    metadata/data_download_decision_log.csv (27 cols, 8 planned rows)
+  control note created: YES
+    literature/04_synthesis/data_acquisition_control_files.md
 
 SOURCE COVERAGE
-  All requested priority and context source_ids located and used; none missing;
-  none invented: R02_OFF_TGT_001 e-Stat; R02_OFF_TGT_002 ISA; R02_OFF_TGT_004
-  Tokyo statistics; R02_OFF_TGT_005 MLIT NLNI; R02_OFF_TGT_006 GSI; R02_OFF_TGT_007
-  Tokyo housing; R02_OFF_TGT_010 Tokyo disaster; R02_OFF_TGT_011 Hazard Map Portal;
-  R02_OFF_TGT_013 TSUNAGARI; R02_OFF_TGT_016 CLAIR portal; R02_NDL_OFF_002 CLAIR
-  periodical. Housing literature IDs (R02_NDL_043, R02_CINII_001, R02_JSTAGE_002)
-  treated as literature context only, NOT data sources.
+  Decision-log candidate rows use only existing source_ids; none invented:
+  R02_OFF_TGT_002 ISA (DDL_001/002/003), R02_OFF_TGT_005 MLIT NLNI
+  (DDL_004/005/006), R02_OFF_TGT_006 GSI (DDL_007), R02_OFF_TGT_013 TSUNAGARI
+  (DDL_008). Metadata template is source-agnostic (header-only).
 
 COUNTS
-  readiness rows ....................................... 30
-  P1_before_download rows .............................. 2
-  P1_before_api rows ................................... 4
-  P1_before_spatial_analysis rows ...................... 10
-  P2_context rows ...................................... 7
-  P3_background rows ................................... 1
-  hold / not-ready rows (priority=hold) ................ 6
-  rows needing exact table identification .............. 7
-  rows needing exact layer identification .............. 6
-  rows needing license check ........................... 14
-  rows needing CRS / spatial check ..................... 11
-  rows marked context-only ............................. 6
-
-  Readiness-status mix: needs_exact_table_identification 7;
-  needs_exact_layer_identification 6; needs_crs_check 4; context_only_no_download
-  6; needs_access_route_check 1; hold_due_to_access_issue 1; not_ready 5.
+  metadata template rows ............................... 0 (header-only)
+  decision log rows .................................... 8
+  decision log approved downloads ...................... 0
+  decision log completed downloads ..................... 0
+  decision_status: pending_user_approval 7; hold 1 (TSUNAGARI)
+  all decision-log rows download_completed = no ........ YES
 
 EVIDENCE-CLAIM SAFETY
   datasets downloaded: NO
@@ -56,27 +44,31 @@ EVIDENCE-CLAIM SAFETY
   manual results modified: NO
   usability inventory modified: NO
   variable blueprint modified: NO
+  readiness checklist modified: NO
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (data_acquisition_readiness_checklist.csv 27 cols,
-    30 rows; plus official_data_variable_blueprint, official_data_usability_inventory,
-    manual_check_results_template, official_source_registry,
-    round02_gap_evidence_audit_table, literature_matrix, gap_verification_matrix
-    all parse cleanly)
-  duplicate check result: PASS (no duplicate readiness_id; no duplicate
-    source_id + candidate_variable_name combination)
-  mojibake scan result: PASS (ASCII-safe checklist CSV, note, and reports)
+  CSV validation result: PASS (official_data_source_metadata_template.csv 41 cols
+    header-only; data_download_decision_log.csv 27 cols, 8 rows; plus
+    data_acquisition_readiness_checklist, official_data_variable_blueprint,
+    official_data_usability_inventory, official_source_registry,
+    manual_check_results_template, literature_matrix, gap_verification_matrix all
+    parse cleanly)
+  duplicate check result: PASS (no duplicate decision_id; metadata template has
+    no data rows so no duplicate metadata_record_id)
+  decision-log download_completed check: PASS (all 8 rows = no; 0 approved)
+  mojibake scan result: PASS (ASCII-safe control CSVs, note, and reports)
   git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS (no PDF/DOCX/dataset/ref/data staged)
+  sensitive-file check result: PASS (no PDF/DOCX/dataset/ref/data staged; no
+    credentials or API keys written)
   no raw outputs staged: PASS (outputs/literature_discovery and
     outputs/literature_verification untouched, untracked)
 
 NEXT RECOMMENDED STEP
-  Prepare official_data_source_metadata_template.csv and
-  data_download_decision_log.csv before any actual data acquisition. Do not
-  download data yet. Do not write the Introduction. Do not assert novelty. Status
-  remains: gap under verification.
+  Prepare a .gitignore and local data-folder safety audit for future data
+  acquisition (explicit ignored folders for raw downloads, local full text,
+  temporary outputs, and credentials). Do not download data yet. Do not write the
+  Introduction. Do not assert novelty. Status remains: gap under verification.

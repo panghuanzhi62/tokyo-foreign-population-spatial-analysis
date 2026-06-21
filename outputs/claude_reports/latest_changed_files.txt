@@ -1,50 +1,57 @@
-TOKYO-CHINA ROUND 02 - DATA ACQUISITION READINESS CHECKLIST - CHANGED FILES
+TOKYO-CHINA ROUND 02 - DATA ACQUISITION CONTROL FILES - CHANGED FILES
 Generated: 2026-06-22
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/data_acquisition_readiness_checklist.csv           [new]
-  literature/04_synthesis/data_acquisition_readiness_checklist.md           [new]
+  metadata/official_data_source_metadata_template.csv                       [new]
+  metadata/data_download_decision_log.csv                                   [new]
+  literature/04_synthesis/data_acquisition_control_files.md                 [new]
   outputs/claude_reports/latest_verification_summary.txt                    [modified]
   outputs/claude_reports/latest_changed_files.txt                           [modified]
   outputs/claude_reports/latest_safety_check.txt                            [modified]
 
 DETAIL
 
-literature/02_matrices/data_acquisition_readiness_checklist.csv  [new]
-  New readiness checklist table, 27 columns x 30 data rows (DAR_001..DAR_030).
-  One row per source-variable acquisition unit, each specifying what to confirm
-  before download/API: exact table or layer, year/version, geographic unit,
-  spatial/temporal granularity, access route, download/API method, file/API
-  format, license/terms, join key or spatial link, CRS, preprocessing plan,
-  metadata to record, storage plan after approval, repo safety requirement,
-  current readiness status, blocking issue, priority, next action, notes.
-  ASCII-safe (romanized Japanese terms). Coverage: population baseline/Chinese
-  baseline (7), spatial reference + transit (boundary/stations/lines/distance/
-  density/area/GSI CRS) (7), housing context incl. land-use proxy (4),
-  disaster/risk (flood/sediment/portal/disaster-prevention) (4), multilingual/
-  service (TSUNAGARI/CLAIR portal/CLAIR forum) (3), opportunity-risk composite
-  planning rows (5). Priority mix: 2 P1_before_download, 4 P1_before_api, 10
-  P1_before_spatial_analysis, 7 P2_context, 1 P3_background, 6 hold.
+metadata/official_data_source_metadata_template.csv  [new]
+  New header-only metadata template (41 columns, 0 data rows). One future record
+  per downloaded dataset/API extract/spatial layer: metadata_record_id, source_id,
+  dataset/layer names, source/landing/download URLs, access_method, data_type,
+  expected/actual file format, geographic coverage, spatial unit/granularity, CRS,
+  temporal coverage, data year/version, access date, license URL/summary, allowed
+  use, redistribution, public_repo_commit_allowed, planned/actual storage, raw/
+  processed file names, SHA-256 checksum, file size, encoding, language, join key,
+  spatial join key, preprocessing flags + scripts, known limitations, citation
+  note, metadata_verified_status, notes. ASCII-safe. New metadata/ directory.
 
-literature/04_synthesis/data_acquisition_readiness_checklist.md  [new]
-  Human-readable readiness note (sections A-I): purpose; evidence boundary;
-  readiness summary with counts; readiness by 7 modules; before-download
-  checklist; repository safety plan; recommended acquisition order; what not to
-  do yet; recommended next repo task (metadata template + download decision log).
-  States gap remains under verification; no novelty asserted.
+metadata/data_download_decision_log.csv  [new]
+  New decision log (27 columns) seeded with 8 planned candidate rows
+  (DDL_001..DDL_008). All download_completed = no; 0 approved; 0 completed.
+  decision_status = pending_user_approval for 7 (e-Stat/ISA population baseline
+  DDL_001/002, derived non-Chinese DDL_003, NLNI boundaries DDL_004, NLNI stations
+  DDL_005, NLNI hazard DDL_006, GSI reference DDL_007) and hold for 1 (TSUNAGARI
+  DDL_008). Each row carries reason, license_checked/status, repo_commit_policy
+  (do_not_commit_raw_data / commit_metadata_only), risk_level + reason, and
+  post_download_action. No credentials or API keys. ASCII-safe.
+
+literature/04_synthesis/data_acquisition_control_files.md  [new]
+  Human-readable control note (sections A-H): purpose; evidence boundary; created
+  control files; metadata requirements; download decision rules; recommended
+  first decision-log candidates; repository safety plan; recommended next repo
+  task (.gitignore + data-folder safety audit). States gap remains under
+  verification; no novelty asserted.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the readiness checklist task and its checks.
+  Refreshed to describe the control-files task and its checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
 
 outputs/claude_reports/latest_safety_check.txt  [modified]
-  Refreshed public-repo safety check for this readiness pass.
+  Refreshed public-repo safety check for this control-files pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  official_data_variable_blueprint.csv, official_data_usability_inventory.csv,
-  official_source_registry.csv, literature_matrix.csv, gap_verification_matrix.csv,
+  data_acquisition_readiness_checklist.csv, official_data_variable_blueprint.csv,
+  official_data_usability_inventory.csv, official_source_registry.csv,
+  literature_matrix.csv, gap_verification_matrix.csv,
   round02_gap_evidence_audit_table.csv, round02_japanese_source_tracking.csv,
   manual_check_results_template.csv, manual_official_source_verification_results_round01.md,
   TokyoProject.docx, ref/, data/, data_raw/, data_processed/, manuscript files,
