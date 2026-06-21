@@ -1,59 +1,51 @@
-TOKYO-CHINA ROUND 02 - TARGETED OFFICIAL-SOURCE SEARCH - CHANGED FILES
+TOKYO-CHINA ROUND 02 - HIGH-VALUE OFFICIAL-SOURCE VERIFICATION - CHANGED FILES
 Generated: 2026-06-21
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  scripts/10_literature_discovery/targeted_official_source_search_round02.py   [new]
-  literature/02_matrices/official_source_registry.csv                          [modified]
-  literature/04_synthesis/round02_targeted_official_source_search_status.md     [new]
-  outputs/claude_reports/latest_verification_summary.txt                       [modified]
-  outputs/claude_reports/latest_changed_files.txt                              [modified]
-  outputs/claude_reports/latest_safety_check.txt                               [modified]
+  literature/02_matrices/official_source_registry.csv                       [modified]
+  literature/04_synthesis/round02_high_value_official_source_verification.md [new]
+  outputs/claude_reports/latest_verification_summary.txt                    [modified]
+  outputs/claude_reports/latest_changed_files.txt                           [modified]
+  outputs/claude_reports/latest_safety_check.txt                            [modified]
 
 DETAIL
 
-scripts/10_literature_discovery/targeted_official_source_search_round02.py  [new]
-  Targeted official-source discovery script. Standard library only. Verifies a
-  curated list of known official/quasi-official landing/catalogue pages with a
-  single lightweight reachability check (HTTP status only), classifies each by
-  domain, and appends new rows to official_source_registry.csv. No crawling, no
-  PDF/dataset download, no browser automation, no paid APIs, no credentials.
-
 literature/02_matrices/official_source_registry.csv  [modified]
-  - Appended 21 official-source rows (R02_OFF_TGT_001 .. R02_OFF_TGT_021) across
-    population/nationality statistics, open/spatial data, housing, disaster/risk,
-    multilingual administrative services, health/welfare/education, and
-    prefectural/municipal sources (Tokyo, Saitama, Chiba, Kanagawa).
-  - Updated 1 row (R02_NDL_OFF_002, CLAIR): notes clarified to confirm municipal
-    multilingual/multicultural policy-context support and cross-referenced to the
-    live CLAIR portal record R02_OFF_TGT_016.
-  - Header unchanged (14 cols). Data rows 2 -> 23.
+  - Updated exactly 3 rows (no new rows; none removed; none moved):
+    R02_OFF_TGT_006 (GSI): verified_status hold_for_manual_check ->
+      verified_by_official_page; notes record HTTP 200 (title "GSI HOME PAGE -
+      国土地理院") and the SSL legacy-renegotiation explanation.
+    R02_OFF_TGT_011 (Hazard Map Portal): verified_status hold_for_manual_check ->
+      verified_by_official_catalogue; notes record HTTP 200 (title
+      "ハザードマップポータルサイト") and operator MLIT/GSI.
+    R02_OFF_TGT_013 (TSUNAGARI): verified_status unchanged (hold_for_manual_check);
+      notes record the persistent SSL UNEXPECTED_EOF in this environment and the
+      manual checks still required.
+  - Header unchanged (14 cols). Row count unchanged (23 data rows). All other
+    rows left byte-for-byte unchanged (line-targeted update).
 
-literature/04_synthesis/round02_targeted_official_source_search_status.md  [new]
-  Public synthesis note: purpose, evidence status, search coverage, important
-  official sources, weak/held sources, methodological relevance, limitations,
-  next steps.
+literature/04_synthesis/round02_high_value_official_source_verification.md  [new]
+  - Public synthesis note: purpose, evidence status, verification table,
+    source-by-source notes, registry updates, caution, next steps.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe this targeted official-source search pass.
+  - Refreshed to describe this high-value official-source verification pass.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
-  This file.
+  - This file.
 
 outputs/claude_reports/latest_safety_check.txt  [modified]
-  Refreshed public-repo safety check for this pass.
+  - Refreshed public-repo safety check for this pass.
 
-NOT MODIFIED (per task constraints)
-  literature_matrix.csv and gap_verification_matrix.csv (UNCHANGED vs HEAD -
-  no official source was added to the academic matrices),
-  round02_japanese_source_tracking.csv (not changed this pass), TokyoProject.docx,
-  ref/, data/, data_raw/, data_processed/, manuscript files, PDF/DOCX files, and
-  all raw outputs under outputs/literature_discovery/.
+NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
+  literature_matrix.csv, gap_verification_matrix.csv,
+  round02_japanese_source_tracking.csv, TokyoProject.docx, ref/, data/,
+  data_raw/, data_processed/, manuscript files, PDF/DOCX files, and raw outputs
+  under outputs/literature_discovery/ and outputs/literature_verification/.
 
-LOCAL DISCOVERY OUTPUTS WRITTEN BUT NOT STAGED (under outputs/literature_discovery/)
-  outputs/literature_discovery/round02_official_targeted/official_source_candidates.csv
-  outputs/literature_discovery/round02_official_targeted/official_source_candidates.jsonl
-  outputs/literature_discovery/round02_official_targeted/official_source_coverage_summary.md
-  (plus temporary local helper scripts; all under outputs/, never staged)
+LOCAL OUTPUTS WRITTEN BUT NOT STAGED (under outputs/literature_verification/)
+  outputs/literature_verification/round02_highvalue_official_verify/ (helper
+  scripts only; never staged)
 
 UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx
