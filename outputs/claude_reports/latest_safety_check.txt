@@ -1,23 +1,39 @@
-TOKYO-CHINA ROUND 02 - DATA ACQUISITION CONTROL FILES - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - GITIGNORE & LOCAL DATA-FOLDER SAFETY AUDIT - SAFETY CHECK
 Generated: 2026-06-22
 
 TASK OBJECTIVE
-  Official data source metadata template and download decision log (control
-  files). Create pre-acquisition governance templates. No new broad searches, no
-  downloads, no API extraction, no scraping, no browser automation.
+  .gitignore and local data-folder safety audit. Strengthen the public-repo
+  safety boundary before data acquisition. No downloads, no API extraction, no
+  scraping, no browser automation.
 
 ARTIFACT STATUS
-  metadata template created: YES (header-only)
-  decision log created: YES (8 planned rows)
-  control note created: YES
+  .gitignore existed: YES
+  .gitignore patched: YES
+  audit note created: YES
 
-CONTROL-FILE COUNTS
-  metadata template rows: 0 (header-only)
-  decision log rows: 8
-  decision log approved downloads: 0
-  decision log completed downloads: 0
-  decision_status: pending_user_approval 7; hold 1
-  all decision-log rows download_completed = no: YES
+TRACKED-FILE RISK AUDIT (git ls-files; 107 tracked)
+  tracked PDFs found: 0
+  tracked DOCX found: 0
+  tracked data/geospatial/archive files found: 0
+  tracked credential-like files found: 0
+  tracked raw-output folders found: 0
+  high-risk tracked files requiring user decision: 0
+  low-risk note: data/data_sources.md (markdown documentation) tracked; stays
+    trackable; new files under data/ now ignored
+
+SENSITIVE KEYWORD CONTENT SCAN (tracked files)
+  token: present only in literature matrices and uv.lock (non-secret text)
+  secret: present only in this round's safety-guidance note (the word, not a value)
+  api_key: 0
+  appid / CINII_APP_ID: env-variable NAME only; harvest scripts read it via
+    os.environ.get(...) - NO hardcoded credential value
+  password: 0
+  RESULT: PASS (no credential / API key / password value committed)
+
+UNTRACKED SENSITIVE-FILE AUDIT
+  untracked sensitive files left untouched: YES (TokyoProject.docx, ref/,
+    outputs/literature_discovery/, outputs/literature_verification/ - now ignored,
+    none staged)
 
 COPYRIGHT / DATA SAFETY
   datasets downloaded: NO
@@ -30,48 +46,36 @@ COPYRIGHT / DATA SAFETY
   data/ data_raw/ data_processed/ staged: NO
   scripts/ staged: NO
   raw outputs (literature_discovery / literature_verification) staged: NO
-  public_repo_commit_allowed default policy: do_not_commit_raw_data / metadata-only
 
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
-  existing matrices modified: NO (literature_matrix.csv, gap_verification_matrix.csv,
-    round02_gap_evidence_audit_table.csv unchanged)
-  official registry modified: NO (official_source_registry.csv unchanged)
-  manual results modified: NO (manual_check_results_template.csv and
-    manual_official_source_verification_results_round01.md unchanged)
-  usability inventory modified: NO (official_data_usability_inventory.csv unchanged)
-  variable blueprint modified: NO (official_data_variable_blueprint.csv unchanged)
-  readiness checklist modified: NO (data_acquisition_readiness_checklist.csv unchanged)
+  existing matrices modified: NO
+  official registry modified: NO
+  manual results modified: NO
+  usability inventory modified: NO
+  variable blueprint modified: NO
+  readiness checklist modified: NO
+  metadata control files modified: NO
 
 EVIDENCE-CLAIM SAFETY
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
   final gap claimed: NO
-  Note: control files are governance/reproducibility planning only; no data is
-  acquired, downloaded, or analyzed; gap and novelty are not claimed.
 
 CHECKS
-  CSV validation result: PASS (metadata template + decision log + readiness
-    checklist + blueprint + usability inventory + registry + manual results +
-    literature_matrix + gap_verification_matrix parse via csv.DictReader)
-  duplicate decision_id check: PASS (0 duplicates)
-  duplicate metadata_record_id check: PASS (no data rows in template)
-  decision-log download_completed = no check: PASS (all 8 rows)
-  mojibake scan result: PASS (ASCII-safe control CSVs, note, reports)
+  CSV validation result: PASS (9 CSVs parse via csv.DictReader)
+  mojibake scan result: PASS (ASCII-safe .gitignore, audit note, reports)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
-  no PDFs/datasets downloaded or staged: PASS
-  no DOCX staged: PASS
 
 FILES STAGED (explicit; no `git add .`)
-  metadata/official_data_source_metadata_template.csv
-  metadata/data_download_decision_log.csv
-  literature/04_synthesis/data_acquisition_control_files.md
+  .gitignore
+  literature/04_synthesis/local_data_folder_safety_audit.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  Prepare a .gitignore and local data-folder safety audit for future data
-  acquisition (ignored folders for raw downloads, local full text, temporary
-  outputs, credentials). No data download yet; no Introduction; no novelty.
+  Prepare a data acquisition approval package for the first P1 source group
+  (ISA / e-Stat population baseline): exact tables to check, decision-log rows to
+  approve (DDL_001/002/003), metadata fields to fill, NO download until approval.

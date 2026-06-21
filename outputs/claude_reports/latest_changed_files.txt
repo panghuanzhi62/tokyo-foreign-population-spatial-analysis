@@ -1,68 +1,61 @@
-TOKYO-CHINA ROUND 02 - DATA ACQUISITION CONTROL FILES - CHANGED FILES
+TOKYO-CHINA ROUND 02 - GITIGNORE & LOCAL DATA-FOLDER SAFETY AUDIT - CHANGED FILES
 Generated: 2026-06-22
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  metadata/official_data_source_metadata_template.csv                       [new]
-  metadata/data_download_decision_log.csv                                   [new]
-  literature/04_synthesis/data_acquisition_control_files.md                 [new]
+  .gitignore                                                                [modified]
+  literature/04_synthesis/local_data_folder_safety_audit.md                 [new]
   outputs/claude_reports/latest_verification_summary.txt                    [modified]
   outputs/claude_reports/latest_changed_files.txt                           [modified]
   outputs/claude_reports/latest_safety_check.txt                            [modified]
 
 DETAIL
 
-metadata/official_data_source_metadata_template.csv  [new]
-  New header-only metadata template (41 columns, 0 data rows). One future record
-  per downloaded dataset/API extract/spatial layer: metadata_record_id, source_id,
-  dataset/layer names, source/landing/download URLs, access_method, data_type,
-  expected/actual file format, geographic coverage, spatial unit/granularity, CRS,
-  temporal coverage, data year/version, access date, license URL/summary, allowed
-  use, redistribution, public_repo_commit_allowed, planned/actual storage, raw/
-  processed file names, SHA-256 checksum, file size, encoding, language, join key,
-  spatial join key, preprocessing flags + scripts, known limitations, citation
-  note, metadata_verified_status, notes. ASCII-safe. New metadata/ directory.
+.gitignore  [modified]
+  Appended a clearly-marked "Tokyo-China data-acquisition safety (added round02)"
+  section after the existing rules and matrix-CSV negations. Additive only - no
+  existing rule or negation removed. Adds 7 grouped categories: (A) local raw/
+  processed data folders; (B) literature/full-text folders + *.pdf; (C) office/
+  manuscript (*.docx/*.doc/*.pptx/*.ppt/~$*/TokyoProject.docx); (D) large
+  geospatial/database files; (E) credentials/environment (.env/*.key/*.pem/
+  credentials/secrets/tokens/*token*/*secret*/*appid*/*api_key*); (F) caches/
+  temporary; (G) project raw-output folders (literature_discovery/,
+  literature_verification/, tmp/, cache/, raw/). outputs/claude_reports/ kept
+  trackable. Verified: previously-untracked TokyoProject.docx, ref/, and the two
+  raw-output folders are now ignored; new files under data/ are ignored while the
+  already-tracked data/data_sources.md stays trackable.
 
-metadata/data_download_decision_log.csv  [new]
-  New decision log (27 columns) seeded with 8 planned candidate rows
-  (DDL_001..DDL_008). All download_completed = no; 0 approved; 0 completed.
-  decision_status = pending_user_approval for 7 (e-Stat/ISA population baseline
-  DDL_001/002, derived non-Chinese DDL_003, NLNI boundaries DDL_004, NLNI stations
-  DDL_005, NLNI hazard DDL_006, GSI reference DDL_007) and hold for 1 (TSUNAGARI
-  DDL_008). Each row carries reason, license_checked/status, repo_commit_policy
-  (do_not_commit_raw_data / commit_metadata_only), risk_level + reason, and
-  post_download_action. No credentials or API keys. ASCII-safe.
-
-literature/04_synthesis/data_acquisition_control_files.md  [new]
-  Human-readable control note (sections A-H): purpose; evidence boundary; created
-  control files; metadata requirements; download decision rules; recommended
-  first decision-log candidates; repository safety plan; recommended next repo
-  task (.gitignore + data-folder safety audit). States gap remains under
-  verification; no novelty asserted.
+literature/04_synthesis/local_data_folder_safety_audit.md  [new]
+  Human-readable audit note (sections A-I): purpose; evidence boundary; .gitignore
+  audit result; local data-folder policy (outside-repo folders); in-repo ignored
+  folders; tracked-file risk audit; untracked sensitive-file audit; future
+  acquisition safety rules; recommended next repo task (P1 approval package for
+  ISA/e-Stat). States gap remains under verification; no novelty asserted.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the control-files task and its checks.
+  Refreshed to describe the gitignore/safety-audit task and its checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
 
 outputs/claude_reports/latest_safety_check.txt  [modified]
-  Refreshed public-repo safety check for this control-files pass.
+  Refreshed public-repo safety check for this audit pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
+  metadata/official_data_source_metadata_template.csv,
+  metadata/data_download_decision_log.csv,
   data_acquisition_readiness_checklist.csv, official_data_variable_blueprint.csv,
   official_data_usability_inventory.csv, official_source_registry.csv,
   literature_matrix.csv, gap_verification_matrix.csv,
   round02_gap_evidence_audit_table.csv, round02_japanese_source_tracking.csv,
-  manual_check_results_template.csv, manual_official_source_verification_results_round01.md,
-  TokyoProject.docx, ref/, data/, data_raw/, data_processed/, manuscript files,
-  PDF/DOCX files, scripts/, and raw outputs under outputs/literature_discovery/
-  and outputs/literature_verification/.
+  manual_check_results_template.csv, TokyoProject.docx, ref/, data/, data_raw/,
+  data_processed/, manuscript files, PDF/DOCX files, scripts/, and raw outputs
+  under outputs/literature_discovery/ and outputs/literature_verification/.
 
-UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
-  TokyoProject.docx
-  ref/
-  outputs/literature_discovery/
-  outputs/literature_verification/
+UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
+  TokyoProject.docx (now ignored)
+  ref/ (now ignored)
+  outputs/literature_discovery/ (now ignored)
+  outputs/literature_verification/ (now ignored)
 
 DELETED FILES
   (none)

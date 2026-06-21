@@ -1,12 +1,14 @@
-TOKYO-CHINA ROUND 02 - DATA ACQUISITION CONTROL FILES - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - GITIGNORE & LOCAL DATA-FOLDER SAFETY AUDIT - VERIFICATION SUMMARY
 Generated: 2026-06-22
 
 TASK OBJECTIVE
-  Official data source metadata template and download decision log. Create two
-  governance/control files that must exist before any official data download or
-  API extraction: a per-source metadata template and a download decision log.
-  This is a reproducibility-control task before data acquisition - NO data
-  downloaded or extracted. Status: gap under verification.
+  .gitignore and local data-folder safety audit. Audit and patch repository
+  ignore rules and local data-folder conventions before any official data
+  download or API extraction, so future raw/processed data, local full text,
+  temporary downloads, caches, credentials, PDFs, screenshots, and large files
+  cannot be accidentally committed to the public GitHub repo. Repository-safety /
+  governance task only - NO data downloaded or extracted. Status: gap under
+  verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -15,26 +17,42 @@ BRANCH
   agentic-upgrade
 
 ARTIFACTS
-  metadata template created: YES
-    metadata/official_data_source_metadata_template.csv (41 cols, header-only, 0 rows)
-  decision log created: YES
-    metadata/data_download_decision_log.csv (27 cols, 8 planned rows)
-  control note created: YES
-    literature/04_synthesis/data_acquisition_control_files.md
+  .gitignore existed: YES
+  .gitignore patched: YES (additive "Tokyo-China data-acquisition safety"
+    section appended; no existing rule or negation removed)
+  audit note created: YES
+    literature/04_synthesis/local_data_folder_safety_audit.md
 
-SOURCE COVERAGE
-  Decision-log candidate rows use only existing source_ids; none invented:
-  R02_OFF_TGT_002 ISA (DDL_001/002/003), R02_OFF_TGT_005 MLIT NLNI
-  (DDL_004/005/006), R02_OFF_TGT_006 GSI (DDL_007), R02_OFF_TGT_013 TSUNAGARI
-  (DDL_008). Metadata template is source-agnostic (header-only).
+GITIGNORE PATCH (categories now covered)
+  A local raw/processed data (data/, data_raw/, data_processed/, data_interim/,
+    data_external/, local_data/, downloads/, tmp_downloads/, scratch/, cache/);
+  B literature/full-text (ref/, refs/, fulltext/, *.pdf, ...);
+  C office/manuscript (*.docx, *.doc, *.pptx, *.ppt, ~$*, TokyoProject.docx);
+  D large geospatial/db (*.gpkg, *.shp, *.geojson, *.tif, *.sqlite, *.zip, ...);
+  E credentials/env (.env, *.key, *.pem, credentials/, secrets/, *token*, ...);
+  F caches/temp (__pycache__/, *.pyc, .ipynb_checkpoints/, *.log, *.tmp, ...);
+  G project raw-output folders (outputs/literature_discovery/,
+    outputs/literature_verification/, outputs/tmp/, outputs/cache/, outputs/raw/).
+  outputs/claude_reports/ kept TRACKABLE; the two raw-output folders confirmed
+  IGNORED via git check-ignore.
 
-COUNTS
-  metadata template rows ............................... 0 (header-only)
-  decision log rows .................................... 8
-  decision log approved downloads ...................... 0
-  decision log completed downloads ..................... 0
-  decision_status: pending_user_approval 7; hold 1 (TSUNAGARI)
-  all decision-log rows download_completed = no ........ YES
+TRACKED-FILE RISK AUDIT (git ls-files; 107 tracked files)
+  tracked PDFs found .................................... 0
+  tracked DOCX found .................................... 0
+  tracked data/geospatial/archive files found .......... 0
+  tracked credential-like files found .................. 0
+  tracked raw-output folders found ..................... 0
+  high-risk tracked files requiring user decision ...... 0
+  Low-risk note: data/data_sources.md (markdown documentation, NOT raw data) is
+    tracked and stays tracked; new files under data/ are now ignored (verified).
+  Keyword scan (token/secret/api_key/appid/password/CINII_APP_ID): only non-secret
+    references (env-var NAME read via os.environ.get in harvest scripts; the word
+    "secret" in safety guidance; "token" in matrices/uv.lock). No secret committed.
+
+UNTRACKED SENSITIVE-FILE AUDIT
+  untracked sensitive files left untouched: YES (TokyoProject.docx, ref/,
+    outputs/literature_discovery/, outputs/literature_verification/ - now ignored,
+    none staged)
 
 EVIDENCE-CLAIM SAFETY
   datasets downloaded: NO
@@ -45,30 +63,25 @@ EVIDENCE-CLAIM SAFETY
   usability inventory modified: NO
   variable blueprint modified: NO
   readiness checklist modified: NO
+  metadata control files modified: NO
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (official_data_source_metadata_template.csv 41 cols
-    header-only; data_download_decision_log.csv 27 cols, 8 rows; plus
-    data_acquisition_readiness_checklist, official_data_variable_blueprint,
-    official_data_usability_inventory, official_source_registry,
-    manual_check_results_template, literature_matrix, gap_verification_matrix all
-    parse cleanly)
-  duplicate check result: PASS (no duplicate decision_id; metadata template has
-    no data rows so no duplicate metadata_record_id)
-  decision-log download_completed check: PASS (all 8 rows = no; 0 approved)
-  mojibake scan result: PASS (ASCII-safe control CSVs, note, and reports)
+  CSV validation result: PASS (metadata template + decision log + readiness
+    checklist + blueprint + usability inventory + registry + manual results +
+    literature_matrix + gap_verification_matrix all parse via csv.DictReader)
+  mojibake scan result: PASS (ASCII-safe .gitignore, audit note, and reports)
   git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS (no PDF/DOCX/dataset/ref/data staged; no
-    credentials or API keys written)
-  no raw outputs staged: PASS (outputs/literature_discovery and
-    outputs/literature_verification untouched, untracked)
+  sensitive-file check result: PASS (no tracked PDFs/DOCX/data/geospatial/archive/
+    credential files; no secret values; high-risk tracked = 0)
 
 NEXT RECOMMENDED STEP
-  Prepare a .gitignore and local data-folder safety audit for future data
-  acquisition (explicit ignored folders for raw downloads, local full text,
-  temporary outputs, and credentials). Do not download data yet. Do not write the
-  Introduction. Do not assert novelty. Status remains: gap under verification.
+  Prepare a data acquisition approval package for the first P1 source group
+  (population baseline: ISA / e-Stat) - exact tables to check manually,
+  decision-log rows to approve (DDL_001/002 and derived DDL_003), metadata fields
+  to fill, and NO download until user approval. Do not recommend bulk download.
+  Do not write the Introduction. Do not assert novelty. Status: gap under
+  verification.
