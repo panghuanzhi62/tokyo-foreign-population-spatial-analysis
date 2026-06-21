@@ -1,13 +1,13 @@
-TOKYO-CHINA ROUND 02 - JAPANESE-SOURCE SYNTHESIS - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - GAP-EVIDENCE AUDIT TABLE - VERIFICATION SUMMARY
 Generated: 2026-06-21
 
 TASK OBJECTIVE
-  Round 02 Japanese-source synthesis. Synthesize the completed Round 02
-  Japanese-source discovery and verification (CiNii, J-STAGE, NDL, and
-  official-source searches) into one rigorous, evidence-bounded synthesis note.
-  No new external searches. This is a synthesis-writing task only; it does NOT
-  confirm the research gap and does NOT assert novelty. Status: gap under
-  verification.
+  Round 02 gap-evidence audit table. Convert the Round 02 Japanese-source
+  synthesis into a structured record-by-dimension evidence grid showing which
+  verified literature records and official sources cover each conceptual
+  dimension of the provisional Tokyo-China opportunity-risk project. No new
+  external searches. Does NOT confirm the research gap and does NOT assert
+  novelty. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -16,45 +16,41 @@ BRANCH
   agentic-upgrade
 
 OUTPUTS CREATED
-  new synthesis note created: YES
-    literature/04_synthesis/round02_japanese_source_synthesis.md
-    (sections A-K: purpose/boundary, coverage, module evidence map, priority
-    academic records, official-source synthesis, Sun 2026 positioning,
-    provisional gap status, safe/unsafe claims, remaining manual checks, next step)
-  key-count CSV created: YES
-    literature/04_synthesis/round02_japanese_source_synthesis_key_counts.csv
-    (metric,value,source_note; 17 metric rows)
+  audit table created: YES
+    literature/02_matrices/round02_gap_evidence_audit_table.csv (28 cols, 43 rows)
+  audit synthesis note created: YES
+    literature/04_synthesis/round02_gap_evidence_audit.md (sections A-J)
 
-KEY COUNTS (verified from current files)
-  literature_matrix rows ................. 23
-  gap_verification_matrix rows ........... 13
-  round02_japanese_source_tracking rows .. 486 (CiNii 102, J-STAGE 278, NDL 106)
-  official_source_registry rows .......... 23
-  confirmed A_direct_overlap_candidate ... 0 (at every stage)
-  tracking B_partial_overlap_candidate ... 61 (metadata-level triage, not all verified)
-  gap_matrix rows (all B_partial_overlap)  13
-  R02 records added to literature_matrix . 10 (CINII_001/022/018/019; JSTAGE_007/011;
-                                            NDL_043/087/088/068)
-  R02 records added to gap_matrix ........ 4 (CINII_001/022/018; NDL_043)
+AUDIT TABLE SUMMARY
+  audit table rows ................................... 43
+  academic / literature rows ......................... 20 (incl. 1 Sun 2026
+                                                       boundary reference, not a
+                                                       matrix record)
+  official-source rows ............................... 23 (full registry)
+  records covering full combination .................. 0
+  records covering Chinese-vs-non-Chinese comparison . 6 (yes or partial; all
+                                                       partial - Sun 2026, Liang
+                                                       2025, and 4 official
+                                                       population-data sources)
+  records covering housing (yes/partial) ............. 15
+  records covering service access (yes/partial) ...... 14
+  records covering disaster/risk exposure (yes/partial) 6
+  held / weak records ................................ 2 (R02_OFF_TGT_013 hold;
+                                                       R02_NDL_OFF_001 weak)
+  confirmed A_direct_overlap_candidate ............... 0
 
-DISCOVERY COUNTS (from prior status notes)
-  CiNii: 102 retrieved / 102 appended
-  J-STAGE: 294 retrieved / 278 appended (11 overlapped CiNii)
-  NDL: 123 retrieved / 106 academic appended + 2 official (15 dup-dropped)
-  Targeted official-source search: 21 registry rows (+2 NDL_OFF = 23 total)
-
-SYNTHESIS HIGHLIGHTS
-  - Strongest Chinese-in-Tokyo record: R02_CINII_001 / R02_JSTAGE_002 (Chinese
-    public-housing residents, Greater Tokyo); plus R02_CINII_022 (housing choice),
-    R02_CINII_018 (Nishikawaguchi Chinatown), historical R02_CINII_019 / R02_JSTAGE_007.
+KEY AUDIT FINDINGS
+  - Strongest partial overlap: R02_CINII_001 / R02_JSTAGE_002 (Chinese public
+    housing, Greater Tokyo) and R02_CINII_022 (Chinese housing choice, metro Tokyo).
   - Housing module relatively strong (R02_NDL_043 + R01 Tokyo rental experiments);
-    Chinese-vs-non-Chinese comparison (module 9) and the full opportunity-risk
-    combination (module 10) remain the least-occupied directions.
-  - Official sources support feasibility of public-data construction (population,
-    spatial, hazard, service context) but need licensing/usability checks.
-  - Position against Sun 2026: do NOT frame as a co-ethnic-network, location-choice,
-    or spatial-assimilation gap; frame narrowly as an opportunity-risk
-    environmental profile comparing Chinese vs non-Chinese foreign residents.
+    disaster module has one strong spatial comparator (R01_RB_004) + official
+    hazard data.
+  - Dimensions 9-11 (Chinese-vs-non-Chinese comparison; transit accessibility;
+    full opportunity-risk combination) are the least-occupied -> the provisional
+    differentiation space, framed against Sun 2026.
+  - Official sources support public-data feasibility (population, spatial, hazard)
+    and policy/service context but are not academic evidence and cannot confirm a
+    gap; GSI and Hazard Map Portal need licensing/usability checks; TSUNAGARI held.
 
 EVIDENCE-CLAIM SAFETY
   gap status: under verification
@@ -64,9 +60,9 @@ EVIDENCE-CLAIM SAFETY
     literature lacks" / "gap confirmed" / "novelty established"): NOT used.
 
 CONSTRAINTS HONORED
-  matrices modified: NO (literature_matrix, gap_verification_matrix unchanged vs HEAD)
+  existing matrices modified: NO (literature_matrix, gap_verification_matrix,
+    round02_japanese_source_tracking unchanged vs HEAD)
   official registry modified: NO (unchanged vs HEAD)
-  tracking CSV modified: NO (unchanged vs HEAD)
   PDFs downloaded: NO
   datasets downloaded: NO
   webpages scraped: NO
@@ -74,17 +70,19 @@ CONSTRAINTS HONORED
 
 CHECKS (this pass)
   CSV validation result: PASS
-    literature_matrix.csv: 26 cols, 23 rows; gap_verification_matrix.csv: 22 cols,
-    13 rows; round02_japanese_source_tracking.csv: 23 cols, 486 rows;
-    official_source_registry.csv: 14 cols, 23 rows;
-    round02_japanese_source_synthesis_key_counts.csv: 3 cols, 17 rows. No ragged rows.
-  duplicate check result: PASS (no duplicate record_id/source_id; no unjustified
-    duplicate titles)
+    round02_gap_evidence_audit_table.csv: 28 cols, 43 rows, no ragged rows;
+    literature_matrix.csv 26x23; gap_verification_matrix.csv 22x13;
+    round02_japanese_source_tracking.csv 23x486; official_source_registry.csv 14x23;
+    round02_japanese_source_synthesis_key_counts.csv 3x17.
+  duplicate check result: PASS (no duplicate record_id in the audit table; no
+    duplicate record_id/source_id in existing matrices)
+  covers_full_combination count check: PASS (0 records = yes; all coverage values
+    within {yes, partial, no, unclear, not_applicable})
   mojibake scan result: PASS (strict UTF-8)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
 NEXT RECOMMENDED STEP
-  Prepare a "Round 02 gap-evidence audit table" converting this synthesis into an
-  evidence grid by record and by concept dimension. Do not write the Introduction.
-  Do not assert novelty. Status remains: gap under verification.
+  Prepare a "gap-safe topic positioning memo" for internal use, based strictly on
+  the audit table. Do not write the Introduction. Do not assert novelty. Status
+  remains: gap under verification.
