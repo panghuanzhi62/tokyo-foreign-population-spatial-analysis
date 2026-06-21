@@ -1,12 +1,12 @@
-TOKYO-CHINA ROUND 02 - MANUAL FULL-TEXT AND TRANSLATION CHECKLIST - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - P1 MANUAL FULL-TEXT/TRANSLATION VERIFICATION (BATCH 1) - VERIFICATION SUMMARY
 Generated: 2026-06-21
 
 TASK OBJECTIVE
-  Manual full-text and translation checklist. Identify what must be manually
-  read, translated, checked, or verified (full text, translation, metadata,
-  licensing, official-source usability) before any formal manuscript Introduction
-  or literature-gap claim. This is a checklist, not a literature review; it does
-  NOT confirm the gap and does NOT assert novelty. Status: gap under verification.
+  P1 manual full-text and translation verification batch. Verify the six P1
+  academic records in the recommended order and record results in
+  manual_check_results_template.csv, plus a human-readable results note. This is
+  assisted manual verification, not a final literature review; it does NOT
+  confirm the gap and does NOT assert novelty. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -14,44 +14,64 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-OUTPUTS CREATED
-  checklist CSV created: YES
-    literature/02_matrices/manual_fulltext_translation_checklist.csv (21 cols, 23 rows)
-  checklist note created: YES
-    literature/04_synthesis/manual_fulltext_translation_checklist.md (sections A-J)
-  manual results template created: YES
-    literature/02_matrices/manual_check_results_template.csv (12 cols, header only)
+P1 RECORDS TARGETED (6, in order)
+  1. R02_CINII_001 / R02_JSTAGE_002
+  2. R02_CINII_022
+  3. R02_NDL_043
+  4. R02_CINII_018
+  5. R02_CINII_015
+  6. R02_JSTAGE_021
 
-CHECKLIST COUNTS
-  total checklist rows ............... 23
-  P1 rows (before Introduction) ...... 13
-  P2 rows (before formal lit review) . 10
-  academic / literature rows ......... 12 (incl. the paired R02_CINII_001 /
-                                       R02_JSTAGE_002 record and the possible
-                                       dataset record R02_CINII_015)
-  official-source rows ............... 11
+ACCESS / METHOD
+  Single official-page GET per record (J-STAGE abstracts via DOI; CiNii record
+  pages; NDL page). Legacy-TLS fallback used as needed. Saved page HTML to a
+  cache OUTSIDE the Git repo (E:\rsch\laborJapan_local_fulltext\round02_manual_check\).
+  No PDFs downloaded; no datasets; no scraping/crawl; no paywalled access.
 
-P1 SET (13)
-  Academic (6): R02_CINII_001 / R02_JSTAGE_002; R02_CINII_022; R02_CINII_018;
-    R02_NDL_043; R02_CINII_015 (dataset/statistical-source check); R02_JSTAGE_021
-    (metadata disambiguation).
-  Official (7): R02_OFF_TGT_001 (e-Stat), _002 (ISA), _005 (NLNI), _006 (GSI),
-    _010 (Tokyo disaster), _011 (Hazard Map Portal), _013 (TSUNAGARI; held).
+RESULTS (6 rows appended to manual_check_results_template.csv)
+  R02_CINII_001 / R02_JSTAGE_002 | official_page_checked | verified_partial_overlap
+    Chinese in public housing, two Greater Tokyo estates (Kawaguchi Shibazono/
+    Saitama; Oshima/Tokyo), 10 interviews; housing/public-housing + community
+    only; no comparison/services-analysis/transit/disaster.
+  R02_CINII_022 | official_page_checked | verified_partial_overlap
+    Chinese white-collar housing purchase, Tokyo metro, 22 interviews; single
+    housing module.
+  R02_NDL_043 | metadata_only (NDL page HTTP 503) | verified_partial_overlap
+    Migrant housing-disparity book (Keio UP), Japan-wide; Chinese/Tokyo coverage
+    unconfirmed without the book.
+  R02_CINII_018 | official_page_checked | verified_partial_overlap
+    Nishikawaguchi Chinatown concentration (Kawaguchi, Saitama); community
+    formation; enclave framing is Sun-2026-adjacent.
+  R02_CINII_015 | official_page_checked | still_unclear_hold
+    CiNii Dataset-type record (Chinese population in Tokyo-region concentration
+    areas); no author/year; provenance unclear; likely statistics, not literature.
+  R02_JSTAGE_021 | official_page_checked | verified_background_only
+    Chinese newcomer adolescents' identity/"home" in a city WITHOUT a
+    concentrated Chinese area (NOT Tokyo); identity/belonging, not housing.
 
-P2 SET (10)
-  Academic (6): R02_CINII_019; R02_JSTAGE_007; R02_JSTAGE_011; R02_NDL_087;
-    R02_NDL_088; R02_NDL_068.
-  Official (4): R02_OFF_TGT_004; R02_OFF_TGT_007; R02_OFF_TGT_016; R02_NDL_OFF_002.
+COUNTS
+  P1 records targeted ............................... 6
+  records checked .................................. 6
+  records with legal full text checked ............. 0 (abstracts/official pages
+                                                     read; no full PDFs downloaded)
+  records checked by metadata/official page only ... 6
+  records still inaccessible/held .................. 1 (R02_CINII_015, held for
+                                                     provenance; page accessed)
+  manual_check_results_template rows appended ...... 6
+  results note created ............................. YES
+  confirmed full-combination direct-overlap records  0
 
-NOTES
-  - All listed priority source IDs were present in the available files; none was
-    missing.
-  - R02_CINII_001 / R02_JSTAGE_002 is recorded as one paired row (same study).
-  - R02_CINII_015 is flagged as a possible dataset/statistical source whose record
-    type must be disambiguated (route to registry, hold, or exclude).
-  - Decision rules: a record covering only housing/public housing stays partial
-    overlap (gap unchanged); only a confirmed full opportunity-risk combination
-    would prompt an A_direct_overlap_candidate upgrade and repositioning.
+MATRIX-ACTION RECOMMENDATIONS (future only; no edits performed)
+  keep_existing_matrix_rows: R02_CINII_001 / R02_JSTAGE_002, R02_CINII_022,
+    R02_NDL_043, R02_CINII_018.
+  add_to_literature_matrix_later (background): R02_JSTAGE_021.
+  keep_hold (possible move to official_source_registry if confirmed statistics):
+    R02_CINII_015.
+
+DIRECT-OVERLAP CAUTION
+  None of the records checked in this batch can be treated as a confirmed
+  full-combination direct-overlap record. Each covers one or two modules only.
+  Status remains: gap under verification.
 
 EVIDENCE-CLAIM SAFETY
   gap status: under verification
@@ -60,30 +80,28 @@ EVIDENCE-CLAIM SAFETY
   final gap claimed: NO
 
 CONSTRAINTS HONORED
-  existing matrices modified: NO (literature_matrix, gap_verification_matrix,
+  matrices modified: NO (literature_matrix, gap_verification_matrix,
     round02_japanese_source_tracking unchanged vs HEAD)
   official registry modified: NO (unchanged vs HEAD)
-  audit table modified: NO (round02_gap_evidence_audit_table unchanged vs HEAD)
-  PDFs downloaded: NO
-  datasets downloaded: NO
-  webpages scraped: NO
-  raw outputs staged: NO
+  audit table modified: NO; checklist CSV modified: NO (all unchanged vs HEAD)
+  full texts committed: NO
+  PDFs staged: NO; datasets staged: NO; raw outputs staged: NO
 
 CHECKS (this pass)
   CSV validation result: PASS
-    manual_fulltext_translation_checklist.csv: 21 cols, 23 rows, no ragged rows;
-    manual_check_results_template.csv: 12 cols, 0 data rows (header only);
-    audit table 28x43; literature_matrix 26x23; gap_matrix 22x13;
-    official_source_registry 14x23.
-  duplicate check result: PASS (no duplicate check_id; no duplicate source_id
-    except the explicitly paired R02_CINII_001 / R02_JSTAGE_002 single row;
-    no duplicate record_id/source_id in existing matrices)
-  priority-value check: PASS (13 P1, 10 P2; all values within the allowed set)
+    manual_check_results_template.csv: 12 cols, 6 data rows, no ragged rows.
+    (audit table 28x43; literature_matrix 26x23; gap_matrix 22x13;
+     official_source_registry 14x23; checklist 21x23 - all read-only, unchanged.)
+  duplicate check result: PASS (no duplicate source_id in the results template;
+    the paired R02_CINII_001 / R02_JSTAGE_002 is a single justified row)
   mojibake scan result: PASS (strict UTF-8)
+  no full texts inside repo: PASS (5 saved pages are in the OUTSIDE-repo cache;
+    only pre-existing venv/ref files exist in the tree and were not added/staged)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
 NEXT RECOMMENDED STEP
-  Begin the manual checks in the recommended sequence and record outcomes in
-  literature/02_matrices/manual_check_results_template.csv. Do not write the
-  Introduction. Do not assert novelty. Status remains: gap under verification.
+  Run the P1 OFFICIAL-source checks next (e-Stat, ISA, NLNI, GSI, Hazard Map
+  Portal licensing/usability; Tokyo disaster; TSUNAGARI), recording outcomes in
+  the same template; then the P2 records. Do not write the Introduction. Do not
+  assert novelty. Status remains: gap under verification.

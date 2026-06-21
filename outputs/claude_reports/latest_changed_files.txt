@@ -1,38 +1,32 @@
-TOKYO-CHINA ROUND 02 - MANUAL FULL-TEXT AND TRANSLATION CHECKLIST - CHANGED FILES
+TOKYO-CHINA ROUND 02 - P1 MANUAL VERIFICATION (BATCH 1) - CHANGED FILES
 Generated: 2026-06-21
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/manual_fulltext_translation_checklist.csv  [new]
-  literature/02_matrices/manual_check_results_template.csv          [new]
-  literature/04_synthesis/manual_fulltext_translation_checklist.md  [new]
-  outputs/claude_reports/latest_verification_summary.txt            [modified]
-  outputs/claude_reports/latest_changed_files.txt                   [modified]
-  outputs/claude_reports/latest_safety_check.txt                    [modified]
+  literature/02_matrices/manual_check_results_template.csv             [modified]
+  literature/04_synthesis/manual_fulltext_translation_results_round01.md [new]
+  outputs/claude_reports/latest_verification_summary.txt              [modified]
+  outputs/claude_reports/latest_changed_files.txt                     [modified]
+  outputs/claude_reports/latest_safety_check.txt                      [modified]
 
 DETAIL
 
-literature/02_matrices/manual_fulltext_translation_checklist.csv  [new]
-  Machine-readable checklist (21 columns, 23 data rows). One row per record/source
-  needing manual full-text, translation, metadata, licensing, or usability
-  verification. Columns include check_id (MFT_001..MFT_023), source_id,
-  source_category, priority_level (13 P1, 10 P2), manual_task_type,
-  specific_questions_to_answer, evidence_dimension, expected_decision_after_check,
-  needed_for_gap_claim / variable_construction / official_context, language/access
-  issue, where_to_check, do_not_do, risk_if_unchecked, next_action, notes.
+literature/02_matrices/manual_check_results_template.csv  [modified]
+  Appended 6 P1 result rows (was header-only). 12 columns:
+  source_id, check_date (2026-06-21), checked_by (Claude_local_assisted_check),
+  full_text_or_page_checked, manual_check_result, key_findings,
+  confirmed_dimensions, matrix_action, gap_status_effect, citation_or_source_note,
+  remaining_uncertainty, next_action.
+  Rows: R02_CINII_001 / R02_JSTAGE_002, R02_CINII_022, R02_NDL_043, R02_CINII_018
+  (verified_partial_overlap); R02_CINII_015 (still_unclear_hold); R02_JSTAGE_021
+  (verified_background_only). 0 full-combination direct-overlap records.
 
-literature/02_matrices/manual_check_results_template.csv  [new]
-  Header-only template (12 columns) for recording manual-check outcomes later:
-  source_id, check_date, checked_by, full_text_or_page_checked,
-  manual_check_result, key_findings, confirmed_dimensions, matrix_action,
-  gap_status_effect, citation_or_source_note, remaining_uncertainty, next_action.
-
-literature/04_synthesis/manual_fulltext_translation_checklist.md  [new]
-  Human-readable checklist note (sections A-J): purpose; evidence base; P1 table;
-  P2 table; per-P1-academic question lists; official-source manual-check table;
-  do-not-do list; decision-rule table; recommended sequence; next repo task.
+literature/04_synthesis/manual_fulltext_translation_results_round01.md  [new]
+  Human-readable results note (sections A-G): purpose; evidence boundary; access-
+  status table; findings by record; future matrix-action recommendations;
+  direct-overlap caution (none full-combination); copyright/repository safety.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe this checklist pass and its counts/checks.
+  Refreshed to describe this P1 verification batch and its counts/checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -40,15 +34,22 @@ outputs/claude_reports/latest_changed_files.txt  [modified]
 outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
+LOCAL FULL-TEXT/PAGE CACHE (OUTSIDE the Git repo; NEVER staged or committed)
+  E:\rsch\laborJapan_local_fulltext\round02_manual_check\
+    R02_JSTAGE_002.html, R02_CINII_022.html, R02_JSTAGE_021.html,
+    R02_CINII_015.html, R02_CINII_018.html (official page snapshots for
+    verification; R02_NDL_043 not saved - page returned HTTP 503)
+
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
   literature_matrix.csv, gap_verification_matrix.csv,
   round02_japanese_source_tracking.csv, official_source_registry.csv,
-  round02_gap_evidence_audit_table.csv, TokyoProject.docx, ref/, data/,
-  data_raw/, data_processed/, manuscript files, PDF/DOCX files, scripts/, and raw
-  outputs under outputs/literature_discovery/ and outputs/literature_verification/.
+  round02_gap_evidence_audit_table.csv, manual_fulltext_translation_checklist.csv,
+  TokyoProject.docx, ref/, data/, data_raw/, data_processed/, manuscript files,
+  PDF/DOCX files, scripts/, and raw outputs under outputs/literature_discovery/
+  and outputs/literature_verification/.
 
 LOCAL HELPER SCRIPTS WRITTEN BUT NOT STAGED (under outputs/literature_verification/)
-  outputs/literature_verification/round02_checklist_prep/ (pre/build/checks helpers)
+  outputs/literature_verification/round02_p1_check/ (pre/fetch/extract/fill/checks)
 
 UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx

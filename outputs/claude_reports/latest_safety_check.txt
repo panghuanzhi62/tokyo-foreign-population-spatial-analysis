@@ -1,77 +1,71 @@
-TOKYO-CHINA ROUND 02 - MANUAL FULL-TEXT AND TRANSLATION CHECKLIST - PUBLIC REPO SAFETY CHECK
+TOKYO-CHINA ROUND 02 - P1 MANUAL VERIFICATION (BATCH 1) - PUBLIC REPO SAFETY CHECK
 Generated: 2026-06-21
 
 PUBLIC REPO SAFETY CHECK: PASS
 
 TASK OBJECTIVE
-  Manual full-text and translation checklist (checklist-writing only). No new
-  external searches, no PDF download, no dataset download, no webpage scraping, no
-  manuscript Introduction, no novelty claim, no gap confirmation.
+  First batch of P1 manual full-text / translation / source-access verification.
+  Record results in manual_check_results_template.csv plus a results note.
+  No manuscript Introduction, no novelty claim, no gap confirmation.
 
-EXTERNAL ACCESS THIS PASS
-  None. No network calls were made; the checklist, template, and note were
-  assembled from existing repo files only. No scraping, no API calls, no
-  credentials.
-
-DATA-HANDLING SAFETY
+SOURCE-ACCESS SAFETY
+  Method ........................... one official-page GET per record (J-STAGE
+                                     abstracts via DOI; CiNii record pages; NDL)
   PDFs downloaded .................. NO
-  datasets downloaded ............. NO
-  webpages scraped ................ NO
-  browser automation used ......... NO
-  paid APIs used .................. NO
+  Datasets downloaded .............. NO
+  Paywalled / subscription files ... NO
+  Sci-Hub / mirror copies .......... NO
+  Website crawl / scraping ......... NO (single page per record, for verification)
+  Browser automation ............... NO
+  Legacy-TLS fallback used ......... yes (standard compatibility option; not a bypass)
+  Full texts saved INSIDE repo ..... NO
+  Full texts saved OUTSIDE repo .... yes (5 official page snapshots in
+                                     E:\rsch\laborJapan_local_fulltext\round02_manual_check\)
 
-EXISTING-MATRIX / REGISTRY / AUDIT SAFETY (read-only this task)
-  literature_matrix.csv modified .......... NO (unchanged vs HEAD)
-  gap_verification_matrix.csv modified .... NO (unchanged vs HEAD)
-  round02_japanese_source_tracking.csv mod  NO (unchanged vs HEAD)
-  official_source_registry.csv modified ... NO (unchanged vs HEAD)
-  round02_gap_evidence_audit_table.csv mod  NO (unchanged vs HEAD)
-  (No serious error was found that would require repairing an existing file. The
-  new checklist and template are SEPARATE files.)
+REPOSITORY SAFETY
+  full texts committed ............. NO
+  PDFs staged ...................... NO
+  datasets staged .................. NO
+  DOCX staged ...................... NO
+  raw outputs staged ............... NO (outputs/ untracked)
+  ref/ staged ...................... NO
+  data files staged ................ NO
+  git add . used ................... NO (only 5 explicit files staged)
+  NOTE: pre-existing PDFs under geo_env/ (virtualenv) and ref/ are NOT part of
+  this task, were NOT created or downloaded here, and are NOT staged.
 
-STAGING SAFETY
-  git add . used ................... NO (only 6 explicit files staged)
-  existing matrices staged ........ NO
-  official registry staged ........ NO
-  audit table staged .............. NO
-  scripts staged .................. NO
-  raw outputs staged .............. NO (outputs/ untracked)
-  PDF files staged ................ NO
-  DOCX files staged ............... NO
-  TokyoProject.docx staged ........ NO
-  ref/ staged ..................... NO
-  data files staged ............... NO
-
-FILES STAGED THIS PASS (6)
-  literature/02_matrices/manual_fulltext_translation_checklist.csv
+FILES STAGED THIS PASS (5)
   literature/02_matrices/manual_check_results_template.csv
-  literature/04_synthesis/manual_fulltext_translation_checklist.md
+  literature/04_synthesis/manual_fulltext_translation_results_round01.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
+NOT MODIFIED (read-only this task; confirmed unchanged vs HEAD)
+  literature_matrix.csv, gap_verification_matrix.csv,
+  round02_japanese_source_tracking.csv, official_source_registry.csv,
+  round02_gap_evidence_audit_table.csv, manual_fulltext_translation_checklist.csv,
+  TokyoProject.docx, ref/, data/, manuscript files, PDF/DOCX, scripts/.
+
 ENCODING / MOJIBAKE
-  mojibake scan result: PASS
-  Markers scanned: U+FFFD replacement char and CP1252/GBK mojibake markers.
-  The checklist CSV, results template, note, and report files decode cleanly as
-  strict UTF-8. Report files are ASCII-safe; titles in the checklist use English
-  working glosses (with some Japanese source names valid UTF-8).
+  mojibake scan result: PASS (strict UTF-8; no replacement char or CP1252/GBK
+  markers in the results CSV, the results note, or the report files).
 
 CSV INTEGRITY (Python csv.reader/DictReader, this pass)
   CSV validation result: PASS.
-  manual_fulltext_translation_checklist.csv: 21 cols, 23 data rows, no ragged rows,
-    no duplicate check_id, no duplicate source_id (R02_CINII_001 / R02_JSTAGE_002
-    is a single explicitly paired row).
-  manual_check_results_template.csv: 12 cols, header only (0 data rows).
-  Existing matrices/registry/audit table: read-only validation PASS; unchanged.
+  manual_check_results_template.csv: 12 cols, 6 data rows, no ragged rows.
+  duplicate check: no duplicate source_id in the results template (the paired
+    R02_CINII_001 / R02_JSTAGE_002 is a single justified row).
+  Existing matrices/registry/audit table/checklist: read-only validation PASS;
+    unchanged vs HEAD.
 
 EVIDENCE-CLAIM SAFETY
-  Confirmed A_direct_overlap_candidate: 0.
+  Confirmed full-combination direct-overlap records: 0.
   gap status: under verification (NOT confirmed). final gap claimed: NO.
   Introduction written: NO. Novelty asserted: NO.
-  The checklist treats official sources as context/data only, not academic gap
-  evidence, and embeds a do-not-do list and decision rules that keep the gap
-  status conservative.
+  Each verified record covers one or two modules only; no A_direct_overlap is
+  asserted; matrices were not edited (recommendations recorded only in the
+  results template).
 
 GIT CHECKS
   git diff --check result: PASS (exit 0).
@@ -80,8 +74,8 @@ GIT CHECKS
     (left untouched).
 
 FINAL SAFETY CONCLUSION
-  Safe to commit and push. Only the six intended checklist/template/note/report
-  files were staged. No existing matrix, registry, audit table, script, raw
-  output, credential, sensitive, binary, manuscript, data, dataset, or PDF
-  content was included or modified. TokyoProject.docx and ref/ remain untracked
-  and untouched. No research-gap confirmation and no novelty claim were made.
+  Safe to commit and push. Only the five intended files were staged. No full
+  text, PDF, dataset, screenshot, credential, matrix, registry, audit table,
+  script, sensitive, binary, manuscript, or data content was committed. Saved
+  verification pages remain OUTSIDE the repo. TokyoProject.docx and ref/ remain
+  untracked and untouched. No research-gap confirmation and no novelty claim.
