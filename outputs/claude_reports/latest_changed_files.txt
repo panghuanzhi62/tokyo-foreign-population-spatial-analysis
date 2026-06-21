@@ -1,32 +1,38 @@
-TOKYO-CHINA ROUND 02 - GAP-SAFE TOPIC POSITIONING MEMO - CHANGED FILES
+TOKYO-CHINA ROUND 02 - MANUAL FULL-TEXT AND TRANSLATION CHECKLIST - CHANGED FILES
 Generated: 2026-06-21
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/04_synthesis/gap_safe_topic_positioning_memo.md          [new]
-  literature/04_synthesis/gap_safe_topic_positioning_key_points.csv   [new]
-  outputs/claude_reports/latest_verification_summary.txt              [modified]
-  outputs/claude_reports/latest_changed_files.txt                     [modified]
-  outputs/claude_reports/latest_safety_check.txt                      [modified]
+  literature/02_matrices/manual_fulltext_translation_checklist.csv  [new]
+  literature/02_matrices/manual_check_results_template.csv          [new]
+  literature/04_synthesis/manual_fulltext_translation_checklist.md  [new]
+  outputs/claude_reports/latest_verification_summary.txt            [modified]
+  outputs/claude_reports/latest_changed_files.txt                   [modified]
+  outputs/claude_reports/latest_safety_check.txt                    [modified]
 
 DETAIL
 
-literature/04_synthesis/gap_safe_topic_positioning_memo.md  [new]
-  Internal, evidence-bounded topic-positioning memo (sections A-M): purpose;
-  evidence base with verified audit counts; one-paragraph provisional positioning;
-  Sun 2026 boundary; safe-claims table; unsafe-claims table with safer
-  alternatives; three provisional internal titles + terminology guidance;
-  provisional contribution statement; abstract-logic skeleton (not abstract
-  text); Introduction section-plan logic (not the Introduction); 4 provisional
-  research questions; remaining verification tasks; recommended next repo task.
-  No final gap claim, no novelty, no manuscript Introduction.
+literature/02_matrices/manual_fulltext_translation_checklist.csv  [new]
+  Machine-readable checklist (21 columns, 23 data rows). One row per record/source
+  needing manual full-text, translation, metadata, licensing, or usability
+  verification. Columns include check_id (MFT_001..MFT_023), source_id,
+  source_category, priority_level (13 P1, 10 P2), manual_task_type,
+  specific_questions_to_answer, evidence_dimension, expected_decision_after_check,
+  needed_for_gap_claim / variable_construction / official_context, language/access
+  issue, where_to_check, do_not_do, risk_if_unchecked, next_action, notes.
 
-literature/04_synthesis/gap_safe_topic_positioning_key_points.csv  [new]
-  Machine-readable key points (item_type,statement,evidence_basis,status,caution;
-  17 rows): safe claims, unsafe claims, recommended wording, Sun 2026 boundary,
-  official-source caution, remaining checks, and standing status.
+literature/02_matrices/manual_check_results_template.csv  [new]
+  Header-only template (12 columns) for recording manual-check outcomes later:
+  source_id, check_date, checked_by, full_text_or_page_checked,
+  manual_check_result, key_findings, confirmed_dimensions, matrix_action,
+  gap_status_effect, citation_or_source_note, remaining_uncertainty, next_action.
+
+literature/04_synthesis/manual_fulltext_translation_checklist.md  [new]
+  Human-readable checklist note (sections A-J): purpose; evidence base; P1 table;
+  P2 table; per-P1-academic question lists; official-source manual-check table;
+  do-not-do list; decision-rule table; recommended sequence; next repo task.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe this positioning-memo pass and its counts/checks.
+  Refreshed to describe this checklist pass and its counts/checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -37,14 +43,12 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
   literature_matrix.csv, gap_verification_matrix.csv,
   round02_japanese_source_tracking.csv, official_source_registry.csv,
-  round02_gap_evidence_audit_table.csv,
-  round02_japanese_source_synthesis_key_counts.csv, TokyoProject.docx, ref/,
-  data/, data_raw/, data_processed/, manuscript files, PDF/DOCX files, scripts/,
-  and raw outputs under outputs/literature_discovery/ and
-  outputs/literature_verification/.
+  round02_gap_evidence_audit_table.csv, TokyoProject.docx, ref/, data/,
+  data_raw/, data_processed/, manuscript files, PDF/DOCX files, scripts/, and raw
+  outputs under outputs/literature_discovery/ and outputs/literature_verification/.
 
 LOCAL HELPER SCRIPTS WRITTEN BUT NOT STAGED (under outputs/literature_verification/)
-  outputs/literature_verification/round02_memo_prep/ (pre/build/checks helpers)
+  outputs/literature_verification/round02_checklist_prep/ (pre/build/checks helpers)
 
 UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx

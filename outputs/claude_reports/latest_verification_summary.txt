@@ -1,11 +1,12 @@
-TOKYO-CHINA ROUND 02 - GAP-SAFE TOPIC POSITIONING MEMO - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - MANUAL FULL-TEXT AND TRANSLATION CHECKLIST - VERIFICATION SUMMARY
 Generated: 2026-06-21
 
 TASK OBJECTIVE
-  Gap-safe topic positioning memo. Translate the Round 02 Japanese-source
-  synthesis and gap-evidence audit into a cautious, internal, evidence-bounded
-  topic-positioning document for planning. NOT manuscript text. Does NOT confirm
-  the research gap and does NOT assert novelty. Status: gap under verification.
+  Manual full-text and translation checklist. Identify what must be manually
+  read, translated, checked, or verified (full text, translation, metadata,
+  licensing, official-source usability) before any formal manuscript Introduction
+  or literature-gap claim. This is a checklist, not a literature review; it does
+  NOT confirm the gap and does NOT assert novelty. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -14,50 +15,52 @@ BRANCH
   agentic-upgrade
 
 OUTPUTS CREATED
-  memo created: YES
-    literature/04_synthesis/gap_safe_topic_positioning_memo.md (sections A-M)
-  optional key-points CSV created: YES
-    literature/04_synthesis/gap_safe_topic_positioning_key_points.csv
-    (item_type,statement,evidence_basis,status,caution; 17 rows)
+  checklist CSV created: YES
+    literature/02_matrices/manual_fulltext_translation_checklist.csv (21 cols, 23 rows)
+  checklist note created: YES
+    literature/04_synthesis/manual_fulltext_translation_checklist.md (sections A-J)
+  manual results template created: YES
+    literature/02_matrices/manual_check_results_template.csv (12 cols, header only)
 
-EVIDENCE BASE / KEY AUDIT COUNTS (verified from existing files)
-  audit table rows ................................... 43
-  academic / literature rows ......................... 20 (incl. Sun 2026 boundary ref)
-  official-source rows ............................... 23
-  records covering full combination .................. 0
-  confirmed A_direct_overlap_candidate ............... 0
-  records covering Chinese-vs-non-Chinese comparison . 6 (all partial)
-  records covering housing ........................... 15
-  records covering service access .................... 14
-  records covering disaster/risk exposure ............ 6
-  (supporting: literature_matrix 23, gap_matrix 13 all B_partial,
-   official_source_registry 23)
+CHECKLIST COUNTS
+  total checklist rows ............... 23
+  P1 rows (before Introduction) ...... 13
+  P2 rows (before formal lit review) . 10
+  academic / literature rows ......... 12 (incl. the paired R02_CINII_001 /
+                                       R02_JSTAGE_002 record and the possible
+                                       dataset record R02_CINII_015)
+  official-source rows ............... 11
 
-MEMO CONTENT
-  - One-paragraph provisional positioning (public-data opportunity-risk
-    environmental profile; Chinese vs non-Chinese foreign residents; housing,
-    accessibility, services, disaster/risk).
-  - Sun 2026 boundary: do not frame as co-ethnic-network / location-choice /
-    spatial-assimilation study; frame as metropolitan-scale environmental profile.
-  - Safe-claims table and unsafe-claims table (with safer alternatives).
-  - Three provisional internal titles (conservative / methods / outreach) and
-    terminology guidance (nationality-based "Chinese nationals" in data sections).
-  - Provisional contribution statement, abstract-logic skeleton (5 moves, not
-    abstract text), Introduction section plan (logic only, not the Introduction),
-    4 provisional descriptive research questions, and remaining verification tasks.
+P1 SET (13)
+  Academic (6): R02_CINII_001 / R02_JSTAGE_002; R02_CINII_022; R02_CINII_018;
+    R02_NDL_043; R02_CINII_015 (dataset/statistical-source check); R02_JSTAGE_021
+    (metadata disambiguation).
+  Official (7): R02_OFF_TGT_001 (e-Stat), _002 (ISA), _005 (NLNI), _006 (GSI),
+    _010 (Tokyo disaster), _011 (Hazard Map Portal), _013 (TSUNAGARI; held).
+
+P2 SET (10)
+  Academic (6): R02_CINII_019; R02_JSTAGE_007; R02_JSTAGE_011; R02_NDL_087;
+    R02_NDL_088; R02_NDL_068.
+  Official (4): R02_OFF_TGT_004; R02_OFF_TGT_007; R02_OFF_TGT_016; R02_NDL_OFF_002.
+
+NOTES
+  - All listed priority source IDs were present in the available files; none was
+    missing.
+  - R02_CINII_001 / R02_JSTAGE_002 is recorded as one paired row (same study).
+  - R02_CINII_015 is flagged as a possible dataset/statistical source whose record
+    type must be disambiguated (route to registry, hold, or exclude).
+  - Decision rules: a record covering only housing/public housing stays partial
+    overlap (gap unchanged); only a confirmed full opportunity-risk combination
+    would prompt an A_direct_overlap_candidate upgrade and repositioning.
 
 EVIDENCE-CLAIM SAFETY
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
   final gap claimed: NO
-  forbidden phrasing ("no study has examined" / "this is the first" / "the
-    literature lacks" / "gap confirmed" / "novelty established"): NOT used in the
-    memo's own claims (listed only inside the unsafe-claims table as examples to
-    avoid).
 
 CONSTRAINTS HONORED
-  matrices modified: NO (literature_matrix, gap_verification_matrix,
+  existing matrices modified: NO (literature_matrix, gap_verification_matrix,
     round02_japanese_source_tracking unchanged vs HEAD)
   official registry modified: NO (unchanged vs HEAD)
   audit table modified: NO (round02_gap_evidence_audit_table unchanged vs HEAD)
@@ -68,17 +71,19 @@ CONSTRAINTS HONORED
 
 CHECKS (this pass)
   CSV validation result: PASS
-    gap_safe_topic_positioning_key_points.csv: 5 cols, 17 rows, no ragged rows;
+    manual_fulltext_translation_checklist.csv: 21 cols, 23 rows, no ragged rows;
+    manual_check_results_template.csv: 12 cols, 0 data rows (header only);
     audit table 28x43; literature_matrix 26x23; gap_matrix 22x13;
-    official_source_registry 14x23; synthesis_key_counts 3x17.
-  duplicate check result: PASS (no duplicate record_id/source_id in matrices,
-    registry, or audit table)
+    official_source_registry 14x23.
+  duplicate check result: PASS (no duplicate check_id; no duplicate source_id
+    except the explicitly paired R02_CINII_001 / R02_JSTAGE_002 single row;
+    no duplicate record_id/source_id in existing matrices)
+  priority-value check: PASS (13 P1, 10 P2; all values within the allowed set)
   mojibake scan result: PASS (strict UTF-8)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
 NEXT RECOMMENDED STEP
-  Prepare a "manual full-text and translation checklist" for the highest-priority
-  records (R02_CINII_001 / R02_JSTAGE_002, R02_CINII_022, R02_CINII_018,
-  R02_NDL_043) before drafting any formal manuscript text. Do not write the
+  Begin the manual checks in the recommended sequence and record outcomes in
+  literature/02_matrices/manual_check_results_template.csv. Do not write the
   Introduction. Do not assert novelty. Status remains: gap under verification.
