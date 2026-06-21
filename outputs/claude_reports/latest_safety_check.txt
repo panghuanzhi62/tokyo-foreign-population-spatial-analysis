@@ -1,27 +1,30 @@
-TOKYO-CHINA ROUND 02 - OFFICIAL DATA-USABILITY INVENTORY - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - OFFICIAL DATA VARIABLE BLUEPRINT - SAFETY CHECK
 Generated: 2026-06-22
 
 TASK OBJECTIVE
-  Official data-usability inventory table (planning artifact). Convert verified
-  P1 official-source checks into a structured inventory CSV + note. No new broad
-  searches, no downloads, no scraping, no browser automation.
+  Official data variable blueprint (planning artifact). Convert the official
+  data-usability inventory into a structured candidate-variable blueprint CSV +
+  note. No new broad searches, no downloads, no scraping, no browser automation.
 
 ARTIFACT STATUS
-  inventory CSV created: YES
-  inventory note created: YES
-  inventory rows: 11
+  variable blueprint CSV created: YES
+  blueprint note created: YES
+  variable rows: 31
 
-INVENTORY COUNTS
-  P1_data_construction sources: 3
-  P1_context_construction sources: 2
-  P2_context sources: 4
-  P3_background sources: 1
-  hold or partially usable sources: 3
-  sources for population baseline: 3
-  sources for spatial variable construction: 2
-  sources for housing context: 1
-  sources for disaster/risk context: 2
-  sources for multilingual/service context: 2
+BLUEPRINT COUNTS
+  P1_core_variable rows: 7
+  P1_core_spatial_layer rows: 5
+  P1_core_context rows: 2
+  P2 rows: 9
+  P3_background rows: 2
+  hold or not-ready rows: 6
+  population baseline variables: 4
+  Chinese-vs-non-Chinese variables: 3
+  housing context variables: 3
+  transit/accessibility variables: 3
+  service/multilingual variables: 3
+  disaster/risk variables: 4
+  opportunity-risk composite planning rows: 5
 
 COPYRIGHT / DATA SAFETY
   datasets downloaded: NO
@@ -37,36 +40,37 @@ READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
   existing matrices modified: NO (literature_matrix.csv, gap_verification_matrix.csv,
     round02_gap_evidence_audit_table.csv unchanged)
   official registry modified: NO (official_source_registry.csv unchanged)
-  manual check results modified: NO (manual_check_results_template.csv and
+  manual results modified: NO (manual_check_results_template.csv and
     manual_official_source_verification_results_round01.md unchanged)
+  usability inventory modified: NO (official_data_usability_inventory.csv unchanged)
 
 EVIDENCE-CLAIM SAFETY
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
   final gap claimed: NO
-  Note: inventory is data-usability planning only; it does not confirm the gap,
-  does not establish novelty, and does not prove final data usability.
+  Note: blueprint is variable-design/data-planning only; it does not confirm the
+  gap, does not establish novelty, and does not collect or analyze data.
 
 CHECKS
-  CSV validation result: PASS (inventory + 5 existing matrices parse via
-    csv.DictReader)
-  duplicate inventory_id check: PASS (0 duplicates)
-  duplicate source_id check: PASS (0 duplicates)
-  mojibake scan result: PASS (ASCII-safe inventory CSV, note, reports)
+  CSV validation result: PASS (blueprint + usability inventory + 5 existing
+    matrices parse via csv.DictReader)
+  duplicate variable_id check: PASS (0 duplicates)
+  duplicate concept+variable+source combo check: PASS (0 duplicates)
+  mojibake scan result: PASS (ASCII-safe blueprint CSV, note, reports)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
   no PDFs/datasets downloaded or staged: PASS
   no DOCX staged: PASS
 
 FILES STAGED (explicit; no `git add .`)
-  literature/02_matrices/official_data_usability_inventory.csv
-  literature/04_synthesis/official_data_usability_inventory.md
+  literature/02_matrices/official_data_variable_blueprint.csv
+  literature/04_synthesis/official_data_variable_blueprint.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  Prepare official_data_variable_blueprint.csv (concept -> variable -> source_id
-  -> geography -> time -> route -> preprocessing -> feasibility). Re-check Hazard
-  Map Portal and TSUNAGARI outside the sandbox. No Introduction; no novelty.
+  Prepare a "data acquisition readiness checklist" for the P1 data sources
+  (e-Stat, ISA, MLIT NLNI, GSI, hazard layers) before any downloads or API
+  extraction. No data download yet; no Introduction; no novelty.
