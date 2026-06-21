@@ -1,12 +1,13 @@
-TOKYO-CHINA ROUND 02 - HIGH-VALUE OFFICIAL-SOURCE VERIFICATION - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - JAPANESE-SOURCE SYNTHESIS - VERIFICATION SUMMARY
 Generated: 2026-06-21
 
 TASK OBJECTIVE
-  High-value official-source verification. Verify the three official-source
-  records held as hold_for_manual_check in the targeted official-source search
-  (R02_OFF_TGT_006 GSI, R02_OFF_TGT_011 Hazard Map Portal, R02_OFF_TGT_013
-  TSUNAGARI). Official-source verification only. Does NOT confirm the research
-  gap. Status: gap under verification.
+  Round 02 Japanese-source synthesis. Synthesize the completed Round 02
+  Japanese-source discovery and verification (CiNii, J-STAGE, NDL, and
+  official-source searches) into one rigorous, evidence-bounded synthesis note.
+  No new external searches. This is a synthesis-writing task only; it does NOT
+  confirm the research gap and does NOT assert novelty. Status: gap under
+  verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -14,71 +15,76 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-METHOD
-  Single reachability GET of each official landing page (page title only, to
-  confirm identity). The prior holds were diagnosed as SANDBOX TLS-HANDSHAKE
-  artifacts: GSI required legacy TLS renegotiation; the Hazard Map Portal timed
-  out; TSUNAGARI returned SSL UNEXPECTED_EOF. Re-checked with a TLS compatibility
-  context (legacy-server-connect). No crawling, no PDF download, no dataset
-  download, no browser automation, no credentials.
+OUTPUTS CREATED
+  new synthesis note created: YES
+    literature/04_synthesis/round02_japanese_source_synthesis.md
+    (sections A-K: purpose/boundary, coverage, module evidence map, priority
+    academic records, official-source synthesis, Sun 2026 positioning,
+    provisional gap status, safe/unsafe claims, remaining manual checks, next step)
+  key-count CSV created: YES
+    literature/04_synthesis/round02_japanese_source_synthesis_key_counts.csv
+    (metric,value,source_note; 17 metric rows)
 
-RESULTS
-  R02_OFF_TGT_006 (GSI) ............ HTTP 200, title "GSI HOME PAGE - 国土地理院"
-    -> verified_by_official_page (use_in_analysis: official_spatial_data)
-  R02_OFF_TGT_011 (Hazard Map Portal) HTTP 200, title "ハザードマップポータルサイト"
-    -> verified_by_official_catalogue (use_in_analysis: disaster_or_risk_context)
-  R02_OFF_TGT_013 (TSUNAGARI) ...... still SSL UNEXPECTED_EOF (strict + legacy TLS)
-    -> hold_for_manual_check (use_in_analysis: multilingual_administrative_context)
+KEY COUNTS (verified from current files)
+  literature_matrix rows ................. 23
+  gap_verification_matrix rows ........... 13
+  round02_japanese_source_tracking rows .. 486 (CiNii 102, J-STAGE 278, NDL 106)
+  official_source_registry rows .......... 23
+  confirmed A_direct_overlap_candidate ... 0 (at every stage)
+  tracking B_partial_overlap_candidate ... 61 (metadata-level triage, not all verified)
+  gap_matrix rows (all B_partial_overlap)  13
+  R02 records added to literature_matrix . 10 (CINII_001/022/018/019; JSTAGE_007/011;
+                                            NDL_043/087/088/068)
+  R02 records added to gap_matrix ........ 4 (CINII_001/022/018; NDL_043)
 
-DECISION COUNTS
-  Official sources verified ........................ 3
-  Sources updated in official_source_registry ..... 3 (006, 011, 013 notes/status)
-  Sources remaining hold_for_manual_check ......... 1 (R02_OFF_TGT_013 TSUNAGARI)
-  GSI status ...................................... verified_by_official_page
-  Hazard Map Portal status ........................ verified_by_official_catalogue
-  TSUNAGARI status ................................ hold_for_manual_check
-  Official sources added to academic matrices ..... 0
+DISCOVERY COUNTS (from prior status notes)
+  CiNii: 102 retrieved / 102 appended
+  J-STAGE: 294 retrieved / 278 appended (11 overlapped CiNii)
+  NDL: 123 retrieved / 106 academic appended + 2 official (15 dup-dropped)
+  Targeted official-source search: 21 registry rows (+2 NDL_OFF = 23 total)
 
-WHY TSUNAGARI REMAINS HELD
-  The host https://www.tsunagari-tokyo.jp/ returned SSL UNEXPECTED_EOF_WHILE_READING
-  under both strict and legacy TLS in this environment (likely network/TLS
-  blocking, not necessarily a dead site). The institution is a recognized Tokyo
-  Metropolitan quasi-official foundation; identity and relevance are sound, but
-  the live page could not be confirmed here. Kept hold; manual re-check required.
+SYNTHESIS HIGHLIGHTS
+  - Strongest Chinese-in-Tokyo record: R02_CINII_001 / R02_JSTAGE_002 (Chinese
+    public-housing residents, Greater Tokyo); plus R02_CINII_022 (housing choice),
+    R02_CINII_018 (Nishikawaguchi Chinatown), historical R02_CINII_019 / R02_JSTAGE_007.
+  - Housing module relatively strong (R02_NDL_043 + R01 Tokyo rental experiments);
+    Chinese-vs-non-Chinese comparison (module 9) and the full opportunity-risk
+    combination (module 10) remain the least-occupied directions.
+  - Official sources support feasibility of public-data construction (population,
+    spatial, hazard, service context) but need licensing/usability checks.
+  - Position against Sun 2026: do NOT frame as a co-ethnic-network, location-choice,
+    or spatial-assimilation gap; frame narrowly as an opportunity-risk
+    environmental profile comparing Chinese vs non-Chinese foreign residents.
 
-REGISTRY UPDATES (3 rows; no new rows, none removed, none moved)
-  R02_OFF_TGT_006: status -> verified_by_official_page; notes record HTTP 200 +
-    SSL legacy-renegotiation explanation.
-  R02_OFF_TGT_011: status -> verified_by_official_catalogue; notes record HTTP 200
-    + operator (MLIT/GSI).
-  R02_OFF_TGT_013: status unchanged (hold_for_manual_check); notes record the
-    persistent TLS failure and the manual checks still required.
+EVIDENCE-CLAIM SAFETY
+  gap status: under verification
+  Introduction written: NO
+  novelty asserted: NO
+  forbidden phrasing ("no study has examined" / "this is the first" / "the
+    literature lacks" / "gap confirmed" / "novelty established"): NOT used.
 
-CAUTION
-  These official sources support variable construction (spatial/hazard layers),
-  the data-source inventory, and service/policy context; they do NOT establish an
-  academic research gap and must not be cited as evidence that no prior study
-  exists. No academic literature was added to the matrices.
+CONSTRAINTS HONORED
+  matrices modified: NO (literature_matrix, gap_verification_matrix unchanged vs HEAD)
+  official registry modified: NO (unchanged vs HEAD)
+  tracking CSV modified: NO (unchanged vs HEAD)
+  PDFs downloaded: NO
+  datasets downloaded: NO
+  webpages scraped: NO
+  raw outputs staged: NO
 
-CHECKS (this pass, Python csv.reader)
+CHECKS (this pass)
   CSV validation result: PASS
-    official_source_registry.csv      : 14 cols, 23 data rows, no ragged rows
-    literature_matrix.csv             : 26 cols, 23 data rows (unchanged vs HEAD)
-    gap_verification_matrix.csv       : 22 cols, 13 data rows (unchanged vs HEAD)
-    round02_japanese_source_tracking.csv: 23 cols, 486 data rows (unchanged vs HEAD)
-  duplicate check result: PASS (no duplicate source_id; no unjustified duplicate
-    source_title)
-  official sources in academic matrices: 0 (none; matrices unchanged vs HEAD)
+    literature_matrix.csv: 26 cols, 23 rows; gap_verification_matrix.csv: 22 cols,
+    13 rows; round02_japanese_source_tracking.csv: 23 cols, 486 rows;
+    official_source_registry.csv: 14 cols, 23 rows;
+    round02_japanese_source_synthesis_key_counts.csv: 3 cols, 17 rows. No ragged rows.
+  duplicate check result: PASS (no duplicate record_id/source_id; no unjustified
+    duplicate titles)
   mojibake scan result: PASS (strict UTF-8)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
-  PDFs downloaded: NO
-  datasets downloaded: NO
-  raw outputs staged: NO
 
 NEXT RECOMMENDED STEP
-  Manually check license/data usability for GSI and the Hazard Map Portal before
-  using data; manually inspect the TSUNAGARI page and re-verify reachability
-  outside the sandbox; then prepare the Round 02 Japanese-source synthesis across
-  CiNii, J-STAGE, NDL, and official sources. Do not write the Introduction. Do
-  not assert novelty.
+  Prepare a "Round 02 gap-evidence audit table" converting this synthesis into an
+  evidence grid by record and by concept dimension. Do not write the Introduction.
+  Do not assert novelty. Status remains: gap under verification.

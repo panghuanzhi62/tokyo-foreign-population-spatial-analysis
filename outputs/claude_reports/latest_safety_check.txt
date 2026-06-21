@@ -1,73 +1,72 @@
-TOKYO-CHINA ROUND 02 - HIGH-VALUE OFFICIAL-SOURCE VERIFICATION - PUBLIC REPO SAFETY CHECK
+TOKYO-CHINA ROUND 02 - JAPANESE-SOURCE SYNTHESIS - PUBLIC REPO SAFETY CHECK
 Generated: 2026-06-21
 
 PUBLIC REPO SAFETY CHECK: PASS
 
 TASK OBJECTIVE
-  Verify three high-value official-source records held from the targeted search
-  (GSI, Hazard Map Portal, TSUNAGARI). Official-source verification only. No
-  broad re-search, no PDF download, no dataset download, no website scraping, no
-  browser automation, no paid APIs, no credentials.
+  Round 02 Japanese-source synthesis (synthesis-writing only). No new external
+  searches, no PDF download, no dataset download, no webpage scraping, no
+  manuscript Introduction, no novelty claim, no gap confirmation.
 
-SOURCE-ACCESS SAFETY
-  Method ........................... single reachability GET of each official
-                                     landing page (page title only)
-  Websites crawled ................. NO
+EXTERNAL ACCESS THIS PASS
+  None. No network calls were made; the synthesis was assembled from existing
+  repo files only. No scraping, no API calls, no credentials.
+
+DATA-HANDLING SAFETY
   PDFs downloaded .................. NO
-  Datasets downloaded .............. NO
-  Hazard data files downloaded ..... NO
-  Google Scholar / academic DB scraped  NO
-  Browser automation used .......... NO
-  Paid APIs used ................... NO
-  API key / credential required .... NO
-  API key / credential stored ...... NO
-  TLS note ......................... a legacy-server-connect TLS compatibility
-                                     option was used to reach GSI (older gov TLS);
-                                     this is a standard compatibility setting, not
-                                     an access-control bypass.
+  datasets downloaded ............. NO
+  webpages scraped ................ NO
+  browser automation used ......... NO
+  paid APIs used .................. NO
+
+MATRIX / REGISTRY SAFETY (read-only this task)
+  literature_matrix.csv modified .......... NO (unchanged vs HEAD)
+  gap_verification_matrix.csv modified .... NO (unchanged vs HEAD)
+  round02_japanese_source_tracking.csv mod  NO (unchanged vs HEAD)
+  official_source_registry.csv modified ... NO (unchanged vs HEAD)
+  (No serious error was found that would require repairing a matrix.)
 
 STAGING SAFETY
   git add . used ................... NO (only 5 explicit files staged)
-  literature_matrix.csv staged ..... NO (unchanged vs HEAD)
-  gap_verification_matrix.csv staged  NO (unchanged vs HEAD)
-  round02_japanese_source_tracking.csv staged: NO (unchanged vs HEAD)
-  raw outputs staged ............... NO (outputs/ untracked)
-  PDF files staged ................. NO
-  DOCX files staged ................ NO
-  TokyoProject.docx staged ......... NO
-  ref/ staged ...................... NO
-  data files staged ................ NO
+  matrices staged ................. NO
+  official registry staged ........ NO
+  scripts staged .................. NO
+  raw outputs staged .............. NO (outputs/ untracked)
+  PDF files staged ................ NO
+  DOCX files staged ............... NO
+  TokyoProject.docx staged ........ NO
+  ref/ staged ..................... NO
+  data files staged ............... NO
 
 FILES STAGED THIS PASS (5)
-  literature/02_matrices/official_source_registry.csv
-  literature/04_synthesis/round02_high_value_official_source_verification.md
+  literature/04_synthesis/round02_japanese_source_synthesis.md
+  literature/04_synthesis/round02_japanese_source_synthesis_key_counts.csv
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
-ACADEMIC-MATRIX SAFETY
-  Official sources added to literature_matrix.csv: 0
-  Official sources added to gap_verification_matrix.csv: 0
-  Both academic matrices and the tracking CSV are UNCHANGED vs HEAD (git diff).
-  All official sources remain in official_source_registry.csv only.
-
 ENCODING / MOJIBAKE
   mojibake scan result: PASS
   Markers scanned: U+FFFD replacement char and CP1252/GBK mojibake markers.
-  All staged text and CSV files decode cleanly as strict UTF-8. Japanese titles
-  in the registry and synthesis note are valid UTF-8. Edited report files are
-  ASCII-safe.
+  The synthesis note, key-counts CSV, and report files decode cleanly as strict
+  UTF-8. Japanese source IDs/titles referenced in the synthesis are valid UTF-8.
+  Report files are ASCII-safe.
 
-CSV INTEGRITY (Python csv.reader, this pass)
-  CSV validation result: PASS.
-  official_source_registry.csv: 14 cols, 23 data rows, no ragged rows,
-    0 duplicate source_id, 0 unjustified duplicate source_title.
-  literature_matrix.csv / gap_verification_matrix.csv /
-    round02_japanese_source_tracking.csv: read-only validation PASS; unchanged.
+CSV INTEGRITY (Python csv.reader/DictReader, this pass)
+  CSV validation result: PASS (read-only for the four matrices/registry).
+  literature_matrix.csv: 26 cols, 23 data rows, 0 dup record_id.
+  gap_verification_matrix.csv: 22 cols, 13 data rows, 0 dup record_id.
+  round02_japanese_source_tracking.csv: 23 cols, 486 data rows, 0 dup source_id.
+  official_source_registry.csv: 14 cols, 23 data rows, 0 dup source_id.
+  round02_japanese_source_synthesis_key_counts.csv: 3 cols, 17 data rows, no ragged.
+  Duplicate-title check: no unjustified duplicate titles in any matrix.
 
 EVIDENCE-CLAIM SAFETY
-  Official-source verification only; no academic evidence added; no gap claim
-  made; no novelty asserted. Status remains: gap under verification.
+  Confirmed A_direct_overlap_candidate: 0.
+  gap status: under verification (NOT confirmed).
+  Introduction written: NO. Novelty asserted: NO.
+  Forbidden phrasing avoided ("no study has examined", "this is the first",
+  "the literature lacks", "the gap is confirmed", "novelty is established").
 
 GIT CHECKS
   git diff --check result: PASS (exit 0).
@@ -76,8 +75,8 @@ GIT CHECKS
     (left untouched).
 
 FINAL SAFETY CONCLUSION
-  Safe to commit and push. Only the five intended files were staged. No raw
-  output, credential, sensitive, copyrighted, binary, manuscript, data, dataset,
-  or PDF content was included. The academic matrices and tracking CSV were not
-  modified. TokyoProject.docx and ref/ remain untracked and untouched. No
-  research-gap confirmation was made.
+  Safe to commit and push. Only the five intended synthesis/report files were
+  staged. No matrix, registry, script, raw output, credential, sensitive, binary,
+  manuscript, data, dataset, or PDF content was included or modified.
+  TokyoProject.docx and ref/ remain untracked and untouched. No research-gap
+  confirmation and no novelty claim were made.

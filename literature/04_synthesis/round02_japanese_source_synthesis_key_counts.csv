@@ -1,0 +1,18 @@
+metric,value,source_note
+literature_matrix_rows,23,literature/02_matrices/literature_matrix.csv data rows (csv.DictReader)
+gap_verification_matrix_rows,13,literature/02_matrices/gap_verification_matrix.csv data rows
+round02_tracking_rows,486,literature/02_matrices/round02_japanese_source_tracking.csv data rows
+round02_tracking_cinii_rows,102,tracking rows with source_id prefix R02_CINII
+round02_tracking_jstage_rows,278,tracking rows with source_id prefix R02_JSTAGE
+round02_tracking_ndl_rows,106,tracking rows with source_id prefix R02_NDL
+official_source_registry_rows,23,literature/02_matrices/official_source_registry.csv data rows
+confirmed_A_direct_overlap_candidate,0,no A_direct_overlap at any stage (tracking or matrices)
+tracking_B_partial_overlap_candidate,61,metadata-level triage tally in tracking CSV (not all verified)
+gap_matrix_B_partial_overlap,13,all gap_verification_matrix rows are B_partial_overlap (one also E_background)
+verified_priority_records_added_to_literature_matrix,10,R02 records in literature_matrix: CINII_001/022/018/019; JSTAGE_007/011; NDL_043/087/088/068
+verified_priority_records_added_to_gap_matrix,4,R02 records in gap_matrix: CINII_001/022/018; NDL_043
+official_registry_verified_by_official_page,14,official_source_registry verified_status tally
+official_registry_verified_by_official_catalogue,6,official_source_registry verified_status tally
+official_registry_hold_for_manual_check,1,R02_OFF_TGT_013 TSUNAGARI (live page not reachable in automated env)
+official_registry_weak_relevance,1,R02_NDL_OFF_001 MOJ adoption directive (off-topic)
+gap_status,under_verification,gap not confirmed; full-text review and translation checks still required

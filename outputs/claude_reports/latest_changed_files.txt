@@ -1,51 +1,49 @@
-TOKYO-CHINA ROUND 02 - HIGH-VALUE OFFICIAL-SOURCE VERIFICATION - CHANGED FILES
+TOKYO-CHINA ROUND 02 - JAPANESE-SOURCE SYNTHESIS - CHANGED FILES
 Generated: 2026-06-21
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/official_source_registry.csv                       [modified]
-  literature/04_synthesis/round02_high_value_official_source_verification.md [new]
-  outputs/claude_reports/latest_verification_summary.txt                    [modified]
-  outputs/claude_reports/latest_changed_files.txt                           [modified]
-  outputs/claude_reports/latest_safety_check.txt                            [modified]
+  literature/04_synthesis/round02_japanese_source_synthesis.md            [new]
+  literature/04_synthesis/round02_japanese_source_synthesis_key_counts.csv [new]
+  outputs/claude_reports/latest_verification_summary.txt                  [modified]
+  outputs/claude_reports/latest_changed_files.txt                         [modified]
+  outputs/claude_reports/latest_safety_check.txt                          [modified]
 
 DETAIL
 
-literature/02_matrices/official_source_registry.csv  [modified]
-  - Updated exactly 3 rows (no new rows; none removed; none moved):
-    R02_OFF_TGT_006 (GSI): verified_status hold_for_manual_check ->
-      verified_by_official_page; notes record HTTP 200 (title "GSI HOME PAGE -
-      国土地理院") and the SSL legacy-renegotiation explanation.
-    R02_OFF_TGT_011 (Hazard Map Portal): verified_status hold_for_manual_check ->
-      verified_by_official_catalogue; notes record HTTP 200 (title
-      "ハザードマップポータルサイト") and operator MLIT/GSI.
-    R02_OFF_TGT_013 (TSUNAGARI): verified_status unchanged (hold_for_manual_check);
-      notes record the persistent SSL UNEXPECTED_EOF in this environment and the
-      manual checks still required.
-  - Header unchanged (14 cols). Row count unchanged (23 data rows). All other
-    rows left byte-for-byte unchanged (line-targeted update).
+literature/04_synthesis/round02_japanese_source_synthesis.md  [new]
+  Rigorous, evidence-bounded Round 02 Japanese-source synthesis across CiNii,
+  J-STAGE, NDL, and official-source searches. Sections A-K: purpose/evidence
+  boundary; search/verification coverage with verified counts; a 10-module core
+  evidence map (with record IDs); priority academic records grouped by relevance;
+  official-source registry synthesis by use_in_analysis; Sun 2026 positioning;
+  provisional gap status (gap under verification); safe vs unsafe claims;
+  remaining manual checks; recommended next step (gap-evidence audit table). No
+  novelty claim; no Introduction; no gap confirmation.
 
-literature/04_synthesis/round02_high_value_official_source_verification.md  [new]
-  - Public synthesis note: purpose, evidence status, verification table,
-    source-by-source notes, registry updates, caution, next steps.
+literature/04_synthesis/round02_japanese_source_synthesis_key_counts.csv  [new]
+  Machine-readable key counts (metric,value,source_note; 17 rows) drawn only from
+  the current matrices/registry: matrix and tracking row counts, platform splits,
+  0 confirmed A_direct_overlap, promoted-record counts, registry status tallies,
+  and gap_status=under_verification.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  - Refreshed to describe this high-value official-source verification pass.
+  Refreshed to describe this synthesis pass and its counts/checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
-  - This file.
+  This file.
 
 outputs/claude_reports/latest_safety_check.txt  [modified]
-  - Refreshed public-repo safety check for this pass.
+  Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
   literature_matrix.csv, gap_verification_matrix.csv,
-  round02_japanese_source_tracking.csv, TokyoProject.docx, ref/, data/,
-  data_raw/, data_processed/, manuscript files, PDF/DOCX files, and raw outputs
-  under outputs/literature_discovery/ and outputs/literature_verification/.
+  round02_japanese_source_tracking.csv, official_source_registry.csv,
+  TokyoProject.docx, ref/, data/, data_raw/, data_processed/, manuscript files,
+  PDF/DOCX files, scripts/, and raw outputs under outputs/literature_discovery/
+  and outputs/literature_verification/.
 
-LOCAL OUTPUTS WRITTEN BUT NOT STAGED (under outputs/literature_verification/)
-  outputs/literature_verification/round02_highvalue_official_verify/ (helper
-  scripts only; never staged)
+LOCAL HELPER SCRIPTS WRITTEN BUT NOT STAGED (under outputs/literature_verification/)
+  outputs/literature_verification/round02_synthesis_prep/ (counts + checks helpers)
 
 UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx
