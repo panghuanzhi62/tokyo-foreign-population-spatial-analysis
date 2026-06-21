@@ -1,16 +1,16 @@
-TOKYO-CHINA ROUND 02 - GAP-EVIDENCE AUDIT TABLE - PUBLIC REPO SAFETY CHECK
+TOKYO-CHINA ROUND 02 - GAP-SAFE TOPIC POSITIONING MEMO - PUBLIC REPO SAFETY CHECK
 Generated: 2026-06-21
 
 PUBLIC REPO SAFETY CHECK: PASS
 
 TASK OBJECTIVE
-  Round 02 gap-evidence audit table (audit-table + synthesis writing only). No
-  new external searches, no PDF download, no dataset download, no webpage
-  scraping, no manuscript Introduction, no novelty claim, no gap confirmation.
+  Gap-safe topic positioning memo (memo-writing only). No new external searches,
+  no PDF download, no dataset download, no webpage scraping, no manuscript
+  Introduction, no novelty claim, no gap confirmation.
 
 EXTERNAL ACCESS THIS PASS
-  None. No network calls were made; the audit table and note were assembled from
-  existing repo files only. No scraping, no API calls, no credentials.
+  None. No network calls were made; the memo and key-points CSV were assembled
+  from existing repo files only. No scraping, no API calls, no credentials.
 
 DATA-HANDLING SAFETY
   PDFs downloaded .................. NO
@@ -19,18 +19,19 @@ DATA-HANDLING SAFETY
   browser automation used ......... NO
   paid APIs used .................. NO
 
-EXISTING-MATRIX / REGISTRY SAFETY (read-only this task)
+EXISTING-MATRIX / REGISTRY / AUDIT SAFETY (read-only this task)
   literature_matrix.csv modified .......... NO (unchanged vs HEAD)
   gap_verification_matrix.csv modified .... NO (unchanged vs HEAD)
   round02_japanese_source_tracking.csv mod  NO (unchanged vs HEAD)
   official_source_registry.csv modified ... NO (unchanged vs HEAD)
-  (No serious error was found that would require repairing an existing matrix.)
-  The new audit table is a SEPARATE file (round02_gap_evidence_audit_table.csv).
+  round02_gap_evidence_audit_table.csv mod  NO (unchanged vs HEAD)
+  (No serious error was found that would require repairing an existing file.)
 
 STAGING SAFETY
   git add . used ................... NO (only 5 explicit files staged)
   existing matrices staged ........ NO
   official registry staged ........ NO
+  audit table staged .............. NO
   scripts staged .................. NO
   raw outputs staged .............. NO (outputs/ untracked)
   PDF files staged ................ NO
@@ -40,8 +41,8 @@ STAGING SAFETY
   data files staged ............... NO
 
 FILES STAGED THIS PASS (5)
-  literature/02_matrices/round02_gap_evidence_audit_table.csv
-  literature/04_synthesis/round02_gap_evidence_audit.md
+  literature/04_synthesis/gap_safe_topic_positioning_memo.md
+  literature/04_synthesis/gap_safe_topic_positioning_key_points.csv
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
@@ -49,28 +50,25 @@ FILES STAGED THIS PASS (5)
 ENCODING / MOJIBAKE
   mojibake scan result: PASS
   Markers scanned: U+FFFD replacement char and CP1252/GBK mojibake markers.
-  The audit table, audit note, and report files decode cleanly as strict UTF-8.
-  Japanese titles referenced in the audit are valid UTF-8. Report files are
-  ASCII-safe.
+  The memo, key-points CSV, and report files decode cleanly as strict UTF-8.
+  Report files are ASCII-safe; the memo uses a few Japanese source names (valid
+  UTF-8).
 
 CSV INTEGRITY (Python csv.reader/DictReader, this pass)
   CSV validation result: PASS.
-  round02_gap_evidence_audit_table.csv: 28 cols, 43 data rows, no ragged rows,
-    0 duplicate record_id, all coverage values within the cautious vocabulary.
-  literature_matrix.csv: 26 cols, 23 rows; gap_verification_matrix.csv: 22 cols,
-    13 rows; round02_japanese_source_tracking.csv: 23 cols, 486 rows;
-    official_source_registry.csv: 14 cols, 23 rows;
-    round02_japanese_source_synthesis_key_counts.csv: 3 cols, 17 rows. All read-only.
-  covers_full_combination = yes: 0 records (verified).
+  gap_safe_topic_positioning_key_points.csv: 5 cols, 17 data rows, no ragged rows.
+  round02_gap_evidence_audit_table.csv: 28 cols, 43 rows (read-only);
+  literature_matrix.csv 26x23; gap_verification_matrix.csv 22x13;
+  official_source_registry.csv 14x23; synthesis_key_counts 3x17. All read-only.
+  Duplicate check: no duplicate record_id/source_id in matrices, registry, or
+  audit table.
 
 EVIDENCE-CLAIM SAFETY
-  Confirmed A_direct_overlap_candidate: 0.
-  covers_full_combination = yes: 0 (no record claims the full combination).
-  gap status: under verification (NOT confirmed).
+  Confirmed A_direct_overlap_candidate: 0; covers_full_combination=yes: 0.
+  gap status: under verification (NOT confirmed). final gap claimed: NO.
   Introduction written: NO. Novelty asserted: NO.
-  Official sources are treated as context/data only, not as academic evidence.
-  Forbidden phrasing avoided ("no study has examined", "this is the first",
-  "the literature lacks", "the gap is confirmed", "novelty is established").
+  The memo states safe vs unsafe claims explicitly; forbidden phrases appear only
+  inside the unsafe-claims table as examples to avoid, not as project claims.
 
 GIT CHECKS
   git diff --check result: PASS (exit 0).
@@ -79,8 +77,8 @@ GIT CHECKS
     (left untouched).
 
 FINAL SAFETY CONCLUSION
-  Safe to commit and push. Only the five intended audit/report files were staged.
-  No existing matrix, registry, script, raw output, credential, sensitive, binary,
-  manuscript, data, dataset, or PDF content was included or modified.
-  TokyoProject.docx and ref/ remain untracked and untouched. No research-gap
-  confirmation and no novelty claim were made.
+  Safe to commit and push. Only the five intended memo/report files were staged.
+  No existing matrix, registry, audit table, script, raw output, credential,
+  sensitive, binary, manuscript, data, dataset, or PDF content was included or
+  modified. TokyoProject.docx and ref/ remain untracked and untouched. No
+  research-gap confirmation and no novelty claim were made.

@@ -1,34 +1,32 @@
-TOKYO-CHINA ROUND 02 - GAP-EVIDENCE AUDIT TABLE - CHANGED FILES
+TOKYO-CHINA ROUND 02 - GAP-SAFE TOPIC POSITIONING MEMO - CHANGED FILES
 Generated: 2026-06-21
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/round02_gap_evidence_audit_table.csv  [new]
-  literature/04_synthesis/round02_gap_evidence_audit.md        [new]
-  outputs/claude_reports/latest_verification_summary.txt       [modified]
-  outputs/claude_reports/latest_changed_files.txt              [modified]
-  outputs/claude_reports/latest_safety_check.txt               [modified]
+  literature/04_synthesis/gap_safe_topic_positioning_memo.md          [new]
+  literature/04_synthesis/gap_safe_topic_positioning_key_points.csv   [new]
+  outputs/claude_reports/latest_verification_summary.txt              [modified]
+  outputs/claude_reports/latest_changed_files.txt                     [modified]
+  outputs/claude_reports/latest_safety_check.txt                      [modified]
 
 DETAIL
 
-literature/02_matrices/round02_gap_evidence_audit_table.csv  [new]
-  Machine-readable record-by-dimension evidence grid (28 columns, 43 data rows):
-  20 academic/literature rows (incl. a Sun 2026 boundary-reference row that is
-  not a matrix record) + 23 official-source rows. Columns include source_category,
-  evidence_role, 16 cautious concept-coverage flags (yes/partial/no/unclear/
-  not_applicable) including covers_full_combination, plus strength_for_project,
-  limitation, next_action, notes. The 8 dimensions shared with
-  gap_verification_matrix.csv were pulled directly from that matrix for
-  consistency; the additional dimensions were hand-coded from verified metadata.
-  covers_full_combination = yes for 0 records.
+literature/04_synthesis/gap_safe_topic_positioning_memo.md  [new]
+  Internal, evidence-bounded topic-positioning memo (sections A-M): purpose;
+  evidence base with verified audit counts; one-paragraph provisional positioning;
+  Sun 2026 boundary; safe-claims table; unsafe-claims table with safer
+  alternatives; three provisional internal titles + terminology guidance;
+  provisional contribution statement; abstract-logic skeleton (not abstract
+  text); Introduction section-plan logic (not the Introduction); 4 provisional
+  research questions; remaining verification tasks; recommended next repo task.
+  No final gap claim, no novelty, no manuscript Introduction.
 
-literature/04_synthesis/round02_gap_evidence_audit.md  [new]
-  Human-readable audit note (sections A-J): purpose; evidence boundary; audit
-  table summary counts; 11 dimension-by-dimension findings; Sun 2026 boundary
-  check; cautious gap status (under verification); safe vs unsafe claims;
-  remaining manual checks; recommended next step (gap-safe topic positioning memo).
+literature/04_synthesis/gap_safe_topic_positioning_key_points.csv  [new]
+  Machine-readable key points (item_type,statement,evidence_basis,status,caution;
+  17 rows): safe claims, unsafe claims, recommended wording, Sun 2026 boundary,
+  official-source caution, remaining checks, and standing status.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe this audit-table pass and its counts/checks.
+  Refreshed to describe this positioning-memo pass and its counts/checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -39,13 +37,14 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
   literature_matrix.csv, gap_verification_matrix.csv,
   round02_japanese_source_tracking.csv, official_source_registry.csv,
+  round02_gap_evidence_audit_table.csv,
   round02_japanese_source_synthesis_key_counts.csv, TokyoProject.docx, ref/,
   data/, data_raw/, data_processed/, manuscript files, PDF/DOCX files, scripts/,
   and raw outputs under outputs/literature_discovery/ and
   outputs/literature_verification/.
 
 LOCAL HELPER SCRIPTS WRITTEN BUT NOT STAGED (under outputs/literature_verification/)
-  outputs/literature_verification/round02_audit_prep/ (dump/build/checks helpers)
+  outputs/literature_verification/round02_memo_prep/ (pre/build/checks helpers)
 
 UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx
