@@ -1,81 +1,72 @@
-TOKYO-CHINA ROUND 02 - P1 OFFICIAL-SOURCE VERIFICATION (BATCH 1) - PUBLIC REPO SAFETY CHECK
-Generated: 2026-06-21
-
-PUBLIC REPO SAFETY CHECK: PASS
+TOKYO-CHINA ROUND 02 - OFFICIAL DATA-USABILITY INVENTORY - SAFETY CHECK
+Generated: 2026-06-22
 
 TASK OBJECTIVE
-  P1 official-source feasibility and license checks. Append results to
-  manual_check_results_template.csv and create a results note. No manuscript
-  Introduction, no novelty claim, no gap confirmation.
+  Official data-usability inventory table (planning artifact). Convert verified
+  P1 official-source checks into a structured inventory CSV + note. No new broad
+  searches, no downloads, no scraping, no browser automation.
 
-SOURCE-ACCESS SAFETY
-  Method ........................... one official-page GET per record (landing +
-                                     a few terms pages), for feasibility checking
-  Datasets downloaded .............. NO
-  PDFs downloaded .................. NO
-  Large files downloaded ........... NO
-  Website crawl / scraping ......... NO (single page per record)
-  Browser automation ............... NO
-  Legacy-TLS fallback used ......... yes (standard compatibility option; not a bypass)
-  Pages saved INSIDE repo .......... NO
-  Pages saved OUTSIDE repo ......... yes (e-Stat/ISA/NLNI/GSI/Tokyo-bousai snapshots
-                                     in E:\rsch\laborJapan_local_fulltext\round02_manual_check\)
+ARTIFACT STATUS
+  inventory CSV created: YES
+  inventory note created: YES
+  inventory rows: 11
 
-REACHABILITY NOTES (transparency)
-  e-Stat (+terms), ISA, NLNI, GSI (legacy TLS), Tokyo bousai: HTTP 200.
-  Hazard Map Portal: TLS timeout this run (previously HTTP 200) -> partially_verified.
-  TSUNAGARI: SSL UNEXPECTED_EOF -> still_unclear_hold.
+INVENTORY COUNTS
+  P1_data_construction sources: 3
+  P1_context_construction sources: 2
+  P2_context sources: 4
+  P3_background sources: 1
+  hold or partially usable sources: 3
+  sources for population baseline: 3
+  sources for spatial variable construction: 2
+  sources for housing context: 1
+  sources for disaster/risk context: 2
+  sources for multilingual/service context: 2
 
-REPOSITORY SAFETY
-  datasets staged .................. NO
-  PDFs staged ...................... NO
-  screenshots committed ............ NO
-  raw data committed ............... NO
-  raw outputs staged ............... NO (outputs/ untracked)
-  ref/ staged ...................... NO
-  DOCX staged ...................... NO
-  git add . used ................... NO (only 5 explicit files staged)
+COPYRIGHT / DATA SAFETY
+  datasets downloaded: NO
+  PDFs downloaded or staged: NO
+  DOCX files staged: NO
+  TokyoProject.docx staged: NO
+  ref/ staged: NO
+  data/ data_raw/ data_processed/ staged: NO
+  scripts/ staged: NO
+  raw outputs (literature_discovery / literature_verification) staged: NO
 
-FILES STAGED THIS PASS (5)
-  literature/02_matrices/manual_check_results_template.csv
-  literature/04_synthesis/manual_official_source_verification_results_round01.md
+READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
+  existing matrices modified: NO (literature_matrix.csv, gap_verification_matrix.csv,
+    round02_gap_evidence_audit_table.csv unchanged)
+  official registry modified: NO (official_source_registry.csv unchanged)
+  manual check results modified: NO (manual_check_results_template.csv and
+    manual_official_source_verification_results_round01.md unchanged)
+
+EVIDENCE-CLAIM SAFETY
+  gap status: under verification
+  Introduction written: NO
+  novelty asserted: NO
+  final gap claimed: NO
+  Note: inventory is data-usability planning only; it does not confirm the gap,
+  does not establish novelty, and does not prove final data usability.
+
+CHECKS
+  CSV validation result: PASS (inventory + 5 existing matrices parse via
+    csv.DictReader)
+  duplicate inventory_id check: PASS (0 duplicates)
+  duplicate source_id check: PASS (0 duplicates)
+  mojibake scan result: PASS (ASCII-safe inventory CSV, note, reports)
+  git diff --check result: PASS (exit 0)
+  sensitive-file check result: PASS
+  no PDFs/datasets downloaded or staged: PASS
+  no DOCX staged: PASS
+
+FILES STAGED (explicit; no `git add .`)
+  literature/02_matrices/official_data_usability_inventory.csv
+  literature/04_synthesis/official_data_usability_inventory.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
-NOT MODIFIED (read-only this task; confirmed unchanged vs HEAD)
-  official_source_registry.csv, literature_matrix.csv, gap_verification_matrix.csv,
-  round02_japanese_source_tracking.csv, round02_gap_evidence_audit_table.csv,
-  manual_fulltext_translation_checklist.csv, TokyoProject.docx, ref/, data/,
-  manuscript files, PDF/DOCX, scripts/.
-
-ENCODING / MOJIBAKE
-  mojibake scan result: PASS (strict UTF-8; no replacement char or CP1252/GBK
-  markers in the results CSV, the results note, or the report files).
-
-CSV INTEGRITY (Python csv.reader/DictReader, this pass)
-  CSV validation result: PASS.
-  manual_check_results_template.csv: 12 cols, 13 data rows, no ragged rows.
-  duplicate check: no duplicate source_id (the 7 official IDs are a new check
-    batch, distinct from the 6 academic rows; notes mark the batch).
-  Existing matrices/registry/audit/checklist: read-only validation PASS; unchanged.
-
-EVIDENCE-CLAIM SAFETY
-  Official sources are recorded as feasibility/context only, NOT academic gap
-  evidence. No A_direct_overlap or full-combination claim. gap status: under
-  verification (NOT confirmed). final gap claimed: NO. Introduction written: NO.
-  Novelty asserted: NO. No matrix/registry edits (recommendations recorded only
-  in the results template).
-
-GIT CHECKS
-  git diff --check result: PASS (exit 0).
-  git status --short: after staging, only untracked TokyoProject.docx, ref/,
-    outputs/literature_discovery/, and outputs/literature_verification/ remain
-    (left untouched).
-
-FINAL SAFETY CONCLUSION
-  Safe to commit and push. Only the five intended files were staged. No dataset,
-  PDF, screenshot, raw data, credential, matrix, registry, audit table, script,
-  sensitive, binary, or manuscript content was committed. Saved verification
-  pages remain OUTSIDE the repo. TokyoProject.docx and ref/ remain untracked and
-  untouched. No research-gap confirmation and no novelty claim were made.
+NEXT STEP
+  Prepare official_data_variable_blueprint.csv (concept -> variable -> source_id
+  -> geography -> time -> route -> preprocessing -> feasibility). Re-check Hazard
+  Map Portal and TSUNAGARI outside the sandbox. No Introduction; no novelty.

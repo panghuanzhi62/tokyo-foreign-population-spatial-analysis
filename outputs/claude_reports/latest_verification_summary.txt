@@ -1,13 +1,14 @@
-TOKYO-CHINA ROUND 02 - P1 OFFICIAL-SOURCE FEASIBILITY/LICENSE CHECKS (BATCH 1) - VERIFICATION SUMMARY
-Generated: 2026-06-21
+TOKYO-CHINA ROUND 02 - OFFICIAL DATA-USABILITY INVENTORY - VERIFICATION SUMMARY
+Generated: 2026-06-22
 
 TASK OBJECTIVE
-  P1 official-source feasibility and license checks. Verify the seven P1
-  official-source records (population, spatial, disaster/risk, multilingual
-  service infrastructure) for variable-construction feasibility, licensing, and
-  policy/service context; record results in manual_check_results_template.csv and
-  a results note. Official sources support feasibility/context only and do NOT
-  establish an academic gap. Status: gap under verification.
+  Official data-usability inventory table. Convert the completed P1 official-
+  source feasibility/license checks into a structured inventory that clarifies
+  which official sources can support later variable construction, spatial
+  analysis, policy context, or service-infrastructure interpretation for the
+  Tokyo-China opportunity-risk project. Official sources support feasibility and
+  context only; they do NOT establish an academic gap. Status: gap under
+  verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -15,82 +16,68 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-P1 OFFICIAL SOURCES TARGETED (7)
-  R02_OFF_TGT_001 e-Stat; R02_OFF_TGT_002 ISA resident statistics;
-  R02_OFF_TGT_005 MLIT National Land Numerical Information; R02_OFF_TGT_006 GSI;
+ARTIFACTS
+  inventory CSV created: YES
+    literature/02_matrices/official_data_usability_inventory.csv
+  inventory note created: YES
+    literature/04_synthesis/official_data_usability_inventory.md
+
+SOURCE COVERAGE
+  All 11 requested priority source_ids were located in the existing files and
+  included; none missing; none invented:
+  R02_OFF_TGT_001 e-Stat; R02_OFF_TGT_002 ISA; R02_OFF_TGT_004 Tokyo statistics;
+  R02_OFF_TGT_005 MLIT NLNI; R02_OFF_TGT_006 GSI; R02_OFF_TGT_007 Tokyo housing;
   R02_OFF_TGT_010 Tokyo disaster prevention; R02_OFF_TGT_011 Hazard Map Portal;
-  R02_OFF_TGT_013 TSUNAGARI.
-
-ACCESS / METHOD
-  One official-page GET per record (landing + a few terms pages), legacy-TLS
-  fallback as needed; page snapshots saved OUTSIDE the repo
-  (E:\rsch\laborJapan_local_fulltext\round02_manual_check\). No dataset download,
-  no PDF download, no scraping/crawl, no browser automation.
-
-RESULTS (7 rows appended to manual_check_results_template.csv)
-  R02_OFF_TGT_001 e-Stat | verified_population_data_source | license 政府標準利用規約
-    / CC BY 4.0 compatible (commercial OK, attribution) -> population baseline.
-  R02_OFF_TGT_002 ISA | verified_population_data_source | by nationality (incl.
-    China) and prefecture/municipality, via e-Stat -> Chinese-vs-non-Chinese baseline.
-  R02_OFF_TGT_005 MLIT NLNI | verified_spatial_data_source | 利用約款; boundaries,
-    railways/stations, land use, facilities, hazard layers -> spatial construction.
-  R02_OFF_TGT_006 GSI | verified_spatial_data_source | 利用規約; basemaps / 基盤地図情報
-    / geocoding (reachable via legacy TLS).
-  R02_OFF_TGT_010 Tokyo disaster | verified_disaster_or_risk_context | policy/
-    guidance + multilingual disaster info (context, not primary dataset).
-  R02_OFF_TGT_011 Hazard Map Portal | partially_verified | TLS timeout this run
-    (previously HTTP 200); hazard overlay maps; exposure data better via NLNI.
-  R02_OFF_TGT_013 TSUNAGARI | still_unclear_hold | SSL UNEXPECTED_EOF again;
-    TMG-affiliated multilingual foundation; needs a manual browser check.
+  R02_OFF_TGT_013 TSUNAGARI; R02_OFF_TGT_016 CLAIR portal; R02_NDL_OFF_002 CLAIR
+  periodical.
 
 COUNTS
-  official sources targeted ............................ 7
-  official sources checked ............................. 7
-  official sources verified usable or partially usable . 6 (001, 002, 005, 006,
-                                                         010 verified; 011 partial)
-  official sources still hold/manual-check ............. 1 (013)
-  manual_check_results_template rows appended .......... 7 (template now 13 rows
-                                                         total: 6 academic + 7 official)
-  official verification note created ................... YES
-
-VARIABLE-CONSTRUCTION FEASIBILITY (high level)
-  Population / Chinese-vs-non-Chinese baseline: HIGH (e-Stat + ISA; open license).
-  Transit/accessibility/spatial layers: HIGH (NLNI + GSI).
-  Disaster/risk exposure: MEDIUM-HIGH (NLNI flood-zone layers; portal intermittent).
-  Multilingual / service infrastructure: LOW-MEDIUM (context; TSUNAGARI held).
-
-OFFICIAL-SOURCE CAUTION
-  Official sources support feasibility and context; they do NOT establish a
-  literature gap. Exact tables, layers, geography, licensing, and API/download
-  workflow still need manual confirmation. No official source is cited as
-  novelty. Status remains: gap under verification.
+  inventory rows ........................................ 11
+  P1_data_construction sources .......................... 3 (e-Stat, ISA, NLNI)
+  P1_context_construction sources ....................... 2 (GSI, Tokyo disaster)
+  P2_context sources .................................... 4 (Tokyo stats, Tokyo
+                                                          housing, Hazard portal,
+                                                          CLAIR portal)
+  P3_background sources ................................. 1 (CLAIR periodical)
+  hold or partially usable sources ...................... 3 (Tokyo stats partial,
+                                                          Hazard portal partial,
+                                                          TSUNAGARI hold)
+  sources for population baseline ....................... 3 (e-Stat, ISA, Tokyo
+                                                          statistics)
+  sources for spatial variable construction ............. 2 (NLNI, GSI)
+  sources for housing context ........................... 1 (Tokyo housing)
+  sources for disaster/risk context ..................... 2 (Tokyo disaster,
+                                                          Hazard portal)
+  sources for multilingual/service context .............. 2 (TSUNAGARI, CLAIR
+                                                          portal)
 
 EVIDENCE-CLAIM SAFETY
+  datasets downloaded: NO
+  PDFs downloaded or staged: NO
+  existing matrices modified: NO
+  official registry modified: NO
+  manual check results modified: NO
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
   final gap claimed: NO
 
-CONSTRAINTS HONORED
-  official registry modified: NO (unchanged vs HEAD)
-  academic matrices modified: NO (literature_matrix, gap_verification_matrix
-    unchanged vs HEAD); tracking/audit/checklist also unchanged vs HEAD
-  datasets downloaded: NO
-  PDFs downloaded: NO; PDFs staged: NO
-  raw outputs staged: NO
-
 CHECKS (this pass)
-  CSV validation result: PASS
-    manual_check_results_template.csv: 12 cols, 13 data rows, no ragged rows.
-  duplicate check result: PASS (no duplicate source_id; the 7 official IDs are a
-    new check batch, distinct from the 6 academic rows)
-  mojibake scan result: PASS (strict UTF-8)
-  no downloaded files inside repo: PASS (snapshots are in the OUTSIDE-repo cache)
+  CSV validation result: PASS (official_data_usability_inventory.csv 21 cols,
+    11 data rows; plus manual_check_results_template, official_source_registry,
+    round02_gap_evidence_audit_table, literature_matrix, gap_verification_matrix
+    all parse cleanly)
+  duplicate check result: PASS (no duplicate inventory_id; no duplicate
+    source_id)
+  mojibake scan result: PASS (ASCII-safe inventory CSV, note, and reports)
   git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS
+  sensitive-file check result: PASS (no PDF/DOCX/dataset/ref/data staged)
+  no raw outputs staged: PASS (outputs/literature_discovery and
+    outputs/literature_verification untouched, untracked)
 
 NEXT RECOMMENDED STEP
-  Prepare an official data-usability inventory table (exact e-Stat/ISA tables and
-  NLNI/GSI layers with vintage and per-item license), and re-check the Hazard Map
-  Portal and TSUNAGARI outside the sandbox. Do not write the Introduction. Do not
-  assert novelty. Status remains: gap under verification.
+  Prepare official_data_variable_blueprint.csv mapping concept dimension ->
+  candidate variable -> source_id -> expected geography -> expected time ->
+  download/API route -> preprocessing requirement -> feasibility status. Re-check
+  the Hazard Map Portal and TSUNAGARI outside the sandbox. Do not write the
+  Introduction. Do not assert novelty. Status remains: gap under verification.
