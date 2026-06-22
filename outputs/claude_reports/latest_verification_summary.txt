@@ -1,14 +1,13 @@
-TOKYO-CHINA ROUND 02 - FAST ISA/e-STAT EXACT-TABLE CONFIRMATION (DDL_001/DDL_002) - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - LOCAL ISA/e-STAT 24-12-t2 VALIDATION (DDL_001/DDL_002) - VERIFICATION SUMMARY
 Generated: 2026-06-22
 
 TASK OBJECTIVE
-  Fast ISA/e-Stat exact-table confirmation for DDL_001 (Chinese resident count)
-  and DDL_002 (total foreign resident count) only. Create a compact 2-row fill-in
-  template and a short confirmation guide so the user can confirm the exact
-  official table/source BEFORE any download or API extraction. Narrow scope: only
-  these two rows; no other modules. NO data downloaded, NO APIs called, NO
-  decision approved, NO decision-log edit, NO data file touched. Status: gap under
-  verification.
+  Validate the user-provided local ISA/e-Stat 24-12-t2 Excel value-exports for
+  DDL_001 (Chinese resident count) and DDL_002 (total foreign resident count),
+  confirm whether they support those rows, and update the confirmation evidence.
+  Local-file validation only - NO web download, NO API extraction, NO raw file
+  modified/moved/committed, NO decision approved, NO decision-log edit. Status:
+  gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -16,18 +15,37 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-ARTIFACTS
-  confirmation template created: YES
-    metadata/isa_estat_ddL001_ddL002_fast_confirmation_template.csv (21 cols, 2 rows)
-  guide created: YES
-    literature/04_synthesis/isa_estat_ddL001_ddL002_fast_confirmation_guide.md
+SOURCE / TABLE IDENTITY
+  e-Stat / Immigration Services Agency; table 24-12-t2 (Zairyu Gaikokujin Tokei,
+  nationality/region x status x municipality); reference 2024-12 (Reiwa 6 Dec).
+  Page: e-stat.go.jp/stat-search/files?layout=datalist&lid=000001462230
+  Terms: e-stat.go.jp/terms-of-use
 
-COVERAGE
-  rows in template: 2
-  DDL_001 covered: YES (Chinese resident count; status not_checked)
-  DDL_002 covered: YES (total foreign resident count; status not_checked)
-  Both rows initialized manual_confirmation_status=not_checked,
-  approval_recommendation=hold_until_exact_table_confirmed.
+ARTIFACTS
+  filled confirmation template created: YES
+    metadata/isa_estat_ddL001_ddL002_fast_confirmation_template_filled.csv (21 cols, 2 rows)
+  validation note created: YES
+    literature/04_synthesis/isa_estat_ddL001_ddL002_local_excel_validation.md
+  (original blank template NOT overwritten)
+
+VALIDATION RESULTS
+  local Excel files found: 4 (2 pivot + 2 values)
+  values files validated: 2 (all_values, china_values; read-only)
+  required columns present (both): YES (shikuchoson code, todofuken, shikuchoson,
+    count) ; codes non-empty: YES ; counts numeric: YES
+  all_values data rows: 1891 (sum 3,768,977)
+  china_values data rows: 1762 (sum 873,247)
+  overlapping municipality codes: 1762
+  all-only municipality codes: 129
+  china-only municipality codes: 0
+  China count exceeds All count: 0
+  left-join china -> all by shikuchoson code: FEASIBLE (china is subset)
+  all-only Tokyo codes: 13307, 13362, 13364, 13382 (keep-and-flag, candidate zero)
+  special aggregate row 99999 (undetermined/unknown) present in both - handle
+    explicitly in cleaning (exclude from municipality spatial joins)
+  DDL_001 supported: YES (china_values = Chinese by nationality/region 01_023, not
+    Chinese-origin)
+  DDL_002 supported: YES (all_values = total foreign residents, same table family)
 
 DECISION-LOG STATE (read only; NOT modified)
   decision log modified: NO
@@ -36,31 +54,33 @@ DECISION-LOG STATE (read only; NOT modified)
   DDL_001 / DDL_002 = pending_user_approval, download_completed=no
 
 EVIDENCE-CLAIM SAFETY
-  datasets downloaded: NO
+  datasets downloaded by Claude: NO
   APIs called: NO
-  existing data files modified: NO
-  existing data files staged: NO
+  raw Excel files committed: NO (data_raw/ ignored; nothing staged)
+  raw Excel files modified/moved/renamed/deleted/copied: NO
+  data files staged: NO
+  non-Chinese residents computed: NO (deferred)
+  DDL_010 / density / hazard / service / housing / railway / boundary handled: NO
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (fast confirmation template 21 cols x 2 rows; plus
-    decision log, existing-data inventory, exact-table checklist, metadata
-    template all parse cleanly)
-  duplicate check result: PASS (no duplicate decision_id in template; 2 distinct
-    rows DDL_001, DDL_002)
-  decision-log integrity: PASS (unchanged vs HEAD; 0 approved; 0 completed;
-    DDL_001/002 pending, download_completed=no)
-  mojibake scan result: PASS (ASCII-safe template, guide, reports)
+  CSV validation result: PASS (filled template 21 cols x 2 rows; decision log and
+    metadata template parse cleanly)
+  duplicate check result: PASS (no duplicate decision_id in filled template;
+    DDL_001, DDL_002)
+  decision-log integrity: PASS (unchanged vs HEAD; 0 approved; 0 completed)
+  mojibake scan result: PASS (filled CSV + note are valid UTF-8 Japanese, no
+    replacement chars / no double-encoding; reports ASCII-safe)
   git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS (no DOCX/PDF/credentials staged; no secrets)
+  sensitive-file check result: PASS (no raw xlsx/data/DOCX/PDF staged; no secrets)
 
 NEXT RECOMMENDED STEP
-  User manually opens the ISA/e-Stat pages, fills the fast confirmation template
-  (exact table name, dataset ID, year, geography, Chinese-nationality category,
-  join key, route, license, format), and once both rows are confirmed and
-  compatible, requests a NARROW acquisition script for DDL_001 and DDL_002 only.
-  Do not handle DDL_010/density/hazard/service/housing/railway yet. Do not write
-  the Introduction. Do not assert novelty. Status remains: gap under verification.
+  Prepare a NARROW acquisition/processing script for DDL_001 and DDL_002 ONLY:
+  read the local values xlsx (read-only), build a processed population-baseline
+  table (left-join china->all by code, keep-and-flag all-only municipalities,
+  exclude 99999), compute SHA-256 checksums for the raw xlsx, and draft metadata.
+  Do not commit raw xlsx. Do not compute non-Chinese/shares yet. Do not write the
+  Introduction. Do not assert novelty. Status remains: gap under verification.

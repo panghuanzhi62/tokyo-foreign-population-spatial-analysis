@@ -1,35 +1,36 @@
-TOKYO-CHINA ROUND 02 - FAST ISA/e-STAT EXACT-TABLE CONFIRMATION (DDL_001/DDL_002) - CHANGED FILES
+TOKYO-CHINA ROUND 02 - LOCAL ISA/e-STAT 24-12-t2 VALIDATION (DDL_001/DDL_002) - CHANGED FILES
 Generated: 2026-06-22
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  metadata/isa_estat_ddL001_ddL002_fast_confirmation_template.csv           [new]
-  literature/04_synthesis/isa_estat_ddL001_ddL002_fast_confirmation_guide.md [new]
-  outputs/claude_reports/latest_verification_summary.txt                    [modified]
-  outputs/claude_reports/latest_changed_files.txt                           [modified]
-  outputs/claude_reports/latest_safety_check.txt                            [modified]
+  metadata/isa_estat_ddL001_ddL002_fast_confirmation_template_filled.csv      [new]
+  literature/04_synthesis/isa_estat_ddL001_ddL002_local_excel_validation.md   [new]
+  outputs/claude_reports/latest_verification_summary.txt                      [modified]
+  outputs/claude_reports/latest_changed_files.txt                             [modified]
+  outputs/claude_reports/latest_safety_check.txt                              [modified]
 
 DETAIL
 
-metadata/isa_estat_ddL001_ddL002_fast_confirmation_template.csv  [new]
-  Compact fill-in template, 21 columns x 2 data rows (DDL_001, DDL_002). Columns:
-  decision_id, candidate_variable, source_family, official_page_url,
-  exact_table_or_dataset_name, dataset_id_or_table_id, year_or_reference_date,
-  geographic_unit, spatial_granularity, nationality_or_total_category_label,
-  category_definition, admin_code_or_join_key, download_or_api_route,
-  license_or_terms_url, file_format, encoding_or_language,
-  compatibility_with_other_row, manual_confirmation_status, blocking_issue,
-  approval_recommendation, user_notes. Both rows initialized not_checked /
-  hold_until_exact_table_confirmed with TO CONFIRM placeholders (no fabricated
-  table IDs). ASCII-safe.
+metadata/isa_estat_ddL001_ddL002_fast_confirmation_template_filled.csv  [new]
+  Filled copy of the fast confirmation template, 21 columns x 2 rows (DDL_001,
+  DDL_002). Both set manual_confirmation_status=confirmed,
+  approval_recommendation=approve_after_review, with the e-Stat 24-12-t2 source
+  identity, 2024-12 reference, municipality unit, shikuchoson-code join key,
+  e-Stat terms URL, and pointers to the local value exports (china_values for
+  DDL_001, all_values for DDL_002). Contains intentional Japanese values (table
+  name, category 01_023 China, column names) stored in the CSV itself. Written
+  UTF-8 (BOM); original blank template NOT overwritten.
 
-literature/04_synthesis/isa_estat_ddL001_ddL002_fast_confirmation_guide.md  [new]
-  Short guide (sections A-G): purpose; why needed (no confirmed Chinese-nationality
-  breakdown in old data); what to confirm for DDL_001; what to confirm for DDL_002;
-  compatibility rule; user action (fill template, then request narrow acquisition);
-  what not to do yet.
+literature/04_synthesis/isa_estat_ddL001_ddL002_local_excel_validation.md  [new]
+  Validation note (sections A-I): purpose; evidence boundary; source/table
+  identity; four local files (two values primary); file-structure checks (1891 vs
+  1762 data rows; required columns present; sums); compatibility checks (overlap
+  1762, all-only 129, china-only 0, China>All 0, left-join feasible); DDL
+  interpretation; cleaning assumptions (master=all, left-join china, keep-and-flag
+  all-only as candidate zero, exclude 99999, defer non-Chinese); recommended next
+  action.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the fast-confirmation task and its checks.
+  Refreshed to describe the local validation task and its checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -37,18 +38,23 @@ outputs/claude_reports/latest_changed_files.txt  [modified]
 outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
+RAW EXCEL FILES (validated by read-only parse; NOT modified, NOT staged, NOT committed)
+  data_raw/isa_estat/24-12-t2_all_pivot.xlsx
+  data_raw/isa_estat/24-12-t2_all_values.xlsx
+  data_raw/isa_estat/24-12-t2_china_pivot.xlsx
+  data_raw/isa_estat/24-12-t2_china_values.xlsx
+  (data_raw/ is gitignored; all four remain untracked and local-only)
+
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  metadata/data_download_decision_log.csv, metadata/existing_local_data_inventory.csv,
-  literature/04_synthesis/existing_local_data_reuse_audit.md,
-  metadata/population_baseline_exact_table_manual_verification_checklist.csv,
-  metadata/official_data_source_metadata_template.csv, all other metadata control
-  CSVs, existing matrices, official registry, readiness checklist, variable
-  blueprint, .gitignore, TokyoProject.docx, ref/, data/, data_raw/, data_processed/
-  (no data file modified, moved, renamed, deleted, copied, or staged), scripts/,
-  and raw outputs under outputs/literature_discovery/ and outputs/literature_verification/.
+  metadata/data_download_decision_log.csv, metadata/isa_estat_ddL001_ddL002_fast_confirmation_template.csv
+  (original blank), metadata/official_data_source_metadata_template.csv,
+  metadata/existing_local_data_inventory.csv, all other metadata control CSVs,
+  literature matrices, official registry, readiness checklist, variable blueprint,
+  .gitignore, TokyoProject.docx, ref/, scripts/, and raw outputs under
+  outputs/literature_discovery/ and outputs/literature_verification/.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
-  TokyoProject.docx, ref/, data_raw/, data_processed/,
+  TokyoProject.docx, ref/, data_raw/ (incl. isa_estat/*.xlsx), data_processed/,
   outputs/literature_discovery/, outputs/literature_verification/ (all ignored)
 
 DELETED FILES
