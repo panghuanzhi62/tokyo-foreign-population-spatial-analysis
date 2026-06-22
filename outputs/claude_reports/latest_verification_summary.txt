@@ -1,13 +1,14 @@
-TOKYO-CHINA ROUND 02 - POPULATION-BASELINE EXACT-TABLE MANUAL VERIFICATION CHECKLIST - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - EXISTING LOCAL DATA INVENTORY AND REUSE AUDIT - VERIFICATION SUMMARY
 Generated: 2026-06-22
 
 TASK OBJECTIVE
-  Population baseline exact-table manual verification checklist. Prepare a manual
-  checklist of the exact ISA/e-Stat tables or API endpoints the user must confirm
-  on the official pages BEFORE approving any population-baseline data acquisition.
-  Pre-download governance / manual-verification planning only - NO data
-  downloaded, NO APIs called, NO decision approved, NO decision-log edit. Status:
-  gap under verification.
+  Existing local data inventory and reuse audit. Before any new download or API
+  extraction, inventory existing local/repo data-related files and assess which
+  may be reusable for the Tokyo-China Chinese-vs-non-Chinese workflow, which need
+  metadata reconstruction, which must be re-downloaded after approval, and which
+  must stay out of the public repo. Inventory/audit only - NO data downloaded, NO
+  APIs called, NO decision approved, NO decision-log edit, NO data file touched.
+  Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -16,30 +17,56 @@ BRANCH
   agentic-upgrade
 
 ARTIFACTS
-  manual verification checklist CSV created: YES
-    metadata/population_baseline_exact_table_manual_verification_checklist.csv
-    (26 cols, 4 rows)
-  manual verification note created: YES
-    literature/04_synthesis/population_baseline_exact_table_manual_verification_checklist.md
+  inventory CSV created: YES
+    metadata/existing_local_data_inventory.csv (33 cols, 36 rows)
+  reuse audit note created: YES
+    literature/04_synthesis/existing_local_data_reuse_audit.md
 
-COVERAGE
-  manual check rows: 4
-  priority DDL rows covered: DDL_001 (PBM_001), DDL_002 (PBM_002), DDL_010 (PBM_003)
-  dependent DDL rows noted: DDL_003, DDL_009, DDL_011, DDL_012, DDL_013 (PBM_004
-    summary row)
-  All three priority rows confirmed pending_user_approval with download_completed
-  = no.
+KEY FINDING
+  The old Tokyo baseline (documented in data/data_sources.md) used ALL-foreign-
+  resident ratio, NOT Chinese vs non-Chinese. Real raw data live in ignored
+  data_raw/: e-Stat population xlsx/census archives, NLNI N03 boundary (2025-01-01),
+  N02 railway (2022), L01 land price (2024, prefs 11/12/13/14), and processed
+  tokyo_* tables. NO hazard or service layers exist. data_raw/tokyo_simulated_
+  density.geojson is SIMULATED (do_not_reuse). No existing file is confirmed to
+  hold a Chinese-nationality breakdown, so DDL_001 must be acquired after approval.
+
+COUNTS
+  inventory rows ....................................... 36
+  locations inspected .................................. 18 (11 repo + 7 external)
+  tracked repo data-related items ...................... 5
+  untracked ignored data-related items ................. 22
+  external local items (existing) ...................... 1 (laborJapan_local_fulltext)
+  missing expected locations ........................... 7
+  direct_reuse_possible ................................ 0
+  reuse_after_metadata_reconstruction .................. 9
+  must_re_download_after_approval ...................... 0 (no existing file; DDL_001
+                                                         Chinese count has no asset)
+  keep_local_only (recommended_action) ................. 1 (should_remain_local_only=yes: 17)
+  unknown / manual_review_needed (recommended_action) .. 14
+
+REUSE BY MODULE (summary)
+  Population baseline: partial/context; e-Stat archives may serve DDL_002/DDL_010
+    after exact-table verification; Chinese count (DDL_001) missing -> acquire.
+  Boundary/area: N03-20250101 strong candidate for DDL_012/DDL_013 after metadata
+    reconstruction.
+  Railway/accessibility: N02-22 reusable after metadata reconstruction (DDL_005).
+  Housing/land price: L01-24 reusable after metadata reconstruction.
+  Hazard: NONE exist (acquire later, DDL_006). Service: NONE exist (later phase).
+  Analysis outputs: OLD all-foreign baseline -> context only, not new results.
 
 DECISION-LOG STATE (read only; NOT modified)
   decision log modified: NO
-  decision log approved downloads: 0
-  decision log completed downloads: 0
+  approved downloads: 0
+  completed downloads: 0
   DDL_001 / DDL_002 / DDL_010 = pending_user_approval, download_completed=no
 
 EVIDENCE-CLAIM SAFETY
   datasets downloaded: NO
   PDFs downloaded or staged: NO
   APIs called for extraction: NO
+  existing data files modified: NO
+  existing data files staged: NO
   existing matrices modified: NO
   official registry modified: NO
   manual results modified: NO
@@ -48,6 +75,8 @@ EVIDENCE-CLAIM SAFETY
   readiness checklist modified: NO
   metadata template modified: NO
   approval package modified: NO
+  exact-table checklist modified: NO
+  manual results template modified: NO (file does not exist - recorded as missing)
   .gitignore modified: NO
   gap status: under verification
   Introduction written: NO
@@ -55,21 +84,22 @@ EVIDENCE-CLAIM SAFETY
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (manual verification checklist 26 cols x 4 rows;
-    plus decision log, approval package, metadata template, readiness checklist,
-    blueprint, usability inventory, registry, manual results, literature_matrix,
-    gap_verification_matrix all parse cleanly)
-  duplicate check result: PASS (no duplicate manual_check_id)
-  decision-log integrity: PASS (DDL_001/002/010 pending; 0 approved; 0 completed;
-    decision log unchanged vs HEAD)
-  mojibake scan result: PASS (ASCII-safe checklist CSV, note, and reports)
+  CSV validation result: PASS (existing_local_data_inventory.csv 33 cols x 36 rows;
+    plus decision log, approval package, exact-table checklist, metadata template,
+    readiness checklist, blueprint, usability inventory, registry, manual results,
+    literature_matrix, gap_verification_matrix all parse cleanly; manual results
+    TEMPLATE reported MISSING)
+  duplicate check result: PASS (no duplicate inventory_id)
+  decision-log integrity: PASS (unchanged vs HEAD; 0 approved; 0 completed)
+  mojibake scan result: PASS (ASCII-safe inventory CSV, note, reports)
   git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS (no tracked PDFs/DOCX/data/credentials; only
-    benign keyword hits: env-var NAME CINII_APP_ID, "secret"/"token" in text)
+  sensitive-file check result: PASS (no tracked PDFs/DOCX/credentials; raw data in
+    data_raw/ correctly ignored; only benign keyword hits)
 
 NEXT RECOMMENDED STEP
-  User opens the official ISA / e-Stat pages and fills this manual checklist
-  (table IDs, years, geography, category, license, format); after confirmation,
-  prepare a narrow approval update for DDL_001 and DDL_002 only. Verify DDL_010
-  before the foreign-resident share. No download until approval. Do not write the
-  Introduction. Do not assert novelty. Status remains: gap under verification.
+  Prepare a metadata reconstruction + checksum task for the strong reuse
+  candidates (N03 boundary -> DDL_012, N02 railway -> DDL_005, L01 land price,
+  e-Stat census archives -> DDL_002/DDL_010), and continue manual exact-table
+  verification (PBM_001/002/003) for DDL_001/DDL_002. Do not bulk re-download. Do
+  not write the Introduction. Do not assert novelty. Status remains: gap under
+  verification.

@@ -1,59 +1,67 @@
-TOKYO-CHINA ROUND 02 - POPULATION-BASELINE EXACT-TABLE MANUAL VERIFICATION CHECKLIST - CHANGED FILES
+TOKYO-CHINA ROUND 02 - EXISTING LOCAL DATA INVENTORY AND REUSE AUDIT - CHANGED FILES
 Generated: 2026-06-22
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  metadata/population_baseline_exact_table_manual_verification_checklist.csv  [new]
-  literature/04_synthesis/population_baseline_exact_table_manual_verification_checklist.md [new]
-  outputs/claude_reports/latest_verification_summary.txt                     [modified]
-  outputs/claude_reports/latest_changed_files.txt                            [modified]
-  outputs/claude_reports/latest_safety_check.txt                             [modified]
+  metadata/existing_local_data_inventory.csv                                [new]
+  literature/04_synthesis/existing_local_data_reuse_audit.md                [new]
+  outputs/claude_reports/latest_verification_summary.txt                    [modified]
+  outputs/claude_reports/latest_changed_files.txt                           [modified]
+  outputs/claude_reports/latest_safety_check.txt                            [modified]
 
 DETAIL
 
-metadata/population_baseline_exact_table_manual_verification_checklist.csv  [new]
-  New manual verification checklist, 26 columns x 4 data rows (PBM_001..PBM_004).
-  One row per manual verification item the user must check on the official ISA/
-  e-Stat pages before approving acquisition: decision_id link, source, candidate
-  variable, official page to open, exact table/dataset name + API endpoint to
-  confirm, year/geography/spatial-granularity/nationality-category/total-foreign/
-  total-population-denominator/admin-code/license/format/encoding to confirm,
-  metadata fields to fill after approval, approval condition, if-not-confirmed
-  action, dependent decision rows, current decision/download status, recommended
-  manual result values, notes. ASCII-safe. PBM_001->DDL_001 (Chinese count),
-  PBM_002->DDL_002 (total foreign), PBM_003->DDL_010 (e-Stat total population),
-  PBM_004 = dependency summary (DDL_003/009/011/012/013).
+metadata/existing_local_data_inventory.csv  [new]
+  New inventory, 33 columns x 36 data rows (INV_001..INV_036). One row per
+  discovered data-related file/directory/output artifact or missing expected
+  location. Each row records path, location_type, exists, git tracking + ignore
+  status, file/dir, extension, size_bytes, last_modified, likely data stage /
+  source family / variable family / spatial unit / year / CRS, reuse assessment
+  (can_be_reused, reuse_category, reuse_condition), metadata/checksum/license/
+  exact-table/re-download needs, local-only + commit policy, risk, recommended
+  action, and notes. Built by stat-ing each real path (no large file opened
+  deeply). Covers modules A-G: population (e-Stat xlsx/census archives, processed
+  all-foreign tables), boundary (NLNI N03-2025), railway (NLNI N02-2022), land
+  price (NLNI L01-2024), hazard (NONE), service (NONE), analysis outputs
+  (OLS/LISA/MGWR figures, prior audits), plus empty dirs and missing locations.
+  Flags data_raw/tokyo_simulated_density.geojson as SIMULATED (do_not_reuse).
+  ASCII-safe.
 
-literature/04_synthesis/population_baseline_exact_table_manual_verification_checklist.md  [new]
-  Human-readable note (sections A-I): purpose; evidence boundary; priority rows
-  (DDL_001/002/010); manual verification table; category/denominator cautions;
-  metadata fields to prepare after approval; recommended approval sequence; what
-  not to do yet; recommended next action. States no decision approved; gap remains
-  under verification.
+literature/04_synthesis/existing_local_data_reuse_audit.md  [new]
+  Human-readable audit (sections A-J): purpose; evidence boundary; locations
+  inspected; inventory summary (counts); reuse assessment by 7 modules; critical
+  all-foreign-vs-Chinese distinction; decision-log implications (no edits);
+  metadata reconstruction needs; repository safety conclusion; recommended next
+  action (metadata reconstruction + checksum task + continue manual verification).
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the manual-verification checklist task and its checks.
+  Refreshed to describe the inventory/reuse-audit task and its checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
 
 outputs/claude_reports/latest_safety_check.txt  [modified]
-  Refreshed public-repo safety check for this checklist pass.
+  Refreshed public-repo safety check for this audit pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  metadata/data_download_decision_log.csv (read only - NOT edited),
-  metadata/population_baseline_acquisition_approval_package.csv,
-  metadata/official_data_source_metadata_template.csv,
+  metadata/data_download_decision_log.csv (read only), all existing metadata
+  control CSVs (approval package, exact-table checklist, metadata template),
   data_acquisition_readiness_checklist.csv, official_data_variable_blueprint.csv,
   official_data_usability_inventory.csv, official_source_registry.csv,
   literature_matrix.csv, gap_verification_matrix.csv,
-  round02_gap_evidence_audit_table.csv, round02_japanese_source_tracking.csv,
-  manual_check_results_template.csv, .gitignore, TokyoProject.docx, ref/, data/,
-  data_raw/, data_processed/, manuscript files, PDF/DOCX files, scripts/, and raw
-  outputs under outputs/literature_discovery/ and outputs/literature_verification/.
+  round02_gap_evidence_audit_table.csv, manual_check_results_template.csv,
+  .gitignore, TokyoProject.docx, ref/, and ALL existing data files under data/,
+  data_raw/, data_processed/ (NOT modified, moved, renamed, deleted, copied, or
+  staged), scripts/, and raw outputs under outputs/literature_discovery/ and
+  outputs/literature_verification/.
+
+EXISTING DATA FILES
+  Inventoried by metadata/stat only; none modified, moved, renamed, deleted,
+  copied, or staged. data_raw/ remains ignored and untracked.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
-  TokyoProject.docx, ref/, outputs/literature_discovery/,
-  outputs/literature_verification/ (all ignored by .gitignore)
+  TokyoProject.docx, ref/, data_raw/ (all contents), data_processed/,
+  outputs/literature_discovery/, outputs/literature_verification/, outputs/html/,
+  outputs/maps/ (all ignored or untracked; left as-is)
 
 DELETED FILES
   (none)

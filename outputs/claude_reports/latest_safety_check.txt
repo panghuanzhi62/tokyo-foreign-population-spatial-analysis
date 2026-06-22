@@ -1,19 +1,35 @@
-TOKYO-CHINA ROUND 02 - POPULATION-BASELINE EXACT-TABLE MANUAL VERIFICATION CHECKLIST - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - EXISTING LOCAL DATA INVENTORY AND REUSE AUDIT - SAFETY CHECK
 Generated: 2026-06-22
 
 TASK OBJECTIVE
-  Population baseline exact-table manual verification checklist (pre-download
-  governance). No downloads, no API extraction, no scraping, no browser
-  automation, no decision approved, no decision-log edits.
+  Existing local data inventory and reuse audit (read-only governance). No
+  downloads, no API extraction, no scraping, no browser automation, no decision
+  approved, no decision-log edits, no data files modified/moved/renamed/deleted/
+  copied.
 
 ARTIFACT STATUS
-  manual verification checklist CSV created: YES (4 rows)
-  manual verification note created: YES
+  inventory CSV created: YES (36 rows)
+  reuse audit note created: YES
 
-COVERAGE
-  manual check rows: 4
-  priority DDL rows covered: DDL_001, DDL_002, DDL_010 (YES)
-  dependent DDL rows noted: DDL_003, DDL_009, DDL_011, DDL_012, DDL_013 (YES)
+INVENTORY COUNTS
+  inventory rows: 36
+  locations inspected: 18 (11 repo + 7 external)
+  tracked repo data-related items: 5
+  untracked ignored data-related items: 22
+  external local items (existing): 1
+  missing expected locations: 7
+  direct_reuse_possible: 0
+  reuse_after_metadata_reconstruction: 9
+  must_re_download_after_approval: 0
+  keep_local_only (recommended_action): 1
+  unknown/manual_review_needed (recommended_action): 14
+
+DATA-FILE SAFETY
+  existing data files modified: NO
+  existing data files moved/renamed/deleted/copied: NO
+  existing data files staged: NO
+  data_raw/ tracked into repo: NO (remains ignored/untracked)
+  large GIS/raw files staged: NO
 
 DECISION-LOG INTEGRITY (read only; unchanged vs HEAD)
   decision log modified: NO
@@ -29,7 +45,7 @@ COPYRIGHT / DATA SAFETY
   DOCX files staged: NO
   TokyoProject.docx staged: NO
   ref/ staged: NO
-  data/ data_raw/ data_processed/ staged: NO
+  data/ data_raw/ data_processed/ data files staged: NO
   scripts/ staged: NO
   raw outputs (literature_discovery / literature_verification) staged: NO
 
@@ -43,10 +59,12 @@ READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
   metadata template modified: NO
   decision log modified: NO
   approval package modified: NO
+  exact-table checklist modified: NO
+  manual results template modified: NO (file does not exist - recorded missing)
   .gitignore modified: NO
 
 SENSITIVE KEYWORD SCAN (token, secret, api_key, appid, password, CINII_APP_ID)
-  New checklist CSV + note: no secrets. Repo-wide: only benign references -
+  Inventory CSV + audit note: no secrets. Repo-wide: only benign references -
   env-variable NAME CINII_APP_ID (read via os.environ.get in harvest scripts; no
   value), the word "secret" in safety guidance, "token" in matrices/uv.lock.
   RESULT: PASS.
@@ -58,20 +76,22 @@ EVIDENCE-CLAIM SAFETY
   final gap claimed: NO
 
 CHECKS
-  CSV validation result: PASS (checklist + 10 existing CSVs parse via csv.DictReader)
-  duplicate manual_check_id check: PASS (0 duplicates)
-  mojibake scan result: PASS (ASCII-safe checklist CSV, note, reports)
+  CSV validation result: PASS (inventory + 11 existing CSVs parse; manual results
+    template reported MISSING)
+  duplicate inventory_id check: PASS (0 duplicates)
+  mojibake scan result: PASS (ASCII-safe inventory CSV, note, reports)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
 FILES STAGED (explicit; no `git add .`)
-  metadata/population_baseline_exact_table_manual_verification_checklist.csv
-  literature/04_synthesis/population_baseline_exact_table_manual_verification_checklist.md
+  metadata/existing_local_data_inventory.csv
+  literature/04_synthesis/existing_local_data_reuse_audit.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  User opens the official ISA/e-Stat pages and fills the manual checklist; after
-  confirmation, prepare a narrow approval update for DDL_001 and DDL_002 only.
-  No download until approval. No Introduction; no novelty.
+  Prepare a metadata reconstruction + checksum task for strong reuse candidates
+  (N03 boundary, N02 railway, L01 land price, e-Stat census archives) and continue
+  manual exact-table verification for DDL_001/DDL_002. No download until approval.
+  No Introduction; no novelty.
