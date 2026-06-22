@@ -1,13 +1,12 @@
-TOKYO-CHINA ROUND 02 - OFFICIAL EXACT-TABLE/EXACT-LAYER CONFIRMATION BATCH 1 - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - OFFICIAL DOWNLOAD/PREPROCESSING TASK DESIGN BATCH 1 - VERIFICATION SUMMARY
 Generated: 2026-06-23
 
 TASK OBJECTIVE
-  Batch 1 of exact-table and exact-layer confirmation: identify and record exact
-  official table IDs, exact catalogue/layer names and identifiers, access routes,
-  key fields, geography, time period, CRS/geometry where visible, and license/terms
-  status for the highest-priority population and spatial layers. Pre-download
-  confirmation only. NO datasets downloaded. NO full extraction. NO preprocessing/
-  modeling. NO Introduction. NO novelty. Status: gap under verification.
+  Design a safe, reproducible download and preprocessing workflow for the first
+  batch of official sources (e-Stat/ISA population tables; NLNI N03/N02/A31/A33/A40;
+  GSI reference; Hazard Map Portal context). Workflow-design only. NO datasets
+  downloaded. NO full extraction. NO preprocessing/modeling. NO Introduction. NO
+  novelty. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -16,63 +15,48 @@ BRANCH
   agentic-upgrade
 
 ARTIFACTS
-  exact confirmation CSV created: YES
-    literature/02_matrices/official_exact_table_layer_confirmation_batch1.csv (34 cols, 12 rows)
+  design CSV created: YES
+    literature/02_matrices/official_download_preprocessing_design_batch1.csv (33 cols, 15 rows)
   synthesis note created: YES
-    literature/04_synthesis/official_exact_table_layer_confirmation_batch1_note.md (sections A-G)
+    literature/04_synthesis/official_download_preprocessing_design_batch1_note.md (sections A-I)
 
-CONFIRMATION COVERAGE
-  confirmation rows: 12
+DESIGN COVERAGE
+  design rows: 15
   official sources covered: 5 distinct source_id
-    R02_OFF_TGT_001 e-Stat (population/foreign-resident tables + WebAPI route)
-    R02_OFF_TGT_002 Immigration Services Agency / Zairyu Gaikokujin Tokei
-    R02_OFF_TGT_005 MLIT NLNI (N03 boundaries, N02 railway/stations, A31/A33/A40 hazard)
-    R02_OFF_TGT_006 GSI (tiles + Kiban Chizu Joho)
-    R02_OFF_TGT_011 Hazard Map Portal (web-map export check)
-  confirmation_status counts: exact_layer_confirmed=3; terms_confirmed=3;
-    exact_name_confirmed_id_pending=2; metadata_confirmed_download_not_tested=2;
-    catalogue_confirmed_layer_pending=1; manual_browser_check_needed=1
+    R02_OFF_TGT_001 e-Stat (population metadata + WebAPI discovery + license)
+    R02_OFF_TGT_002 ISA / Zairyu Gaikokujin Tokei (Chinese / total / non-Chinese vars)
+    R02_OFF_TGT_005 MLIT NLNI (N03 boundaries, N02 railway/station, A31/A33/A40 hazard, license)
+    R02_OFF_TGT_006 GSI (reference/basemap + license)
+    R02_OFF_TGT_011 Hazard Map Portal (web-map context / export-feasibility check)
+  data_domain counts: resident_foreigner_statistics=5; disaster_hazard_layer=3;
+    license_terms=3; administrative_boundary_layer=1; railway_station_accessibility_layer=1;
+    spatial_reference=1; web_map_context=1
+  planned_download_status: every row is design/pending/context only; no row enables
+    download now (large_download_allowed_now=no for all 15 rows)
 
-EXACT IDENTIFIERS CONFIRMED
-  exact table IDs confirmed: 1 (e-Stat government statistics code/toukei 00250012,
-    survey Zairyu Gaikokujin Tokei / Statistics on Foreign Residents); per-table
-    statsDataId pending. Local observation recorded: ISA table family 24-12-t2,
-    nationality code 01_023 = China.
-  exact layer names confirmed: 5
-    N03 Gyosei Kuiki (administrative boundaries)
-    N02 Tetsudo (railway lines + stations)
-    A31 Kozui Shinsui Sotei Kuiki (flood inundation)
-    A33 Dosha Saigai Keikai Kuiki (sediment disaster)
-    A40 Tsunami Shinsui Sotei (tsunami inundation)
-  exact layer IDs confirmed: 5 (N03, N02, A31, A33, A40)
-    fully detailed (format/geometry/CRS/vintage): N03, N02, A31
-    catalogue id+name confirmed, per-layer detail pending: A33, A40
+POPULATION CONSTRUCTION DESIGN
+  Chinese residents: nationality code 01_023 = China (ISA family 24-12-t2)
+  Total foreign residents: total (sosu) category
+  Non-Chinese foreign residents: non_chinese_foreign = total_foreign - chinese_residents
+    (same municipality and reference period; avoids Chinese-vs-all-foreigners double count)
+  Join key: official municipality area code -> NLNI N03 administrative area code (mapping to confirm)
 
-CONFIRMED SPATIAL METADATA (no download)
-  N03 boundaries: Shapefile + GML(JPGIS2014); polygon; JGD2011 geographic (B,L);
-    fields incl. prefecture/municipality names + administrative area code; vintage
-    2023-01-01 (v3.1); national incl. Tokyo/Saitama/Chiba/Kanagawa.
-  N02 railway: lines + stations; Shapefile/GeoJSON/GML; JGD2011; fields incl. line
-    name, operating company, station name; vintage FY2024 (2024-12-31).
-  A31 flood: Shapefile/GeoJSON/GML; polygon; JGD2011; vintage FY2022 (v4.0).
-
-POPULATION CONSTRUCTION ASSESSMENT
-  population construction feasible: PARTIAL (survey, China + total categories, and
-    license confirmed; exact municipality statsDataId and vintage pending)
-  non-Chinese foreign construction feasible: YES (non_Chinese_foreign =
-    total_foreign(sosu) - Chinese(Chugoku) at the same area and period; avoids
-    contrasting Chinese vs all foreigners)
+SPATIAL DESIGN
+  N03 boundaries: base spatial unit + join layer; JGD2011 (EPSG:6668) -> reproject EPSG:6677
+  N02 railway/stations: distance-to-station / station-density accessibility inputs
+  A31 flood ready for scripted download later; A33 sediment / A40 tsunami need per-layer
+    datalist inspection first; Hazard Map Portal = context only (use NLNI for downloads)
+  GSI: reference/basemap; Kiban Chizu Joho only if needed (registration)
 
 EVIDENCE-CLAIM SAFETY
   datasets downloaded: NO
   full data extraction run: NO
+  preprocessing/modeling run: NO
   PDFs downloaded/staged: NO
   DOCX files staged: NO
   academic matrices modified (literature_matrix / gap_verification_matrix): NO
   official registry modified: NO
-  data-usability inventory modified: NO
-  inspection plan modified: NO
-  manual_check_results_template modified: NO
+  prior inventory/inspection/confirmation files modified: NO
   raw outputs staged: NO
   ref/ or data/ staged: NO
   TokyoProject.docx touched: NO
@@ -82,27 +66,21 @@ EVIDENCE-CLAIM SAFETY
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (confirmation CSV 34 cols x 12 rows; inspection plan,
-    data-usability inventory, manual_check_results_template, official_source_registry,
+  CSV validation result: PASS (design CSV 33 cols x 15 rows; confirmation batch1,
+    inspection plan, data-usability inventory, official_source_registry,
     literature_matrix, gap_verification_matrix all parse cleanly via csv.DictReader)
-  duplicate check result: PASS (no duplicate confirmation_id)
-  controlled-value check: PASS (confirmation_domain, target_type, confirmation_status,
-    priority, risk_level, recommended_next_action all within allowed sets)
-  mojibake scan result: PASS (CSV/note/reports valid UTF-8, ASCII-only; exact id
-    codes + romanized official names used; no U+FFFD and no double-encoding patterns)
+  duplicate check result: PASS (no duplicate design_id)
+  controlled-value check: PASS (data_domain, planned_download_status, risk_level,
+    recommended_next_action all within allowed sets)
+  mojibake scan result: PASS (CSV/note/reports valid UTF-8, ASCII-only; no U+FFFD and
+    no double-encoding byte patterns)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS (only the 5 intended files staged)
 
-ACCESS NOTE
-  Only small official metadata queries were used (e-Stat survey metadata; NLNI
-  datalist pages; Hazard Portal landing). GSI pages were TLS-restricted in the
-  sandbox this run; GSI terms/products carried from the round01 official check. No
-  datasets, GIS files, PDFs, HTML snapshots, or screenshots were downloaded or
-  committed.
-
 NEXT RECOMMENDED STEP
-  "official download/preprocessing task design batch 1" (population source 00250012
-  and key NLNI layers are confirmed enough to design a conservative, no-bulk-download
-  task plan). Fall back to "confirmation batch 2" only if the exact e-Stat statsDataId
-  / municipality granularity or A33/A40 detail cannot be pinned down during design.
-  No large download; no Introduction; no novelty; gap remains under verification.
+  "e-Stat/ISA exact statsDataId and API-parameter discovery batch" (metadata-only):
+  resolve the municipality-level statsDataId, vintage, and China/total category codes
+  for survey 00250012 before scaffolding any download script. If resolved quickly,
+  proceed to "official download script scaffold batch 1" (N03/N02/A31 first; A33/A40
+  after per-layer datalist inspection). No large download; no Introduction; no
+  novelty; gap remains under verification.

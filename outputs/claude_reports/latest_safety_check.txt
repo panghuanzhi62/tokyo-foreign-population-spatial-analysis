@@ -1,32 +1,27 @@
-TOKYO-CHINA ROUND 02 - OFFICIAL EXACT-TABLE/EXACT-LAYER CONFIRMATION BATCH 1 - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - OFFICIAL DOWNLOAD/PREPROCESSING TASK DESIGN BATCH 1 - SAFETY CHECK
 Generated: 2026-06-23
 
 TASK OBJECTIVE
-  Build a batch-1 exact-table/exact-layer confirmation CSV and a synthesis note from
-  official catalogue/metadata/terms pages. Pre-download confirmation only. No dataset
-  download, no full data extraction, no GIS file download, no scraping/crawling, no
-  browser automation, no preprocessing/modeling, no manuscript text. Only small
-  official metadata queries were used to identify IDs, names, fields, and terms.
+  Design a download/preprocessing workflow for batch-1 official sources. Design only.
+  No dataset download, no full data extraction, no preprocessing/modeling, no GIS
+  file download, no scraping/crawling, no browser automation, no manuscript text.
 
 ARTIFACT STATUS
-  exact confirmation CSV created: YES (34 cols x 12 rows)
-  synthesis note created: YES (sections A-G)
-  confirmation rows: 12
+  design CSV created: YES (33 cols x 15 rows)
+  synthesis note created: YES (sections A-I)
+  design rows: 15
   official sources covered: 5 distinct source_id
-  exact table IDs confirmed: 1 (e-Stat toukei 00250012; per-table statsDataId pending)
-  exact layer names confirmed: 5 (N03, N02, A31, A33, A40)
-  exact layer IDs confirmed: 5 (N03, N02, A31, A33, A40)
 
 DATA / COPYRIGHT SAFETY
   datasets downloaded by Claude: NO
   full data extraction run: NO
+  preprocessing/modeling run: NO
   GIS zip/shp/geopackage downloaded: NO
-  APIs called for extraction: NO (metadata-only routes referenced; no app-id pull)
+  APIs called for extraction: NO
   PDFs downloaded: NO
   PDFs staged: NO
   HTML snapshots committed: NO
   screenshots committed: NO
-  raw API outputs committed: NO
   DOCX files staged: NO
   TokyoProject.docx staged: NO
   TokyoProject.docx modified: NO
@@ -35,9 +30,10 @@ DATA / COPYRIGHT SAFETY
   scripts/ staged: NO
   raw outputs (literature_discovery / literature_verification) staged: NO
   credentials or API keys written: NO
-  temporary metadata files: kept outside the repo; none staged
+  every design row has large_download_allowed_now = no
 
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
+  official_exact_table_layer_confirmation_batch1.csv modified: NO
   official_table_layer_inspection_plan.csv modified: NO
   official_data_usability_inventory.csv modified: NO
   manual_check_results_template.csv modified: NO
@@ -50,13 +46,12 @@ READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
   .gitignore modified: NO
 
 SENSITIVE KEYWORD SCAN (token, secret, api_key, appid, password)
-  confirmation CSV + synthesis note: no secrets. RESULT: PASS.
+  design CSV + synthesis note: no secrets. RESULT: PASS.
 
 ENCODING
-  confirmation CSV: UTF-8 (ASCII-only), parses via csv.DictReader; exact id codes
-    plus romanized official names used (no kanji); no U+FFFD replacement chars and no
-    double-encoding (mojibake) byte patterns.
-  synthesis note: UTF-8, no mojibake markers.
+  design CSV: UTF-8 (ASCII-only), parses via csv.DictReader; no U+FFFD replacement
+    chars and no double-encoding (mojibake) byte patterns.
+  synthesis note: UTF-8 (ASCII-only), no mojibake markers.
   reports: ASCII-safe.
 
 EVIDENCE-CLAIM SAFETY
@@ -68,23 +63,22 @@ EVIDENCE-CLAIM SAFETY
   no prior academic study exists.
 
 CHECKS
-  CSV validation result: PASS (confirmation CSV + 6 source CSVs parse cleanly)
-  duplicate check result: PASS (no duplicate confirmation_id)
-  controlled-value check: PASS (confirmation_domain, target_type, confirmation_status,
-    priority, risk_level, recommended_next_action all within allowed sets)
+  CSV validation result: PASS (design CSV + 6 source CSVs parse cleanly)
+  duplicate check result: PASS (no duplicate design_id)
+  controlled-value check result: PASS (data_domain, planned_download_status,
+    risk_level, recommended_next_action all within allowed sets)
   mojibake scan result: PASS
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
 FILES STAGED (explicit; no `git add .`; CSV added with `git add -f` due to *.csv gitignore)
-  literature/02_matrices/official_exact_table_layer_confirmation_batch1.csv
-  literature/04_synthesis/official_exact_table_layer_confirmation_batch1_note.md
+  literature/02_matrices/official_download_preprocessing_design_batch1.csv
+  literature/04_synthesis/official_download_preprocessing_design_batch1_note.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  "official download/preprocessing task design batch 1" (no bulk download), or fall
-  back to "confirmation batch 2" if exact e-Stat statsDataId/municipality granularity
-  or A33/A40 layer detail cannot be pinned down. No Introduction; no novelty; gap
-  under verification.
+  "e-Stat/ISA exact statsDataId and API-parameter discovery batch" (metadata-only),
+  then "official download script scaffold batch 1" if statsDataId resolves. No
+  Introduction; no novelty; gap under verification.

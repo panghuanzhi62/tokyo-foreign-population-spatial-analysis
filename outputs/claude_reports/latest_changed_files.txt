@@ -1,40 +1,38 @@
-TOKYO-CHINA ROUND 02 - OFFICIAL EXACT-TABLE/EXACT-LAYER CONFIRMATION BATCH 1 - CHANGED FILES
+TOKYO-CHINA ROUND 02 - OFFICIAL DOWNLOAD/PREPROCESSING TASK DESIGN BATCH 1 - CHANGED FILES
 Generated: 2026-06-23
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/official_exact_table_layer_confirmation_batch1.csv      [new]
-  literature/04_synthesis/official_exact_table_layer_confirmation_batch1_note.md [new]
+  literature/02_matrices/official_download_preprocessing_design_batch1.csv       [new]
+  literature/04_synthesis/official_download_preprocessing_design_batch1_note.md  [new]
   outputs/claude_reports/latest_verification_summary.txt                         [modified]
   outputs/claude_reports/latest_changed_files.txt                                [modified]
   outputs/claude_reports/latest_safety_check.txt                                 [modified]
 
 DETAIL
 
-literature/02_matrices/official_exact_table_layer_confirmation_batch1.csv  [new]
-  Batch-1 exact-table/exact-layer confirmation, 34 columns x 12 rows, UTF-8. One row
-  per confirmed (or partially confirmed) target: e-Stat Zairyu Gaikokujin Tokei
-  table (toukei 00250012), e-Stat WebAPI discovery route, ISA same survey, NLNI N03
-  administrative boundaries, NLNI N02 railway/stations, NLNI A31 flood, NLNI A33/A40
-  sediment+tsunami, GSI tiles/Kiban Chizu Joho, Hazard Map Portal export check, and
-  three terms/license checks (e-Stat/ISA, NLNI, GSI). Columns capture source,
-  confirmation domain/target type, exact table-or-layer name, official table/layer
-  id, survey/dataset name, catalogue/metadata, API/download, and terms URLs,
-  confirmation status, confirmed geography, spatial unit, time/vintage, key fields,
-  geometry, CRS, file/access format, Chinese and total-foreign category confirmation,
-  non-Chinese construct feasibility, the population formula, download/large-download/
-  license flags, manual-check need, automation feasibility, priority, risk, blocking
-  issue, next action, and notes. Exact Japanese identifiers are reproduced (official
-  identifiers) with romanized glosses. No datasets, GIS files, or PDFs were
-  downloaded; metadata-only.
+literature/02_matrices/official_download_preprocessing_design_batch1.csv  [new]
+  Download/preprocessing workflow design, 33 columns x 15 rows, UTF-8 (ASCII-only).
+  One row per design target: e-Stat/ISA survey 00250012 metadata gate, e-Stat WebAPI
+  statsDataId-discovery design, Chinese-residents variable (code 01_023), total
+  foreign residents variable, non-Chinese construction (total - Chinese), NLNI N03
+  boundaries, NLNI N02 railway/stations, NLNI A31 flood, NLNI A33 sediment, NLNI A40
+  tsunami, Hazard Map Portal context/manual-check, GSI reference, and three
+  license/provenance design rows (e-Stat/ISA, NLNI, GSI). Columns capture source,
+  confirmed code/layer, data domain, planned download status, access method,
+  landing/API/terms URLs, license action, expected local-only raw/processed/metadata
+  paths, expected format/encoding/CRS/geometry/scope/time/key-fields, planned
+  variable/output, join key, preprocessing steps, quality checks, minimal-test and
+  large-download flags (all large_download_allowed_now=no), manual-check need,
+  blocking issue, risk, recommended script/task name, next action, and notes.
 
-literature/04_synthesis/official_exact_table_layer_confirmation_batch1_note.md  [new]
-  Human-readable synthesis note (sections A-G): purpose; evidence boundary;
-  confirmation summary table; population construction assessment; spatial layer
-  assessment; blocking issues; recommended next step.
+literature/04_synthesis/official_download_preprocessing_design_batch1_note.md  [new]
+  Human-readable design note (sections A-I): purpose; evidence boundary; download
+  readiness summary; proposed local-only folder structure; download-log metadata
+  fields; conservative preprocessing sequence; required quality checks; public-repo
+  safety rule; next step. ASCII-only.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the batch-1 confirmation task, coverage, confirmed
-  identifiers/metadata, population assessment, and checks.
+  Refreshed to describe the design task, coverage, population/spatial design, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -43,6 +41,7 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
+  literature/02_matrices/official_exact_table_layer_confirmation_batch1.csv,
   literature/02_matrices/official_table_layer_inspection_plan.csv,
   literature/02_matrices/official_data_usability_inventory.csv,
   literature/02_matrices/manual_check_results_template.csv,
@@ -62,8 +61,8 @@ UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
 
 NOTE ON GITIGNORE
   literature/02_matrices/*.csv is covered by the .gitignore `*.csv` rule; the new
-  confirmation CSV was added with an explicit `git add -f` of that single file
-  (consistent with the other tracked matrices CSVs). No `git add .` was used.
+  design CSV was added with an explicit `git add -f` of that single file (consistent
+  with the other tracked matrices CSVs). No `git add .` was used.
 
 DELETED FILES
   (none)
