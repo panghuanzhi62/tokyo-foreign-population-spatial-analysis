@@ -1,92 +1,77 @@
-TOKYO-CHINA ROUND 02 - LOCAL ISA/e-STAT 24-12-t2 VALIDATION (DDL_001/DDL_002) - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - OFFICIAL DATA-USABILITY INVENTORY - SAFETY CHECK
 Generated: 2026-06-22
 
 TASK OBJECTIVE
-  Validate local ISA/e-Stat 24-12-t2 Excel value-exports for DDL_001 and DDL_002
-  (local-file validation governance). No web download, no API extraction, no
-  scraping, no browser automation, no raw file modification, no decision approved,
-  no decision-log edits.
+  Build an official data-usability inventory (CSV) and a synthesis note from the
+  verified P1 official-source checks. Planning/reproducibility only. No dataset
+  download, no API extraction, no scraping, no browser automation, no new broad
+  web search, no manuscript text.
 
 ARTIFACT STATUS
-  filled confirmation template created: YES (2 rows)
-  validation note created: YES
-  local Excel files found: 4
-  values files validated: 2
-  DDL_001 supported: YES
-  DDL_002 supported: YES
+  inventory CSV created: YES (33 cols x 20 rows)
+  synthesis note created: YES (sections A-G)
+  inventory rows: 20
+  official sources covered: 16 distinct source_id (P1 official sources: 7 of 7)
+  source/layer families covered: 20
 
-VALIDATION SNAPSHOT
-  all_values data rows: 1891 (sum 3,768,977)
-  china_values data rows: 1762 (sum 873,247)
-  overlapping codes: 1762 ; all-only: 129 ; china-only: 0 ; China>All: 0
-  left-join feasible: YES ; all-only Tokyo codes: 13307,13362,13364,13382
-  required columns present + codes non-empty + counts numeric: YES (both files)
-
-RAW-FILE SAFETY
-  raw Excel files modified: NO
-  raw Excel files moved/renamed/deleted/copied: NO
-  raw Excel files staged: NO
-  raw Excel files committed: NO
-  data_raw/isa_estat tracked into repo: NO (ignored; nothing staged)
-
-DECISION-LOG INTEGRITY (read only; unchanged vs HEAD)
-  decision log modified: NO
-  approved downloads: 0
-  completed downloads: 0
-  DDL_001 / DDL_002: pending_user_approval, download_completed=no
-
-COPYRIGHT / DATA SAFETY
+DATA / COPYRIGHT SAFETY
   datasets downloaded by Claude: NO
   APIs called for extraction: NO
-  credentials or API keys written: NO
+  PDFs downloaded: NO
+  PDFs staged: NO
   DOCX files staged: NO
-  PDF files staged: NO
   TokyoProject.docx staged: NO
+  TokyoProject.docx modified: NO
   ref/ staged: NO
-  data/ data_raw/ data_processed/ data files staged: NO
+  data/ data_raw/ data_processed/ files staged: NO
   scripts/ staged: NO
   raw outputs (literature_discovery / literature_verification) staged: NO
-  non-Chinese residents computed: NO (deferred) ; DDL_010/density/hazard/service/
-    housing/railway/boundary handled: NO
+  credentials or API keys written: NO
 
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
-  decision log modified: NO
-  original blank confirmation template modified: NO
-  metadata template modified: NO
-  existing-data inventory / matrices / registry / readiness checklist / variable
-    blueprint / approval package modified: NO
+  literature_matrix.csv modified: NO
+  gap_verification_matrix.csv modified: NO
+  official_source_registry.csv modified: NO
+  manual_check_results_template.csv modified: NO
+  round02_japanese_source_tracking.csv modified: NO
+  round02_gap_evidence_audit_table.csv modified: NO
+  manual_fulltext_translation_checklist.csv modified: NO
   .gitignore modified: NO
 
-SENSITIVE KEYWORD SCAN (token, secret, api_key, appid, password, CINII_APP_ID)
-  Filled template + note: no secrets. Repo-wide: only benign references (env-var
-  NAME CINII_APP_ID via os.environ.get; "secret" in safety guidance; "token" in
-  matrices/uv.lock). RESULT: PASS.
+SENSITIVE KEYWORD SCAN (token, secret, api_key, appid, password)
+  inventory CSV + synthesis note: no secrets. RESULT: PASS.
 
 ENCODING
-  filled CSV + validation note: valid UTF-8 Japanese (intentional), verified no
-  U+FFFD replacement chars and no double-encoding (mojibake) byte patterns.
+  inventory CSV: UTF-8 (BOM), parses via csv.DictReader; ASCII-safe content; no
+    U+FFFD replacement chars and no double-encoding (mojibake) byte patterns.
+  synthesis note: ASCII-safe, no mojibake markers.
   reports: ASCII-safe.
 
 EVIDENCE-CLAIM SAFETY
   gap status: under verification
-  Introduction written: NO ; novelty asserted: NO ; final gap claimed: NO
+  Introduction written: NO
+  novelty asserted: NO
+  final gap claimed: NO
+  Note: official sources establish data feasibility only; they are NOT evidence
+  that no prior academic study exists.
 
 CHECKS
-  CSV validation result: PASS
-  duplicate check result: PASS (no duplicate decision_id)
+  CSV validation result: PASS (inventory + 4 academic CSVs parse cleanly)
+  duplicate check result: PASS (no duplicate inventory_id; source_id duplicated only
+    for R02_OFF_TGT_005 across 5 distinct candidate layer families - allowed)
+  controlled-value check: PASS
   mojibake scan result: PASS
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
 FILES STAGED (explicit; no `git add .`)
-  metadata/isa_estat_ddL001_ddL002_fast_confirmation_template_filled.csv
-  literature/04_synthesis/isa_estat_ddL001_ddL002_local_excel_validation.md
+  literature/02_matrices/official_data_usability_inventory.csv
+  literature/04_synthesis/official_data_usability_inventory_note.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  Prepare a narrow processing script for DDL_001/DDL_002 only (read local values
-  xlsx, build processed baseline with keep-and-flag rule, compute checksums, draft
-  metadata; do not commit raw xlsx; do not compute derived variables). No
-  Introduction; no novelty.
+  Prepare the "official table/layer-level inspection plan" (exact e-Stat/ISA tables;
+  exact NLNI/GSI/Hazard layers) without downloading large datasets unless
+  explicitly instructed. No Introduction; no novelty; gap under verification.

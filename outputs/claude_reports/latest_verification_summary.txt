@@ -1,13 +1,12 @@
-TOKYO-CHINA ROUND 02 - LOCAL ISA/e-STAT 24-12-t2 VALIDATION (DDL_001/DDL_002) - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - OFFICIAL DATA-USABILITY INVENTORY - VERIFICATION SUMMARY
 Generated: 2026-06-22
 
 TASK OBJECTIVE
-  Validate the user-provided local ISA/e-Stat 24-12-t2 Excel value-exports for
-  DDL_001 (Chinese resident count) and DDL_002 (total foreign resident count),
-  confirm whether they support those rows, and update the confirmation evidence.
-  Local-file validation only - NO web download, NO API extraction, NO raw file
-  modified/moved/committed, NO decision approved, NO decision-log edit. Status:
-  gap under verification.
+  Convert the verified P1 official-source feasibility/license checks into a
+  structured official data-usability inventory for empirical construction of the
+  Tokyo-China opportunity-risk project. Data-source planning and reproducibility
+  only. NO datasets downloaded. NO Introduction written. NO novelty asserted.
+  Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -15,72 +14,69 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-SOURCE / TABLE IDENTITY
-  e-Stat / Immigration Services Agency; table 24-12-t2 (Zairyu Gaikokujin Tokei,
-  nationality/region x status x municipality); reference 2024-12 (Reiwa 6 Dec).
-  Page: e-stat.go.jp/stat-search/files?layout=datalist&lid=000001462230
-  Terms: e-stat.go.jp/terms-of-use
-
 ARTIFACTS
-  filled confirmation template created: YES
-    metadata/isa_estat_ddL001_ddL002_fast_confirmation_template_filled.csv (21 cols, 2 rows)
-  validation note created: YES
-    literature/04_synthesis/isa_estat_ddL001_ddL002_local_excel_validation.md
-  (original blank template NOT overwritten)
+  inventory CSV created: YES
+    literature/02_matrices/official_data_usability_inventory.csv (33 cols, 20 rows)
+  synthesis note created: YES
+    literature/04_synthesis/official_data_usability_inventory_note.md (sections A-G)
 
-VALIDATION RESULTS
-  local Excel files found: 4 (2 pivot + 2 values)
-  values files validated: 2 (all_values, china_values; read-only)
-  required columns present (both): YES (shikuchoson code, todofuken, shikuchoson,
-    count) ; codes non-empty: YES ; counts numeric: YES
-  all_values data rows: 1891 (sum 3,768,977)
-  china_values data rows: 1762 (sum 873,247)
-  overlapping municipality codes: 1762
-  all-only municipality codes: 129
-  china-only municipality codes: 0
-  China count exceeds All count: 0
-  left-join china -> all by shikuchoson code: FEASIBLE (china is subset)
-  all-only Tokyo codes: 13307, 13362, 13364, 13382 (keep-and-flag, candidate zero)
-  special aggregate row 99999 (undetermined/unknown) present in both - handle
-    explicitly in cleaning (exclude from municipality spatial joins)
-  DDL_001 supported: YES (china_values = Chinese by nationality/region 01_023, not
-    Chinese-origin)
-  DDL_002 supported: YES (all_values = total foreign residents, same table family)
+INVENTORY COVERAGE
+  inventory rows: 20
+  official sources covered: 16 distinct source_id (P1 official sources: 7 of 7)
+  source/layer families covered: 20
+  P1 official sources (all present):
+    R02_OFF_TGT_001 e-Stat
+    R02_OFF_TGT_002 Immigration Services Agency resident statistics
+    R02_OFF_TGT_005 MLIT National Land Numerical Information (split into 5 candidate
+      layer families: administrative boundaries, railways/stations, land use,
+      public facilities, disaster/hazard-related)
+    R02_OFF_TGT_006 GSI
+    R02_OFF_TGT_010 Tokyo disaster prevention
+    R02_OFF_TGT_011 Hazard Map Portal
+    R02_OFF_TGT_013 TSUNAGARI (multilingual life information)
+  Supporting registered sources also inventoried (context/baseline):
+    R02_OFF_TGT_003, _004 (population baseline);
+    R02_OFF_TGT_007, _008, _009 (housing context);
+    R02_OFF_TGT_012 (disaster policy context);
+    R02_OFF_TGT_014, _015, _016 (multilingual service context)
 
-DECISION-LOG STATE (read only; NOT modified)
-  decision log modified: NO
-  approved downloads: 0
-  completed downloads: 0
-  DDL_001 / DDL_002 = pending_user_approval, download_completed=no
+USABILITY NOTES (no overstatement)
+  Exact e-Stat/ISA tables NOT opened; marked ready_for_table_level_inspection.
+  Exact NLNI/GSI layers NOT opened; marked ready_for_layer_level_inspection and
+    described as candidate layer families only.
+  Hazard Map Portal: clean GIS export uncertain -> browser_manual_check_needed.
+  TSUNAGARI: TLS unreachable in sandbox -> access_unclear_hold (recheck needed).
 
 EVIDENCE-CLAIM SAFETY
-  datasets downloaded by Claude: NO
-  APIs called: NO
-  raw Excel files committed: NO (data_raw/ ignored; nothing staged)
-  raw Excel files modified/moved/renamed/deleted/copied: NO
-  data files staged: NO
-  non-Chinese residents computed: NO (deferred)
-  DDL_010 / density / hazard / service / housing / railway / boundary handled: NO
+  datasets downloaded: NO
+  PDFs downloaded/staged: NO
+  DOCX files staged: NO
+  academic matrices modified (literature_matrix / gap_verification_matrix): NO
+  official registry modified: NO
+  manual_check_results_template modified: NO
+  raw outputs staged: NO
+  ref/ or data/ staged: NO
+  TokyoProject.docx touched: NO
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (filled template 21 cols x 2 rows; decision log and
-    metadata template parse cleanly)
-  duplicate check result: PASS (no duplicate decision_id in filled template;
-    DDL_001, DDL_002)
-  decision-log integrity: PASS (unchanged vs HEAD; 0 approved; 0 completed)
-  mojibake scan result: PASS (filled CSV + note are valid UTF-8 Japanese, no
-    replacement chars / no double-encoding; reports ASCII-safe)
+  CSV validation result: PASS (inventory 33 cols x 20 rows; manual_check_results_
+    template, official_source_registry, literature_matrix, gap_verification_matrix
+    all parse cleanly via csv.DictReader)
+  duplicate check result: PASS (no duplicate inventory_id; source_id duplicated only
+    for R02_OFF_TGT_005 across 5 distinct candidate layer families - allowed)
+  controlled-value check: PASS (analysis_readiness, risk_level,
+    recommended_next_action, project_dimension_supported all within allowed sets)
+  mojibake scan result: PASS (reports ASCII-safe; CSV and note no replacement chars
+    / no double-encoding byte patterns)
   git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS (no raw xlsx/data/DOCX/PDF staged; no secrets)
+  sensitive-file check result: PASS (only the 5 intended files staged)
 
 NEXT RECOMMENDED STEP
-  Prepare a NARROW acquisition/processing script for DDL_001 and DDL_002 ONLY:
-  read the local values xlsx (read-only), build a processed population-baseline
-  table (left-join china->all by code, keep-and-flag all-only municipalities,
-  exclude 99999), compute SHA-256 checksums for the raw xlsx, and draft metadata.
-  Do not commit raw xlsx. Do not compute non-Chinese/shares yet. Do not write the
+  Prepare the "official table/layer-level inspection plan": identify exact
+  e-Stat/ISA tables and exact NLNI/GSI/Hazard Map Portal layers. Still avoid
+  downloading large datasets unless explicitly instructed. Do not write the
   Introduction. Do not assert novelty. Status remains: gap under verification.
