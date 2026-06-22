@@ -1,17 +1,18 @@
-TOKYO-CHINA ROUND 02 - e-STAT/ISA statsDataId & API-PARAMETER DISCOVERY BATCH 1 - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - e-STAT/ISA MANUAL TABLE-SEARCH CONFIRMATION BATCH 2 - SAFETY CHECK
 Generated: 2026-06-23
 
 TASK OBJECTIVE
-  Identify exact e-Stat/ISA statsDataId candidates and API-parameter logic for the
-  population module using official metadata routes only. Discovery only. No dataset
-  download, no full extraction, no raw API outputs committed, no preprocessing/
-  modeling, no scraping/crawling, no browser automation, no manuscript text.
+  Manual official table-search/metadata confirmation of the population-module source:
+  ISA 00250012 municipality x nationality availability and Census 00200521 as a
+  municipality/small-area alternative. Confirmation only. No dataset download, no full
+  extraction, no full municipality tables retrieved, no raw API outputs committed, no
+  preprocessing/modeling, no scraping/crawling, no browser automation, no manuscript text.
 
 ARTIFACT STATUS
-  API-parameter discovery CSV created: YES (37 cols x 10 rows)
+  manual table-search confirmation CSV created: YES (38 cols x 9 rows)
   synthesis note created: YES (sections A-G)
-  discovery rows: 10
-  official sources covered: 2 distinct source_id (e-Stat, ISA)
+  confirmation rows: 9
+  official sources covered: 3 (ISA 00250012, e-Stat portal, Census 00200521)
 
 API-KEY / DATA SAFETY
   datasets downloaded by Claude: NO
@@ -23,8 +24,7 @@ API-KEY / DATA SAFETY
   API keys / appIds printed: NO
   API keys / appIds written to files: NO
   API keys / appIds committed: NO
-  ESTAT_APP_ID status: NOT SET in this environment (recorded as a requirement; only
-    the env-var placeholder $ESTAT_APP_ID is referenced in the design)
+  ESTAT_APP_ID status: NOT SET (recorded as a requirement; only env-var placeholder referenced)
   scraping/crawling/browser automation: NO (only small official metadata page reads)
   preprocessing/modeling run: NO
   PDFs downloaded: NO
@@ -38,6 +38,7 @@ API-KEY / DATA SAFETY
   raw outputs (literature_discovery / literature_verification) staged: NO
 
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
+  estat_isa_api_parameter_discovery_batch1.csv modified: NO
   official_download_preprocessing_design_batch1.csv modified: NO
   official_exact_table_layer_confirmation_batch1.csv modified: NO
   official_table_layer_inspection_plan.csv modified: NO
@@ -52,12 +53,12 @@ READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
   .gitignore modified: NO
 
 SENSITIVE KEYWORD SCAN (token, secret, api_key, appid literal, password)
-  discovery CSV + synthesis note: only the env-var placeholder $ESTAT_APP_ID; no
+  confirmation CSV + synthesis note: only the env-var placeholder $ESTAT_APP_ID; no
   literal key value (regex appId=<8+ alnum> not found). RESULT: PASS.
 
 ENCODING
-  discovery CSV: UTF-8 (ASCII-only), parses via csv.DictReader; no U+FFFD replacement
-    chars and no double-encoding (mojibake) byte patterns.
+  confirmation CSV: UTF-8 (ASCII-only), parses via csv.DictReader; no U+FFFD
+    replacement chars and no double-encoding (mojibake) byte patterns.
   synthesis note: UTF-8 (ASCII-only), no mojibake markers.
   reports: ASCII-safe.
 
@@ -70,24 +71,22 @@ EVIDENCE-CLAIM SAFETY
   no prior academic study exists.
 
 CHECKS
-  CSV validation result: PASS (discovery CSV + 7 source CSVs parse cleanly)
-  duplicate check result: PASS (no duplicate discovery_id)
-  controlled-value check result: PASS (confirmation_status, population_variable_supported,
-    non_chinese_foreign_construct_possible, risk_level, recommended_next_action all valid)
+  CSV validation result: PASS (batch2 CSV + 8 source CSVs parse cleanly)
+  duplicate check result: PASS (no duplicate confirmation_id)
+  controlled-value check result: PASS (all 9 controlled columns within allowed sets)
   mojibake scan result: PASS
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
 FILES STAGED (explicit; no `git add .`; CSV added with `git add -f` due to *.csv gitignore)
-  literature/02_matrices/estat_isa_api_parameter_discovery_batch1.csv
-  literature/04_synthesis/estat_isa_api_parameter_discovery_batch1_note.md
+  literature/02_matrices/estat_isa_manual_table_search_confirmation_batch2.csv
+  literature/04_synthesis/estat_isa_manual_table_search_confirmation_batch2_note.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  "e-Stat/ISA manual table-search confirmation batch 2" (capture exact statsDataId;
-  confirm whether ISA has any municipality x nationality table; else evaluate Census
-  00200521 municipality/small-area nationality as the municipality source), then
-  "e-Stat/ISA small metadata test script scaffold". No Introduction; no novelty; gap
-  under verification.
+  "Census 00200521 exact table and category confirmation batch" (confirm 2020 Census
+  municipality nationality table, China discrete category, total foreign, exact
+  statsDataId, and N03 municipality join), then a keyed small metadata test scaffold
+  once statsDataId/codes are fixed. No Introduction; no novelty; gap under verification.

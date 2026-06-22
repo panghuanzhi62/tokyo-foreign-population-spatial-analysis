@@ -1,13 +1,14 @@
-TOKYO-CHINA ROUND 02 - e-STAT/ISA statsDataId & API-PARAMETER DISCOVERY BATCH 1 - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - e-STAT/ISA MANUAL TABLE-SEARCH CONFIRMATION BATCH 2 - VERIFICATION SUMMARY
 Generated: 2026-06-23
 
 TASK OBJECTIVE
-  Use official e-Stat/ISA metadata routes only to identify exact table IDs,
-  statsDataId candidates, area-code logic, time-period logic, nationality/category
-  logic, and a feasible API-parameter plan for constructing Chinese residents,
-  total foreign residents, and non-Chinese foreign residents (= total - Chinese).
-  Metadata/API-parameter discovery only. NO datasets downloaded. NO full extraction.
-  NO preprocessing/modeling. NO Introduction. NO novelty. Status: gap under verification.
+  Use official e-Stat/ISA/Census table-search and metadata pages to confirm exact
+  table identity for the population module: whether ISA 00250012 has any
+  municipality x nationality table, and whether Population Census 00200521 can serve
+  as a municipality/small-area source for Chinese residents, total foreign residents,
+  and non-Chinese foreign residents (= total - Chinese). Manual table-search/metadata
+  confirmation only. NO datasets downloaded. NO full extraction. NO preprocessing/
+  modeling. NO Introduction. NO novelty. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -16,47 +17,51 @@ BRANCH
   agentic-upgrade
 
 ARTIFACTS
-  API-parameter discovery CSV created: YES
-    literature/02_matrices/estat_isa_api_parameter_discovery_batch1.csv (37 cols, 10 rows)
+  manual table-search confirmation CSV created: YES
+    literature/02_matrices/estat_isa_manual_table_search_confirmation_batch2.csv (38 cols, 9 rows)
   synthesis note created: YES
-    literature/04_synthesis/estat_isa_api_parameter_discovery_batch1_note.md (sections A-G)
+    literature/04_synthesis/estat_isa_manual_table_search_confirmation_batch2_note.md (sections A-G)
 
-DISCOVERY COVERAGE
-  discovery rows: 10
-  official sources covered: 2 distinct source_id (R02_OFF_TGT_001 e-Stat; R02_OFF_TGT_002 ISA)
-  rows: survey identity; Chinese var; total var; non-Chinese construct; area-code logic;
-    time-code logic; API parameter plan; municipality x nationality availability (blocker);
-    statsDataId discovery route; data-integrity constraints
+CONFIRMATION COVERAGE
+  confirmation rows: 9
+  official sources covered: 3 (ISA Statistics on Foreign Residents 00250012; e-Stat
+    portal; Population Census 00200521) across 2 distinct registry source_id
+    (R02_OFF_TGT_001 e-Stat, R02_OFF_TGT_002 ISA)
 
-KEY CONFIRMATIONS (official metadata only)
-  statistics code 00250012: CONFIRMED
-  provider statistic id tstat: CONFIRMED = 000001018034
-  survey name: CONFIRMED (Zairyu Gaikokujin Tokei / Statistics on Foreign Residents)
-  classifications: nationality/region x residence-status x prefecture; 2019+ flexible
-    tables add age/sex but remain capped at PREFECTURE
-  latest reference: 2025-06 (biannual Jun/Dec); DB last updated 2025-12-12
-  China nationality category: present; code 01_023 (local obs; live cdCat check pending)
-  total foreign (sosu) category: present (exact cdCat pending)
+KEY CONFIRMATIONS (official metadata only; ESTAT_APP_ID not set)
+  ISA statistics code 00250012: CONFIRMED
+  ISA provider tstat 000001018034: CONFIRMED
+  ISA nationality x prefecture table: CONFIRMED (exists)
+  ISA municipality x nationality table: NOT FOUND (classification is nationality x
+    residence-status x prefecture; no municipality x nationality in the DB listing)
+  ISA municipality total-foreign table: exists (total only; cannot isolate Chinese)
+  ISA exact statsDataId: NOT confirmed (titles/ids not exposed without appId)
+  Census 00200521: latest complete = 2020 (Reiwa 2); nationality/foreign tables
+    exist; municipality-level tabulation available (6,740 municipality files); small-
+    area category exists but nationality-by-country there not evident
 
 RESOLUTION STATUS (conservative)
-  statistics code confirmed: YES
-  candidate statsDataId confirmed: NO (not exposed on JS search pages; ESTAT_APP_ID
-    unset so getStatsList not run; manual DB drill or appId needed)
-  China category code confirmed: PARTIAL (01_023 from local obs; verify via getMetaInfo)
-  total foreign category confirmed: PARTIAL (total/sosu exists; exact code pending)
-  area code logic confirmed: PARTIAL (prefecture JIS 11/12/13/14 confirmed;
-    municipality x nationality unavailable in ISA)
-  time code logic confirmed: PARTIAL (biannual Jun/Dec, latest 2025-06; exact cdTime pending)
-  population construction feasible: PARTIAL (prefecture-level YES; municipality-level NOT confirmed)
-  non-Chinese foreign construction feasible: PARTIAL (prefecture YES; municipality pending)
+  ISA statistics code confirmed: YES
+  ISA provider tstat confirmed: YES
+  ISA exact statsDataId confirmed: NO
+  ISA municipality x nationality confirmed: NO (not found)
+  ISA suitable as main source: NO (prefecture-level cross-check only)
+  Census 00200521 evaluated: YES
+  Census candidate table identified: PARTIAL (nationality + municipality geography
+    confirmed; exact China-at-municipality statsDataId/codes need field check)
+  Census suitable as main source: PARTIAL
+  population construction feasible: PARTIAL (prefecture via ISA confirmed;
+    municipality via Census indicated but exact table pending)
+  non-Chinese foreign construction feasible: PARTIAL (prefecture YES; municipality
+    pending Census field check)
+  recommended population source: Census_00200521 (main, municipality) + ISA 00250012
+    (prefecture cross-check)
 
-KEY FINDING / DECISION POINT
-  ISA 00250012 publishes nationality at PREFECTURE level only; municipality data is
-  total-foreign, not nationality-split. Prefecture-level = 4 units for the metro area
-  (too coarse for the intended spatial analysis). The likely municipality-level source
-  for Chinese residents is the Population Census (statistics code 00200521,
-  nationality by municipality/small-area), with ISA kept for prefecture cross-check.
-  This is NOT resolved here; it is the central task for batch 2.
+ANALYTICAL IMPLICATION
+  Comparison must be Chinese vs non-Chinese foreign residents (= total - Chinese) at
+  the same unit/year, NOT Chinese vs all foreigners. Prefecture-only ISA (4 units) is
+  too coarse for the metropolitan spatial analysis; main population measure moves to
+  Census municipality level.
 
 EVIDENCE-CLAIM SAFETY
   datasets downloaded: NO
@@ -74,23 +79,24 @@ EVIDENCE-CLAIM SAFETY
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (discovery CSV 37 cols x 10 rows; design batch1,
-    confirmation batch1, inspection plan, data-usability inventory,
-    official_source_registry, literature_matrix, gap_verification_matrix all parse
-    cleanly via csv.DictReader)
-  duplicate check result: PASS (no duplicate discovery_id)
-  controlled-value check: PASS (confirmation_status, population_variable_supported,
-    non_chinese_foreign_construct_possible, risk_level, recommended_next_action all valid)
+  CSV validation result: PASS (batch2 CSV 38 cols x 9 rows; api-parameter discovery
+    batch1, design batch1, confirmation batch1, inspection plan, data-usability
+    inventory, official_source_registry, literature_matrix, gap_verification_matrix
+    all parse cleanly via csv.DictReader)
+  duplicate check result: PASS (no duplicate confirmation_id)
+  controlled-value check: PASS (confirmation_route, confirmation_status,
+    geographic_level, population_variable_supported, non_chinese_foreign_construct_possible,
+    suitable_for_main_spatial_analysis, suitable_for_prefecture_crosscheck, risk_level,
+    recommended_next_action all within allowed sets)
   mojibake scan result: PASS (CSV/note/reports valid UTF-8, ASCII-only; no U+FFFD,
     no double-encoding byte patterns)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS (only the 5 intended files staged)
 
 NEXT RECOMMENDED STEP
-  "e-Stat/ISA manual table-search confirmation batch 2": manually capture the exact
-  statsDataId(s) under tstat 000001018034; determine definitively whether any ISA
-  municipality x nationality table exists; if not, evaluate the Population Census 2020
-  municipality/small-area nationality table (00200521) as the municipality source,
-  keeping ISA for prefecture cross-check. Then "e-Stat/ISA small metadata test script
-  scaffold" (tiny metadata/count test only). No large download; no Introduction; no
-  novelty; gap remains under verification.
+  "Census 00200521 exact table and category confirmation batch": confirm the exact
+  2020 Census nationality table at municipality level, that China is a discrete
+  category, the total foreign category, exact statsDataId(s), and the municipality
+  area-code join to NLNI N03 - before any metadata test or extraction. A keyed small
+  metadata test scaffold follows only once statsDataId/codes are fixed. No large
+  download; no Introduction; no novelty; gap remains under verification.
