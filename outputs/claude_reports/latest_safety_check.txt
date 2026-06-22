@@ -1,32 +1,23 @@
-TOKYO-CHINA ROUND 02 - POPULATION-BASELINE ACQUISITION APPROVAL PACKAGE - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - POPULATION-BASELINE DECISION-LOG UPDATE - SAFETY CHECK
 Generated: 2026-06-22
 
 TASK OBJECTIVE
-  Population baseline acquisition approval package (pre-download governance). No
-  downloads, no API extraction, no scraping, no browser automation, no decision
-  approved, no decision-log edits.
+  Population baseline decision-log update (append-only governance). Add new
+  pending_user_approval rows for missing derived variables and the e-Stat
+  denominator. No downloads, no API extraction, no scraping, no decision
+  approved, no existing row edited.
 
-ARTIFACT STATUS
-  approval package CSV created: YES (6 rows)
-  approval package note created: YES
-
-APPROVAL COUNTS
-  approval items: 6
-  linked decision-log rows: 3 (DDL_001, DDL_002, DDL_003)
-  items recommended approve_after_manual_table_check: 2
-  items held for exact table check: 1
-  items held for license check: 0
-  items held for geography/category consistency: 3
-  decision log approved downloads: 0
-  decision log completed downloads: 0
-
-DECISION-LOG INTEGRITY
-  decision log edited: NO (read-only; unchanged vs HEAD)
-  any decision_status changed to approved: NO
-  any download_completed changed to yes: NO
-  recorded mismatches (future DDL recommendations, not repaired): 4
-    (Chinese share; foreign-resident share; density/area denominator; e-Stat
-    total-population denominator R02_OFF_TGT_001)
+DECISION-LOG STATUS
+  decision log updated: YES (append-only)
+  rows before: 8
+  rows after: 13
+  new rows added: 5 (DDL_009..DDL_013)
+  existing DDL_001/002/003 preserved: YES (5 insertions, 0 deletions; DDL_004..008
+    also unchanged)
+  new rows pending_user_approval: 5
+  approved downloads: 0
+  completed downloads: 0
+  every row download_completed = no: YES (all 13)
 
 COPYRIGHT / DATA SAFETY
   datasets downloaded: NO
@@ -47,14 +38,15 @@ READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
   usability inventory modified: NO
   variable blueprint modified: NO
   readiness checklist modified: NO
-  metadata control files modified: NO (template + decision log unchanged)
+  metadata template modified: NO
+  approval package modified: NO
   .gitignore modified: NO
+  (Only metadata/data_download_decision_log.csv changed - append only.)
 
 SENSITIVE KEYWORD SCAN (token, secret, api_key, appid, password, CINII_APP_ID)
-  Only benign references in tracked files: env-variable NAME CINII_APP_ID (read
-  via os.environ.get in harvest scripts; no hardcoded value), the word "secret"
-  in safety guidance, "token" in matrices/uv.lock. No credential value committed.
-  New approval CSV/note: no secrets. RESULT: PASS.
+  New rows + note: no secrets. Repo-wide: only benign references - env-variable
+  NAME CINII_APP_ID (read via os.environ.get in harvest scripts; no value), the
+  word "secret" in safety guidance, "token" in matrices/uv.lock. RESULT: PASS.
 
 EVIDENCE-CLAIM SAFETY
   gap status: under verification
@@ -63,21 +55,23 @@ EVIDENCE-CLAIM SAFETY
   final gap claimed: NO
 
 CHECKS
-  CSV validation result: PASS (approval package + 9 existing CSVs parse via
-    csv.DictReader)
-  duplicate approval_item_id check: PASS (0 duplicates)
-  mojibake scan result: PASS (ASCII-safe approval CSV, note, reports)
+  CSV validation result: PASS (decision log 27 cols x 13 rows; + 9 other CSVs)
+  duplicate decision_id check: PASS (0 duplicates)
+  new rows pending check: PASS (5 pending_user_approval)
+  download_completed check: PASS (all no)
+  additive-only check: PASS (5 insertions, 0 deletions)
+  mojibake scan result: PASS (ASCII-safe decision log, note, reports)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
 FILES STAGED (explicit; no `git add .`)
-  metadata/population_baseline_acquisition_approval_package.csv
-  literature/04_synthesis/population_baseline_acquisition_approval_package.md
+  metadata/data_download_decision_log.csv
+  literature/04_synthesis/population_baseline_decision_log_update.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  User manually confirms exact ISA/e-Stat tables, license, geography, category;
-  decides approvals (PBA_001/002 first); adds new DDL rows for PBA_004/005/006
-  prerequisites. No download until approval. No Introduction; no novelty.
+  User manually confirms exact ISA/e-Stat tables for DDL_001/DDL_002 and the new
+  e-Stat denominator (DDL_010); may approve DDL_001/DDL_002 first. No download
+  until approval. No Introduction; no novelty.

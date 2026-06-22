@@ -1,49 +1,51 @@
-TOKYO-CHINA ROUND 02 - POPULATION-BASELINE ACQUISITION APPROVAL PACKAGE - CHANGED FILES
+TOKYO-CHINA ROUND 02 - POPULATION-BASELINE DECISION-LOG UPDATE - CHANGED FILES
 Generated: 2026-06-22
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  metadata/population_baseline_acquisition_approval_package.csv             [new]
-  literature/04_synthesis/population_baseline_acquisition_approval_package.md [new]
+  metadata/data_download_decision_log.csv                                   [modified - append only]
+  literature/04_synthesis/population_baseline_decision_log_update.md        [new]
   outputs/claude_reports/latest_verification_summary.txt                    [modified]
   outputs/claude_reports/latest_changed_files.txt                           [modified]
   outputs/claude_reports/latest_safety_check.txt                            [modified]
 
 DETAIL
 
-metadata/population_baseline_acquisition_approval_package.csv  [new]
-  New approval-package table, 30 columns x 6 data rows (PBA_001..PBA_006). One
-  row per proposed population-baseline acquisition/construction unit requiring
-  user approval before download/API: decision_id link, source, candidate
-  variable, current decision/download status, exact table/endpoint to check,
-  manual page + license checks, year/geography/nationality-category/denominator/
-  join-key to confirm, planned access method + storage, repo_commit_policy,
-  required metadata fields, preprocessing plan, construction logic, QC check,
-  approval condition, blocking issue, risk level, recommended user decision,
-  notes. ASCII-safe. PBA_001/002 -> approve_after_manual_table_check;
-  PBA_003/004/006 -> hold_until_geography_confirmed; PBA_005 ->
-  hold_until_exact_table_confirmed. PBA_004/005/006 carry the recorded
-  decision-log mismatch (no DDL row yet; recommend future DDL additions).
+metadata/data_download_decision_log.csv  [modified - APPEND ONLY]
+  Appended 5 new rows (DDL_009..DDL_013) after the prior maximum DDL_008; 27-col
+  schema unchanged; existing rows DDL_001..DDL_008 preserved byte-for-byte
+  (git numstat: 5 insertions, 0 deletions). New rows:
+    DDL_009 Chinese share of foreign residents (R02_OFF_TGT_002), risk low,
+      derived_after_source_download, depends on DDL_001/DDL_002.
+    DDL_010 Total population denominator (R02_OFF_TGT_001), risk medium,
+      manual_download_or_api_after_table_confirmation; exact e-Stat table TBC.
+    DDL_011 Foreign resident share of total population (R02_OFF_TGT_001 +
+      R02_OFF_TGT_002), risk medium, derived_after_source_download.
+    DDL_012 Administrative area denominator for density (R02_OFF_TGT_005), risk
+      medium, manual_download_after_layer_confirmation; relates to DDL_004.
+    DDL_013 Chinese resident density (R02_OFF_TGT_002 + R02_OFF_TGT_005), risk
+      medium, derived_after_source_download, depends on DDL_001/DDL_012.
+  All: decision_status=pending_user_approval, download_completed=no, blank
+  download_date/location/metadata_record_id, repo_commit_policy=do_not_commit_raw_data,
+  post_download_action=record_metadata;compute_checksum;store_raw_ignored;create_processing_script,
+  notes stating no download has occurred. ASCII-safe.
 
-literature/04_synthesis/population_baseline_acquisition_approval_package.md  [new]
-  Human-readable approval note (sections A-J): purpose; evidence boundary; source
-  scope with Chinese-nationals-vs-origin clarification; approval-package summary
-  (counts); approval table; required manual checks; decision-log linkage
-  (DDL_001/002/003) and the four recorded mismatches; metadata fields to fill
-  after approval; repository safety rules; recommended next action. States gap
-  remains under verification; no novelty asserted; no decision approved.
+literature/04_synthesis/population_baseline_decision_log_update.md  [new]
+  Human-readable update note (sections A-H): purpose; evidence boundary; existing
+  rows preserved; new rows table; why the rows were needed (mismatch from approval
+  package); dependency logic; repository safety rules; recommended next action.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the approval-package task and its checks.
+  Refreshed to describe the decision-log update and its checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
 
 outputs/claude_reports/latest_safety_check.txt  [modified]
-  Refreshed public-repo safety check for this approval-package pass.
+  Refreshed public-repo safety check for this update pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  metadata/data_download_decision_log.csv (decision log - NOT edited; mismatch
-  only recorded in the package/note), metadata/official_data_source_metadata_template.csv,
+  metadata/population_baseline_acquisition_approval_package.csv,
+  metadata/official_data_source_metadata_template.csv,
   data_acquisition_readiness_checklist.csv, official_data_variable_blueprint.csv,
   official_data_usability_inventory.csv, official_source_registry.csv,
   literature_matrix.csv, gap_verification_matrix.csv,
@@ -51,6 +53,7 @@ NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
   manual_check_results_template.csv, .gitignore, TokyoProject.docx, ref/, data/,
   data_raw/, data_processed/, manuscript files, PDF/DOCX files, scripts/, and raw
   outputs under outputs/literature_discovery/ and outputs/literature_verification/.
+  (DDL_001..DDL_008 inside the decision log were not edited.)
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx, ref/, outputs/literature_discovery/,

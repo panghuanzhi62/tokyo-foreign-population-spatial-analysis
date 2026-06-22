@@ -1,15 +1,13 @@
-TOKYO-CHINA ROUND 02 - POPULATION-BASELINE ACQUISITION APPROVAL PACKAGE - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - POPULATION-BASELINE DECISION-LOG UPDATE - VERIFICATION SUMMARY
 Generated: 2026-06-22
 
 TASK OBJECTIVE
-  Population baseline acquisition approval package. Prepare the first P1 data
-  acquisition approval package (ISA / e-Stat population baseline): map planned
-  population-baseline variables to existing decision-log rows, list exact manual
-  checks, and record (without editing the decision log) where decision-log rows
-  are missing. Pre-download approval package only - NO data downloaded, NO APIs
-  called, NO decision approved. Status: gap under verification.
-  (Resumed cleanly after an API stream idle timeout; the interrupted run had
-  written no files, so this is a clean execution.)
+  Population baseline decision-log update. Append new pending_user_approval rows
+  to metadata/data_download_decision_log.csv for the missing population-baseline
+  derived variables and the e-Stat total-population denominator identified by the
+  acquisition approval package. Append-only governance task - NO data downloaded,
+  NO APIs called, NO decision approved, NO existing row edited. Status: gap under
+  verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -18,29 +16,32 @@ BRANCH
   agentic-upgrade
 
 ARTIFACTS
-  approval package CSV created: YES
-    metadata/population_baseline_acquisition_approval_package.csv (30 cols, 6 rows)
-  approval package note created: YES
-    literature/04_synthesis/population_baseline_acquisition_approval_package.md
+  decision log updated: YES (append-only; metadata/data_download_decision_log.csv)
+  decision-log update note created: YES
+    literature/04_synthesis/population_baseline_decision_log_update.md
 
-COUNTS
-  approval items ....................................... 6
-  linked decision-log rows ............................. 3 (DDL_001, DDL_002, DDL_003)
-  items recommended approve_after_manual_table_check ... 2 (PBA_001, PBA_002)
-  items held for exact table check ..................... 1 (PBA_005)
-  items held for license check ......................... 0
-  items held for geography/category consistency ........ 3 (PBA_003, PBA_004, PBA_006)
-  decision log approved downloads ...................... 0
-  decision log completed downloads ..................... 0
+DECISION-LOG COUNTS
+  decision-log rows before .............................. 8
+  decision-log rows after ............................... 13
+  new decision-log rows added ........................... 5 (DDL_009..DDL_013)
+  existing DDL_001/002/003 preserved .................... YES (purely additive:
+                                                          5 insertions, 0 deletions)
+  new rows pending_user_approval ........................ 5
+  decision log approved downloads ....................... 0
+  decision log completed downloads ...................... 0
 
-DECISION-LOG MISMATCH (recorded; NOT repaired - recommended future DDL updates)
-  1. No DDL row for Chinese share of foreign residents (PBA_004).
-  2. No DDL row for foreign-resident share of total population (PBA_005).
-  3. No DDL row for density / area-based denominator (PBA_006).
-  4. No DDL row for the e-Stat total-population denominator (R02_OFF_TGT_001),
-     required by PBA_005.
-  The decision log was NOT edited; these are recommended as new
-  pending_user_approval rows in a later explicit update task.
+NEW ROWS (all pending_user_approval, download_completed=no, approval_required=yes)
+  DDL_009 Chinese share of foreign residents          | R02_OFF_TGT_002        | low
+  DDL_010 Total population denominator                | R02_OFF_TGT_001        | medium
+  DDL_011 Foreign resident share of total population  | R02_OFF_TGT_001+002    | medium
+  DDL_012 Administrative area denominator for density | R02_OFF_TGT_005        | medium
+  DDL_013 Chinese resident density                    | R02_OFF_TGT_002+005    | medium
+
+DEPENDENCY LOGIC
+  DDL_009 depends on DDL_001 + DDL_002; DDL_011 depends on DDL_002 + DDL_010;
+  DDL_013 depends on DDL_001 + DDL_012 (which relates to existing DDL_004).
+  Derived rows must not be computed until all source inputs are approved,
+  acquired, and metadata-recorded.
 
 EVIDENCE-CLAIM SAFETY
   datasets downloaded: NO
@@ -52,7 +53,8 @@ EVIDENCE-CLAIM SAFETY
   usability inventory modified: NO
   variable blueprint modified: NO
   readiness checklist modified: NO
-  metadata control files modified: NO
+  metadata template modified: NO
+  approval package modified: NO
   .gitignore modified: NO
   gap status: under verification
   Introduction written: NO
@@ -60,22 +62,25 @@ EVIDENCE-CLAIM SAFETY
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (population_baseline_acquisition_approval_package.csv
-    30 cols, 6 rows; plus metadata template, decision log, readiness checklist,
-    blueprint, usability inventory, registry, manual results, literature_matrix,
-    gap_verification_matrix all parse cleanly)
-  duplicate check result: PASS (no duplicate approval_item_id)
-  decision-log integrity: PASS (0 approved; 0 download_completed=yes; no
-    decision_status changed to approved; decision log unchanged vs HEAD)
-  mojibake scan result: PASS (ASCII-safe approval CSV, note, and reports)
+  CSV validation result: PASS (decision log now 27 cols x 13 rows; plus approval
+    package, metadata template, readiness checklist, blueprint, usability
+    inventory, registry, manual results, literature_matrix, gap_verification_matrix
+    all parse cleanly)
+  duplicate check result: PASS (no duplicate decision_id; new IDs DDL_009..013
+    are sequential after DDL_008)
+  new rows pending check: PASS (all 5 = pending_user_approval)
+  download_completed check: PASS (all 13 rows = no)
+  approved/completed check: PASS (0 approved; 0 completed)
+  additive-only check: PASS (git numstat 5 insertions, 0 deletions; DDL_001..008
+    unchanged)
+  mojibake scan result: PASS (ASCII-safe decision log, note, and reports)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS (no tracked PDFs/DOCX/data/credentials; only
     benign keyword hits: env-var NAME CINII_APP_ID, "secret"/"token" in text)
 
 NEXT RECOMMENDED STEP
-  User manually opens the official ISA / e-Stat pages, confirms exact tables/
-  endpoints + license + geography + category, and decides which approval items
-  to approve (PBA_001/PBA_002 first; PBA_003 after consistency; PBA_004/005/006
-  require new DDL rows first). Only after approval prepare a narrow acquisition
-  note/script. Do not bulk download. Do not write the Introduction. Do not assert
-  novelty. Status remains: gap under verification.
+  User manually checks exact ISA/e-Stat pages for DDL_001/DDL_002 and the new
+  e-Stat denominator (DDL_010); may then approve only DDL_001/DDL_002 first;
+  derived/denominator rows follow once inputs are confirmed. No bulk download.
+  Do not write the Introduction. Do not assert novelty. Status remains: gap under
+  verification.
