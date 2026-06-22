@@ -1,18 +1,18 @@
-TOKYO-CHINA ROUND 02 - OFFICIAL DATA-USABILITY INVENTORY - SAFETY CHECK
-Generated: 2026-06-22
+TOKYO-CHINA ROUND 02 - OFFICIAL TABLE/LAYER-LEVEL INSPECTION PLAN - SAFETY CHECK
+Generated: 2026-06-23
 
 TASK OBJECTIVE
-  Build an official data-usability inventory (CSV) and a synthesis note from the
-  verified P1 official-source checks. Planning/reproducibility only. No dataset
-  download, no API extraction, no scraping, no browser automation, no new broad
-  web search, no manuscript text.
+  Build an official table/layer-level inspection plan (CSV) and a synthesis note
+  from the completed official data-usability inventory. Planning/reproducibility
+  only. No dataset download, no API extraction, no scraping, no browser automation,
+  no new broad web search, no manuscript text.
 
 ARTIFACT STATUS
-  inventory CSV created: YES (33 cols x 20 rows)
+  inspection plan CSV created: YES (31 cols x 25 rows)
   synthesis note created: YES (sections A-G)
-  inventory rows: 20
-  official sources covered: 16 distinct source_id (P1 official sources: 7 of 7)
-  source/layer families covered: 20
+  inspection rows: 25
+  official sources covered: 14 distinct source_id (core official sources: 7 of 7)
+  inspection domains covered: 11 of 11 controlled domains
 
 DATA / COPYRIGHT SAFETY
   datasets downloaded by Claude: NO
@@ -29,20 +29,21 @@ DATA / COPYRIGHT SAFETY
   credentials or API keys written: NO
 
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
+  official_data_usability_inventory.csv modified: NO
+  manual_check_results_template.csv modified: NO
+  official_source_registry.csv modified: NO
   literature_matrix.csv modified: NO
   gap_verification_matrix.csv modified: NO
-  official_source_registry.csv modified: NO
-  manual_check_results_template.csv modified: NO
   round02_japanese_source_tracking.csv modified: NO
   round02_gap_evidence_audit_table.csv modified: NO
   manual_fulltext_translation_checklist.csv modified: NO
   .gitignore modified: NO
 
 SENSITIVE KEYWORD SCAN (token, secret, api_key, appid, password)
-  inventory CSV + synthesis note: no secrets. RESULT: PASS.
+  inspection plan CSV + synthesis note: no secrets. RESULT: PASS.
 
 ENCODING
-  inventory CSV: UTF-8 (BOM), parses via csv.DictReader; ASCII-safe content; no
+  inspection plan CSV: UTF-8, parses via csv.DictReader; ASCII-safe content; no
     U+FFFD replacement chars and no double-encoding (mojibake) byte patterns.
   synthesis note: ASCII-safe, no mojibake markers.
   reports: ASCII-safe.
@@ -56,22 +57,22 @@ EVIDENCE-CLAIM SAFETY
   that no prior academic study exists.
 
 CHECKS
-  CSV validation result: PASS (inventory + 4 academic CSVs parse cleanly)
-  duplicate check result: PASS (no duplicate inventory_id; source_id duplicated only
-    for R02_OFF_TGT_005 across 5 distinct candidate layer families - allowed)
-  controlled-value check: PASS
+  CSV validation result: PASS (inspection plan + 5 source CSVs parse cleanly)
+  duplicate check result: PASS (no duplicate inspection_id)
+  controlled-value check: PASS (inspection_domain, inspection_target_type, priority,
+    risk_level, recommended_next_action all within allowed sets)
   mojibake scan result: PASS
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
 FILES STAGED (explicit; no `git add .`)
-  literature/02_matrices/official_data_usability_inventory.csv
-  literature/04_synthesis/official_data_usability_inventory_note.md
+  literature/02_matrices/official_table_layer_inspection_plan.csv
+  literature/04_synthesis/official_table_layer_inspection_plan_note.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  Prepare the "official table/layer-level inspection plan" (exact e-Stat/ISA tables;
-  exact NLNI/GSI/Hazard layers) without downloading large datasets unless
-  explicitly instructed. No Introduction; no novelty; gap under verification.
+  "official exact-table and exact-layer confirmation batch 1" (exact e-Stat/ISA
+  table IDs; exact NLNI/GSI/Hazard layer names) without downloading large datasets
+  unless explicitly instructed. No Introduction; no novelty; gap under verification.

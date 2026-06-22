@@ -1,12 +1,11 @@
-TOKYO-CHINA ROUND 02 - OFFICIAL DATA-USABILITY INVENTORY - VERIFICATION SUMMARY
-Generated: 2026-06-22
+TOKYO-CHINA ROUND 02 - OFFICIAL TABLE/LAYER-LEVEL INSPECTION PLAN - VERIFICATION SUMMARY
+Generated: 2026-06-23
 
 TASK OBJECTIVE
-  Convert the verified P1 official-source feasibility/license checks into a
-  structured official data-usability inventory for empirical construction of the
-  Tokyo-China opportunity-risk project. Data-source planning and reproducibility
-  only. NO datasets downloaded. NO Introduction written. NO novelty asserted.
-  Status: gap under verification.
+  Convert the completed official data-usability inventory into a concrete
+  table/layer-level inspection plan BEFORE any dataset download or preprocessing.
+  Planning and reproducibility only. NO datasets downloaded. NO Introduction
+  written. NO novelty asserted. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -15,37 +14,62 @@ BRANCH
   agentic-upgrade
 
 ARTIFACTS
-  inventory CSV created: YES
-    literature/02_matrices/official_data_usability_inventory.csv (33 cols, 20 rows)
+  inspection plan CSV created: YES
+    literature/02_matrices/official_table_layer_inspection_plan.csv (31 cols, 25 rows)
   synthesis note created: YES
-    literature/04_synthesis/official_data_usability_inventory_note.md (sections A-G)
+    literature/04_synthesis/official_table_layer_inspection_plan_note.md (sections A-G)
 
-INVENTORY COVERAGE
-  inventory rows: 20
-  official sources covered: 16 distinct source_id (P1 official sources: 7 of 7)
-  source/layer families covered: 20
-  P1 official sources (all present):
-    R02_OFF_TGT_001 e-Stat
-    R02_OFF_TGT_002 Immigration Services Agency resident statistics
-    R02_OFF_TGT_005 MLIT National Land Numerical Information (split into 5 candidate
-      layer families: administrative boundaries, railways/stations, land use,
-      public facilities, disaster/hazard-related)
-    R02_OFF_TGT_006 GSI
-    R02_OFF_TGT_010 Tokyo disaster prevention
-    R02_OFF_TGT_011 Hazard Map Portal
-    R02_OFF_TGT_013 TSUNAGARI (multilingual life information)
-  Supporting registered sources also inventoried (context/baseline):
-    R02_OFF_TGT_003, _004 (population baseline);
-    R02_OFF_TGT_007, _008, _009 (housing context);
-    R02_OFF_TGT_012 (disaster policy context);
-    R02_OFF_TGT_014, _015, _016 (multilingual service context)
+INSPECTION PLAN COVERAGE
+  inspection rows: 25
+  official sources covered: 14 distinct source_id
+    Core sources (all 7 present):
+      R02_OFF_TGT_001 e-Stat
+      R02_OFF_TGT_002 Immigration Services Agency / Zairyu Gaikokujin Tokei
+      R02_OFF_TGT_005 MLIT National Land Numerical Information (boundaries,
+        railways/stations, land use, public facilities, hazard layer families)
+      R02_OFF_TGT_006 GSI
+      R02_OFF_TGT_010 Tokyo disaster prevention
+      R02_OFF_TGT_011 Hazard Map Portal
+      R02_OFF_TGT_013 TSUNAGARI multilingual life information
+    Supporting registered sources (directly supporting empirical construction):
+      R02_OFF_TGT_003 MIC Basic Resident Register (denominator)
+      R02_OFF_TGT_004 Tokyo statistics (cross-check)
+      R02_OFF_TGT_007 Tokyo Housing Policy (context)
+      R02_OFF_TGT_008 UR rental housing (context)
+      R02_OFF_TGT_014 TICC (service context)
+      R02_OFF_TGT_015 ISA support portal (service context)
+      R02_OFF_TGT_016 CLAIR portal (service context)
+  inspection domains covered: 11 of 11 controlled domains
+      population_table; resident_foreigner_statistics; administrative_boundary_layer;
+      rail_station_accessibility_layer; land_use_or_housing_context_layer;
+      public_facility_or_service_layer; disaster_or_hazard_layer;
+      basemap_or_reference_layer; multilingual_service_context; policy_context;
+      terms_or_license_check
+  priority split: P1_blocking_before_download=8; P2_needed_before_modeling=6;
+      P3_context_only=11
+
+DIMENSION COVERAGE (A-G of the task)
+  A population baseline: ITL_001 (e-Stat table), ITL_002 (e-Stat WebAPI),
+    ITL_003 (ISA table), ITL_004 (MIC BRR), ITL_005 (Tokyo stats);
+    non-Chinese = all foreign minus Chinese constraint recorded.
+  B administrative boundaries/spatial units: ITL_006 (NLNI boundaries),
+    ITL_007 (GSI reference/basemap); Tokyo/Saitama/Chiba/Kanagawa scope.
+  C accessibility: ITL_008 (NLNI railway/station candidate layer family).
+  D housing/land-use: ITL_009 (NLNI land use), ITL_010 (NLNI facilities),
+    ITL_011 (Tokyo housing policy), ITL_012 (UR).
+  E disaster/risk: ITL_013 (NLNI hazard family), ITL_014 (Hazard Map Portal
+    web-map/manual-browser-check), ITL_015 (Tokyo disaster prevention context).
+  F service/multilingual: ITL_016 (TSUNAGARI manual browser check), ITL_017 (TICC),
+    ITL_018 (CLAIR), ITL_019 (ISA portal); all context-only.
+  G licensing/terms: ITL_020 (e-Stat), ITL_021 (ISA via e-Stat), ITL_022 (NLNI),
+    ITL_023 (GSI), ITL_024 (Hazard Map Portal), ITL_025 (TSUNAGARI/service pages).
 
 USABILITY NOTES (no overstatement)
-  Exact e-Stat/ISA tables NOT opened; marked ready_for_table_level_inspection.
-  Exact NLNI/GSI layers NOT opened; marked ready_for_layer_level_inspection and
-    described as candidate layer families only.
-  Hazard Map Portal: clean GIS export uncertain -> browser_manual_check_needed.
-  TSUNAGARI: TLS unreachable in sandbox -> access_unclear_hold (recheck needed).
+  Exact e-Stat/ISA table IDs NOT opened; rows marked inspect_exact_table.
+  Exact NLNI/GSI layer names NOT invented; candidate layer-family language used;
+    rows marked inspect_exact_layer.
+  Hazard Map Portal: clean GIS export uncertain -> manual_browser_check, high risk.
+  TSUNAGARI: TLS unreachable in sandbox -> manual_browser_check, high risk.
 
 EVIDENCE-CLAIM SAFETY
   datasets downloaded: NO
@@ -53,6 +77,7 @@ EVIDENCE-CLAIM SAFETY
   DOCX files staged: NO
   academic matrices modified (literature_matrix / gap_verification_matrix): NO
   official registry modified: NO
+  data-usability inventory modified: NO
   manual_check_results_template modified: NO
   raw outputs staged: NO
   ref/ or data/ staged: NO
@@ -63,20 +88,20 @@ EVIDENCE-CLAIM SAFETY
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (inventory 33 cols x 20 rows; manual_check_results_
-    template, official_source_registry, literature_matrix, gap_verification_matrix
-    all parse cleanly via csv.DictReader)
-  duplicate check result: PASS (no duplicate inventory_id; source_id duplicated only
-    for R02_OFF_TGT_005 across 5 distinct candidate layer families - allowed)
-  controlled-value check: PASS (analysis_readiness, risk_level,
-    recommended_next_action, project_dimension_supported all within allowed sets)
-  mojibake scan result: PASS (reports ASCII-safe; CSV and note no replacement chars
-    / no double-encoding byte patterns)
+  CSV validation result: PASS (inspection plan 31 cols x 25 rows; data-usability
+    inventory, manual_check_results_template, official_source_registry,
+    literature_matrix, gap_verification_matrix all parse cleanly via csv.DictReader)
+  duplicate check result: PASS (no duplicate inspection_id)
+  controlled-value check: PASS (inspection_domain, inspection_target_type, priority,
+    risk_level, recommended_next_action all within allowed sets)
+  mojibake scan result: PASS (CSV, note, and reports ASCII-safe; no replacement
+    chars and no double-encoding byte patterns)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS (only the 5 intended files staged)
 
 NEXT RECOMMENDED STEP
-  Prepare the "official table/layer-level inspection plan": identify exact
-  e-Stat/ISA tables and exact NLNI/GSI/Hazard Map Portal layers. Still avoid
-  downloading large datasets unless explicitly instructed. Do not write the
-  Introduction. Do not assert novelty. Status remains: gap under verification.
+  "official exact-table and exact-layer confirmation batch 1": inspect exact
+  e-Stat/ISA table IDs and exact NLNI/GSI/Hazard layer names, recording confirmed
+  IDs, fields, CRS, and per-table/per-layer license terms. Still avoid downloading
+  large datasets unless explicitly instructed. No Introduction; no novelty; gap
+  remains under verification.

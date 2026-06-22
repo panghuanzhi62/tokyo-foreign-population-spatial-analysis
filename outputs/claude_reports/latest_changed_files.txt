@@ -1,35 +1,41 @@
-TOKYO-CHINA ROUND 02 - OFFICIAL DATA-USABILITY INVENTORY - CHANGED FILES
-Generated: 2026-06-22
+TOKYO-CHINA ROUND 02 - OFFICIAL TABLE/LAYER-LEVEL INSPECTION PLAN - CHANGED FILES
+Generated: 2026-06-23
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/official_data_usability_inventory.csv          [new]
-  literature/04_synthesis/official_data_usability_inventory_note.md     [new]
-  outputs/claude_reports/latest_verification_summary.txt                [modified]
-  outputs/claude_reports/latest_changed_files.txt                       [modified]
-  outputs/claude_reports/latest_safety_check.txt                        [modified]
+  literature/02_matrices/official_table_layer_inspection_plan.csv        [new]
+  literature/04_synthesis/official_table_layer_inspection_plan_note.md   [new]
+  outputs/claude_reports/latest_verification_summary.txt                 [modified]
+  outputs/claude_reports/latest_changed_files.txt                        [modified]
+  outputs/claude_reports/latest_safety_check.txt                         [modified]
 
 DETAIL
 
-literature/02_matrices/official_data_usability_inventory.csv  [new]
-  Official data-usability inventory, 33 columns x 20 rows, UTF-8 (BOM). One row per
-  P1 official source plus directly useful registered supporting sources; MLIT NLNI
-  (R02_OFF_TGT_005) split into 5 candidate layer families (administrative
-  boundaries, railways/stations, land use, public facilities, disaster/hazard).
-  Columns cover official/verified/access status, stable URL, license/terms status,
-  download-required and API possibility, expected data type/format, expected
-  spatial/temporal granularity and coverage, expected key fields or candidate
-  layers, project dimension(s) supported, candidate variable/use, per-dimension
-  relevance flags, analysis readiness, remaining manual checks, risk level,
-  recommended next action, and notes. Usability is not overstated: unopened
-  tables/layers are marked for later table-level or layer-level inspection.
+literature/02_matrices/official_table_layer_inspection_plan.csv  [new]
+  Official table/layer-level inspection plan, 31 columns x 25 rows, UTF-8. One row
+  per concrete inspection target derived from the official data-usability inventory.
+  Covers population tables (e-Stat, ISA, MIC BRR, Tokyo stats), the e-Stat WebAPI,
+  NLNI candidate layer families (administrative boundaries, railways/stations, land
+  use, public facilities, hazard), GSI reference/basemap, the Hazard Map Portal
+  web-map, Tokyo disaster prevention context, multilingual service pages (TSUNAGARI,
+  TICC, CLAIR, ISA portal), and dedicated terms/license checks for e-Stat, ISA-via-
+  e-Stat, NLNI, GSI, the Hazard Map Portal, and service pages. Columns capture
+  inspection domain/target type, candidate table or layer name, catalogue/landing,
+  API/download, and terms/license URLs, project dimension supported, candidate
+  variable/output, required geographic scope, spatial unit/resolution, time period,
+  expected key fields, geometry type, file/access format, Chinese-specific and
+  non-Chinese comparison requirements, planned check steps, download/large-download/
+  license/manual-check flags, automation feasibility, priority, risk level, blocking
+  issue, recommended next action, and notes. No layer/table IDs were invented;
+  unopened tables/layers use candidate language and are marked for later inspection.
 
-literature/04_synthesis/official_data_usability_inventory_note.md  [new]
+literature/04_synthesis/official_table_layer_inspection_plan_note.md  [new]
   Human-readable synthesis note (sections A-G): purpose; evidence boundary;
-  source-to-variable map (markdown table); recommended empirical construction
-  sequence; risk register; safe interpretation; next step. ASCII-safe.
+  inspection priorities (markdown table); proposed pre-download sequence; blocking
+  issues; output of this stage; next step. ASCII-safe.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the inventory task, coverage, usability notes, and checks.
+  Refreshed to describe the inspection-plan task, coverage, dimension mapping,
+  usability notes, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -38,10 +44,11 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
+  literature/02_matrices/official_data_usability_inventory.csv,
+  literature/02_matrices/manual_check_results_template.csv,
+  literature/02_matrices/official_source_registry.csv,
   literature/02_matrices/literature_matrix.csv,
   literature/02_matrices/gap_verification_matrix.csv,
-  literature/02_matrices/official_source_registry.csv,
-  literature/02_matrices/manual_check_results_template.csv,
   literature/02_matrices/round02_japanese_source_tracking.csv,
   literature/02_matrices/round02_gap_evidence_audit_table.csv,
   literature/02_matrices/manual_fulltext_translation_checklist.csv,
@@ -50,7 +57,7 @@ NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
   outputs/literature_verification/.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
-  TokyoProject.docx, ref/, data_raw/ (incl. isa_estat/*.xlsx), data_processed/,
+  TokyoProject.docx, ref/, data_raw/, data_processed/,
   outputs/literature_discovery/, outputs/literature_verification/
 
 DELETED FILES
