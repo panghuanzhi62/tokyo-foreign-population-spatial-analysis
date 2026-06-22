@@ -1,12 +1,13 @@
-TOKYO-CHINA ROUND 02 - OFFICIAL DOWNLOAD/PREPROCESSING TASK DESIGN BATCH 1 - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - e-STAT/ISA statsDataId & API-PARAMETER DISCOVERY BATCH 1 - VERIFICATION SUMMARY
 Generated: 2026-06-23
 
 TASK OBJECTIVE
-  Design a safe, reproducible download and preprocessing workflow for the first
-  batch of official sources (e-Stat/ISA population tables; NLNI N03/N02/A31/A33/A40;
-  GSI reference; Hazard Map Portal context). Workflow-design only. NO datasets
-  downloaded. NO full extraction. NO preprocessing/modeling. NO Introduction. NO
-  novelty. Status: gap under verification.
+  Use official e-Stat/ISA metadata routes only to identify exact table IDs,
+  statsDataId candidates, area-code logic, time-period logic, nationality/category
+  logic, and a feasible API-parameter plan for constructing Chinese residents,
+  total foreign residents, and non-Chinese foreign residents (= total - Chinese).
+  Metadata/API-parameter discovery only. NO datasets downloaded. NO full extraction.
+  NO preprocessing/modeling. NO Introduction. NO novelty. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -15,72 +16,81 @@ BRANCH
   agentic-upgrade
 
 ARTIFACTS
-  design CSV created: YES
-    literature/02_matrices/official_download_preprocessing_design_batch1.csv (33 cols, 15 rows)
+  API-parameter discovery CSV created: YES
+    literature/02_matrices/estat_isa_api_parameter_discovery_batch1.csv (37 cols, 10 rows)
   synthesis note created: YES
-    literature/04_synthesis/official_download_preprocessing_design_batch1_note.md (sections A-I)
+    literature/04_synthesis/estat_isa_api_parameter_discovery_batch1_note.md (sections A-G)
 
-DESIGN COVERAGE
-  design rows: 15
-  official sources covered: 5 distinct source_id
-    R02_OFF_TGT_001 e-Stat (population metadata + WebAPI discovery + license)
-    R02_OFF_TGT_002 ISA / Zairyu Gaikokujin Tokei (Chinese / total / non-Chinese vars)
-    R02_OFF_TGT_005 MLIT NLNI (N03 boundaries, N02 railway/station, A31/A33/A40 hazard, license)
-    R02_OFF_TGT_006 GSI (reference/basemap + license)
-    R02_OFF_TGT_011 Hazard Map Portal (web-map context / export-feasibility check)
-  data_domain counts: resident_foreigner_statistics=5; disaster_hazard_layer=3;
-    license_terms=3; administrative_boundary_layer=1; railway_station_accessibility_layer=1;
-    spatial_reference=1; web_map_context=1
-  planned_download_status: every row is design/pending/context only; no row enables
-    download now (large_download_allowed_now=no for all 15 rows)
+DISCOVERY COVERAGE
+  discovery rows: 10
+  official sources covered: 2 distinct source_id (R02_OFF_TGT_001 e-Stat; R02_OFF_TGT_002 ISA)
+  rows: survey identity; Chinese var; total var; non-Chinese construct; area-code logic;
+    time-code logic; API parameter plan; municipality x nationality availability (blocker);
+    statsDataId discovery route; data-integrity constraints
 
-POPULATION CONSTRUCTION DESIGN
-  Chinese residents: nationality code 01_023 = China (ISA family 24-12-t2)
-  Total foreign residents: total (sosu) category
-  Non-Chinese foreign residents: non_chinese_foreign = total_foreign - chinese_residents
-    (same municipality and reference period; avoids Chinese-vs-all-foreigners double count)
-  Join key: official municipality area code -> NLNI N03 administrative area code (mapping to confirm)
+KEY CONFIRMATIONS (official metadata only)
+  statistics code 00250012: CONFIRMED
+  provider statistic id tstat: CONFIRMED = 000001018034
+  survey name: CONFIRMED (Zairyu Gaikokujin Tokei / Statistics on Foreign Residents)
+  classifications: nationality/region x residence-status x prefecture; 2019+ flexible
+    tables add age/sex but remain capped at PREFECTURE
+  latest reference: 2025-06 (biannual Jun/Dec); DB last updated 2025-12-12
+  China nationality category: present; code 01_023 (local obs; live cdCat check pending)
+  total foreign (sosu) category: present (exact cdCat pending)
 
-SPATIAL DESIGN
-  N03 boundaries: base spatial unit + join layer; JGD2011 (EPSG:6668) -> reproject EPSG:6677
-  N02 railway/stations: distance-to-station / station-density accessibility inputs
-  A31 flood ready for scripted download later; A33 sediment / A40 tsunami need per-layer
-    datalist inspection first; Hazard Map Portal = context only (use NLNI for downloads)
-  GSI: reference/basemap; Kiban Chizu Joho only if needed (registration)
+RESOLUTION STATUS (conservative)
+  statistics code confirmed: YES
+  candidate statsDataId confirmed: NO (not exposed on JS search pages; ESTAT_APP_ID
+    unset so getStatsList not run; manual DB drill or appId needed)
+  China category code confirmed: PARTIAL (01_023 from local obs; verify via getMetaInfo)
+  total foreign category confirmed: PARTIAL (total/sosu exists; exact code pending)
+  area code logic confirmed: PARTIAL (prefecture JIS 11/12/13/14 confirmed;
+    municipality x nationality unavailable in ISA)
+  time code logic confirmed: PARTIAL (biannual Jun/Dec, latest 2025-06; exact cdTime pending)
+  population construction feasible: PARTIAL (prefecture-level YES; municipality-level NOT confirmed)
+  non-Chinese foreign construction feasible: PARTIAL (prefecture YES; municipality pending)
+
+KEY FINDING / DECISION POINT
+  ISA 00250012 publishes nationality at PREFECTURE level only; municipality data is
+  total-foreign, not nationality-split. Prefecture-level = 4 units for the metro area
+  (too coarse for the intended spatial analysis). The likely municipality-level source
+  for Chinese residents is the Population Census (statistics code 00200521,
+  nationality by municipality/small-area), with ISA kept for prefecture cross-check.
+  This is NOT resolved here; it is the central task for batch 2.
 
 EVIDENCE-CLAIM SAFETY
   datasets downloaded: NO
   full data extraction run: NO
+  raw API outputs committed: NO
+  API keys/appIds exposed: NO (ESTAT_APP_ID not set; only env-var placeholder referenced)
   preprocessing/modeling run: NO
   PDFs downloaded/staged: NO
-  DOCX files staged: NO
   academic matrices modified (literature_matrix / gap_verification_matrix): NO
   official registry modified: NO
-  prior inventory/inspection/confirmation files modified: NO
-  raw outputs staged: NO
-  ref/ or data/ staged: NO
-  TokyoProject.docx touched: NO
+  prior planning/confirmation/design files modified: NO
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (design CSV 33 cols x 15 rows; confirmation batch1,
-    inspection plan, data-usability inventory, official_source_registry,
-    literature_matrix, gap_verification_matrix all parse cleanly via csv.DictReader)
-  duplicate check result: PASS (no duplicate design_id)
-  controlled-value check: PASS (data_domain, planned_download_status, risk_level,
-    recommended_next_action all within allowed sets)
-  mojibake scan result: PASS (CSV/note/reports valid UTF-8, ASCII-only; no U+FFFD and
+  CSV validation result: PASS (discovery CSV 37 cols x 10 rows; design batch1,
+    confirmation batch1, inspection plan, data-usability inventory,
+    official_source_registry, literature_matrix, gap_verification_matrix all parse
+    cleanly via csv.DictReader)
+  duplicate check result: PASS (no duplicate discovery_id)
+  controlled-value check: PASS (confirmation_status, population_variable_supported,
+    non_chinese_foreign_construct_possible, risk_level, recommended_next_action all valid)
+  mojibake scan result: PASS (CSV/note/reports valid UTF-8, ASCII-only; no U+FFFD,
     no double-encoding byte patterns)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS (only the 5 intended files staged)
 
 NEXT RECOMMENDED STEP
-  "e-Stat/ISA exact statsDataId and API-parameter discovery batch" (metadata-only):
-  resolve the municipality-level statsDataId, vintage, and China/total category codes
-  for survey 00250012 before scaffolding any download script. If resolved quickly,
-  proceed to "official download script scaffold batch 1" (N03/N02/A31 first; A33/A40
-  after per-layer datalist inspection). No large download; no Introduction; no
+  "e-Stat/ISA manual table-search confirmation batch 2": manually capture the exact
+  statsDataId(s) under tstat 000001018034; determine definitively whether any ISA
+  municipality x nationality table exists; if not, evaluate the Population Census 2020
+  municipality/small-area nationality table (00200521) as the municipality source,
+  keeping ISA for prefecture cross-check. Then "e-Stat/ISA small metadata test script
+  scaffold" (tiny metadata/count test only). No large download; no Introduction; no
   novelty; gap remains under verification.

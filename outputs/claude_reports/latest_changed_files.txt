@@ -1,38 +1,42 @@
-TOKYO-CHINA ROUND 02 - OFFICIAL DOWNLOAD/PREPROCESSING TASK DESIGN BATCH 1 - CHANGED FILES
+TOKYO-CHINA ROUND 02 - e-STAT/ISA statsDataId & API-PARAMETER DISCOVERY BATCH 1 - CHANGED FILES
 Generated: 2026-06-23
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/official_download_preprocessing_design_batch1.csv       [new]
-  literature/04_synthesis/official_download_preprocessing_design_batch1_note.md  [new]
-  outputs/claude_reports/latest_verification_summary.txt                         [modified]
-  outputs/claude_reports/latest_changed_files.txt                                [modified]
-  outputs/claude_reports/latest_safety_check.txt                                 [modified]
+  literature/02_matrices/estat_isa_api_parameter_discovery_batch1.csv        [new]
+  literature/04_synthesis/estat_isa_api_parameter_discovery_batch1_note.md   [new]
+  outputs/claude_reports/latest_verification_summary.txt                     [modified]
+  outputs/claude_reports/latest_changed_files.txt                            [modified]
+  outputs/claude_reports/latest_safety_check.txt                             [modified]
 
 DETAIL
 
-literature/02_matrices/official_download_preprocessing_design_batch1.csv  [new]
-  Download/preprocessing workflow design, 33 columns x 15 rows, UTF-8 (ASCII-only).
-  One row per design target: e-Stat/ISA survey 00250012 metadata gate, e-Stat WebAPI
-  statsDataId-discovery design, Chinese-residents variable (code 01_023), total
-  foreign residents variable, non-Chinese construction (total - Chinese), NLNI N03
-  boundaries, NLNI N02 railway/stations, NLNI A31 flood, NLNI A33 sediment, NLNI A40
-  tsunami, Hazard Map Portal context/manual-check, GSI reference, and three
-  license/provenance design rows (e-Stat/ISA, NLNI, GSI). Columns capture source,
-  confirmed code/layer, data domain, planned download status, access method,
-  landing/API/terms URLs, license action, expected local-only raw/processed/metadata
-  paths, expected format/encoding/CRS/geometry/scope/time/key-fields, planned
-  variable/output, join key, preprocessing steps, quality checks, minimal-test and
-  large-download flags (all large_download_allowed_now=no), manual-check need,
-  blocking issue, risk, recommended script/task name, next action, and notes.
+literature/02_matrices/estat_isa_api_parameter_discovery_batch1.csv  [new]
+  e-Stat/ISA statsDataId and API-parameter discovery, 37 columns x 10 rows, UTF-8
+  (ASCII-only). Rows: survey identity (00250012 / tstat 000001018034); Chinese
+  residents variable (China 01_023); total foreign residents variable (sosu);
+  non-Chinese construction (total - Chinese); area-code logic (JIS prefecture/
+  municipality); time-code logic (biannual Jun/Dec, latest 2025-06); e-Stat WebAPI
+  parameter plan (getStatsList -> getMetaInfo -> getStatsData; appId via env only);
+  municipality x nationality availability (key blocker); statsDataId discovery route
+  (tstat 000001018034 DB tables); and data-integrity constraints. Columns capture
+  source, statistics code, survey, candidate table family/statsDataId/title,
+  metadata + API-metadata URLs, confirmation status, geographic unit, target
+  prefectures, municipality availability, area-code logic, time logic/codes,
+  nationality/China/total category logic, sex/age/status dimensions, required filter
+  parameters, candidate API endpoint/parameters, extraction/test flags, supported
+  population variable, non-Chinese construct feasibility, blocking issue, risk,
+  next action, and notes. No appId value appears anywhere (only the env-var
+  placeholder $ESTAT_APP_ID).
 
-literature/04_synthesis/official_download_preprocessing_design_batch1_note.md  [new]
-  Human-readable design note (sections A-I): purpose; evidence boundary; download
-  readiness summary; proposed local-only folder structure; download-log metadata
-  fields; conservative preprocessing sequence; required quality checks; public-repo
-  safety rule; next step. ASCII-only.
+literature/04_synthesis/estat_isa_api_parameter_discovery_batch1_note.md  [new]
+  Human-readable discovery note (sections A-G): purpose; evidence boundary; discovery
+  summary table; population construction assessment (incl. the prefecture-only
+  finding and Census decision point); API design sketch (no secrets); blocking
+  issues; recommended next step. ASCII-only.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the design task, coverage, population/spatial design, and checks.
+  Refreshed to describe the discovery task, confirmations, resolution status, the key
+  finding/decision point, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -41,6 +45,7 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
+  literature/02_matrices/official_download_preprocessing_design_batch1.csv,
   literature/02_matrices/official_exact_table_layer_confirmation_batch1.csv,
   literature/02_matrices/official_table_layer_inspection_plan.csv,
   literature/02_matrices/official_data_usability_inventory.csv,
@@ -61,8 +66,8 @@ UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
 
 NOTE ON GITIGNORE
   literature/02_matrices/*.csv is covered by the .gitignore `*.csv` rule; the new
-  design CSV was added with an explicit `git add -f` of that single file (consistent
-  with the other tracked matrices CSVs). No `git add .` was used.
+  discovery CSV was added with an explicit `git add -f` of that single file
+  (consistent with the other tracked matrices CSVs). No `git add .` was used.
 
 DELETED FILES
   (none)

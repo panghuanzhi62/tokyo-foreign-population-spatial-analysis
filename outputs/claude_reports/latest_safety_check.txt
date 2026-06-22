@@ -1,27 +1,34 @@
-TOKYO-CHINA ROUND 02 - OFFICIAL DOWNLOAD/PREPROCESSING TASK DESIGN BATCH 1 - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - e-STAT/ISA statsDataId & API-PARAMETER DISCOVERY BATCH 1 - SAFETY CHECK
 Generated: 2026-06-23
 
 TASK OBJECTIVE
-  Design a download/preprocessing workflow for batch-1 official sources. Design only.
-  No dataset download, no full data extraction, no preprocessing/modeling, no GIS
-  file download, no scraping/crawling, no browser automation, no manuscript text.
+  Identify exact e-Stat/ISA statsDataId candidates and API-parameter logic for the
+  population module using official metadata routes only. Discovery only. No dataset
+  download, no full extraction, no raw API outputs committed, no preprocessing/
+  modeling, no scraping/crawling, no browser automation, no manuscript text.
 
 ARTIFACT STATUS
-  design CSV created: YES (33 cols x 15 rows)
-  synthesis note created: YES (sections A-I)
-  design rows: 15
-  official sources covered: 5 distinct source_id
+  API-parameter discovery CSV created: YES (37 cols x 10 rows)
+  synthesis note created: YES (sections A-G)
+  discovery rows: 10
+  official sources covered: 2 distinct source_id (e-Stat, ISA)
 
-DATA / COPYRIGHT SAFETY
+API-KEY / DATA SAFETY
   datasets downloaded by Claude: NO
   full data extraction run: NO
+  full municipality-level tables retrieved: NO
+  raw API outputs saved into repo: NO
+  raw API outputs committed: NO
+  downloaded HTML committed: NO
+  API keys / appIds printed: NO
+  API keys / appIds written to files: NO
+  API keys / appIds committed: NO
+  ESTAT_APP_ID status: NOT SET in this environment (recorded as a requirement; only
+    the env-var placeholder $ESTAT_APP_ID is referenced in the design)
+  scraping/crawling/browser automation: NO (only small official metadata page reads)
   preprocessing/modeling run: NO
-  GIS zip/shp/geopackage downloaded: NO
-  APIs called for extraction: NO
   PDFs downloaded: NO
   PDFs staged: NO
-  HTML snapshots committed: NO
-  screenshots committed: NO
   DOCX files staged: NO
   TokyoProject.docx staged: NO
   TokyoProject.docx modified: NO
@@ -29,10 +36,9 @@ DATA / COPYRIGHT SAFETY
   data/ data_raw/ data_processed/ files staged: NO
   scripts/ staged: NO
   raw outputs (literature_discovery / literature_verification) staged: NO
-  credentials or API keys written: NO
-  every design row has large_download_allowed_now = no
 
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
+  official_download_preprocessing_design_batch1.csv modified: NO
   official_exact_table_layer_confirmation_batch1.csv modified: NO
   official_table_layer_inspection_plan.csv modified: NO
   official_data_usability_inventory.csv modified: NO
@@ -45,11 +51,12 @@ READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
   manual_fulltext_translation_checklist.csv modified: NO
   .gitignore modified: NO
 
-SENSITIVE KEYWORD SCAN (token, secret, api_key, appid, password)
-  design CSV + synthesis note: no secrets. RESULT: PASS.
+SENSITIVE KEYWORD SCAN (token, secret, api_key, appid literal, password)
+  discovery CSV + synthesis note: only the env-var placeholder $ESTAT_APP_ID; no
+  literal key value (regex appId=<8+ alnum> not found). RESULT: PASS.
 
 ENCODING
-  design CSV: UTF-8 (ASCII-only), parses via csv.DictReader; no U+FFFD replacement
+  discovery CSV: UTF-8 (ASCII-only), parses via csv.DictReader; no U+FFFD replacement
     chars and no double-encoding (mojibake) byte patterns.
   synthesis note: UTF-8 (ASCII-only), no mojibake markers.
   reports: ASCII-safe.
@@ -63,22 +70,24 @@ EVIDENCE-CLAIM SAFETY
   no prior academic study exists.
 
 CHECKS
-  CSV validation result: PASS (design CSV + 6 source CSVs parse cleanly)
-  duplicate check result: PASS (no duplicate design_id)
-  controlled-value check result: PASS (data_domain, planned_download_status,
-    risk_level, recommended_next_action all within allowed sets)
+  CSV validation result: PASS (discovery CSV + 7 source CSVs parse cleanly)
+  duplicate check result: PASS (no duplicate discovery_id)
+  controlled-value check result: PASS (confirmation_status, population_variable_supported,
+    non_chinese_foreign_construct_possible, risk_level, recommended_next_action all valid)
   mojibake scan result: PASS
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
 FILES STAGED (explicit; no `git add .`; CSV added with `git add -f` due to *.csv gitignore)
-  literature/02_matrices/official_download_preprocessing_design_batch1.csv
-  literature/04_synthesis/official_download_preprocessing_design_batch1_note.md
+  literature/02_matrices/estat_isa_api_parameter_discovery_batch1.csv
+  literature/04_synthesis/estat_isa_api_parameter_discovery_batch1_note.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  "e-Stat/ISA exact statsDataId and API-parameter discovery batch" (metadata-only),
-  then "official download script scaffold batch 1" if statsDataId resolves. No
-  Introduction; no novelty; gap under verification.
+  "e-Stat/ISA manual table-search confirmation batch 2" (capture exact statsDataId;
+  confirm whether ISA has any municipality x nationality table; else evaluate Census
+  00200521 municipality/small-area nationality as the municipality source), then
+  "e-Stat/ISA small metadata test script scaffold". No Introduction; no novelty; gap
+  under verification.
