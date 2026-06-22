@@ -1,61 +1,60 @@
-TOKYO-CHINA ROUND 02 - GITIGNORE & LOCAL DATA-FOLDER SAFETY AUDIT - CHANGED FILES
+TOKYO-CHINA ROUND 02 - POPULATION-BASELINE ACQUISITION APPROVAL PACKAGE - CHANGED FILES
 Generated: 2026-06-22
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  .gitignore                                                                [modified]
-  literature/04_synthesis/local_data_folder_safety_audit.md                 [new]
+  metadata/population_baseline_acquisition_approval_package.csv             [new]
+  literature/04_synthesis/population_baseline_acquisition_approval_package.md [new]
   outputs/claude_reports/latest_verification_summary.txt                    [modified]
   outputs/claude_reports/latest_changed_files.txt                           [modified]
   outputs/claude_reports/latest_safety_check.txt                            [modified]
 
 DETAIL
 
-.gitignore  [modified]
-  Appended a clearly-marked "Tokyo-China data-acquisition safety (added round02)"
-  section after the existing rules and matrix-CSV negations. Additive only - no
-  existing rule or negation removed. Adds 7 grouped categories: (A) local raw/
-  processed data folders; (B) literature/full-text folders + *.pdf; (C) office/
-  manuscript (*.docx/*.doc/*.pptx/*.ppt/~$*/TokyoProject.docx); (D) large
-  geospatial/database files; (E) credentials/environment (.env/*.key/*.pem/
-  credentials/secrets/tokens/*token*/*secret*/*appid*/*api_key*); (F) caches/
-  temporary; (G) project raw-output folders (literature_discovery/,
-  literature_verification/, tmp/, cache/, raw/). outputs/claude_reports/ kept
-  trackable. Verified: previously-untracked TokyoProject.docx, ref/, and the two
-  raw-output folders are now ignored; new files under data/ are ignored while the
-  already-tracked data/data_sources.md stays trackable.
+metadata/population_baseline_acquisition_approval_package.csv  [new]
+  New approval-package table, 30 columns x 6 data rows (PBA_001..PBA_006). One
+  row per proposed population-baseline acquisition/construction unit requiring
+  user approval before download/API: decision_id link, source, candidate
+  variable, current decision/download status, exact table/endpoint to check,
+  manual page + license checks, year/geography/nationality-category/denominator/
+  join-key to confirm, planned access method + storage, repo_commit_policy,
+  required metadata fields, preprocessing plan, construction logic, QC check,
+  approval condition, blocking issue, risk level, recommended user decision,
+  notes. ASCII-safe. PBA_001/002 -> approve_after_manual_table_check;
+  PBA_003/004/006 -> hold_until_geography_confirmed; PBA_005 ->
+  hold_until_exact_table_confirmed. PBA_004/005/006 carry the recorded
+  decision-log mismatch (no DDL row yet; recommend future DDL additions).
 
-literature/04_synthesis/local_data_folder_safety_audit.md  [new]
-  Human-readable audit note (sections A-I): purpose; evidence boundary; .gitignore
-  audit result; local data-folder policy (outside-repo folders); in-repo ignored
-  folders; tracked-file risk audit; untracked sensitive-file audit; future
-  acquisition safety rules; recommended next repo task (P1 approval package for
-  ISA/e-Stat). States gap remains under verification; no novelty asserted.
+literature/04_synthesis/population_baseline_acquisition_approval_package.md  [new]
+  Human-readable approval note (sections A-J): purpose; evidence boundary; source
+  scope with Chinese-nationals-vs-origin clarification; approval-package summary
+  (counts); approval table; required manual checks; decision-log linkage
+  (DDL_001/002/003) and the four recorded mismatches; metadata fields to fill
+  after approval; repository safety rules; recommended next action. States gap
+  remains under verification; no novelty asserted; no decision approved.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the gitignore/safety-audit task and its checks.
+  Refreshed to describe the approval-package task and its checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
 
 outputs/claude_reports/latest_safety_check.txt  [modified]
-  Refreshed public-repo safety check for this audit pass.
+  Refreshed public-repo safety check for this approval-package pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  metadata/official_data_source_metadata_template.csv,
-  metadata/data_download_decision_log.csv,
+  metadata/data_download_decision_log.csv (decision log - NOT edited; mismatch
+  only recorded in the package/note), metadata/official_data_source_metadata_template.csv,
   data_acquisition_readiness_checklist.csv, official_data_variable_blueprint.csv,
   official_data_usability_inventory.csv, official_source_registry.csv,
   literature_matrix.csv, gap_verification_matrix.csv,
   round02_gap_evidence_audit_table.csv, round02_japanese_source_tracking.csv,
-  manual_check_results_template.csv, TokyoProject.docx, ref/, data/, data_raw/,
-  data_processed/, manuscript files, PDF/DOCX files, scripts/, and raw outputs
-  under outputs/literature_discovery/ and outputs/literature_verification/.
+  manual_check_results_template.csv, .gitignore, TokyoProject.docx, ref/, data/,
+  data_raw/, data_processed/, manuscript files, PDF/DOCX files, scripts/, and raw
+  outputs under outputs/literature_discovery/ and outputs/literature_verification/.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
-  TokyoProject.docx (now ignored)
-  ref/ (now ignored)
-  outputs/literature_discovery/ (now ignored)
-  outputs/literature_verification/ (now ignored)
+  TokyoProject.docx, ref/, outputs/literature_discovery/,
+  outputs/literature_verification/ (all ignored by .gitignore)
 
 DELETED FILES
   (none)

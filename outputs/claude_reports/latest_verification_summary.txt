@@ -1,14 +1,15 @@
-TOKYO-CHINA ROUND 02 - GITIGNORE & LOCAL DATA-FOLDER SAFETY AUDIT - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - POPULATION-BASELINE ACQUISITION APPROVAL PACKAGE - VERIFICATION SUMMARY
 Generated: 2026-06-22
 
 TASK OBJECTIVE
-  .gitignore and local data-folder safety audit. Audit and patch repository
-  ignore rules and local data-folder conventions before any official data
-  download or API extraction, so future raw/processed data, local full text,
-  temporary downloads, caches, credentials, PDFs, screenshots, and large files
-  cannot be accidentally committed to the public GitHub repo. Repository-safety /
-  governance task only - NO data downloaded or extracted. Status: gap under
-  verification.
+  Population baseline acquisition approval package. Prepare the first P1 data
+  acquisition approval package (ISA / e-Stat population baseline): map planned
+  population-baseline variables to existing decision-log rows, list exact manual
+  checks, and record (without editing the decision log) where decision-log rows
+  are missing. Pre-download approval package only - NO data downloaded, NO APIs
+  called, NO decision approved. Status: gap under verification.
+  (Resumed cleanly after an API stream idle timeout; the interrupted run had
+  written no files, so this is a clean execution.)
 
 REPO PATH
   E:\rsch\laborJapan
@@ -17,46 +18,34 @@ BRANCH
   agentic-upgrade
 
 ARTIFACTS
-  .gitignore existed: YES
-  .gitignore patched: YES (additive "Tokyo-China data-acquisition safety"
-    section appended; no existing rule or negation removed)
-  audit note created: YES
-    literature/04_synthesis/local_data_folder_safety_audit.md
+  approval package CSV created: YES
+    metadata/population_baseline_acquisition_approval_package.csv (30 cols, 6 rows)
+  approval package note created: YES
+    literature/04_synthesis/population_baseline_acquisition_approval_package.md
 
-GITIGNORE PATCH (categories now covered)
-  A local raw/processed data (data/, data_raw/, data_processed/, data_interim/,
-    data_external/, local_data/, downloads/, tmp_downloads/, scratch/, cache/);
-  B literature/full-text (ref/, refs/, fulltext/, *.pdf, ...);
-  C office/manuscript (*.docx, *.doc, *.pptx, *.ppt, ~$*, TokyoProject.docx);
-  D large geospatial/db (*.gpkg, *.shp, *.geojson, *.tif, *.sqlite, *.zip, ...);
-  E credentials/env (.env, *.key, *.pem, credentials/, secrets/, *token*, ...);
-  F caches/temp (__pycache__/, *.pyc, .ipynb_checkpoints/, *.log, *.tmp, ...);
-  G project raw-output folders (outputs/literature_discovery/,
-    outputs/literature_verification/, outputs/tmp/, outputs/cache/, outputs/raw/).
-  outputs/claude_reports/ kept TRACKABLE; the two raw-output folders confirmed
-  IGNORED via git check-ignore.
+COUNTS
+  approval items ....................................... 6
+  linked decision-log rows ............................. 3 (DDL_001, DDL_002, DDL_003)
+  items recommended approve_after_manual_table_check ... 2 (PBA_001, PBA_002)
+  items held for exact table check ..................... 1 (PBA_005)
+  items held for license check ......................... 0
+  items held for geography/category consistency ........ 3 (PBA_003, PBA_004, PBA_006)
+  decision log approved downloads ...................... 0
+  decision log completed downloads ..................... 0
 
-TRACKED-FILE RISK AUDIT (git ls-files; 107 tracked files)
-  tracked PDFs found .................................... 0
-  tracked DOCX found .................................... 0
-  tracked data/geospatial/archive files found .......... 0
-  tracked credential-like files found .................. 0
-  tracked raw-output folders found ..................... 0
-  high-risk tracked files requiring user decision ...... 0
-  Low-risk note: data/data_sources.md (markdown documentation, NOT raw data) is
-    tracked and stays tracked; new files under data/ are now ignored (verified).
-  Keyword scan (token/secret/api_key/appid/password/CINII_APP_ID): only non-secret
-    references (env-var NAME read via os.environ.get in harvest scripts; the word
-    "secret" in safety guidance; "token" in matrices/uv.lock). No secret committed.
-
-UNTRACKED SENSITIVE-FILE AUDIT
-  untracked sensitive files left untouched: YES (TokyoProject.docx, ref/,
-    outputs/literature_discovery/, outputs/literature_verification/ - now ignored,
-    none staged)
+DECISION-LOG MISMATCH (recorded; NOT repaired - recommended future DDL updates)
+  1. No DDL row for Chinese share of foreign residents (PBA_004).
+  2. No DDL row for foreign-resident share of total population (PBA_005).
+  3. No DDL row for density / area-based denominator (PBA_006).
+  4. No DDL row for the e-Stat total-population denominator (R02_OFF_TGT_001),
+     required by PBA_005.
+  The decision log was NOT edited; these are recommended as new
+  pending_user_approval rows in a later explicit update task.
 
 EVIDENCE-CLAIM SAFETY
   datasets downloaded: NO
   PDFs downloaded or staged: NO
+  APIs called for extraction: NO
   existing matrices modified: NO
   official registry modified: NO
   manual results modified: NO
@@ -64,24 +53,29 @@ EVIDENCE-CLAIM SAFETY
   variable blueprint modified: NO
   readiness checklist modified: NO
   metadata control files modified: NO
+  .gitignore modified: NO
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (metadata template + decision log + readiness
-    checklist + blueprint + usability inventory + registry + manual results +
-    literature_matrix + gap_verification_matrix all parse via csv.DictReader)
-  mojibake scan result: PASS (ASCII-safe .gitignore, audit note, and reports)
+  CSV validation result: PASS (population_baseline_acquisition_approval_package.csv
+    30 cols, 6 rows; plus metadata template, decision log, readiness checklist,
+    blueprint, usability inventory, registry, manual results, literature_matrix,
+    gap_verification_matrix all parse cleanly)
+  duplicate check result: PASS (no duplicate approval_item_id)
+  decision-log integrity: PASS (0 approved; 0 download_completed=yes; no
+    decision_status changed to approved; decision log unchanged vs HEAD)
+  mojibake scan result: PASS (ASCII-safe approval CSV, note, and reports)
   git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS (no tracked PDFs/DOCX/data/geospatial/archive/
-    credential files; no secret values; high-risk tracked = 0)
+  sensitive-file check result: PASS (no tracked PDFs/DOCX/data/credentials; only
+    benign keyword hits: env-var NAME CINII_APP_ID, "secret"/"token" in text)
 
 NEXT RECOMMENDED STEP
-  Prepare a data acquisition approval package for the first P1 source group
-  (population baseline: ISA / e-Stat) - exact tables to check manually,
-  decision-log rows to approve (DDL_001/002 and derived DDL_003), metadata fields
-  to fill, and NO download until user approval. Do not recommend bulk download.
-  Do not write the Introduction. Do not assert novelty. Status: gap under
-  verification.
+  User manually opens the official ISA / e-Stat pages, confirms exact tables/
+  endpoints + license + geography + category, and decides which approval items
+  to approve (PBA_001/PBA_002 first; PBA_003 after consistency; PBA_004/005/006
+  require new DDL rows first). Only after approval prepare a narrow acquisition
+  note/script. Do not bulk download. Do not write the Introduction. Do not assert
+  novelty. Status remains: gap under verification.
