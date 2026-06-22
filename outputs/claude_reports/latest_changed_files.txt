@@ -1,67 +1,55 @@
-TOKYO-CHINA ROUND 02 - EXISTING LOCAL DATA INVENTORY AND REUSE AUDIT - CHANGED FILES
+TOKYO-CHINA ROUND 02 - FAST ISA/e-STAT EXACT-TABLE CONFIRMATION (DDL_001/DDL_002) - CHANGED FILES
 Generated: 2026-06-22
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  metadata/existing_local_data_inventory.csv                                [new]
-  literature/04_synthesis/existing_local_data_reuse_audit.md                [new]
+  metadata/isa_estat_ddL001_ddL002_fast_confirmation_template.csv           [new]
+  literature/04_synthesis/isa_estat_ddL001_ddL002_fast_confirmation_guide.md [new]
   outputs/claude_reports/latest_verification_summary.txt                    [modified]
   outputs/claude_reports/latest_changed_files.txt                           [modified]
   outputs/claude_reports/latest_safety_check.txt                            [modified]
 
 DETAIL
 
-metadata/existing_local_data_inventory.csv  [new]
-  New inventory, 33 columns x 36 data rows (INV_001..INV_036). One row per
-  discovered data-related file/directory/output artifact or missing expected
-  location. Each row records path, location_type, exists, git tracking + ignore
-  status, file/dir, extension, size_bytes, last_modified, likely data stage /
-  source family / variable family / spatial unit / year / CRS, reuse assessment
-  (can_be_reused, reuse_category, reuse_condition), metadata/checksum/license/
-  exact-table/re-download needs, local-only + commit policy, risk, recommended
-  action, and notes. Built by stat-ing each real path (no large file opened
-  deeply). Covers modules A-G: population (e-Stat xlsx/census archives, processed
-  all-foreign tables), boundary (NLNI N03-2025), railway (NLNI N02-2022), land
-  price (NLNI L01-2024), hazard (NONE), service (NONE), analysis outputs
-  (OLS/LISA/MGWR figures, prior audits), plus empty dirs and missing locations.
-  Flags data_raw/tokyo_simulated_density.geojson as SIMULATED (do_not_reuse).
-  ASCII-safe.
+metadata/isa_estat_ddL001_ddL002_fast_confirmation_template.csv  [new]
+  Compact fill-in template, 21 columns x 2 data rows (DDL_001, DDL_002). Columns:
+  decision_id, candidate_variable, source_family, official_page_url,
+  exact_table_or_dataset_name, dataset_id_or_table_id, year_or_reference_date,
+  geographic_unit, spatial_granularity, nationality_or_total_category_label,
+  category_definition, admin_code_or_join_key, download_or_api_route,
+  license_or_terms_url, file_format, encoding_or_language,
+  compatibility_with_other_row, manual_confirmation_status, blocking_issue,
+  approval_recommendation, user_notes. Both rows initialized not_checked /
+  hold_until_exact_table_confirmed with TO CONFIRM placeholders (no fabricated
+  table IDs). ASCII-safe.
 
-literature/04_synthesis/existing_local_data_reuse_audit.md  [new]
-  Human-readable audit (sections A-J): purpose; evidence boundary; locations
-  inspected; inventory summary (counts); reuse assessment by 7 modules; critical
-  all-foreign-vs-Chinese distinction; decision-log implications (no edits);
-  metadata reconstruction needs; repository safety conclusion; recommended next
-  action (metadata reconstruction + checksum task + continue manual verification).
+literature/04_synthesis/isa_estat_ddL001_ddL002_fast_confirmation_guide.md  [new]
+  Short guide (sections A-G): purpose; why needed (no confirmed Chinese-nationality
+  breakdown in old data); what to confirm for DDL_001; what to confirm for DDL_002;
+  compatibility rule; user action (fill template, then request narrow acquisition);
+  what not to do yet.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the inventory/reuse-audit task and its checks.
+  Refreshed to describe the fast-confirmation task and its checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
 
 outputs/claude_reports/latest_safety_check.txt  [modified]
-  Refreshed public-repo safety check for this audit pass.
+  Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  metadata/data_download_decision_log.csv (read only), all existing metadata
-  control CSVs (approval package, exact-table checklist, metadata template),
-  data_acquisition_readiness_checklist.csv, official_data_variable_blueprint.csv,
-  official_data_usability_inventory.csv, official_source_registry.csv,
-  literature_matrix.csv, gap_verification_matrix.csv,
-  round02_gap_evidence_audit_table.csv, manual_check_results_template.csv,
-  .gitignore, TokyoProject.docx, ref/, and ALL existing data files under data/,
-  data_raw/, data_processed/ (NOT modified, moved, renamed, deleted, copied, or
-  staged), scripts/, and raw outputs under outputs/literature_discovery/ and
-  outputs/literature_verification/.
-
-EXISTING DATA FILES
-  Inventoried by metadata/stat only; none modified, moved, renamed, deleted,
-  copied, or staged. data_raw/ remains ignored and untracked.
+  metadata/data_download_decision_log.csv, metadata/existing_local_data_inventory.csv,
+  literature/04_synthesis/existing_local_data_reuse_audit.md,
+  metadata/population_baseline_exact_table_manual_verification_checklist.csv,
+  metadata/official_data_source_metadata_template.csv, all other metadata control
+  CSVs, existing matrices, official registry, readiness checklist, variable
+  blueprint, .gitignore, TokyoProject.docx, ref/, data/, data_raw/, data_processed/
+  (no data file modified, moved, renamed, deleted, copied, or staged), scripts/,
+  and raw outputs under outputs/literature_discovery/ and outputs/literature_verification/.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
-  TokyoProject.docx, ref/, data_raw/ (all contents), data_processed/,
-  outputs/literature_discovery/, outputs/literature_verification/, outputs/html/,
-  outputs/maps/ (all ignored or untracked; left as-is)
+  TokyoProject.docx, ref/, data_raw/, data_processed/,
+  outputs/literature_discovery/, outputs/literature_verification/ (all ignored)
 
 DELETED FILES
   (none)
