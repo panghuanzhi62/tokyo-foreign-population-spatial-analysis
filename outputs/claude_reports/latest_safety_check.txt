@@ -1,43 +1,43 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ t2 CHINESE STOCK PANEL LOCAL EXCEL VERIFICATION + ZERO-FILL DESIGN - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - ISA/MOJ 2012-2025 RAW-FILE INVENTORY AND SCHEMA AUDIT - SAFETY CHECK
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Local file-structure verification of four MOJ/ISA t2 China-filtered value Excel files and
-  zero-fill panel design against the 251-code Census frame. No modeling, no final analysis
-  data, no raw Excel / value table / full panel committed, no manuscript text. No API calls.
+  Local inventory + schema audit of 32 ISA/MOJ Foreign Residents Excel files for a
+  municipality-level registered Chinese resident panel (2012-2025). No modeling, no final
+  analysis data, no raw Excel modified/committed, no full value table / normalized panel
+  committed, no manuscript text. No API calls.
 
 API-KEY HANDLING
   ESTAT_APP_ID: not needed and not used this task (local Excel inspection only).
   appId printed/written/committed: NO.
-  secret scan over the 3 CSVs + note: no literal appId; no 40-char hex token. PASS.
+  secret scan over the 4 CSVs + note: no literal appId; no 40-char hex token. PASS.
 
 LOCAL DATA HANDLING
-  Inspected (read-only, openpyxl) the four china_values Excel files plus 24-12 all_values
-  (for the china-vs-all filtering confirmation). None modified; none committed. data_raw/
-  is gitignored.
+  Read 32 .xlsx files (read-only, openpyxl, data_only); macros and external links NOT
+  enabled; workbooks NOT modified or saved. None committed. data_raw/ is gitignored.
 
 DATA SAFETY
   modeling run: NO
   final analysis data created: NO
+  raw Excel modified: NO
   raw Excel committed: NO
   full municipality value table committed: NO
-  full zero-filled 251x4 panel committed: NO
+  full normalized panel committed: NO
   datasets downloaded: NO (files were user-prepared locally)
-  PDFs/DOCX committed: NO
-  GeoPackage/shapefile/zip committed: NO
+  PDFs/DOCX/GIS committed: NO
   TokyoProject.docx staged/modified: NO
   ref/ data/ data_raw/ data_raw_official/ data_processed/ data_processed_official/ staged: NO
 
 WHAT THE COMMITTED CSVs CONTAIN (no value tables)
-  Only counts (rows read, observed/matched/missing/extra/duplicate/aggregate), schema facts,
-  flags, and small zero-fill code lists (4-6 public JIS area codes). No per-municipality
-  Chinese population values are committed.
+  Schema facts, format classification, code-presence flags, and 251-frame match COUNTS
+  (matched/missing/extra/duplicate/aggregate); plus normalization design and QC summary.
+  No per-municipality Chinese or foreign population values are committed.
 
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
   census_00200521_municipality_area_code_confirmation.csv modified: NO
-  census_* / isa_* / official_* matrices modified: NO
+  isa_moj_t2_* / census_* / official_* matrices modified: NO
   scripts/11_official_data/* modified: NO
   metadata/* modified: NO
   literature_matrix.csv / gap_verification_matrix.csv modified: NO
@@ -45,37 +45,37 @@ READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
   .gitignore modified: NO
 
 ENCODING
-  3 CSVs: UTF-8 (ASCII-only), parse via csv.DictReader.
-  note: UTF-8 (ASCII-only), no mojibake markers.
-  reports: ASCII-safe.
+  audit CSV, QC CSV, note, reports: UTF-8 (ASCII-only), parse / no mojibake markers.
+  inventory CSV and normalization design CSV: valid UTF-8; contain intentional official
+    Japanese column-name references (e.g. shikuchoson-code); no U+FFFD; no double-encoding.
 
 EVIDENCE-CLAIM SAFETY
-  all four files China-filtered: YES (confirmed vs all_values)
-  panel feasible: YES (251 per period after zero-fill); growth feasible: YES (ISA stock change)
+  usable Chinese-stock files: 8; partially usable: 22; not usable: 2 (of 32)
+  normalization feasible: YES (2021-12..2025-06 code-based; earlier PARTIAL via name crosswalk)
+  growth feasible: YES (ISA registered Chinese stock change, NOT Census population growth)
   "Chinese" = registered nationality (ISA), NOT ethnicity and NOT Census population.
   gap status: under verification
-  Introduction written: NO
-  novelty asserted: NO
-  final gap claimed: NO
+  Introduction written: NO ; novelty asserted: NO ; final gap claimed: NO
 
 CHECKS
   CSV validation result: PASS
-  duplicate check result: PASS (verification_id, design_id, qc_id unique)
+  duplicate check result: PASS (inventory_id, audit_id, design_id, qc_id unique)
   controlled-value check result: PASS
   mojibake scan result: PASS
   secret scan: PASS
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
-FILES STAGED (explicit; no `git add .`; the three CSVs added with `git add -f` due to *.csv gitignore)
-  literature/02_matrices/isa_moj_t2_chinese_values_file_verification.csv
-  literature/02_matrices/isa_moj_t2_chinese_stock_zero_fill_panel_design.csv
-  literature/02_matrices/isa_moj_t2_chinese_stock_panel_qc_summary.csv
-  literature/04_synthesis/isa_moj_t2_chinese_stock_panel_verification_note.md
+FILES STAGED (explicit; no `git add .`; the four CSVs added with `git add -f` due to *.csv gitignore)
+  literature/02_matrices/isa_moj_2012_2025_raw_file_inventory.csv
+  literature/02_matrices/isa_moj_2012_2025_schema_code_match_audit.csv
+  literature/02_matrices/isa_moj_2012_2025_panel_normalization_design.csv
+  literature/02_matrices/isa_moj_2012_2025_panel_inventory_qc_summary.csv
+  literature/04_synthesis/isa_moj_2012_2025_raw_file_inventory_schema_audit_note.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  "ISA/MOJ t2 zero-filled Chinese stock panel script scaffold" (local-only panel; commit
+  "ISA/MOJ 2012-2025 Chinese stock normalization script scaffold" (local-only panel; commit
   only QC/derived summaries). No modeling. No Introduction; no novelty; gap under verification.

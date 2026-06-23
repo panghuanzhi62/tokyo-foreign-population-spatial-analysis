@@ -1,15 +1,15 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ t2 CHINESE STOCK PANEL LOCAL EXCEL VERIFICATION + ZERO-FILL DESIGN - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - ISA/MOJ 2012-2025 RAW-FILE INVENTORY AND SCHEMA AUDIT - VERIFICATION SUMMARY
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Inspect the four LOCAL MOJ/ISA t2 China-filtered value Excel files and verify whether
-  they can support a municipality-level registered Chinese foreign-resident STOCK panel
-  for Tokyo, Saitama, Chiba, Kanagawa at 2023-12, 2024-06, 2024-12, 2025-06, against the
-  confirmed 251-code Census master frame. Verification + zero-fill design only. NO
-  modeling. NO final analysis data. NO raw Excel / full value table / full 251x4 panel
-  committed. NO Introduction. NO novelty. Status: gap under verification.
+  Inventory and schema-audit the local ISA/MOJ Foreign Residents Statistics Excel files
+  in data_raw/isa_estat to determine whether they can support a municipality-level
+  REGISTERED Chinese foreign-resident panel from ~2012/2013 to 2025, against the
+  confirmed 251-code Census master frame. Inventory + schema audit only. NO modeling.
+  NO final analysis data. NO raw Excel / full value table / normalized panel committed.
+  NO Introduction. NO novelty. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -18,68 +18,74 @@ BRANCH
   agentic-upgrade
 
 ARTIFACTS
-  file verification CSV created: YES
-    literature/02_matrices/isa_moj_t2_chinese_values_file_verification.csv (25 cols, 4 rows)
-  zero-fill panel design CSV created: YES
-    literature/02_matrices/isa_moj_t2_chinese_stock_zero_fill_panel_design.csv (17 cols, 5 rows)
+  inventory CSV created: YES
+    literature/02_matrices/isa_moj_2012_2025_raw_file_inventory.csv (29 cols, 32 rows)
+  schema/code-match audit CSV created: YES
+    literature/02_matrices/isa_moj_2012_2025_schema_code_match_audit.csv (20 cols, 10 rows)
+  normalization design CSV created: YES
+    literature/02_matrices/isa_moj_2012_2025_panel_normalization_design.csv (16 cols, 5 rows)
   optional QC summary CSV created: YES
-    literature/02_matrices/isa_moj_t2_chinese_stock_panel_qc_summary.csv (17 cols, 1 row)
+    literature/02_matrices/isa_moj_2012_2025_panel_inventory_qc_summary.csv (17 cols, 1 row)
   synthesis note created: YES
-    literature/04_synthesis/isa_moj_t2_chinese_stock_panel_verification_note.md (A-G)
+    literature/04_synthesis/isa_moj_2012_2025_raw_file_inventory_schema_audit_note.md (A-H)
 
-INSPECTION RESULT
-  files inspected: 4
-  time points verified: 2023-12, 2024-06, 2024-12, 2025-06
-  all four files readable: YES (openpyxl; Sheet1)
-  all four files China-filtered: YES (confirmed: china<all on 24-12 spot-check, 0 violations;
-    national China sum ~873k = ~23% of all-foreigner ~3.77M)
-  all four files have municipality code: YES (shikuchoson_code, 5-char string)
-  all four files have numeric values: YES (0 non-numeric in target prefectures)
+INVENTORY RESULT
+  files inventoried: 32
+  time points covered: 2012-12 .. 2025-06 (semi-annual Jun/Dec)
+  earliest survey time: 2012-12 ; latest survey time: 2025-06
+  source_format counts: wide_municipality_nationality_table 22; long_t2 3;
+    china_values_extracted 4; all_values_extracted 1; pivot_all 1; pivot_china 1
+  usable Chinese stock files: 8 (4 china_values + 4 wide "03" with code+China)
+  partially usable files: 22 (18 wide "07" name-only + 3 t2 raw + 1 china pivot)
+  not usable files: 2 (all_values + all_pivot = all-foreigner, not China)
+
+KEY SCHEMA FINDING
+  Two wide-table generations: "07" files (2012-12..2021-06, 18) identify municipalities by
+  NAME only (prefecture/city/ward, merged cells) - NO municipality-code column ->
+  name->JIS crosswalk required. "03" files (2021-12..2023-06, 4) DO have a
+  shikuchoson-code (municipality code) + total + China. The 2023-12..2025-06
+  china_values extracts are code-based.
+
+CODE-FRAME COMPATIBILITY (vs 251)
   expected target codes: 251
-  per-period matched (of 251): 2023-12=245; 2024-06=246; 2024-12=245; 2025-06=247
-  per-period missing (zero-fill): 2023-12=6; 2024-06=5; 2024-12=6; 2025-06=4
-  minimum matched codes: 245
-  maximum missing target codes: 6
-  extra codes present: NO (0 all periods; every observed target code is within the 251 frame)
-  duplicate codes present: NO
-  aggregate rows detected: 0 (no prefecture totals / designated-city parents / special-wards aggregate)
-  zero-fill needed: YES (4-6 small island/mountain villages per period, e.g. Aogashima,
-    Mikurashima, Hinohara, Higashichichibu - plausibly 0 registered Chinese)
-  panel feasible: YES (full 251 per period after zero-fill)
-  growth variable feasible: YES (2023-12 -> 2025-06, ISA registered stock change)
+  china_values matched: 245/246/245/247 (missing 6/5/6/4 -> small-village zero-fill)
+  wide "03" matched: 250/251 (missing 1; 10 aggregate rows to filter; 0 extra/dup)
+  minimum matched codes: 245 ; maximum missing target codes: 6
+  extra codes present: NO ; duplicate codes present: NO
+  normalization feasible: YES (code-based 2021-12..2025-06; PARTIAL earlier via name crosswalk)
+  growth variable feasible: YES (ISA registered Chinese stock change; post-2023 clean;
+    pre-2022 needs name mapping)
 
-ZERO-FILL / MODEL IMPLICATION
-  Missing target-frame codes absent from a China-filtered file = 0 registered Chinese
-  (zero-fill), flagged (zero_filled=1), NOT errors. Growth must be labelled MOJ/ISA
-  registered Chinese foreign-resident STOCK change, NOT Census population growth (different
-  source/measure). Census 00200521 remains the main municipality population source; this
-  ISA panel is a recent registered-stock series / cross-check.
+MODEL IMPLICATION
+  Direct code-based Chinese stock panel feasible 2021-12..2025-06 (8 periods); extend to
+  2012 via name->code mapping (PARTIAL). Growth must be labelled MOJ/ISA REGISTERED
+  Chinese resident STOCK change, NOT Census population growth. Census 00200521 remains the
+  main municipality population source. No modeling before normalization + QC.
 
 SAFETY / EVIDENCE-CLAIM
   modeling run: NO
   final analysis data created: NO
   raw Excel committed: NO
   full value table committed: NO
-  full zero-filled panel committed: NO
+  normalized panel committed: NO
   appId/API key exposed: NO (no API calls; local Excel inspection only)
   novelty asserted: NO
   final gap claimed: NO
   gap status: under verification
 
 CHECKS (this pass)
-  CSV validation result: PASS (verification 25x4, panel design 17x5, QC summary 17x1 parse
-    via csv.DictReader; master-frame CSV unchanged)
-  duplicate check result: PASS (no duplicate verification_id, design_id, qc_id)
-  controlled-value check result: PASS (value_numeric, china_filtered, usable_for_chinese_stock,
-    zero_fill_needed, risk_level, recommended_next_action all within allowed sets)
-  mojibake scan result: PASS (CSVs/note/reports valid UTF-8; CSVs ASCII-only; no U+FFFD)
+  CSV validation result: PASS (inventory 29x32, audit 20x10, design 16x5, QC 17x1 parse via
+    csv.DictReader; master-frame CSV unchanged)
+  duplicate check result: PASS (no duplicate inventory_id, audit_id, design_id, qc_id)
+  controlled-value check result: PASS (inventory and audit controlled columns within allowed sets)
+  mojibake scan result: PASS (audit/QC/note/reports ASCII-only; inventory/design contain
+    intentional official Japanese column names, valid UTF-8, no corruption markers)
   secret scan: PASS (no appId / no 40-char token)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS (no raw Excel / value table / panel / data dirs staged)
 
 NEXT RECOMMENDED STEP
-  "ISA/MOJ t2 zero-filled Chinese stock panel script scaffold": read the four local
-  China-value Excel files, normalize codes, restrict to 251, zero-fill the absent village
-  codes (flagged), assemble a LOCAL-ONLY 251x4 panel + growth variables; commit only small
-  QC/derived summaries unless approved. No modeling. No Introduction; no novelty; gap under
-  verification.
+  "ISA/MOJ 2012-2025 Chinese stock normalization script scaffold": implement the wide "03"
+  parser, china_values parser, optional t2 long parser, and a flagged name->code crosswalk
+  for the "07" files; full normalized panel LOCAL-ONLY until approval; commit only QC/derived
+  summaries. No modeling. No Introduction; no novelty; gap under verification.
