@@ -1,41 +1,42 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 SMALL METADATA/COUNT TEST SCAFFOLD - CHANGED FILES
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 MUNICIPALITY POPULATION EXTRACTION DESIGN - CHANGED FILES
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  scripts/11_official_data/census_00200521_small_metadata_test.py                       [new]
-  literature/04_synthesis/census_00200521_small_metadata_test_scaffold_note.md          [new]
-  literature/02_matrices/census_00200521_small_metadata_test_scaffold_summary.csv       [new]
-  outputs/claude_reports/latest_verification_summary.txt                                 [modified]
-  outputs/claude_reports/latest_changed_files.txt                                        [modified]
-  outputs/claude_reports/latest_safety_check.txt                                         [modified]
+  literature/02_matrices/census_00200521_municipality_population_extraction_design.csv       [new]
+  literature/04_synthesis/census_00200521_municipality_population_extraction_design_note.md  [new]
+  metadata/official_census_population_extraction_provenance_template.csv                      [new]
+  outputs/claude_reports/latest_verification_summary.txt                                      [modified]
+  outputs/claude_reports/latest_changed_files.txt                                             [modified]
+  outputs/claude_reports/latest_safety_check.txt                                              [modified]
 
 DETAIL
 
-scripts/11_official_data/census_00200521_small_metadata_test.py  [new]
-  Small metadata/count test scaffold (Python 3, stdlib only). argparse CLI exposing
-  --project-root, --dry-run, --run-count-test, --stats-data-id (default 0003445244),
-  --cd-time (default 2020000000), --cd-cat01 (default 0), --china-cat02 (default 102),
-  --foreign-total-cat02 (default 1), --test-areas (default 13101,11201,12101,14101),
-  --timeout-seconds (default 60). Reads ESTAT_APP_ID from the environment only; fails
-  safely if missing; never prints/writes/commits the appId; never prints a URL
-  containing it. --dry-run makes no API call. --run-count-test calls getMetaInfo plus
-  getStatsData with cntGetFlg=Y (COUNT only; no data values; no raw output saved), and
-  enforces a 20-area safety cap to refuse bulk pulls. py_compile clean.
+literature/02_matrices/census_00200521_municipality_population_extraction_design.csv  [new]
+  Bounded municipality extraction design, 34 columns x 12 rows, UTF-8 (ASCII-only).
+  Rows: Chinese residents (cat02=102); total foreign (cat02=1); non-Chinese foreign
+  (derived = 1 minus 102); four target-prefecture geography rows (Tokyo/Saitama/Chiba/
+  Kanagawa) with area-code lists NOT invented; N03 join-key design; local-only
+  storage design; future extraction-script spec; quality-control plan; and provenance
+  design. Columns capture source, statistics code, tstat, statsDataId, census year,
+  cdTime/cdCat01/cat02 codes, target prefecture and code, area-code strategy,
+  municipality unit, join key and N03 compatibility, planned variable and formula,
+  planned API method/parameters, extraction scope, large-extraction risk, raw/processed
+  storage rules, provenance requirement, quality checks, script need and name, run
+  mode, manual-check flag, risk, next action, and notes. No appId value anywhere.
 
-literature/04_synthesis/census_00200521_small_metadata_test_scaffold_note.md  [new]
-  Run note (sections A-G): purpose; evidence boundary; script interface; test run
-  result (PASS, count=8); interpretation; next step; safety statement. ASCII-only.
+literature/04_synthesis/census_00200521_municipality_population_extraction_design_note.md  [new]
+  Design note (sections A-H): purpose; evidence boundary; confirmed source parameters;
+  extraction design summary table; proposed 9-step sequence; future script spec;
+  public-repo safety; next step. ASCII-only.
 
-literature/02_matrices/census_00200521_small_metadata_test_scaffold_summary.csv  [new]
-  Compact sanitized summary, 5 columns x 14 rows: confirmed parameters (statistics
-  code, tstat, statsDataId, time, cat01, China 102, foreign-total 1, test areas),
-  getMetaInfo status, count-test result (COUNT=8), construction feasibility (YES), and
-  safety flags (raw output NO, appId exposed NO, full extraction NO). No appId value.
+metadata/official_census_population_extraction_provenance_template.csv  [new]
+  Provenance template, 18 columns, header + one EXAMPLE row only. No real raw path,
+  no appId; raw_output_committed=NO, appId_exposed=NO. For future extraction logging.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the scaffold, script checks, count-test result, and safety.
+  Refreshed to describe the extraction design, coverage, confirmed parameters, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -44,6 +45,8 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
+  scripts/11_official_data/census_00200521_small_metadata_test.py,
+  literature/02_matrices/census_00200521_small_metadata_test_scaffold_summary.csv,
   literature/02_matrices/census_00200521_exact_table_category_confirmation_batch1.csv,
   literature/02_matrices/estat_isa_manual_table_search_confirmation_batch2.csv,
   literature/02_matrices/estat_isa_api_parameter_discovery_batch1.csv,
@@ -61,13 +64,14 @@ UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   outputs/literature_discovery/, outputs/literature_verification/
 
 RAW API OUTPUTS
-  None saved into the repo. The count test used cntGetFlg=Y (count only). Probe/build
-  helper scripts ran from the system TEMP directory (outside the repo).
+  None. No data-value API calls were made (only the no-appId scaffold dry-run). No raw
+  output saved into or committed to the repo. Build helper scripts ran from system TEMP.
 
 NOTE ON GITIGNORE
-  scripts/*.py is tracked normally (not ignored). The summary CSV matches the
-  .gitignore `*.csv` rule and was added with an explicit `git add -f` of that single
-  file (consistent with the other tracked matrices CSVs). No `git add .` was used.
+  literature/02_matrices/*.csv and metadata/*.csv match the .gitignore `*.csv` rule;
+  the new design CSV and provenance template were added with explicit `git add -f` of
+  those specific files (consistent with the other tracked matrices CSVs). The .md was
+  added normally. No `git add .` was used.
 
 DELETED FILES
   (none)

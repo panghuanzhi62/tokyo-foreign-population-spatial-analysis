@@ -1,15 +1,14 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 SMALL METADATA/COUNT TEST SCAFFOLD - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 MUNICIPALITY POPULATION EXTRACTION DESIGN - VERIFICATION SUMMARY
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Create and run a small, safe, reproducible scaffold that verifies (with the
-  smallest possible official e-Stat API touch) that Census table 0003445244 supports
-  the population module: chinese (cat02=102), total foreign (cat02=1), and
-  non_chinese_foreign = total - chinese. Metadata/count test only. NO datasets
-  downloaded. NO full extraction. NO all-municipality retrieval. NO preprocessing/
-  modeling. NO Introduction. NO novelty. Status: gap under verification.
+  Design a safe, reproducible, BOUNDED municipality-level population extraction
+  workflow for Census 00200521 table 0003445244 (extraction parameters, folder plan,
+  metadata/provenance plan, API parameter plan, QC plan, future script spec). Design
+  only. NO full extraction. NO all-municipality retrieval. NO datasets downloaded.
+  NO preprocessing/modeling. NO Introduction. NO novelty. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -18,65 +17,71 @@ BRANCH
   agentic-upgrade
 
 ENVIRONMENT NOTE
-  ESTAT_APP_ID present at User scope (not in spawned process env); injected from User
-  scope into the process for the count test only. Never printed, written, or
-  committed; no API URL containing the appId was saved.
+  ESTAT_APP_ID checked for presence only (User scope, len 40); never printed,
+  written, or committed. No API calls that retrieve data values were made (scaffold
+  dry-run only, which needs no appId).
 
 ARTIFACTS
-  script scaffold created: YES
-    scripts/11_official_data/census_00200521_small_metadata_test.py
-  run note created: YES
-    literature/04_synthesis/census_00200521_small_metadata_test_scaffold_note.md (A-G)
-  optional summary CSV created: YES
-    literature/02_matrices/census_00200521_small_metadata_test_scaffold_summary.csv (5 cols, 14 rows)
+  extraction design CSV created: YES
+    literature/02_matrices/census_00200521_municipality_population_extraction_design.csv (34 cols, 12 rows)
+  synthesis note created: YES
+    literature/04_synthesis/census_00200521_municipality_population_extraction_design_note.md (A-H)
+  optional provenance template created: YES
+    metadata/official_census_population_extraction_provenance_template.csv (18 cols; header + 1 example row; no real path, no appId)
 
-SCRIPT CHECKS
-  python -m py_compile: PASS (exit 0)
-  script --help passed: YES
-  script --dry-run passed: YES (no API call; ESTAT_APP_ID not required; appId not printed)
-  small count/metadata test run: YES (--run-count-test)
+DESIGN COVERAGE
+  design rows: 12
+  planned_variable coverage: chinese_residents; total_foreign; non_chinese_foreign;
+    extraction_support (geography/join/storage/script); quality_control; provenance_support
+  population variables (A): EXD_001 Chinese (cat02=102); EXD_002 total foreign
+    (cat02=1); EXD_003 non-Chinese (derived = 1 minus 102)
+  target geography (B): EXD_004 Tokyo(13), EXD_005 Saitama(11), EXD_006 Chiba(12),
+    EXD_007 Kanagawa(14) - area-code lists NOT invented; marked confirm_area_code_list_first
+  join key (C): EXD_008 5-digit JIS == N03 gyosei kuiki code; special-ward normalization;
+    leading-zero/string preservation; unmatched-both-sides reporting
+  storage (D): EXD_009 local-only raw (data_raw_official/census_00200521_2020_municipality/)
+    and processed (data_processed_official/population/); raw never committed
+  future script (E): EXD_010 spec for census_00200521_municipality_population_extract.py
+    (NOT created); flags incl. --dry-run/--metadata-only/--run-bounded-extraction; refuse all-Japan
+  quality checks (F): EXD_011 full QC gate set
+  provenance (G): EXD_012 provenance-log design
 
-COUNT TEST RESULT (2026-06-23, default parameters)
-  API reached: YES
-  getMetaInfo STATUS: 0
-    China code 102 present in cat02: True
-    Foreign-total code 1 present in cat02: True
-    Time code 2020000000 present: True
-    Test areas present: 4/4 (13101, 11201, 12101, 14101)
-  getStatsData(cntGetFlg=Y) STATUS: 0
-    matching cell COUNT (no values retrieved): 8 (expected 8 = 4 areas x 2 categories)
-  COUNT TEST RESULT: PASS
-  construction feasibility (china & total present, count>0): YES
+CONFIRMED SOURCE PARAMETERS (carried forward)
+  statistics code 00200521; tstat 000001136464; statsDataId 0003445244; cdTime
+  2020000000; cdCat01=0; cat02 China=102, foreign-total=1; main unit municipality.
+  Census source confirmed as main municipality source: YES
+  ISA role: prefecture cross-check only
 
 SAFETY / EVIDENCE-CLAIM
-  raw output saved: NO (cntGetFlg=Y returns count only; nothing written to repo)
-  appId/API key exposed: NO
   full extraction run: NO
   all-municipality retrieval run: NO
   datasets downloaded: NO
+  raw API outputs committed: NO
+  appId/API key exposed: NO
   preprocessing/modeling run: NO
-  Census source confirmed as main municipality source: YES (table 0003445244)
-  ISA role: prefecture cross-check only
   academic matrices modified: NO
   official registry modified: NO
-  prior planning/confirmation/design files modified: NO
+  prior confirmation/scaffold files modified: NO
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (summary CSV 5 cols x 14 rows parses via csv.DictReader;
-    prior matrices unchanged and parse cleanly)
-  mojibake scan result: PASS (script/note/CSV/reports valid UTF-8, ASCII-only; no
-    U+FFFD; no double-encoding)
-  secret scan: PASS (no literal appId; no 40-char hex token in any staged file)
+  CSV validation result: PASS (design CSV 34 cols x 12 rows; provenance template 18
+    cols x 1 row; + 8 prior matrices parse cleanly via csv.DictReader)
+  duplicate check result: PASS (no duplicate design_id)
+  controlled-value check: PASS (planned_variable, run_mode, risk_level,
+    recommended_next_action all within allowed sets)
+  secret scan: PASS (no literal appId; no 40-char hex token in design CSV or template)
+  mojibake scan result: PASS (design CSV/note/template/reports valid UTF-8, ASCII-only;
+    no U+FFFD; no double-encoding)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS (only the intended files staged)
 
 NEXT RECOMMENDED STEP
-  "Census 00200521 municipality population extraction design" (or, only when
-  extraction is explicitly authorised, a bounded extraction limited to the four
-  target prefectures). Future extraction: appId from env only; raw outputs local-only
-  (outside public repo); commit only small derived summaries if approved. No
-  Introduction; no novelty; gap remains under verification.
+  "Census 00200521 municipality area-code list confirmation": derive the target
+  municipality area codes for Tokyo/Saitama/Chiba/Kanagawa from the official
+  getMetaInfo area dimension of 0003445244 before writing the bounded extraction
+  script. Metadata-only; appId from env; no values retrieved; no raw output committed.
+  No Introduction; no novelty; gap remains under verification.
