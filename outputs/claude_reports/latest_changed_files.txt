@@ -1,42 +1,41 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 EXACT TABLE/CATEGORY CONFIRMATION BATCH 1 (KEYED) - CHANGED FILES
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 SMALL METADATA/COUNT TEST SCAFFOLD - CHANGED FILES
 Generated: 2026-06-23
 
+TASK STATUS: COMPLETED
+
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/census_00200521_exact_table_category_confirmation_batch1.csv       [new]
-  literature/04_synthesis/census_00200521_exact_table_category_confirmation_batch1_note.md  [new]
-  outputs/claude_reports/latest_verification_summary.txt                                     [modified]
-  outputs/claude_reports/latest_changed_files.txt                                            [modified]
-  outputs/claude_reports/latest_safety_check.txt                                             [modified]
+  scripts/11_official_data/census_00200521_small_metadata_test.py                       [new]
+  literature/04_synthesis/census_00200521_small_metadata_test_scaffold_note.md          [new]
+  literature/02_matrices/census_00200521_small_metadata_test_scaffold_summary.csv       [new]
+  outputs/claude_reports/latest_verification_summary.txt                                 [modified]
+  outputs/claude_reports/latest_changed_files.txt                                        [modified]
+  outputs/claude_reports/latest_safety_check.txt                                         [modified]
 
 DETAIL
 
-literature/02_matrices/census_00200521_exact_table_category_confirmation_batch1.csv  [new]
-  Census exact table/category confirmation, 40 columns x 9 rows, UTF-8 (ASCII-only).
-  Rows: Census identity + primary table 0003445244; Chinese residents variable
-  (cat02=102); total foreign variable (cat02=1); non-Chinese construction (1 minus
-  102); municipality geography/area coverage; small-area nationality feasibility (not
-  evident); area-code and N03 join-key logic; variant tables (DID 0003445245, age
-  table 0003445246 area-capped); and final suitability decision. Columns capture
-  source, statistics code, survey, provider tstat (000001136464), census year (2020),
-  candidate table title/statsDataId, official table-search / metadata / API-metadata
-  URLs (appId omitted), confirmation route and status, geographic level,
-  municipality/small-area availability, nationality/China/total-foreign category logic
-  with exact codes, sex/age dimensions, time/vintage, target prefecture and
-  municipality coverage, area-code logic, N03 join feasibility, small-area boundary
-  requirement, supported population variable, non-Chinese construct feasibility,
-  suitability for main spatial analysis, blocking issue, risk, next action, and notes.
-  No appId value or 40-char token appears anywhere; recorded API URLs omit appId.
+scripts/11_official_data/census_00200521_small_metadata_test.py  [new]
+  Small metadata/count test scaffold (Python 3, stdlib only). argparse CLI exposing
+  --project-root, --dry-run, --run-count-test, --stats-data-id (default 0003445244),
+  --cd-time (default 2020000000), --cd-cat01 (default 0), --china-cat02 (default 102),
+  --foreign-total-cat02 (default 1), --test-areas (default 13101,11201,12101,14101),
+  --timeout-seconds (default 60). Reads ESTAT_APP_ID from the environment only; fails
+  safely if missing; never prints/writes/commits the appId; never prints a URL
+  containing it. --dry-run makes no API call. --run-count-test calls getMetaInfo plus
+  getStatsData with cntGetFlg=Y (COUNT only; no data values; no raw output saved), and
+  enforces a 20-area safety cap to refuse bulk pulls. py_compile clean.
 
-literature/04_synthesis/census_00200521_exact_table_category_confirmation_batch1_note.md  [new]
-  Human-readable confirmation note (sections A-G): purpose; evidence boundary;
-  confirmation summary table (with exact category codes); population-source decision
-  (CONFIRMED: Census 0003445244 = main municipality source, ISA = prefecture
-  cross-check); analytical implication (Chinese vs non-Chinese, municipality unit);
-  API/metadata next-step; safety statement. ASCII-only.
+literature/04_synthesis/census_00200521_small_metadata_test_scaffold_note.md  [new]
+  Run note (sections A-G): purpose; evidence boundary; script interface; test run
+  result (PASS, count=8); interpretation; next step; safety statement. ASCII-only.
+
+literature/02_matrices/census_00200521_small_metadata_test_scaffold_summary.csv  [new]
+  Compact sanitized summary, 5 columns x 14 rows: confirmed parameters (statistics
+  code, tstat, statsDataId, time, cat01, China 102, foreign-total 1, test areas),
+  getMetaInfo status, count-test result (COUNT=8), construction feasibility (YES), and
+  safety flags (raw output NO, appId exposed NO, full extraction NO). No appId value.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the keyed Census confirmation, exact statsDataId/codes,
-  resolution status, and checks.
+  Refreshed to describe the scaffold, script checks, count-test result, and safety.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -45,36 +44,30 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
+  literature/02_matrices/census_00200521_exact_table_category_confirmation_batch1.csv,
   literature/02_matrices/estat_isa_manual_table_search_confirmation_batch2.csv,
   literature/02_matrices/estat_isa_api_parameter_discovery_batch1.csv,
   literature/02_matrices/official_download_preprocessing_design_batch1.csv,
   literature/02_matrices/official_exact_table_layer_confirmation_batch1.csv,
   literature/02_matrices/official_table_layer_inspection_plan.csv,
   literature/02_matrices/official_data_usability_inventory.csv,
-  literature/02_matrices/manual_check_results_template.csv,
   literature/02_matrices/official_source_registry.csv,
   literature/02_matrices/literature_matrix.csv,
   literature/02_matrices/gap_verification_matrix.csv,
-  literature/02_matrices/round02_japanese_source_tracking.csv,
-  literature/02_matrices/round02_gap_evidence_audit_table.csv,
-  literature/02_matrices/manual_fulltext_translation_checklist.csv,
-  TokyoProject.docx, ref/, data/, data_raw/, data_processed/, scripts/, manuscript
-  files, PDF/DOCX files, and raw outputs under outputs/literature_discovery/ and
-  outputs/literature_verification/.
+  and other matrices/manuscript/data files.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx, ref/, data_raw/ (incl. isa_estat/*.xlsx), data_processed/,
   outputs/literature_discovery/, outputs/literature_verification/
 
 RAW API OUTPUTS
-  None saved into the repo. Metadata-probe scripts were run from the system TEMP
-  directory (outside the repo); no JSON responses were written into or committed to
-  the repo.
+  None saved into the repo. The count test used cntGetFlg=Y (count only). Probe/build
+  helper scripts ran from the system TEMP directory (outside the repo).
 
 NOTE ON GITIGNORE
-  literature/02_matrices/*.csv is covered by the .gitignore `*.csv` rule; the new
-  Census CSV was added with an explicit `git add -f` of that single file (consistent
-  with the other tracked matrices CSVs). No `git add .` was used.
+  scripts/*.py is tracked normally (not ignored). The summary CSV matches the
+  .gitignore `*.csv` rule and was added with an explicit `git add -f` of that single
+  file (consistent with the other tracked matrices CSVs). No `git add .` was used.
 
 DELETED FILES
   (none)

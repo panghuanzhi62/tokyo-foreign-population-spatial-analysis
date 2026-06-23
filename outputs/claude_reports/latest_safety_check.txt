@@ -1,96 +1,95 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 EXACT TABLE/CATEGORY CONFIRMATION BATCH 1 (KEYED) - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 SMALL METADATA/COUNT TEST SCAFFOLD - SAFETY CHECK
 Generated: 2026-06-23
 
+TASK STATUS: COMPLETED
+
 TASK OBJECTIVE
-  Keyed official e-Stat API metadata confirmation of Census 00200521 exact table,
-  statsDataId, and category codes for the population module. Metadata only. No dataset
-  download, no full extraction (no getStatsData), no full municipality tables
-  retrieved, no raw API outputs committed, no preprocessing/modeling, no scraping/
-  crawling, no browser automation, no manuscript text.
+  Build and run a tiny metadata/count test scaffold for Census table 0003445244.
+  Metadata/count only. No dataset download, no full extraction, no all-municipality
+  or all-category retrieval, no raw API outputs committed, no preprocessing/modeling,
+  no scraping/crawling, no browser automation, no manuscript text.
 
 API-KEY HANDLING
   ESTAT_APP_ID: present at User scope; injected into the working process from User
-    scope for API calls only.
+    scope for the count test only.
   appId printed: NO
   appId written to any file: NO
   appId committed: NO
-  appId included in any saved URL: NO (recorded API URLs omit appId)
-  secret scan over CSV + note: no literal appId, no 40-char hex token. RESULT: PASS.
+  appId included in any saved URL: NO (script builds URLs internally and never prints them)
+  secret scan over script + note + summary CSV: no literal appId, no 40-char hex token. PASS.
 
-API CALLS MADE (metadata only)
-  getStatsList (table discovery) and getMetaInfo (dimension/category metadata) only.
-  getStatsData / full data retrieval: NOT called.
+API CALLS MADE (metadata / count only)
+  getMetaInfo (dimension/category metadata) and getStatsData with cntGetFlg=Y
+  (record COUNT only; no data values). getStatsData WITHOUT cntGetFlg (value
+  retrieval): NOT called.
+
+SCRIPT SAFETY FEATURES
+  --dry-run: no API call, no appId required, no appId printed.
+  --run-count-test: cntGetFlg=Y (count only); 20-area hard cap refuses bulk pulls.
+  ESTAT_APP_ID read from environment only; fails safely if missing.
 
 ARTIFACT STATUS
-  Census confirmation CSV created: YES (40 cols x 9 rows)
-  synthesis note created: YES (sections A-G)
-  confirmation rows: 9
-  official sources covered: 2 (Census 00200521 main; ISA 00250012 prefecture cross-check)
+  script scaffold created: YES (py_compile clean; --help and --dry-run pass)
+  run note created: YES
+  optional summary CSV created: YES (5 cols x 14 rows)
 
 DATA SAFETY
   datasets downloaded by Claude: NO
   full data extraction run: NO
-  full municipality-level tables retrieved: NO
-  raw API outputs saved into repo: NO (probe scripts ran from system TEMP, outside repo)
+  all-municipality retrieval run: NO
+  all-category retrieval run: NO
+  data values retrieved: NO (cntGetFlg=Y -> count only)
+  raw API outputs saved into repo: NO
   raw API outputs committed: NO
-  downloaded HTML committed: NO
-  PDFs downloaded: NO
-  PDFs staged: NO
+  PDFs downloaded/staged: NO
   DOCX files staged: NO
-  TokyoProject.docx staged: NO
-  TokyoProject.docx modified: NO
-  ref/ staged: NO
-  data/ data_raw/ data_processed/ files staged: NO
-  scripts/ staged: NO
-  raw outputs (literature_discovery / literature_verification) staged: NO
+  TokyoProject.docx staged/modified: NO
+  ref/ data/ data_raw/ data_processed/ staged: NO
   preprocessing/modeling run: NO
 
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
+  census_00200521_exact_table_category_confirmation_batch1.csv modified: NO
   estat_isa_manual_table_search_confirmation_batch2.csv modified: NO
   estat_isa_api_parameter_discovery_batch1.csv modified: NO
-  official_download_preprocessing_design_batch1.csv modified: NO
-  official_exact_table_layer_confirmation_batch1.csv modified: NO
-  official_table_layer_inspection_plan.csv modified: NO
-  official_data_usability_inventory.csv modified: NO
-  manual_check_results_template.csv modified: NO
+  official_* matrices modified: NO
+  literature_matrix.csv / gap_verification_matrix.csv modified: NO
   official_source_registry.csv modified: NO
-  literature_matrix.csv modified: NO
-  gap_verification_matrix.csv modified: NO
-  round02_japanese_source_tracking.csv modified: NO
-  round02_gap_evidence_audit_table.csv modified: NO
-  manual_fulltext_translation_checklist.csv modified: NO
   .gitignore modified: NO
 
 ENCODING
-  Census CSV: UTF-8 (ASCII-only), parses via csv.DictReader; no U+FFFD replacement
-    chars and no double-encoding (mojibake) byte patterns.
-  synthesis note: UTF-8 (ASCII-only), no mojibake markers.
-  reports: ASCII-safe.
+  script: UTF-8 (ASCII-only), py_compile clean.
+  summary CSV: UTF-8 (ASCII-only), parses via csv.DictReader.
+  note + reports: UTF-8 (ASCII-only), no mojibake markers.
 
 EVIDENCE-CLAIM SAFETY
+  Census source confirmed as main municipality source: YES
+  ISA role: prefecture cross-check only
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
   final gap claimed: NO
-  Note: official sources establish data feasibility only; they are NOT evidence that
-  no prior academic study exists.
 
 CHECKS
-  CSV validation result: PASS (census CSV + 8 source CSVs parse cleanly)
-  duplicate check result: PASS (no duplicate confirmation_id)
-  controlled-value check result: PASS (all 8 controlled columns within allowed sets)
+  py_compile: PASS
+  script --help: PASS
+  script --dry-run: PASS
+  count test: PASS (count=8; construction feasibility YES)
+  CSV validation result: PASS
   mojibake scan result: PASS
+  secret scan: PASS
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
-FILES STAGED (explicit; no `git add .`; CSV added with `git add -f` due to *.csv gitignore)
-  literature/02_matrices/census_00200521_exact_table_category_confirmation_batch1.csv
-  literature/04_synthesis/census_00200521_exact_table_category_confirmation_batch1_note.md
+FILES STAGED (explicit; no `git add .`; summary CSV added with `git add -f` due to *.csv gitignore)
+  scripts/11_official_data/census_00200521_small_metadata_test.py
+  literature/04_synthesis/census_00200521_small_metadata_test_scaffold_note.md
+  literature/02_matrices/census_00200521_small_metadata_test_scaffold_summary.csv
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  "Census 00200521 small metadata test script scaffold" (tiny parameterized metadata/
-  count test for table 0003445244, appId from env only, no raw outputs committed, no
-  full extraction). No Introduction; no novelty; gap under verification.
+  "Census 00200521 municipality population extraction design" (bounded to the four
+  target prefectures when extraction is explicitly authorised; appId from env only;
+  raw outputs local-only; commit only small derived summaries if approved). No
+  Introduction; no novelty; gap under verification.
