@@ -1,0 +1,17 @@
+approval_item_id,approval_category,approval_item,required_before_normalization,approved_by_user,current_status,blocking_if_not_approved,notes
+APPR_001,scope,Normalize only the 8 code-based periods 2021-12..2025-06,YES,PENDING,proposed,YES,wide_03 (2021-12..2023-06) + china_values (2023-12..2025-06)
+APPR_002,spatial_frame,Use the 251 Census municipality-equivalent master code frame,YES,PENDING,proposed,YES,Tokyo 62 / Saitama 72 / Chiba 59 / Kanagawa 58 = 251
+APPR_003,parser,wide_03 parser for 2021-12..2023-06,YES,PENDING,proposed,YES,municipality code + total foreign + China; 4 files
+APPR_004,parser,china_values parser for 2023-12..2025-06,YES,PENDING,proposed,YES,municipality code + Chinese value; 4 files
+APPR_005,validation,all_values parser validation only (total foreign not China),NO,PENDING,proposed,NO,2024-12; 1 file; not primary route
+APPR_006,validation,t2_long parser validation only (cross-check china_values),NO,PENDING,proposed,NO,2023-12/2024-06/2025-06; 3 files
+APPR_007,rule,Zero-fill missing target codes and flag zero_filled=YES,YES,PENDING,proposed,YES,wide_03 1 missing each; china_values 6/5/6/4
+APPR_008,rule,Filter aggregate rows (prefecture/ward totals),YES,PENDING,proposed,YES,wide_03 has 10 aggregate rows to remove
+APPR_009,output,Write local-only panel under data_processed_official/isa_moj_panel,YES,PENDING,proposed,YES,local-only; not committed
+APPR_010,safety,Do not commit raw Excel,YES,PENDING,proposed,YES,raw stays in data_raw/isa_estat untracked
+APPR_011,safety,Do not commit full normalized panel,YES,PENDING,proposed,YES,only QC/provenance/run-note committed
+APPR_012,safety,Do not run modeling,YES,PENDING,proposed,YES,no modeling before panel QC
+APPR_013,scope,Do not include 2012-12..2021-06 wide07 files,YES,PENDING,proposed,YES,name-only; no municipality code column
+APPR_014,deferral,Name-to-JIS crosswalk deferred for wide07,YES,PENDING,proposed,YES,pre-service 2015-2020 growth not feasible now
+APPR_015,output,Commit-safe QC summary only after validation,YES,PENDING,proposed,YES,QC summary + run note + provenance + reports
+APPR_016,gate,User explicit approval required before any panel write,YES,PENDING,proposed,YES,no write-local-panel until approved

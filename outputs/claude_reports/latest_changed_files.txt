@@ -1,32 +1,37 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ CODE-BASED NORMALIZATION DRY-RUN AND QC SUMMARY - CHANGED FILES
+TOKYO-CHINA ROUND 02 - ISA/MOJ CODE-BASED 2021-12..2025-06 NORMALIZATION APPROVAL PACKAGE - CHANGED FILES
 Generated: 2026-06-24
 
 TASK STATUS: COMPLETED
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/isa_moj_code_based_normalization_dryrun_qc_summary.csv   [new]   (git add -f; *.csv gitignore)
-  literature/04_synthesis/isa_moj_code_based_normalization_dryrun_qc_note.md      [new]
-  outputs/claude_reports/latest_verification_summary.txt                          [modified]
-  outputs/claude_reports/latest_changed_files.txt                                 [modified]
-  outputs/claude_reports/latest_safety_check.txt                                  [modified]
+  literature/02_matrices/isa_moj_code_based_2021_2025_normalization_approval_checklist.csv  [new]  (git add -f; *.csv gitignore)
+  literature/04_synthesis/isa_moj_code_based_2021_2025_normalization_approval_package.md     [new]
+  literature/04_synthesis/isa_moj_code_based_2021_2025_normalization_command_preview.txt     [new]
+  outputs/claude_reports/latest_verification_summary.txt                                     [modified]
+  outputs/claude_reports/latest_changed_files.txt                                            [modified]
+  outputs/claude_reports/latest_safety_check.txt                                             [modified]
 
 DETAIL
 
-literature/02_matrices/isa_moj_code_based_normalization_dryrun_qc_summary.csv  [new]
-  Code-based dry-run QC summary, 25 columns x 1 row (QC_001). Records: code-based periods
-  (8), file counts (wide_03=4, china_values=4, all_values=1 validation, t2_long=3 validation,
-  wide_07=18 deferred), name_only_wide07_included=NO, name_crosswalk_required=YES, master
-  frame=251, wide_03/china_values expected-missing + aggregate-filter + zero-fill rules,
-  panel_written=NO, raw_excel_committed=NO, normalized_panel_committed=NO, post-service
-  growth feasible=YES, pre-service 2015-2020 feasible now=NO, next action. No values.
+literature/04_synthesis/isa_moj_code_based_2021_2025_normalization_approval_package.md  [new]
+  Approval package note (A-K): purpose (approval only, no run); evidence boundary; approved
+  candidate scope (8 code-based periods + parser routes); spatial frame (251 = Tokyo 62 /
+  Saitama 72 / Chiba 59 / Kanagawa 58); future local-only output path; commit-safe outputs;
+  future command labelled DO NOT RUN YET; mandatory QC gates; abort conditions; user approval
+  checklist; next step (run only after explicit approval).
 
-literature/04_synthesis/isa_moj_code_based_normalization_dryrun_qc_note.md  [new]
-  Synthesis note (A-F): purpose; evidence boundary; code-based scope (8 periods, parser
-  types); deferred scope (wide07 name-only, crosswalk required); growth implication
-  (post-service feasible, pre-service pending); next step (approval package).
+literature/02_matrices/isa_moj_code_based_2021_2025_normalization_approval_checklist.csv  [new]
+  Approval checklist, 8 columns x 16 rows (APPR_001..APPR_016). Categories: scope, spatial_frame,
+  parser, validation, rule, output, safety, deferral, gate. All approved_by_user=PENDING.
+  No municipality values.
+
+literature/04_synthesis/isa_moj_code_based_2021_2025_normalization_command_preview.txt  [new]
+  Command preview; first line "DO NOT RUN UNTIL USER EXPLICITLY APPROVES." Shows the future
+  --code-based-only --write-local-panel --force --write-qc-summary command, active guards, and
+  local-only output path. No appId / API key.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the dry-run/QC pass, routing, script-mode results, and checks.
+  Refreshed to describe the approval package, approval state, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -35,20 +40,18 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  scripts/11_official_data/isa_moj_chinese_stock_panel_normalize.py (scaffold; run only, not
-    edited), the ISA/MOJ inventory/audit/design/QC CSVs, scaffold summary CSV + scaffold note,
-    census_* / official_* matrices, scripts/11_official_data/census_*, metadata/*, N03 design
-    files, literature_matrix.csv, gap_verification_matrix.csv, official_source_registry.csv,
-    TokyoProject.docx, and other matrices/manuscript/data files.
+  scripts/ (incl. isa_moj_chinese_stock_panel_normalize.py), the ISA/MOJ inventory/audit/design/QC
+  CSVs, dry-run QC summary/note, scaffold summary/note, census_* / official_* matrices,
+  metadata/*, N03 design files, literature_matrix.csv, gap_verification_matrix.csv,
+  official_source_registry.csv, TokyoProject.docx, and other matrices/manuscript/data files.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   data_raw/ (incl. isa_estat/*.xlsx and txt log), data_raw_official/, data_processed_official/,
   data_processed/, TokyoProject.docx, ref/, outputs/literature_discovery/, outputs/literature_verification/
 
 NOTE ON GITIGNORE
-  The QC summary CSV matches the .gitignore `*.csv` rule and was added with explicit
-  `git add -f`. The .md was added normally. No raw/value/panel/data file was staged.
-  No `git add .` was used.
+  The checklist CSV matches the .gitignore `*.csv` rule and was added with explicit `git add -f`.
+  The .md and .txt were added normally. No raw/value/panel/data file was staged. No `git add .` used.
 
 DELETED FILES
   (none)
