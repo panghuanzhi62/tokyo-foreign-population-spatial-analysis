@@ -1,81 +1,85 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ 2012-2025 RAW-FILE INVENTORY AND SCHEMA AUDIT - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - ISA/MOJ CHINESE STOCK PANEL NORMALIZATION SCRIPT SCAFFOLD - SAFETY CHECK
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Local inventory + schema audit of 32 ISA/MOJ Foreign Residents Excel files for a
-  municipality-level registered Chinese resident panel (2012-2025). No modeling, no final
-  analysis data, no raw Excel modified/committed, no full value table / normalized panel
-  committed, no manuscript text. No API calls.
+  Normalization script scaffold + QC design for the ISA/MOJ registered Chinese stock panel.
+  Scaffold only. No full normalization, no final analysis data, no raw Excel modified/
+  committed, no full value table / normalized panel committed, no modeling, no manuscript
+  text. No API calls.
 
 API-KEY HANDLING
-  ESTAT_APP_ID: not needed and not used this task (local Excel inspection only).
-  appId printed/written/committed: NO.
-  secret scan over the 4 CSVs + note: no literal appId; no 40-char hex token. PASS.
+  ESTAT_APP_ID: not needed and not used this task. appId printed/written/committed: NO.
+  secret scan over script + note + summary CSV: no literal appId; no 40-char hex token. PASS.
 
-LOCAL DATA HANDLING
-  Read 32 .xlsx files (read-only, openpyxl, data_only); macros and external links NOT
-  enabled; workbooks NOT modified or saved. None committed. data_raw/ is gitignored.
+SCRIPT SAFETY FEATURES
+  --help / --dry-run: no raw files needed; no panel write; no workbook modification.
+  --schema-only: routing confirmation only; workbooks not modified.
+  --write-local-panel: refuses without --force; refuses non-local-only outdir; writes only
+    under data_processed_official/isa_moj_panel; NOT exercised this task.
+  --include-name-only-wide07: refuses without --name-crosswalk.
+  default behavior is dry-run.
 
 DATA SAFETY
+  write-local-panel run: NO
+  normalized panel created: NO
   modeling run: NO
-  final analysis data created: NO
   raw Excel modified: NO
   raw Excel committed: NO
   full municipality value table committed: NO
   full normalized panel committed: NO
-  datasets downloaded: NO (files were user-prepared locally)
+  datasets downloaded: NO
   PDFs/DOCX/GIS committed: NO
   TokyoProject.docx staged/modified: NO
   ref/ data/ data_raw/ data_raw_official/ data_processed/ data_processed_official/ staged: NO
 
-WHAT THE COMMITTED CSVs CONTAIN (no value tables)
-  Schema facts, format classification, code-presence flags, and 251-frame match COUNTS
-  (matched/missing/extra/duplicate/aggregate); plus normalization design and QC summary.
-  No per-municipality Chinese or foreign population values are committed.
-
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
+  isa_moj_2012_2025_* inventory/audit/design/QC CSVs modified: NO
   census_00200521_municipality_area_code_confirmation.csv modified: NO
-  isa_moj_t2_* / census_* / official_* matrices modified: NO
-  scripts/11_official_data/* modified: NO
+  scripts/11_official_data/census_* modified: NO
   metadata/* modified: NO
   literature_matrix.csv / gap_verification_matrix.csv modified: NO
   official_source_registry.csv modified: NO
   .gitignore modified: NO
 
 ENCODING
-  audit CSV, QC CSV, note, reports: UTF-8 (ASCII-only), parse / no mojibake markers.
-  inventory CSV and normalization design CSV: valid UTF-8; contain intentional official
-    Japanese column-name references (e.g. shikuchoson-code); no U+FFFD; no double-encoding.
+  script: UTF-8 (ASCII-only), py_compile clean.
+  note: UTF-8 (ASCII-only), no mojibake markers.
+  summary CSV: UTF-8 (ASCII-only), parses via csv.DictReader.
+  reports: ASCII-safe.
 
 EVIDENCE-CLAIM SAFETY
-  usable Chinese-stock files: 8; partially usable: 22; not usable: 2 (of 32)
-  normalization feasible: YES (2021-12..2025-06 code-based; earlier PARTIAL via name crosswalk)
-  growth feasible: YES (ISA registered Chinese stock change, NOT Census population growth)
+  code-based periods supported: 2021-12..2025-06 (8 periods)
+  name-only wide07 included by default: NO
+  name-crosswalk required for 2012-12..2021-06: YES
+  post-service growth feasible after code-based normalization: YES
+  pre-service 2015-2020 growth feasible now: NO (requires name->code crosswalk)
   "Chinese" = registered nationality (ISA), NOT ethnicity and NOT Census population.
   gap status: under verification
   Introduction written: NO ; novelty asserted: NO ; final gap claimed: NO
 
 CHECKS
+  py_compile: PASS
+  script --help / --dry-run / --schema-only / --dry-run --code-based-only: PASS
+  write-local-panel guard: REFUSED without --force (PASS)
   CSV validation result: PASS
-  duplicate check result: PASS (inventory_id, audit_id, design_id, qc_id unique)
+  duplicate check result: PASS (summary_id unique)
   controlled-value check result: PASS
   mojibake scan result: PASS
   secret scan: PASS
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
-FILES STAGED (explicit; no `git add .`; the four CSVs added with `git add -f` due to *.csv gitignore)
-  literature/02_matrices/isa_moj_2012_2025_raw_file_inventory.csv
-  literature/02_matrices/isa_moj_2012_2025_schema_code_match_audit.csv
-  literature/02_matrices/isa_moj_2012_2025_panel_normalization_design.csv
-  literature/02_matrices/isa_moj_2012_2025_panel_inventory_qc_summary.csv
-  literature/04_synthesis/isa_moj_2012_2025_raw_file_inventory_schema_audit_note.md
+FILES STAGED (explicit; no `git add .`; summary CSV added with `git add -f` due to *.csv gitignore)
+  scripts/11_official_data/isa_moj_chinese_stock_panel_normalize.py
+  literature/04_synthesis/isa_moj_chinese_stock_panel_normalization_script_scaffold_note.md
+  literature/02_matrices/isa_moj_chinese_stock_panel_normalization_script_scaffold_summary.csv
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  "ISA/MOJ 2012-2025 Chinese stock normalization script scaffold" (local-only panel; commit
-  only QC/derived summaries). No modeling. No Introduction; no novelty; gap under verification.
+  "Run code-based normalization dry-run and QC summary", then "ISA/MOJ code-based
+  2021-12-2025-06 normalization approval package". No modeling. No Introduction; no novelty;
+  gap under verification.

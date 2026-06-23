@@ -1,52 +1,42 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ 2012-2025 RAW-FILE INVENTORY AND SCHEMA AUDIT - CHANGED FILES
+TOKYO-CHINA ROUND 02 - ISA/MOJ CHINESE STOCK PANEL NORMALIZATION SCRIPT SCAFFOLD - CHANGED FILES
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/isa_moj_2012_2025_raw_file_inventory.csv                    [new]
-  literature/02_matrices/isa_moj_2012_2025_schema_code_match_audit.csv               [new]
-  literature/02_matrices/isa_moj_2012_2025_panel_normalization_design.csv            [new]
-  literature/02_matrices/isa_moj_2012_2025_panel_inventory_qc_summary.csv            [new]
-  literature/04_synthesis/isa_moj_2012_2025_raw_file_inventory_schema_audit_note.md  [new]
-  outputs/claude_reports/latest_verification_summary.txt                             [modified]
-  outputs/claude_reports/latest_changed_files.txt                                    [modified]
-  outputs/claude_reports/latest_safety_check.txt                                     [modified]
+  scripts/11_official_data/isa_moj_chinese_stock_panel_normalize.py                                  [new]
+  literature/04_synthesis/isa_moj_chinese_stock_panel_normalization_script_scaffold_note.md          [new]
+  literature/02_matrices/isa_moj_chinese_stock_panel_normalization_script_scaffold_summary.csv       [new]
+  outputs/claude_reports/latest_verification_summary.txt                                              [modified]
+  outputs/claude_reports/latest_changed_files.txt                                                     [modified]
+  outputs/claude_reports/latest_safety_check.txt                                                      [modified]
 
 DETAIL
 
-literature/02_matrices/isa_moj_2012_2025_raw_file_inventory.csv  [new]
-  Inventory, 29 columns x 32 rows (one per .xlsx). Per file: name, path, inferred survey
-  time, size, source_format, sheets, selected sheet, header row, row/column counts,
-  municipality-code availability/field/5-digit feasibility, prefecture/name field, China
-  field, total-foreign field, value field, value_numeric, residence-status dim, total
-  status, china_filtered, target prefectures present, usable_for_chinese_stock /
-  total_foreign / panel_normalization, risk, next action, notes. Contains official
-  Japanese column-name references (e.g. shikuchoson-code) but NO value tables.
+scripts/11_official_data/isa_moj_chinese_stock_panel_normalize.py  [new]
+  Normalization scaffold (Python 3, stdlib + optional openpyxl). argparse CLI:
+  --project-root, --input-dir, --master-code-frame, --inventory-csv, --audit-csv, --outdir,
+  --dry-run, --schema-only, --code-based-only, --include-name-only-wide07, --name-crosswalk,
+  --write-local-panel, --write-qc-summary, --force, --max-timepoints, --target-prefectures.
+  --help/--dry-run need no raw files; --dry-run routes the 32 inventoried files to parsers
+  (wide_03/china_values/all_values/t2_long/wide_07); --schema-only confirms routing without
+  modifying workbooks; --write-local-panel is guarded (refuses without --force, refuses non-
+  local outdir, refuses name-only inclusion without --name-crosswalk) and is NOT exercised.
+  Five parser scaffolds documented (logic only; value extraction gated to the write path),
+  with the registered-stock measurement caveat and zero-fill/aggregate-filter rules. py_compile clean.
 
-literature/02_matrices/isa_moj_2012_2025_schema_code_match_audit.csv  [new]
-  Schema + 251-code match audit, 20 columns x 10 rows (9 code-bearing files + 1 name-only
-  wide-group summary). Per file: survey time, format, expected/observed/matched/missing/
-  extra/duplicate/aggregate counts, per-prefecture observed, zero-fill likely, panel usable
-  status, blocking issue, next action, notes. Counts only; no value tables.
+literature/04_synthesis/isa_moj_chinese_stock_panel_normalization_script_scaffold_note.md  [new]
+  Scaffold note (A-G): purpose; evidence boundary; parser scope; recommended first route
+  (code-based 2021-12..2025-06); model implication (post-service feasible, pre-service needs
+  crosswalk); safe commands; next step.
 
-literature/02_matrices/isa_moj_2012_2025_panel_normalization_design.csv  [new]
-  Normalization design, 16 columns x 5 rows: wide "03" parser, china_values parser, t2 long
-  parser, name-only "07" parser (name->code crosswalk), and commit-policy row. Specifies
-  code rule, China/total value rules, residence-status aggregation, zero-fill rule, output
-  variables, panel scope, commit boundary, risk, next action.
-
-literature/02_matrices/isa_moj_2012_2025_panel_inventory_qc_summary.csv  [new]
-  Compact QC summary, 17 columns x 1 row: file count (32), usable/partial/not-usable
-  (8/22/2), time span (2012-12..2025-06), 251 frame, min matched (245), max missing (6),
-  extra/dup flags (NO/NO), normalization + growth feasibility, next action. No value table.
-
-literature/04_synthesis/isa_moj_2012_2025_raw_file_inventory_schema_audit_note.md  [new]
-  Note (A-H): purpose; evidence boundary; relationship to prior ISA findings; file-type
-  summary; time coverage; code-frame compatibility; model implication; next step.
+literature/02_matrices/isa_moj_chinese_stock_panel_normalization_script_scaffold_summary.csv  [new]
+  Scaffold summary, 14 columns x 5 rows (one per parser): script path, parser, source format,
+  time range, file count, requires_code_field, requires_name_crosswalk, default_enabled,
+  writes_panel_by_default (NO), local_only_output (YES), risk, next action, notes. No values.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the inventory/audit, findings, and checks.
+  Refreshed to describe the scaffold, routing, script-mode results, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -54,24 +44,21 @@ outputs/claude_reports/latest_changed_files.txt  [modified]
 outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
-LOCAL-ONLY DATA INSPECTED BUT NOT MODIFIED / NOT COMMITTED
-  32 .xlsx files in data_raw/isa_estat (read-only via openpyxl; macros/external links not
-  enabled). None modified; none committed (data_raw/ is gitignored).
-
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  literature/02_matrices/census_00200521_municipality_area_code_confirmation.csv (master frame),
-  isa_moj_t2_* (prior task), census_* / official_* matrices, scripts/11_official_data/*,
-  metadata/*, N03 design files, literature_matrix.csv, gap_verification_matrix.csv,
-  official_source_registry.csv, and other matrices/manuscript/data files.
+  data_raw/isa_estat/*.xlsx (read-only during dry-run routing was CSV-based; schema-only did
+    not modify workbooks), the ISA/MOJ inventory/audit/design/QC CSVs, census_* / official_*
+    matrices, scripts/11_official_data/census_*, metadata/*, N03 design files,
+    literature_matrix.csv, gap_verification_matrix.csv, official_source_registry.csv,
+    TokyoProject.docx, and other matrices/manuscript/data files.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   data_raw/ (incl. isa_estat/*.xlsx and txt log), data_raw_official/, data_processed_official/,
   data_processed/, TokyoProject.docx, ref/, outputs/literature_discovery/, outputs/literature_verification/
 
 NOTE ON GITIGNORE
-  literature/02_matrices/*.csv matches the .gitignore `*.csv` rule; the four CSVs were added
-  with explicit `git add -f`. The .md was added normally. No Excel/raw/value/panel file was
-  staged. No `git add .` was used.
+  scripts/*.py is tracked normally. The scaffold summary CSV matches the .gitignore `*.csv`
+  rule and was added with explicit `git add -f`. The .md was added normally. No raw/value/
+  panel/data file was staged. No `git add .` was used.
 
 DELETED FILES
   (none)
