@@ -1,39 +1,45 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 POPULATION-TO-NLNI N03 JOIN VALIDATION DESIGN - CHANGED FILES
+TOKYO-CHINA ROUND 02 - ISA/MOJ t2 CHINESE STOCK PANEL LOCAL EXCEL VERIFICATION + ZERO-FILL DESIGN - CHANGED FILES
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/census_00200521_population_to_nlni_n03_join_validation_design.csv      [new]
-  literature/04_synthesis/census_00200521_population_to_nlni_n03_join_validation_design_note.md [new]
-  literature/02_matrices/census_00200521_population_n03_join_validation_checklist.csv           [new]
-  outputs/claude_reports/latest_verification_summary.txt                                        [modified]
-  outputs/claude_reports/latest_changed_files.txt                                               [modified]
-  outputs/claude_reports/latest_safety_check.txt                                                [modified]
+  literature/02_matrices/isa_moj_t2_chinese_values_file_verification.csv          [new]
+  literature/02_matrices/isa_moj_t2_chinese_stock_zero_fill_panel_design.csv      [new]
+  literature/02_matrices/isa_moj_t2_chinese_stock_panel_qc_summary.csv            [new]
+  literature/04_synthesis/isa_moj_t2_chinese_stock_panel_verification_note.md     [new]
+  outputs/claude_reports/latest_verification_summary.txt                          [modified]
+  outputs/claude_reports/latest_changed_files.txt                                 [modified]
+  outputs/claude_reports/latest_safety_check.txt                                  [modified]
 
 DETAIL
 
-literature/02_matrices/census_00200521_population_to_nlni_n03_join_validation_design.csv  [new]
-  Join validation design, 21 columns x 14 rows. Covers population table, area-code
-  reference, N03 boundary, join key, ward/city handling, island handling, bidirectional
-  mismatch checks, future output, provenance, and safety. Columns capture component,
-  input dataset/path/committed/local-only, expected rows/features, key field/type/format,
-  N03 source/layer/year, target prefectures, join direction, validation check, expected
-  result, blocking issue, risk, next action, notes. No appId; no values.
+literature/02_matrices/isa_moj_t2_chinese_values_file_verification.csv  [new]
+  Per-file verification, 25 columns x 4 rows (one per time point). Records workbook,
+  sheet, rows read, column count, code/prefecture/name/value fields, value_numeric=YES,
+  china_filtered=YES, target prefectures present, observed/expected/matched/missing/
+  extra/duplicate code counts, aggregate rows, usable=YES, zero_fill_needed=YES, risk,
+  next action. Notes include the small zero-fill code list (JIS codes only). No value table.
 
-literature/04_synthesis/census_00200521_population_to_nlni_n03_join_validation_design_note.md  [new]
-  Design note (A-G): purpose; evidence boundary; inputs (committed + local-only +
-  boundary); join key logic; validation checklist table; future script recommendation;
-  next step. Records N03 metadata facts (CRS EPSG:6668, UTF-8, code field N03_007) and the
-  2025-vs-2020 vintage reconciliation need. ASCII-only.
+literature/02_matrices/isa_moj_t2_chinese_stock_zero_fill_panel_design.csv  [new]
+  Zero-fill panel design, 17 columns x 5 rows (4 time points + 1 growth/summary row).
+  Defines master frame (251), observed/matched/zero-fill/extra/duplicate/aggregate counts,
+  the zero-fill rule, output variables (chinese_registered_2023_12 .. 2025_06,
+  *_change_2023_12_to_2025_06, *_log_change_*), growth feasibility, commit boundary, risk,
+  next action. No value table; only counts + small code lists.
 
-literature/02_matrices/census_00200521_population_n03_join_validation_checklist.csv  [new]
-  Compact checklist, 8 columns x 14 rows (population / reference / boundary / join /
-  ward_city / island / output / safety). All design/checklist entries (DONE for items
-  verified this task, PARTIAL/PENDING for items deferred to the next step). No appId; no values.
+literature/02_matrices/isa_moj_t2_chinese_stock_panel_qc_summary.csv  [new]
+  Compact QC summary, 17 columns x 1 row: time points, files, readability, china-filtered,
+  code/numeric flags, expected 251, min matched (245), max missing (6), extra/dup flags,
+  zero-fill needed, panel feasible, growth feasible, next action. No value table.
+
+literature/04_synthesis/isa_moj_t2_chinese_stock_panel_verification_note.md  [new]
+  Note (A-G): purpose; evidence boundary; relationship to cc5eb0a; file-level findings
+  (table); zero-fill interpretation; model implication (ISA registered stock change, not
+  Census growth); next step.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the join validation design, local-file inspection, and checks.
+  Refreshed to describe the local Excel verification, results, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -41,30 +47,26 @@ outputs/claude_reports/latest_changed_files.txt  [modified]
 outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
-NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  scripts/11_official_data/census_00200521_municipality_population_extract.py,
-  scripts/11_official_data/census_00200521_small_metadata_test.py,
-  literature/02_matrices/census_00200521_2020_municipality_population_qc_summary.csv,
-  literature/02_matrices/census_00200521_municipality_area_code_confirmation.csv,
-  literature/02_matrices/census_00200521_municipality_area_code_summary.csv,
-  metadata/official_census_population_extraction_provenance.csv,
-  metadata/official_census_population_extraction_provenance_template.csv,
-  estat_isa_* and official_* matrices, literature_matrix.csv, gap_verification_matrix.csv,
-  official_source_registry.csv, and other matrices/manuscript/data files.
-
 LOCAL-ONLY DATA INSPECTED BUT NOT MODIFIED / NOT COMMITTED
-  data_processed_official/population/census_00200521_2020_municipality_population.csv (251 rows; schema only)
-  data_raw_official/census_00200521_2020_municipality/raw_getStatsData_..._2026-06-23.json (not touched)
-  data_raw/N03-20250101_GML/ (N03 boundary; .prj and .cpg metadata read; geometry NOT processed)
+  data_raw/isa_estat/23-12-t2_china_values.xlsx, 24-06-t2_china_values.xlsx,
+  24-12-t2_china_values.xlsx, 25-06-t2_china_values.xlsx (read-only; openpyxl), plus the
+  24-12-t2_all_values.xlsx used only for the china-vs-all filtering check. None modified;
+  none committed (data_raw/ is gitignored).
+
+NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
+  literature/02_matrices/census_00200521_municipality_area_code_confirmation.csv (master frame),
+  scripts/11_official_data/*, prior census/isa matrices, metadata/*, literature_matrix.csv,
+  gap_verification_matrix.csv, official_source_registry.csv, and other matrices/manuscript/data files.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
-  data_raw_official/, data_processed_official/, data_raw/ (incl. N03-20250101_GML and isa_estat/*.xlsx),
-  data_processed/, TokyoProject.docx, ref/, outputs/literature_discovery/, outputs/literature_verification/
+  data_raw/ (incl. isa_estat/*.xlsx and the local txt log), data_raw_official/,
+  data_processed_official/, data_processed/, TokyoProject.docx, ref/,
+  outputs/literature_discovery/, outputs/literature_verification/
 
 NOTE ON GITIGNORE
-  literature/02_matrices/*.csv matches the .gitignore `*.csv` rule; the design CSV and
-  checklist CSV were added with explicit `git add -f`. The .md was added normally. No
-  boundary/GIS/raw/value file was staged. No `git add .` was used.
+  literature/02_matrices/*.csv matches the .gitignore `*.csv` rule; the three CSVs were
+  added with explicit `git add -f`. The .md was added normally. No Excel/raw/value/panel
+  file was staged. No `git add .` was used.
 
 DELETED FILES
   (none)

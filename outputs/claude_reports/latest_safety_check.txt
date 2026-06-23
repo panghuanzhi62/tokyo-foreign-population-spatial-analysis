@@ -1,61 +1,58 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 POPULATION-TO-NLNI N03 JOIN VALIDATION DESIGN - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - ISA/MOJ t2 CHINESE STOCK PANEL LOCAL EXCEL VERIFICATION + ZERO-FILL DESIGN - SAFETY CHECK
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Design-only join validation workflow for the Census 2020 municipality population table
-  to NLNI N03 boundaries. No join run, no GIS output, no boundary download, no value/raw/
-  boundary committed, no modeling, no scraping/crawling, no manuscript text. No API calls.
+  Local file-structure verification of four MOJ/ISA t2 China-filtered value Excel files and
+  zero-fill panel design against the 251-code Census frame. No modeling, no final analysis
+  data, no raw Excel / value table / full panel committed, no manuscript text. No API calls.
 
 API-KEY HANDLING
-  ESTAT_APP_ID: not needed and not used this task. appId printed/written/committed: NO.
-  secret scan over design CSV + checklist CSV + note: no literal appId; no 40-char hex
-  token. RESULT: PASS.
+  ESTAT_APP_ID: not needed and not used this task (local Excel inspection only).
+  appId printed/written/committed: NO.
+  secret scan over the 3 CSVs + note: no literal appId; no 40-char hex token. PASS.
 
 LOCAL DATA HANDLING
-  processed population table: inspected (schema + row count only); NOT modified; NOT committed.
-  raw Census API output: not touched; NOT committed.
-  NLNI N03 boundary (data_raw/N03-20250101_GML/): .prj and .cpg metadata read only;
-    geometry NOT processed; NOT modified; NOT committed; NOT downloaded.
+  Inspected (read-only, openpyxl) the four china_values Excel files plus 24-12 all_values
+  (for the china-vs-all filtering confirmation). None modified; none committed. data_raw/
+  is gitignored.
 
 DATA SAFETY
-  join run: NO
-  GIS output created: NO
-  N03 boundary downloaded: NO
-  N03 boundary committed: NO
-  raw Census output committed: NO
-  processed population value table committed: NO
   modeling run: NO
-  datasets downloaded: NO
+  final analysis data created: NO
+  raw Excel committed: NO
+  full municipality value table committed: NO
+  full zero-filled 251x4 panel committed: NO
+  datasets downloaded: NO (files were user-prepared locally)
+  PDFs/DOCX committed: NO
   GeoPackage/shapefile/zip committed: NO
-  PDFs downloaded/staged: NO
-  DOCX files staged: NO
   TokyoProject.docx staged/modified: NO
-  ref/ data/ data_raw/ data_processed/ data_raw_official/ data_processed_official/ staged: NO
+  ref/ data/ data_raw/ data_raw_official/ data_processed/ data_processed_official/ staged: NO
+
+WHAT THE COMMITTED CSVs CONTAIN (no value tables)
+  Only counts (rows read, observed/matched/missing/extra/duplicate/aggregate), schema facts,
+  flags, and small zero-fill code lists (4-6 public JIS area codes). No per-municipality
+  Chinese population values are committed.
 
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
-  census_00200521_municipality_population_extract.py modified: NO
-  census_00200521_2020_municipality_population_qc_summary.csv modified: NO
   census_00200521_municipality_area_code_confirmation.csv modified: NO
-  census_00200521_municipality_area_code_summary.csv modified: NO
-  official_census_population_extraction_provenance.csv modified: NO
-  official_census_population_extraction_provenance_template.csv modified: NO
-  estat_isa_* / official_* matrices modified: NO
+  census_* / isa_* / official_* matrices modified: NO
+  scripts/11_official_data/* modified: NO
+  metadata/* modified: NO
   literature_matrix.csv / gap_verification_matrix.csv modified: NO
   official_source_registry.csv modified: NO
   .gitignore modified: NO
 
 ENCODING
-  design CSV: UTF-8 (ASCII-only), parses via csv.DictReader.
-  checklist CSV: UTF-8 (ASCII-only), parses via csv.DictReader.
+  3 CSVs: UTF-8 (ASCII-only), parse via csv.DictReader.
   note: UTF-8 (ASCII-only), no mojibake markers.
   reports: ASCII-safe.
 
 EVIDENCE-CLAIM SAFETY
-  local population table found: YES (251 rows)
-  N03 boundary present locally: YES (2025-01-01; reconcile vs Census 2020)
-  N03 CRS EPSG:6668 + UTF-8 encoding confirmed (metadata only)
+  all four files China-filtered: YES (confirmed vs all_values)
+  panel feasible: YES (251 per period after zero-fill); growth feasible: YES (ISA stock change)
+  "Chinese" = registered nationality (ISA), NOT ethnicity and NOT Census population.
   gap status: under verification
   Introduction written: NO
   novelty asserted: NO
@@ -63,24 +60,22 @@ EVIDENCE-CLAIM SAFETY
 
 CHECKS
   CSV validation result: PASS
-  duplicate check result: PASS (design_id and check_id unique)
-  controlled-value check result: PASS (component, input_committed, input_local_only,
-    join_direction, risk_level, recommended_next_action valid)
+  duplicate check result: PASS (verification_id, design_id, qc_id unique)
+  controlled-value check result: PASS
   mojibake scan result: PASS
   secret scan: PASS
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
-FILES STAGED (explicit; no `git add .`; the two CSVs added with `git add -f` due to *.csv gitignore)
-  literature/02_matrices/census_00200521_population_to_nlni_n03_join_validation_design.csv
-  literature/04_synthesis/census_00200521_population_to_nlni_n03_join_validation_design_note.md
-  literature/02_matrices/census_00200521_population_n03_join_validation_checklist.csv
+FILES STAGED (explicit; no `git add .`; the three CSVs added with `git add -f` due to *.csv gitignore)
+  literature/02_matrices/isa_moj_t2_chinese_values_file_verification.csv
+  literature/02_matrices/isa_moj_t2_chinese_stock_zero_fill_panel_design.csv
+  literature/02_matrices/isa_moj_t2_chinese_stock_panel_qc_summary.csv
+  literature/04_synthesis/isa_moj_t2_chinese_stock_panel_verification_note.md
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  "Confirm NLNI N03 boundary source/year and schema for Tokyo, Saitama, Chiba, Kanagawa"
-  (reconcile 2025 vs 2020 vintage; confirm N03_007 code field), then the join validation
-  script scaffold. No join; no GIS output; no modeling. No Introduction; no novelty; gap
-  under verification.
+  "ISA/MOJ t2 zero-filled Chinese stock panel script scaffold" (local-only panel; commit
+  only QC/derived summaries). No modeling. No Introduction; no novelty; gap under verification.
