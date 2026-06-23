@@ -75,6 +75,13 @@ def build_parser():
                    help="Permit writing raw output (only with --run-bounded-extraction --force).")
     p.add_argument("--force", action="store_true",
                    help="Required (with --run-bounded-extraction) to actually retrieve values.")
+    p.add_argument("--run-controlled-value-test", action="store_true",
+                   help="Tiny controlled getStatsData test over --test-areas only (max --max-test-areas). "
+                        "Sanitized summary only; no raw output saved.")
+    p.add_argument("--test-areas", default="",
+                   help="Comma-separated area codes for the controlled value test (required for that mode).")
+    p.add_argument("--max-test-areas", type=int, default=10,
+                   help="Hard cap on controlled-test area count (default 10).")
     return p
 
 
@@ -220,11 +227,105 @@ def cmd_bounded_extraction(args):
     return 0
 
 
+def cmd_controlled_value_test(args):
+    """Tiny controlled getStatsData test over --test-areas ONLY (<= --max-test-areas).
+    Retrieves at most (n areas x 2 categories) value rows for QC; prints a sanitized
+    summary only; saves NO raw output; never the full 251-area or all-Japan set."""
+    app = get_app_id()
+    if not app:
+        print("ERROR: ESTAT_APP_ID not set; controlled value test needs it. Aborting safely."); return 3
+    test_codes = [c.strip() for c in args.test_areas.split(",") if c.strip()]
+    if not test_codes:
+        print("REFUSED: --run-controlled-value-test requires --test-areas (comma-separated codes)."); return 21
+    if len(test_codes) > args.max_test_areas:
+        print(f"REFUSED: {len(test_codes)} test areas exceed --max-test-areas {args.max_test_areas}."); return 22
+    # every test area MUST be a confirmed, in-scope municipality (blocks all-Japan / arbitrary codes)
+    confirmed = {a["code"] for a in load_target_areas(args)}
+    if len(confirmed) >= 251 and len(test_codes) >= 200:
+        print("REFUSED: this is the controlled small-test mode; it will not run a near-full area set."); return 23
+    not_confirmed = [c for c in test_codes if c not in confirmed]
+    if not_confirmed:
+        print(f"REFUSED: test areas not in confirmed in-scope list: {not_confirmed}"); return 24
+
+    print("=== Census 00200521 controlled value-extraction test ===")
+    print("mode: run-controlled-value-test (tiny getStatsData; sanitized summary only; NO raw output saved)")
+    print(f"statsDataId={args.stats_data_id} cdTime={args.cd_time} cdCat01={args.cd_cat01} "
+          f"cat02={args.cat02_total},{args.cat02_china}")
+    print(f"test areas ({len(test_codes)}):", ",".join(test_codes))
+    params = {
+        "statsDataId": args.stats_data_id,
+        "cdCat01": args.cd_cat01,
+        "cdCat02": ",".join([args.cat02_total, args.cat02_china]),
+        "cdArea": ",".join(test_codes),
+        "cdTime": args.cd_time,
+        "metaGetFlg": "N", "cntGetFlg": "N", "lang": "J",
+    }
+    try:
+        d = _api_get("getStatsData", params, args.timeout_seconds)
+    except Exception as e:
+        print("getStatsData ERROR:", type(e).__name__, str(e)[:200]); return 25
+    status = _safe(d, "GET_STATS_DATA", "RESULT", "STATUS")
+    values = _safe(d, "GET_STATS_DATA", "STATISTICAL_DATA", "DATA_INF", "VALUE", default=[])
+    if isinstance(values, dict):
+        values = [values]
+    # parse into per-area {cat02: int}; do NOT print raw values
+    per_area = {}
+    cats_seen, areas_seen = set(), set()
+    for v in values:
+        area = str(v.get("@area")); cat = str(v.get("@cat02")); raw = v.get("$", "")
+        areas_seen.add(area); cats_seen.add(cat)
+        try:
+            num = int(str(raw).replace(",", ""))
+        except (ValueError, TypeError):
+            num = None
+        per_area.setdefault(area, {})[cat] = num
+    # QC gates (computed internally; only booleans/counts reported)
+    qc_chinese_le_total = True
+    qc_nonneg = True
+    missing_cat = 0
+    for area in test_codes:
+        cells = per_area.get(area, {})
+        total = cells.get(args.cat02_total)
+        china = cells.get(args.cat02_china)
+        if total is None or china is None:
+            missing_cat += 1
+            continue
+        if not (china <= total):
+            qc_chinese_le_total = False
+        if (total - china) < 0:
+            qc_nonneg = False
+    missing_area = sum(1 for a in test_codes if a not in areas_seen)
+    result = {
+        "api_reached": True,
+        "response_status": str(status),
+        "actual_rows": len(values),
+        "areas_returned": len(areas_seen),
+        "categories_returned": len(cats_seen),
+        "qc_chinese_le_total": qc_chinese_le_total,
+        "qc_nonneg": qc_nonneg,
+        "missing_area_count": missing_area,
+        "missing_category_count": missing_cat,
+    }
+    print("response status:", result["response_status"])
+    print("actual value rows retrieved:", result["actual_rows"])
+    print("areas returned:", result["areas_returned"], "| categories returned:", result["categories_returned"])
+    print("QC chinese <= total_foreign:", result["qc_chinese_le_total"])
+    print("QC non_chinese_foreign >= 0:", result["qc_nonneg"])
+    print("missing areas:", result["missing_area_count"], "| missing categories:", result["missing_category_count"])
+    print("raw output saved: NO | appId exposed: NO | values printed: NO (sanitized booleans/counts only)")
+    print("RESULT_JSON:", json.dumps(result, sort_keys=True))
+    print("=== CONTROLLED VALUE TEST DONE (no raw output saved) ===")
+    return 0
+
+
 def main(argv=None):
     args = build_parser().parse_args(argv)
-    modes = [args.dry_run, args.metadata_only, args.run_bounded_extraction]
+    modes = [args.dry_run, args.metadata_only, args.run_bounded_extraction, args.run_controlled_value_test]
     if sum(bool(x) for x in modes) > 1:
-        print("ERROR: choose exactly one of --dry-run / --metadata-only / --run-bounded-extraction."); return 2
+        print("ERROR: choose exactly one of --dry-run / --metadata-only / "
+              "--run-bounded-extraction / --run-controlled-value-test."); return 2
+    if args.run_controlled_value_test:
+        return cmd_controlled_value_test(args)
     if args.run_bounded_extraction:
         return cmd_bounded_extraction(args)
     if args.metadata_only:

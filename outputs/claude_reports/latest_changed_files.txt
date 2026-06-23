@@ -1,45 +1,43 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 BOUNDED MUNICIPALITY EXTRACTION SCRIPT SCAFFOLD - CHANGED FILES
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 CONTROLLED VALUE-EXTRACTION TEST BATCH 1 - CHANGED FILES
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  scripts/11_official_data/census_00200521_municipality_population_extract.py                        [new]
-  literature/04_synthesis/census_00200521_bounded_municipality_extraction_script_scaffold_note.md   [new]
-  literature/02_matrices/census_00200521_bounded_extraction_script_scaffold_summary.csv             [new]
-  outputs/claude_reports/latest_verification_summary.txt                                             [modified]
-  outputs/claude_reports/latest_changed_files.txt                                                    [modified]
-  outputs/claude_reports/latest_safety_check.txt                                                     [modified]
+  scripts/11_official_data/census_00200521_municipality_population_extract.py        [modified]
+  literature/02_matrices/census_00200521_controlled_value_test_batch1_summary.csv    [new]
+  literature/04_synthesis/census_00200521_controlled_value_test_batch1_note.md       [new]
+  outputs/claude_reports/latest_verification_summary.txt                             [modified]
+  outputs/claude_reports/latest_changed_files.txt                                    [modified]
+  outputs/claude_reports/latest_safety_check.txt                                     [modified]
 
 DETAIL
 
-scripts/11_official_data/census_00200521_municipality_population_extract.py  [new]
-  Bounded municipality extraction scaffold (Python 3, stdlib only). argparse CLI:
-  --project-root, --dry-run, --metadata-only, --run-bounded-extraction, --stats-data-id
-  (0003445244), --cd-time (2020000000), --cd-cat01 (0), --cat02-total (1), --cat02-china
-  (102), --area-code-csv (default the confirmation CSV), --target-prefectures
-  (13,11,12,14), --outdir (data_raw_official/census_00200521_2020_municipality),
-  --max-areas (300), --timeout-seconds, --allow-write-raw, --force. --help and
-  --dry-run need no appId; --metadata-only calls getMetaInfo only (no values, no raw
-  save); --run-bounded-extraction is guarded (refuses without --force; refuses non-
-  confirmed prefecture sets / all-Japan; refuses over --max-areas; refuses to write raw
-  unless --allow-write-raw and a local-only path). Variable-logic comments document
-  chinese=cat02 102, total=cat02 1, non_chinese=total-chinese, and the future QC gates.
-  appId read from env only; never printed/written/committed. py_compile clean.
+scripts/11_official_data/census_00200521_municipality_population_extract.py  [modified]
+  Added a safe controlled-test mode: flags --run-controlled-value-test, --test-areas,
+  --max-test-areas (default 10), and a cmd_controlled_value_test() function. The mode
+  runs getStatsData ONCE for the supplied test areas and cat02={1,102} at cdCat01=0,
+  cdTime=2020000000; parses values in memory for QC; prints a sanitized summary
+  (booleans + counts; no raw values); saves no raw output. Every test area must be a
+  confirmed in-scope code (non-confirmed codes refused; verified with 99999); refuses
+  over --max-test-areas and refuses a near-full (>=200) set. All-Japan and full 251-area
+  extraction remain blocked/deferred. appId read from env only; never printed/written/
+  committed. py_compile clean; --help/--dry-run/--metadata-only still pass.
 
-literature/04_synthesis/census_00200521_bounded_municipality_extraction_script_scaffold_note.md  [new]
-  Scaffold note (A-G): purpose; evidence boundary; confirmed inputs; script interface
-  (safe commands only); safety design; result of this run (help/dry-run/metadata-only
-  all pass, 251/251 areas present); next step.
+literature/02_matrices/census_00200521_controlled_value_test_batch1_summary.csv  [new]
+  Sanitized controlled-test summary, 27 columns x 1 row: parameters (statsDataId,
+  cdTime, cat codes), test area codes/count, expected/actual rows (8/8), areas (4) and
+  categories (2) returned, api_reached YES, response_status 0, QC gates (chinese <=
+  total YES; non_chinese >= 0 YES), missing counts (0/0), and safety flags (raw_output
+  NO, appId_exposed NO, full_extraction NO, all_japan NO, bounded_251 NO,
+  population_values_committed NO). No appId; no raw API output; no value-level table.
 
-literature/02_matrices/census_00200521_bounded_extraction_script_scaffold_summary.csv  [new]
-  Sanitized scaffold-test summary, 24 columns x 1 row: script path, modes run, area-code
-  source, target/prefecture counts, statsDataId/cdTime/cat codes, help/dry-run/metadata
-  pass flags, api_reached, and safety flags (population_values_retrieved NO, raw_output
-  NO, appId_exposed NO, full_extraction NO). No appId; no raw API output; no values.
+literature/04_synthesis/census_00200521_controlled_value_test_batch1_note.md  [new]
+  Controlled-test note (A-F): purpose; evidence boundary; test parameters; sanitized
+  result summary; script change summary; next step. ASCII-only.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the scaffold, script checks, metadata-only result, and safety.
+  Refreshed to describe the controlled value test, results, and safety.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -48,13 +46,14 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  scripts/11_official_data/census_00200521_small_metadata_test.py,
+  literature/02_matrices/census_00200521_bounded_extraction_script_scaffold_summary.csv,
   literature/02_matrices/census_00200521_municipality_area_code_confirmation.csv,
   literature/02_matrices/census_00200521_municipality_area_code_summary.csv,
   literature/02_matrices/census_00200521_municipality_population_extraction_design.csv,
+  literature/02_matrices/census_00200521_exact_table_category_confirmation_batch1.csv,
+  literature/02_matrices/census_00200521_small_metadata_test_scaffold_summary.csv,
   metadata/official_census_population_extraction_provenance_template.csv,
-  literature/02_matrices/census_00200521_* (prior), estat_isa_* and official_* matrices,
-  literature/02_matrices/literature_matrix.csv, gap_verification_matrix.csv,
+  estat_isa_* and official_* matrices, literature_matrix.csv, gap_verification_matrix.csv,
   official_source_registry.csv, and other matrices/manuscript/data files.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
@@ -62,13 +61,13 @@ UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   outputs/literature_discovery/, outputs/literature_verification/
 
 RAW API OUTPUTS
-  None. Only getMetaInfo (metadata) was called via --metadata-only; the raw JSON stayed
-  in memory and was never written into or committed to the repo. No getStatsData values.
+  None saved into the repo. The single getStatsData call returned 8 value cells which
+  were parsed in memory for QC only; no raw JSON/CSV was written or committed.
 
 NOTE ON GITIGNORE
   scripts/*.py is tracked normally. The summary CSV matches the .gitignore `*.csv` rule
-  and was added with an explicit `git add -f` of that single file (consistent with the
-  other tracked matrices CSVs). The .md was added normally. No `git add .` was used.
+  and was added with an explicit `git add -f` of that single file. The .md was added
+  normally. No `git add .` was used.
 
 DELETED FILES
   (none)
