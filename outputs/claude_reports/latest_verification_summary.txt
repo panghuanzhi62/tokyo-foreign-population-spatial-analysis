@@ -1,13 +1,13 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ CODE-BASED 2021-12..2025-06 NORMALIZATION APPROVAL PACKAGE - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - ISA/MOJ T2 ZERO-FILLED CHINESE STOCK PANEL SCRIPT SCAFFOLD - VERIFICATION SUMMARY
 Generated: 2026-06-24
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Prepare an explicit APPROVAL PACKAGE for a future ISA/MOJ code-based 2021-12..2025-06
-  registered Chinese foreign-resident STOCK panel normalization run. Approval package only.
-  NO normalization run. NO --write-local-panel. NO normalized panel. NO final analysis data.
-  NO raw Excel / full value table / normalized panel committed. NO modeling. NO manuscript
+  Create a safe script scaffold to build a LOCAL-ONLY 251 x 4 MOJ/ISA registered Chinese
+  foreign-resident STOCK panel from the four verified China-filtered t2 value Excel files.
+  Script scaffold only. NO full panel generated. NO --write-local-panel. NO final analysis
+  data. NO raw Excel / full value table / 251x4 panel committed. NO modeling. NO manuscript
   text. NO novelty. Gap: under verification.
 
 REPO PATH
@@ -17,54 +17,64 @@ BRANCH
   agentic-upgrade
 
 ARTIFACTS
-  approval package note created: YES
-    literature/04_synthesis/isa_moj_code_based_2021_2025_normalization_approval_package.md (A-K)
-  approval checklist CSV created: YES
-    literature/02_matrices/isa_moj_code_based_2021_2025_normalization_approval_checklist.csv (8 cols, 16 rows)
-  optional command preview created: YES
-    literature/04_synthesis/isa_moj_code_based_2021_2025_normalization_command_preview.txt (DO-NOT-RUN header)
+  script scaffold created: YES
+    scripts/11_official_data/isa_moj_t2_chinese_stock_panel_build.py (py_compile clean)
+  script note created: YES
+    literature/04_synthesis/isa_moj_t2_chinese_stock_panel_script_scaffold_note.md (A-G)
+  optional scaffold summary CSV created: YES
+    literature/02_matrices/isa_moj_t2_chinese_stock_panel_script_scaffold_summary.csv (12 cols, 1 row)
 
-APPROVAL STATE
-  approval items: 16 (APPR_001..APPR_016)
-  user approval status: PENDING (all items approved_by_user=PENDING)
-  future normalization command included: YES (labelled DO NOT RUN UNTIL USER EXPLICITLY APPROVES)
+SCRIPT CHECKS / RESULTS
+  script --help passed: YES (exit 0; works without reading raw Excel)
+  script --dry-run passed: YES (exit 0; reads verification/design/master CSVs; reports 4 time points)
+  script --schema-only passed: YES (exit 0; read-only inspect of the 4 Excel files)
+  write-local-panel run: NO (guard REFUSED without --force, exit 11)
 
-RUN / SAFETY STATE
-  normalization run: NO
+SCHEMA-ONLY READ-ONLY INSPECTION (no workbook modified)
+  columns located BY HEADER (files have variable column order; nationwide rows filtered to
+  target prefectures 11/12/13/14):
+    2023-12  code col 1  matched=245  extra=0  dup=0  numeric=YES  code5char=YES
+    2024-06  code col 0  matched=246  extra=0  dup=0  numeric=YES  code5char=YES
+    2024-12  code col 0  matched=245  extra=0  dup=0  numeric=YES  code5char=YES
+    2025-06  code col 0  matched=247  extra=0  dup=0  numeric=YES  code5char=YES
+  required columns + numeric + 5-char codes confirmed: TRUE
+
+INPUT SCOPE / ZERO-FILL
+  input time points: 2023-12,2024-06,2024-12,2025-06
+  master frame expected codes: 251 (Tokyo 62 / Saitama 72 / Chiba 59 / Kanagawa 58)
+  zero-fill counts by period: 6 / 5 / 6 / 4 -> 251 each
+  zero-fill rule implemented: YES (missing target codes set to 0, flagged zero_filled=1;
+    restrict to 251 frame; reject extra/duplicate/aggregate)
+  panel columns (future): survey_time, municipality_code, prefecture_code, municipality_name,
+    chinese_registered, zero_filled, source_file, source_type, master_frame_included
+
+GROWTH IMPLICATION
+  growth variable feasible after panel QC: YES (2023-12..2025-06 registered stock change)
+  log-change requires explicit handling of zero-filled base values
+  pre-service 2015-2020 growth feasible now: NO (deferred wide07 + name->JIS crosswalk)
+  measurement: MOJ/ISA REGISTERED Chinese foreign-resident STOCK change, NOT Census population growth
+
+SAFETY / EVIDENCE-CLAIM
   write-local-panel run: NO
   normalized panel created: NO
   modeling run: NO
   raw Excel committed: NO
   full value table committed: NO
   normalized panel committed: NO
-
-APPROVED CANDIDATE SCOPE (pending user confirmation)
-  code-based periods approved candidate: 2021-12,2022-06,2022-12,2023-06,2023-12,2024-06,2024-12,2025-06
-  parser routes: wide_03 (2021-12..2023-06), china_values (2023-12..2025-06); all_values + t2_long validation only
-  master frame: 251 codes (Tokyo 62 / Saitama 72 / Chiba 59 / Kanagawa 58)
-  zero-fill rule: missing target codes set to 0, flagged zero_filled=YES; aggregate rows filtered
-  name-only wide07 included: NO
-  name-crosswalk required for 2012-12..2021-06: YES
-
-GROWTH IMPLICATION
-  post-service growth feasible after approved normalization: YES (2023-12..2025-06 registered stock change)
-  pre-service 2015-2020 growth feasible now: NO (requires name->JIS crosswalk)
-  measurement: MOJ/ISA REGISTERED Chinese foreign-resident STOCK change, NOT Census population growth
-
-EVIDENCE-CLAIM SAFETY
   novelty asserted: NO
   final gap claimed: NO
   gap status: under verification
 
 CHECKS (this pass)
-  CSV validation result: PASS (checklist 8x16; dry-run QC + scaffold summary + inventory/audit
-    + master frame parse via csv.DictReader)
-  duplicate check result: PASS (approval_item_id unique: APPR_001..APPR_016)
-  controlled-value check result: PASS (all approved_by_user=PENDING; YES/NO fields valid)
-  mojibake scan result: PASS (note/checklist/command-preview/reports ASCII-only valid UTF-8; no U+FFFD)
+  script syntax check result: PASS (py_compile exit 0)
+  CSV validation result: PASS (scaffold summary 12x1; t2 verification/design/QC + master frame
+    parse via csv.DictReader)
+  duplicate check result: PASS (summary_id unique: T2SCAF_001)
+  controlled-value check result: PASS (writes_panel_by_default=NO; local_only=YES; 251; pre-service NO)
+  mojibake scan result: PASS (script CJK header tokens are legitimate UTF-8, not mojibake; no U+FFFD)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS (no raw Excel / value table / panel / data dirs staged)
 
 NEXT RECOMMENDED STEP
-  Wait for explicit user approval, then "Run approved ISA/MOJ code-based 2021-12..2025-06
-  normalization". No modeling. No Introduction; no novelty; gap under verification.
+  "ISA/MOJ t2 zero-filled panel build approval package" before any local panel is written.
+  No modeling. No Introduction; no novelty; gap under verification.
