@@ -1,14 +1,14 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ CHINESE STOCK PANEL NORMALIZATION SCRIPT SCAFFOLD - VERIFICATION SUMMARY
-Generated: 2026-06-23
+TOKYO-CHINA ROUND 02 - ISA/MOJ CODE-BASED NORMALIZATION DRY-RUN AND QC SUMMARY - VERIFICATION SUMMARY
+Generated: 2026-06-24
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Create a safe normalization script scaffold for the ISA/MOJ registered Chinese
-  foreign-resident stock panel (2012-2025), with parser routing, guarded modes, and QC
-  design. Scaffold + QC-design only. NO full normalization. NO final analysis data. NO
-  raw Excel / full value table / normalized panel committed. NO modeling. NO Introduction.
-  NO novelty. Status: gap under verification.
+  Run a code-based normalization DRY-RUN and QC summary for the ISA/MOJ registered Chinese
+  foreign-resident STOCK panel using the existing normalization scaffold. Validate the safe
+  code-based 2021-12..2025-06 route and produce commit-safe QC summaries only. NO full
+  normalized panel written. NO --write-local-panel. NO modeling. NO raw Excel / full value
+  table / normalized panel committed. NO manuscript text. NO novelty. Gap: under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -17,22 +17,20 @@ BRANCH
   agentic-upgrade
 
 ARTIFACTS
-  script scaffold created: YES
-    scripts/11_official_data/isa_moj_chinese_stock_panel_normalize.py (py_compile clean)
-  script note created: YES
-    literature/04_synthesis/isa_moj_chinese_stock_panel_normalization_script_scaffold_note.md (A-G)
-  optional scaffold summary CSV created: YES
-    literature/02_matrices/isa_moj_chinese_stock_panel_normalization_script_scaffold_summary.csv (14 cols, 5 rows)
+  dry-run QC summary CSV created: YES
+    literature/02_matrices/isa_moj_code_based_normalization_dryrun_qc_summary.csv (25 cols, 1 row)
+  synthesis note created: YES
+    literature/04_synthesis/isa_moj_code_based_normalization_dryrun_qc_note.md (A-F)
 
-SCRIPT CHECKS / RESULTS
+SCRIPT CHECKS / RESULTS (scaffold NOT modified this task)
   script --help passed: YES (exit 0; works without raw files)
   script --dry-run passed: YES (exit 0; reads inventory/audit/master CSVs; routes 32 files)
   script --schema-only passed: YES (exit 0; routing confirmed; no workbook modified)
   script --dry-run --code-based-only passed: YES (exit 0; code_based_only flag honored)
-  write-local-panel run: NO (guard REFUSED without --force, exit 11)
-  name-only inclusion guard: REFUSED without --name-crosswalk (exit 2)
+  write-local-panel run: NO (not invoked)
+  --force / --include-name-only-wide07 / --name-crosswalk run: NO
 
-ROUTING (from inventory, confirmed in dry-run)
+ROUTING (confirmed in dry-run)
   wide_03 (code-based): 4 files (2021-12,2022-06,2022-12,2023-06)
   china_values (code-based): 4 files (2023-12,2024-06,2024-12,2025-06)
   all_values (validation): 1 file (2024-12)
@@ -40,18 +38,25 @@ ROUTING (from inventory, confirmed in dry-run)
   wide_07 (name-only, DEFERRED): 18 files (2012-12..2021-06)
   other (pivots): 2 files
 
-PARSERS / SCOPE
-  code-based periods supported: 2021-12,2022-06,2022-12,2023-06,2023-12,2024-06,2024-12,2025-06
-  name-only wide07 included by default: NO (deferred; needs --include-name-only-wide07 + --name-crosswalk)
-  name-crosswalk required for 2012-12..2021-06: YES
-  post-service growth feasible after code-based normalization: YES (2023-12..2025-06)
-  pre-service 2015-2020 growth feasible now: NO (requires name->code crosswalk)
+CODE-BASED SCOPE / QC EXPECTATIONS (from schema audit)
+  code-based periods confirmed: 2021-12,2022-06,2022-12,2023-06,2023-12,2024-06,2024-12,2025-06
+  code-based file count: 8 (wide_03=4 + china_values=4)
+  master frame expected codes: 251
+  wide_03 expected missing rule: matched 250/251 each; 1 missing target code zero-filled;
+    10 prefecture/ward aggregate rows filtered
+  china_values expected missing rule: matched 245/246/245/247 of 251; 4-6 small-village codes
+    zero-filled (flagged)
+  zero-fill rule: missing target codes set to 0 and flagged zero_filled=YES; restrict to 251 frame
 
-GUARD / SAFETY DESIGN
-  --write-local-panel refuses without --force; refuses non-local-only outdir; writes only
-    under data_processed_official/isa_moj_panel
-  --include-name-only-wide07 refuses without --name-crosswalk
-  default behavior is dry-run; no panel writing and no raw-file modification by default
+DEFERRED SCOPE
+  name-only wide07 included: NO
+  name-crosswalk required for 2012-12..2021-06: YES
+  pre-service 2015-2020 growth feasible now: NO (requires name->JIS crosswalk)
+
+GROWTH IMPLICATION
+  post-service growth feasible after code-based normalization: YES (2023-12..2025-06 registered stock change)
+  stronger 2015-2020 -> service -> 2023-2025 chain: PENDING crosswalk validation
+  measurement: MOJ/ISA REGISTERED Chinese foreign-resident STOCK change, NOT Census population growth
 
 SAFETY / EVIDENCE-CLAIM
   write-local-panel run: NO
@@ -60,23 +65,19 @@ SAFETY / EVIDENCE-CLAIM
   raw Excel committed: NO
   full value table committed: NO
   normalized panel committed: NO
-  appId/API key exposed: NO (no API calls)
   novelty asserted: NO
   final gap claimed: NO
   gap status: under verification
 
 CHECKS (this pass)
-  script syntax check result: PASS (py_compile exit 0)
-  CSV validation result: PASS (scaffold summary 14x5; inventory/audit/design/QC + master
-    frame + literature_matrix + gap_verification_matrix parse via csv.DictReader)
-  duplicate check result: PASS (no duplicate summary_id)
-  controlled-value check result: PASS (summary fields consistent; YES/NO/risk values valid)
-  mojibake scan result: PASS (script/note/summary/reports ASCII-only valid UTF-8; no U+FFFD)
-  secret scan: PASS (no appId / no 40-char token)
+  CSV validation result: PASS (new QC summary 25x1; inventory/audit/design/QC + scaffold
+    summary + master frame parse via csv.DictReader)
+  duplicate check result: PASS (qc_id unique: QC_001)
+  controlled-value check result: PASS (YES/NO + PARTIAL + next-action values valid; panel_written=NO)
+  mojibake scan result: PASS (note/summary/reports ASCII-only valid UTF-8; no U+FFFD)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS (no raw Excel / value table / panel / data dirs staged)
 
 NEXT RECOMMENDED STEP
-  "Run code-based normalization dry-run and QC summary" then "ISA/MOJ code-based
-  2021-12-2025-06 normalization approval package" before any local panel is written.
-  No modeling. No Introduction; no novelty; gap under verification.
+  "ISA/MOJ code-based 2021-12-2025-06 normalization approval package" before any local panel
+  is written. No modeling. No Introduction; no novelty; gap under verification.

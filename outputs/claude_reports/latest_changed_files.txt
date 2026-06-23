@@ -1,42 +1,32 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ CHINESE STOCK PANEL NORMALIZATION SCRIPT SCAFFOLD - CHANGED FILES
-Generated: 2026-06-23
+TOKYO-CHINA ROUND 02 - ISA/MOJ CODE-BASED NORMALIZATION DRY-RUN AND QC SUMMARY - CHANGED FILES
+Generated: 2026-06-24
 
 TASK STATUS: COMPLETED
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  scripts/11_official_data/isa_moj_chinese_stock_panel_normalize.py                                  [new]
-  literature/04_synthesis/isa_moj_chinese_stock_panel_normalization_script_scaffold_note.md          [new]
-  literature/02_matrices/isa_moj_chinese_stock_panel_normalization_script_scaffold_summary.csv       [new]
-  outputs/claude_reports/latest_verification_summary.txt                                              [modified]
-  outputs/claude_reports/latest_changed_files.txt                                                     [modified]
-  outputs/claude_reports/latest_safety_check.txt                                                      [modified]
+  literature/02_matrices/isa_moj_code_based_normalization_dryrun_qc_summary.csv   [new]   (git add -f; *.csv gitignore)
+  literature/04_synthesis/isa_moj_code_based_normalization_dryrun_qc_note.md      [new]
+  outputs/claude_reports/latest_verification_summary.txt                          [modified]
+  outputs/claude_reports/latest_changed_files.txt                                 [modified]
+  outputs/claude_reports/latest_safety_check.txt                                  [modified]
 
 DETAIL
 
-scripts/11_official_data/isa_moj_chinese_stock_panel_normalize.py  [new]
-  Normalization scaffold (Python 3, stdlib + optional openpyxl). argparse CLI:
-  --project-root, --input-dir, --master-code-frame, --inventory-csv, --audit-csv, --outdir,
-  --dry-run, --schema-only, --code-based-only, --include-name-only-wide07, --name-crosswalk,
-  --write-local-panel, --write-qc-summary, --force, --max-timepoints, --target-prefectures.
-  --help/--dry-run need no raw files; --dry-run routes the 32 inventoried files to parsers
-  (wide_03/china_values/all_values/t2_long/wide_07); --schema-only confirms routing without
-  modifying workbooks; --write-local-panel is guarded (refuses without --force, refuses non-
-  local outdir, refuses name-only inclusion without --name-crosswalk) and is NOT exercised.
-  Five parser scaffolds documented (logic only; value extraction gated to the write path),
-  with the registered-stock measurement caveat and zero-fill/aggregate-filter rules. py_compile clean.
+literature/02_matrices/isa_moj_code_based_normalization_dryrun_qc_summary.csv  [new]
+  Code-based dry-run QC summary, 25 columns x 1 row (QC_001). Records: code-based periods
+  (8), file counts (wide_03=4, china_values=4, all_values=1 validation, t2_long=3 validation,
+  wide_07=18 deferred), name_only_wide07_included=NO, name_crosswalk_required=YES, master
+  frame=251, wide_03/china_values expected-missing + aggregate-filter + zero-fill rules,
+  panel_written=NO, raw_excel_committed=NO, normalized_panel_committed=NO, post-service
+  growth feasible=YES, pre-service 2015-2020 feasible now=NO, next action. No values.
 
-literature/04_synthesis/isa_moj_chinese_stock_panel_normalization_script_scaffold_note.md  [new]
-  Scaffold note (A-G): purpose; evidence boundary; parser scope; recommended first route
-  (code-based 2021-12..2025-06); model implication (post-service feasible, pre-service needs
-  crosswalk); safe commands; next step.
-
-literature/02_matrices/isa_moj_chinese_stock_panel_normalization_script_scaffold_summary.csv  [new]
-  Scaffold summary, 14 columns x 5 rows (one per parser): script path, parser, source format,
-  time range, file count, requires_code_field, requires_name_crosswalk, default_enabled,
-  writes_panel_by_default (NO), local_only_output (YES), risk, next action, notes. No values.
+literature/04_synthesis/isa_moj_code_based_normalization_dryrun_qc_note.md  [new]
+  Synthesis note (A-F): purpose; evidence boundary; code-based scope (8 periods, parser
+  types); deferred scope (wide07 name-only, crosswalk required); growth implication
+  (post-service feasible, pre-service pending); next step (approval package).
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the scaffold, routing, script-mode results, and checks.
+  Refreshed to describe the dry-run/QC pass, routing, script-mode results, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -45,10 +35,10 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  data_raw/isa_estat/*.xlsx (read-only during dry-run routing was CSV-based; schema-only did
-    not modify workbooks), the ISA/MOJ inventory/audit/design/QC CSVs, census_* / official_*
-    matrices, scripts/11_official_data/census_*, metadata/*, N03 design files,
-    literature_matrix.csv, gap_verification_matrix.csv, official_source_registry.csv,
+  scripts/11_official_data/isa_moj_chinese_stock_panel_normalize.py (scaffold; run only, not
+    edited), the ISA/MOJ inventory/audit/design/QC CSVs, scaffold summary CSV + scaffold note,
+    census_* / official_* matrices, scripts/11_official_data/census_*, metadata/*, N03 design
+    files, literature_matrix.csv, gap_verification_matrix.csv, official_source_registry.csv,
     TokyoProject.docx, and other matrices/manuscript/data files.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
@@ -56,9 +46,9 @@ UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   data_processed/, TokyoProject.docx, ref/, outputs/literature_discovery/, outputs/literature_verification/
 
 NOTE ON GITIGNORE
-  scripts/*.py is tracked normally. The scaffold summary CSV matches the .gitignore `*.csv`
-  rule and was added with explicit `git add -f`. The .md was added normally. No raw/value/
-  panel/data file was staged. No `git add .` was used.
+  The QC summary CSV matches the .gitignore `*.csv` rule and was added with explicit
+  `git add -f`. The .md was added normally. No raw/value/panel/data file was staged.
+  No `git add .` was used.
 
 DELETED FILES
   (none)
