@@ -1,14 +1,14 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ T2 ZERO-FILLED PANEL BUILD APPROVAL PACKAGE - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - APPROVED ISA/MOJ T2 ZERO-FILLED LOCAL-ONLY PANEL BUILD - VERIFICATION SUMMARY
 Generated: 2026-06-24
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Prepare an explicit APPROVAL PACKAGE for the FUTURE local-only build of the 251 x 4 MOJ/ISA
-  registered Chinese foreign-resident STOCK panel from the verified t2 China-filtered value
-  files. Approval package only. NO panel build. NO --write-local-panel. NO --force. NO final
-  analysis data. NO raw Excel / full value table / panel committed. NO modeling. NO manuscript
-  text. NO novelty. Gap: under verification.
+  Run the user-approved LOCAL-ONLY build of the 251 x 4 MOJ/ISA registered Chinese
+  foreign-resident STOCK panel from the four verified t2 China-filtered value files, and
+  produce local QC outputs. Commit ONLY compact QC/provenance/run-note summaries. NO full
+  panel committed. NO raw Excel committed. NO modeling. NO manuscript text. NO novelty.
+  Gap: under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -16,58 +16,63 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-ARTIFACTS
-  approval package note created: YES
-    literature/04_synthesis/isa_moj_t2_zero_filled_panel_build_approval_package.md (A-K)
-  approval checklist CSV created: YES
-    literature/02_matrices/isa_moj_t2_zero_filled_panel_build_approval_checklist.csv (8 cols, 15 rows)
-  optional command preview created: YES
-    literature/04_synthesis/isa_moj_t2_zero_filled_panel_build_command_preview.txt (DO-NOT-RUN header)
+BUILD
+  approved command run: YES
+    python scripts/11_official_data/isa_moj_t2_chinese_stock_panel_build.py --project-root . --write-local-panel --force --write-qc-summary
+  build exit code: 0
+  panel created local-only: YES
+  local panel path: data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_2023_12_2025_06.csv
+  local QC path:    data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_panel_qc.csv
+  both local outputs are gitignored (data_processed_official + *.csv rules); not staged.
 
-APPROVAL STATE
-  approval items: 15 (T2APPR_001..T2APPR_015)
-  user approval status: PENDING (all items approved_by_user=PENDING)
-  future panel build command included: YES (labelled DO NOT RUN UNTIL USER EXPLICITLY APPROVES)
+MANDATORY QC GATES (all PASSED)
+  survey_time values: 2023-12, 2024-06, 2024-12, 2025-06 (count = 4)
+  rows per time point: 251 each
+  total rows: 1004 (= 251 x 4)
+  municipality_code x survey_time unique: YES (0 duplicate pairs)
+  municipality_code preserved as 5-character string: YES
+  each time point covers exactly the 251-code master frame: YES
+  extra codes: 0
+  duplicate codes: 0
+  aggregate rows: 0
+  zero-fill counts: 2023-12=6; 2024-06=5; 2024-12=6; 2025-06=4 (match expected)
+  zero-filled rows flagged zero_filled=1 (value 0); observed rows zero_filled=0; domain {0,1}
+  numeric values: YES
+  negative values: 0
 
-RUN / SAFETY STATE
-  panel build run: NO
-  write-local-panel run: NO
-  normalized panel created: NO
-  modeling run: NO
+ARTIFACTS (commit-safe)
+  compact QC summary created: YES
+    literature/02_matrices/isa_moj_t2_zero_filled_panel_build_qc_summary.csv (23 cols, 1 row)
+  run note created: YES
+    literature/04_synthesis/isa_moj_t2_zero_filled_panel_build_run_note.md (A-G)
+  optional provenance CSV created: YES
+    metadata/isa_moj_t2_zero_filled_panel_build_provenance.csv (11 cols, 1 row)
+
+SAFETY / EVIDENCE-CLAIM
+  panel committed: NO
   raw Excel committed: NO
+  raw Excel modified: NO (opened read-only)
   full value table committed: NO
-  normalized panel committed: NO
-
-CANDIDATE PANEL SCOPE (pending user confirmation)
-  input time points: 2023-12,2024-06,2024-12,2025-06
-  input files: 23-12 / 24-06 / 24-12 / 25-06 -t2_china_values.xlsx
-  master frame expected codes: 251 (Tokyo 62 / Saitama 72 / Chiba 59 / Kanagawa 58)
-  zero-fill counts: 2023-12=6; 2024-06=5; 2024-12=6; 2025-06=4
-  zero-fill rule: missing target codes set to 0, flagged zero_filled=1; restrict to 251 frame;
-    reject extra/duplicate/aggregate
-  future local-only panel: data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_2023_12_2025_06.csv
-  future local-only QC: data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_panel_qc.csv
-
-GROWTH IMPLICATION
-  growth variable feasible after approved panel QC: YES (2023-12..2025-06 registered stock change)
-  log-change caveat documented: YES (zero 2023-12 base makes log ratio undefined; handle at analysis)
-  pre-service 2015-2020 growth feasible now: NO (deferred wide07 + name->JIS crosswalk)
-  measurement: MOJ/ISA REGISTERED Chinese foreign-resident STOCK change, NOT Census population growth
-
-EVIDENCE-CLAIM SAFETY
+  modeling run: NO
   novelty asserted: NO
   final gap claimed: NO
   gap status: under verification
 
+GROWTH IMPLICATION
+  growth variable feasible after QC: YES (2023-12..2025-06 registered Chinese stock change)
+  log-change caveat documented: YES (zero 2023-12 base; 6 zero-filled municipalities)
+  pre-service 2015-2020 growth feasible now: NO (deferred wide07 + name->JIS crosswalk)
+  measurement: MOJ/ISA REGISTERED Chinese foreign-resident STOCK change, NOT Census population growth
+
 CHECKS (this pass)
-  CSV validation result: PASS (checklist 8x15; t2 verification/design + scaffold summary +
-    master frame parse via csv.DictReader)
-  duplicate check result: PASS (approval_item_id unique: T2APPR_001..T2APPR_015)
-  controlled-value check result: PASS (all approved_by_user=PENDING; YES/NO fields valid)
-  mojibake scan result: PASS (note/checklist/command-preview/reports ASCII-only valid UTF-8; no U+FFFD)
+  CSV validation result: PASS (qc summary 23x1; provenance 11x1; approval checklist +
+    t2 verification/design + master frame parse via csv.DictReader)
+  duplicate check result: PASS (qc_id unique T2QC_001; provenance_id unique T2PROV_001)
+  controlled-value check result: PASS (panel_committed=NO; local_only=YES; 1004; 0/0/0; neg 0)
+  mojibake scan result: PASS (qc/provenance/run-note/reports ASCII-only valid UTF-8; no U+FFFD)
   git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS (no raw Excel / value table / panel / data dirs staged)
+  sensitive-file check result: PASS (no raw Excel / full panel / value table / data dirs staged)
 
 NEXT RECOMMENDED STEP
-  Wait for explicit user approval, then "Run approved ISA/MOJ t2 zero-filled panel build".
-  No modeling. No Introduction; no novelty; gap under verification.
+  "Review local panel QC and approve compact derived-growth variable design." No modeling.
+  No Introduction; no novelty; gap under verification.
