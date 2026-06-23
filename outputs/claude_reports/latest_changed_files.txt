@@ -1,44 +1,37 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ T2 ZERO-FILLED CHINESE STOCK PANEL SCRIPT SCAFFOLD - CHANGED FILES
+TOKYO-CHINA ROUND 02 - ISA/MOJ T2 ZERO-FILLED PANEL BUILD APPROVAL PACKAGE - CHANGED FILES
 Generated: 2026-06-24
 
 TASK STATUS: COMPLETED
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  scripts/11_official_data/isa_moj_t2_chinese_stock_panel_build.py                          [new]
-  literature/04_synthesis/isa_moj_t2_chinese_stock_panel_script_scaffold_note.md            [new]
-  literature/02_matrices/isa_moj_t2_chinese_stock_panel_script_scaffold_summary.csv         [new]  (git add -f; *.csv gitignore)
-  outputs/claude_reports/latest_verification_summary.txt                                     [modified]
-  outputs/claude_reports/latest_changed_files.txt                                            [modified]
-  outputs/claude_reports/latest_safety_check.txt                                             [modified]
+  literature/02_matrices/isa_moj_t2_zero_filled_panel_build_approval_checklist.csv  [new]  (git add -f; *.csv gitignore)
+  literature/04_synthesis/isa_moj_t2_zero_filled_panel_build_approval_package.md     [new]
+  literature/04_synthesis/isa_moj_t2_zero_filled_panel_build_command_preview.txt      [new]
+  outputs/claude_reports/latest_verification_summary.txt                              [modified]
+  outputs/claude_reports/latest_changed_files.txt                                     [modified]
+  outputs/claude_reports/latest_safety_check.txt                                      [modified]
 
 DETAIL
 
-scripts/11_official_data/isa_moj_t2_chinese_stock_panel_build.py  [new]
-  Panel build scaffold (Python 3, stdlib + optional openpyxl). argparse CLI: --project-root,
-  --input-dir, --master-code-frame, --verification-csv, --zero-fill-design-csv, --outdir,
-  --dry-run, --schema-only, --write-local-panel, --write-qc-summary, --force.
-  --help/--dry-run need no raw files; --dry-run reads verification/design/master CSVs and
-  reports the 4 time points + matched/zero-fill counts; --schema-only read-only inspects the
-  4 t2 Excel files (columns located BY HEADER, since column order varies across files;
-  nationwide rows filtered to target prefectures 11/12/13/14) and confirms matched
-  245/246/245/247, extra 0, dup 0, numeric, 5-char codes. --write-local-panel is guarded
-  (refuses without --force, refuses non-local outdir, aborts on frame-size/extra/dup/missing
-  anomalies), writes ONLY to data_processed_official/isa_moj_panel, and is NOT exercised.
-  CJK header tokens are UTF-8 literals (file declares utf-8 coding); py_compile clean.
+literature/04_synthesis/isa_moj_t2_zero_filled_panel_build_approval_package.md  [new]
+  Approval package note (A-K): purpose (approval only, no build); evidence boundary; candidate
+  scope (4 t2 periods + 4 input files); spatial frame + zero-fill rule (251 = Tokyo 62 /
+  Saitama 72 / Chiba 59 / Kanagawa 58); future local-only panel + QC output paths; future
+  command labelled DO NOT RUN; mandatory QC gates (1004 rows, 251/period, unique
+  code x time, zero-fill 6/5/6/4, flags); growth implication (post-service feasible,
+  log-change zero-base caveat, pre-service deferred); user approval checklist; next step.
 
-literature/04_synthesis/isa_moj_t2_chinese_stock_panel_script_scaffold_note.md  [new]
-  Scaffold note (A-G): purpose; evidence boundary; input scope (4 time points, variable
-  column order); zero-fill rule (251 frame, flag zero_filled=1, reject extra/dup/aggregate);
-  growth implication (post-service feasible, log-change needs zero-base handling, pre-service
-  deferred); safe commands; next step (approval package).
+literature/02_matrices/isa_moj_t2_zero_filled_panel_build_approval_checklist.csv  [new]
+  Approval checklist, 8 columns x 15 rows (T2APPR_001..T2APPR_015). Categories: scope, input,
+  spatial_frame, rule, output, safety, caveat, deferral, gate. All approved_by_user=PENDING.
+  No municipality values.
 
-literature/02_matrices/isa_moj_t2_chinese_stock_panel_script_scaffold_summary.csv  [new]
-  Scaffold summary, 12 columns x 1 row (T2SCAF_001): script path, time points, input files,
-  master frame 251, zero-fill counts by period, writes_panel_by_default=NO, local_only=YES,
-  growth feasible after panel QC=YES, pre-service feasible now=NO, next action. No values.
+literature/04_synthesis/isa_moj_t2_zero_filled_panel_build_command_preview.txt  [new]
+  Command preview; first line "DO NOT RUN UNTIL USER EXPLICITLY APPROVES." followed by the
+  future --write-local-panel --force --write-qc-summary command only. No appId / API key.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the t2 build scaffold, schema-only inspection, and checks.
+  Refreshed to describe the approval package, approval state, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -47,20 +40,19 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  raw Excel (data_raw/isa_estat/*.xlsx; read-only during schema-only, not modified), the
-  ISA/MOJ t2 verification/design/QC CSVs + verification note, the earlier normalize scaffold +
-  approval-package files, census_* / official_* matrices, metadata/*, N03 design files,
-  literature_matrix.csv, gap_verification_matrix.csv, official_source_registry.csv,
-  TokyoProject.docx, and other matrices/manuscript/data files.
+  scripts/ (incl. isa_moj_t2_chinese_stock_panel_build.py), raw Excel (data_raw/isa_estat/*.xlsx),
+  the ISA/MOJ t2 verification/design/QC CSVs + verification/scaffold notes + scaffold summary,
+  earlier normalize scaffold / dry-run QC / approval-package files, census_* / official_*
+  matrices, metadata/*, N03 design files, literature_matrix.csv, gap_verification_matrix.csv,
+  official_source_registry.csv, TokyoProject.docx, and other matrices/manuscript/data files.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   data_raw/ (incl. isa_estat/*.xlsx and txt log), data_raw_official/, data_processed_official/,
   data_processed/, TokyoProject.docx, ref/, outputs/literature_discovery/, outputs/literature_verification/
 
 NOTE ON GITIGNORE
-  The scaffold summary CSV matches the .gitignore `*.csv` rule and was added with explicit
-  `git add -f`. The .py and .md were added normally. No raw/value/panel/data file was staged.
-  No `git add .` was used.
+  The checklist CSV matches the .gitignore `*.csv` rule and was added with explicit `git add -f`.
+  The .md and .txt were added normally. No raw/value/panel/data file was staged. No `git add .` used.
 
 DELETED FILES
   (none)

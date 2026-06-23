@@ -1,0 +1,16 @@
+approval_item_id,approval_category,approval_item,required_before_panel_build,approved_by_user,current_status,blocking_if_not_approved,notes
+T2APPR_001,scope,Build only the four t2 China-filtered periods 2023-12..2025-06,YES,PENDING,proposed,YES,2023-12;2024-06;2024-12;2025-06
+T2APPR_002,input,Use 23-12-t2_china_values.xlsx,YES,PENDING,proposed,YES,matched 245/251; zero-fill 6
+T2APPR_003,input,Use 24-06-t2_china_values.xlsx,YES,PENDING,proposed,YES,matched 246/251; zero-fill 5
+T2APPR_004,input,Use 24-12-t2_china_values.xlsx,YES,PENDING,proposed,YES,matched 245/251; zero-fill 6
+T2APPR_005,input,Use 25-06-t2_china_values.xlsx,YES,PENDING,proposed,YES,matched 247/251; zero-fill 4
+T2APPR_006,spatial_frame,Use the 251 Census municipality-equivalent master code frame,YES,PENDING,proposed,YES,Tokyo 62 / Saitama 72 / Chiba 59 / Kanagawa 58 = 251
+T2APPR_007,rule,Zero-fill missing target codes (set to 0),YES,PENDING,proposed,YES,restrict to 251 frame; reject extra/duplicate/aggregate
+T2APPR_008,rule,Flag zero-filled rows zero_filled=1 and observed rows zero_filled=0,YES,PENDING,proposed,YES,total rows 1004 = 251x4
+T2APPR_009,output,Write panel only to data_processed_official/isa_moj_panel,YES,PENDING,proposed,YES,local-only; isa_moj_chinese_stock_t2_2023_12_2025_06.csv
+T2APPR_010,safety,Do not commit full normalized panel,YES,PENDING,proposed,YES,only compact QC summary may be committed after review
+T2APPR_011,safety,Do not commit raw Excel,YES,PENDING,proposed,YES,raw stays in data_raw/isa_estat untracked
+T2APPR_012,safety,Do not run modeling,YES,PENDING,proposed,YES,no modeling before panel QC review
+T2APPR_013,caveat,Log-change needs zero 2023-12 base handling,YES,PENDING,proposed,NO,zero base makes log ratio undefined; handle at analysis stage
+T2APPR_014,deferral,Pre-service 2015-2020 ISA growth deferred,YES,PENDING,proposed,YES,requires name->JIS crosswalk for wide07 files
+T2APPR_015,gate,User explicit approval required before any panel write,YES,PENDING,proposed,YES,no write-local-panel / no --force until approved

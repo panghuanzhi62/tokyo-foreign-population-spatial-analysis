@@ -1,13 +1,13 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ T2 ZERO-FILLED CHINESE STOCK PANEL SCRIPT SCAFFOLD - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - ISA/MOJ T2 ZERO-FILLED PANEL BUILD APPROVAL PACKAGE - VERIFICATION SUMMARY
 Generated: 2026-06-24
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Create a safe script scaffold to build a LOCAL-ONLY 251 x 4 MOJ/ISA registered Chinese
-  foreign-resident STOCK panel from the four verified China-filtered t2 value Excel files.
-  Script scaffold only. NO full panel generated. NO --write-local-panel. NO final analysis
-  data. NO raw Excel / full value table / 251x4 panel committed. NO modeling. NO manuscript
+  Prepare an explicit APPROVAL PACKAGE for the FUTURE local-only build of the 251 x 4 MOJ/ISA
+  registered Chinese foreign-resident STOCK panel from the verified t2 China-filtered value
+  files. Approval package only. NO panel build. NO --write-local-panel. NO --force. NO final
+  analysis data. NO raw Excel / full value table / panel committed. NO modeling. NO manuscript
   text. NO novelty. Gap: under verification.
 
 REPO PATH
@@ -17,64 +17,57 @@ BRANCH
   agentic-upgrade
 
 ARTIFACTS
-  script scaffold created: YES
-    scripts/11_official_data/isa_moj_t2_chinese_stock_panel_build.py (py_compile clean)
-  script note created: YES
-    literature/04_synthesis/isa_moj_t2_chinese_stock_panel_script_scaffold_note.md (A-G)
-  optional scaffold summary CSV created: YES
-    literature/02_matrices/isa_moj_t2_chinese_stock_panel_script_scaffold_summary.csv (12 cols, 1 row)
+  approval package note created: YES
+    literature/04_synthesis/isa_moj_t2_zero_filled_panel_build_approval_package.md (A-K)
+  approval checklist CSV created: YES
+    literature/02_matrices/isa_moj_t2_zero_filled_panel_build_approval_checklist.csv (8 cols, 15 rows)
+  optional command preview created: YES
+    literature/04_synthesis/isa_moj_t2_zero_filled_panel_build_command_preview.txt (DO-NOT-RUN header)
 
-SCRIPT CHECKS / RESULTS
-  script --help passed: YES (exit 0; works without reading raw Excel)
-  script --dry-run passed: YES (exit 0; reads verification/design/master CSVs; reports 4 time points)
-  script --schema-only passed: YES (exit 0; read-only inspect of the 4 Excel files)
-  write-local-panel run: NO (guard REFUSED without --force, exit 11)
+APPROVAL STATE
+  approval items: 15 (T2APPR_001..T2APPR_015)
+  user approval status: PENDING (all items approved_by_user=PENDING)
+  future panel build command included: YES (labelled DO NOT RUN UNTIL USER EXPLICITLY APPROVES)
 
-SCHEMA-ONLY READ-ONLY INSPECTION (no workbook modified)
-  columns located BY HEADER (files have variable column order; nationwide rows filtered to
-  target prefectures 11/12/13/14):
-    2023-12  code col 1  matched=245  extra=0  dup=0  numeric=YES  code5char=YES
-    2024-06  code col 0  matched=246  extra=0  dup=0  numeric=YES  code5char=YES
-    2024-12  code col 0  matched=245  extra=0  dup=0  numeric=YES  code5char=YES
-    2025-06  code col 0  matched=247  extra=0  dup=0  numeric=YES  code5char=YES
-  required columns + numeric + 5-char codes confirmed: TRUE
-
-INPUT SCOPE / ZERO-FILL
-  input time points: 2023-12,2024-06,2024-12,2025-06
-  master frame expected codes: 251 (Tokyo 62 / Saitama 72 / Chiba 59 / Kanagawa 58)
-  zero-fill counts by period: 6 / 5 / 6 / 4 -> 251 each
-  zero-fill rule implemented: YES (missing target codes set to 0, flagged zero_filled=1;
-    restrict to 251 frame; reject extra/duplicate/aggregate)
-  panel columns (future): survey_time, municipality_code, prefecture_code, municipality_name,
-    chinese_registered, zero_filled, source_file, source_type, master_frame_included
-
-GROWTH IMPLICATION
-  growth variable feasible after panel QC: YES (2023-12..2025-06 registered stock change)
-  log-change requires explicit handling of zero-filled base values
-  pre-service 2015-2020 growth feasible now: NO (deferred wide07 + name->JIS crosswalk)
-  measurement: MOJ/ISA REGISTERED Chinese foreign-resident STOCK change, NOT Census population growth
-
-SAFETY / EVIDENCE-CLAIM
+RUN / SAFETY STATE
+  panel build run: NO
   write-local-panel run: NO
   normalized panel created: NO
   modeling run: NO
   raw Excel committed: NO
   full value table committed: NO
   normalized panel committed: NO
+
+CANDIDATE PANEL SCOPE (pending user confirmation)
+  input time points: 2023-12,2024-06,2024-12,2025-06
+  input files: 23-12 / 24-06 / 24-12 / 25-06 -t2_china_values.xlsx
+  master frame expected codes: 251 (Tokyo 62 / Saitama 72 / Chiba 59 / Kanagawa 58)
+  zero-fill counts: 2023-12=6; 2024-06=5; 2024-12=6; 2025-06=4
+  zero-fill rule: missing target codes set to 0, flagged zero_filled=1; restrict to 251 frame;
+    reject extra/duplicate/aggregate
+  future local-only panel: data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_2023_12_2025_06.csv
+  future local-only QC: data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_panel_qc.csv
+
+GROWTH IMPLICATION
+  growth variable feasible after approved panel QC: YES (2023-12..2025-06 registered stock change)
+  log-change caveat documented: YES (zero 2023-12 base makes log ratio undefined; handle at analysis)
+  pre-service 2015-2020 growth feasible now: NO (deferred wide07 + name->JIS crosswalk)
+  measurement: MOJ/ISA REGISTERED Chinese foreign-resident STOCK change, NOT Census population growth
+
+EVIDENCE-CLAIM SAFETY
   novelty asserted: NO
   final gap claimed: NO
   gap status: under verification
 
 CHECKS (this pass)
-  script syntax check result: PASS (py_compile exit 0)
-  CSV validation result: PASS (scaffold summary 12x1; t2 verification/design/QC + master frame
-    parse via csv.DictReader)
-  duplicate check result: PASS (summary_id unique: T2SCAF_001)
-  controlled-value check result: PASS (writes_panel_by_default=NO; local_only=YES; 251; pre-service NO)
-  mojibake scan result: PASS (script CJK header tokens are legitimate UTF-8, not mojibake; no U+FFFD)
+  CSV validation result: PASS (checklist 8x15; t2 verification/design + scaffold summary +
+    master frame parse via csv.DictReader)
+  duplicate check result: PASS (approval_item_id unique: T2APPR_001..T2APPR_015)
+  controlled-value check result: PASS (all approved_by_user=PENDING; YES/NO fields valid)
+  mojibake scan result: PASS (note/checklist/command-preview/reports ASCII-only valid UTF-8; no U+FFFD)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS (no raw Excel / value table / panel / data dirs staged)
 
 NEXT RECOMMENDED STEP
-  "ISA/MOJ t2 zero-filled panel build approval package" before any local panel is written.
+  Wait for explicit user approval, then "Run approved ISA/MOJ t2 zero-filled panel build".
   No modeling. No Introduction; no novelty; gap under verification.
