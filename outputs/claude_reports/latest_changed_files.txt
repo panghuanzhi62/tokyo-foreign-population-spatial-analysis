@@ -1,39 +1,39 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 BOUNDED 251-MUNICIPALITY EXTRACTION APPROVAL PACKAGE - CHANGED FILES
+TOKYO-CHINA ROUND 02 - APPROVED CENSUS 00200521 BOUNDED 251-MUNICIPALITY EXTRACTION - CHANGED FILES
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/04_synthesis/census_00200521_bounded_251_extraction_approval_package.md     [new]
-  literature/02_matrices/census_00200521_bounded_251_extraction_approval_checklist.csv   [new]
-  literature/04_synthesis/census_00200521_bounded_251_extraction_command_preview.txt     [new]
-  outputs/claude_reports/latest_verification_summary.txt                                  [modified]
-  outputs/claude_reports/latest_changed_files.txt                                         [modified]
-  outputs/claude_reports/latest_safety_check.txt                                          [modified]
+  literature/02_matrices/census_00200521_2020_municipality_population_qc_summary.csv      [new]
+  metadata/official_census_population_extraction_provenance.csv                           [new]
+  literature/04_synthesis/census_00200521_2020_municipality_population_extraction_run_note.md [new]
+  outputs/claude_reports/latest_verification_summary.txt                                   [modified]
+  outputs/claude_reports/latest_changed_files.txt                                          [modified]
+  outputs/claude_reports/latest_safety_check.txt                                           [modified]
 
 DETAIL
 
-literature/04_synthesis/census_00200521_bounded_251_extraction_approval_package.md  [new]
-  Approval package (sections A-M): purpose; evidence boundary; confirmed source
-  parameters; controlled-test evidence; future extraction scope requiring approval
-  (251 areas x 2 categories = 502 rows max); the future command marked DO NOT RUN YET;
-  local-only raw storage; derived-output plan; provenance fields; QC gates; abort
-  conditions; user approval checklist; next step. ASCII-only; no appId.
+literature/02_matrices/census_00200521_2020_municipality_population_qc_summary.csv  [new]
+  Aggregate QC summary, 30 columns x 1 row. Records run parameters, expected/actual rows
+  (502/502), area count (251), category count (2), per-prefecture counts (62/72/59/58),
+  aggregate rows present (0), duplicates (0), missing (0/0), QC gates (chinese <= total
+  YES; non_chinese >= 0 YES), islands flagged (9), and safety flags (raw saved local-only
+  YES; raw committed NO; processed local-only YES; appId exposed NO; provenance updated
+  YES; qc_status PASS). Contains NO per-area population values and NO appId.
 
-literature/02_matrices/census_00200521_bounded_251_extraction_approval_checklist.csv  [new]
-  Approval checklist, 8 columns x 21 rows. One row per approval item across categories
-  parameter / scope / storage / qc / security / provenance / commit_policy / approval.
-  Every row approved_by_user = PENDING. Columns: approval_item_id, approval_category,
-  approval_item, required_before_extraction, approved_by_user, current_status,
-  blocking_if_not_approved, notes. No appId; no raw values.
+metadata/official_census_population_extraction_provenance.csv  [new]
+  Provenance log, 19 columns x 1 row (RUN_20260623_001). Records source/statsDataId/
+  cdTime/cdCat01/cat02 codes, target prefectures, area-code source, api_method,
+  local-only raw path + SHA-256 hash, local-only processed path, query date, license
+  terms, script path, raw_output_committed=NO, appId_exposed=NO, notes. No values; no appId.
 
-literature/04_synthesis/census_00200521_bounded_251_extraction_command_preview.txt  [new]
-  Command preview; first line is "DO NOT RUN UNTIL USER EXPLICITLY APPROVES." Contains
-  the future bounded-extraction command (wrapped and single-line PowerShell forms),
-  preconditions, and a closing DO-NOT-RUN warning. No appId.
+literature/04_synthesis/census_00200521_2020_municipality_population_extraction_run_note.md  [new]
+  Run note (A-F): purpose (user-approved run executed); evidence boundary; extraction
+  scope; QC summary; storage/commit boundary (raw + processed local-only, not committed);
+  next step. ASCII-only.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the approval package, checks, and pending-approval status.
+  Refreshed to describe the approved extraction, QC results, storage boundary, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -41,31 +41,30 @@ outputs/claude_reports/latest_changed_files.txt  [modified]
 outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
+LOCAL-ONLY OUTPUTS (NOT committed; NOT staged)
+  data_raw_official/census_00200521_2020_municipality/raw_getStatsData_0003445244_2020000000_2026-06-23.json
+    (raw API values; untracked in git; SHA-256 be5c59a5...918a42 recorded in provenance)
+  data_processed_official/population/census_00200521_2020_municipality_population.csv
+    (251-row processed table; gitignored *.csv; not staged)
+
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  scripts/11_official_data/census_00200521_municipality_population_extract.py,
+  scripts/11_official_data/census_00200521_municipality_population_extract.py (committed
+    guarded scaffold left unchanged; approved extraction run via a local-only runner),
   scripts/11_official_data/census_00200521_small_metadata_test.py,
-  literature/02_matrices/census_00200521_controlled_value_test_batch1_summary.csv,
-  literature/02_matrices/census_00200521_bounded_extraction_script_scaffold_summary.csv,
-  literature/02_matrices/census_00200521_municipality_area_code_confirmation.csv,
-  literature/02_matrices/census_00200521_municipality_area_code_summary.csv,
-  literature/02_matrices/census_00200521_municipality_population_extraction_design.csv,
-  literature/02_matrices/census_00200521_exact_table_category_confirmation_batch1.csv,
-  metadata/official_census_population_extraction_provenance_template.csv,
+  literature/02_matrices/census_00200521_* (prior), metadata/official_census_population_extraction_provenance_template.csv,
   estat_isa_* and official_* matrices, literature_matrix.csv, gap_verification_matrix.csv,
   official_source_registry.csv, and other matrices/manuscript/data files.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
+  data_raw_official/ (this run's raw JSON), data_processed_official/ (this run's processed CSV),
   TokyoProject.docx, ref/, data_raw/ (incl. isa_estat/*.xlsx), data_processed/,
-  data_raw_official/ (if present), data_processed_official/ (if present),
   outputs/literature_discovery/, outputs/literature_verification/
 
-RAW API OUTPUTS
-  None. No getStatsData call was made this task; no raw output exists or was committed.
-
 NOTE ON GITIGNORE
-  literature/02_matrices/*.csv matches the .gitignore `*.csv` rule; the approval
-  checklist CSV was added with an explicit `git add -f`. The .md and .txt were added
-  normally. No `git add .` was used.
+  literature/02_matrices/*.csv and metadata/*.csv match the .gitignore `*.csv` rule; the
+  QC summary CSV and provenance CSV were added with explicit `git add -f` of those
+  specific files. The run note .md was added normally. data_raw_official/ is untracked
+  and was NOT staged. No `git add .` was used.
 
 DELETED FILES
   (none)
