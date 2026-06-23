@@ -1,42 +1,42 @@
-TOKYO-CHINA ROUND 02 - e-STAT/ISA MANUAL TABLE-SEARCH CONFIRMATION BATCH 2 - CHANGED FILES
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 EXACT TABLE/CATEGORY CONFIRMATION BATCH 1 (KEYED) - CHANGED FILES
 Generated: 2026-06-23
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/estat_isa_manual_table_search_confirmation_batch2.csv       [new]
-  literature/04_synthesis/estat_isa_manual_table_search_confirmation_batch2_note.md  [new]
-  outputs/claude_reports/latest_verification_summary.txt                             [modified]
-  outputs/claude_reports/latest_changed_files.txt                                    [modified]
-  outputs/claude_reports/latest_safety_check.txt                                     [modified]
+  literature/02_matrices/census_00200521_exact_table_category_confirmation_batch1.csv       [new]
+  literature/04_synthesis/census_00200521_exact_table_category_confirmation_batch1_note.md  [new]
+  outputs/claude_reports/latest_verification_summary.txt                                     [modified]
+  outputs/claude_reports/latest_changed_files.txt                                            [modified]
+  outputs/claude_reports/latest_safety_check.txt                                             [modified]
 
 DETAIL
 
-literature/02_matrices/estat_isa_manual_table_search_confirmation_batch2.csv  [new]
-  Manual table-search confirmation, 38 columns x 9 rows, UTF-8 (ASCII-only). Rows:
-  ISA 00250012 nationality x prefecture identity; ISA municipality x nationality
-  decision (NOT FOUND); ISA municipality total-foreign table (total only); ISA exact
-  statsDataId capture status (pending; appId unset); Census 00200521 nationality +
-  municipality geography (confirmed); Census municipality x China nationality (needs
-  field check); Census small-area nationality feasibility (uncertain); area-code and
-  N03 join-key implications; and the final population-source recommendation row.
-  Columns capture source, statistics code, survey, provider tstat, candidate table
-  family/title/statsDataId, official table-search/metadata/API-metadata URLs,
-  confirmation route and status, geographic level, municipality/small-area/prefecture
-  availability, nationality/China/total-foreign category logic, time/vintage, target
-  prefecture and municipality coverage, area-code logic, N03 join feasibility,
-  supported population variable, non-Chinese construct feasibility, suitability for
-  main spatial analysis and for prefecture cross-check, blocking issue, risk, next
-  action, and notes. No appId value appears (only the env-var placeholder).
+literature/02_matrices/census_00200521_exact_table_category_confirmation_batch1.csv  [new]
+  Census exact table/category confirmation, 40 columns x 9 rows, UTF-8 (ASCII-only).
+  Rows: Census identity + primary table 0003445244; Chinese residents variable
+  (cat02=102); total foreign variable (cat02=1); non-Chinese construction (1 minus
+  102); municipality geography/area coverage; small-area nationality feasibility (not
+  evident); area-code and N03 join-key logic; variant tables (DID 0003445245, age
+  table 0003445246 area-capped); and final suitability decision. Columns capture
+  source, statistics code, survey, provider tstat (000001136464), census year (2020),
+  candidate table title/statsDataId, official table-search / metadata / API-metadata
+  URLs (appId omitted), confirmation route and status, geographic level,
+  municipality/small-area availability, nationality/China/total-foreign category logic
+  with exact codes, sex/age dimensions, time/vintage, target prefecture and
+  municipality coverage, area-code logic, N03 join feasibility, small-area boundary
+  requirement, supported population variable, non-Chinese construct feasibility,
+  suitability for main spatial analysis, blocking issue, risk, next action, and notes.
+  No appId value or 40-char token appears anywhere; recorded API URLs omit appId.
 
-literature/04_synthesis/estat_isa_manual_table_search_confirmation_batch2_note.md  [new]
+literature/04_synthesis/census_00200521_exact_table_category_confirmation_batch1_note.md  [new]
   Human-readable confirmation note (sections A-G): purpose; evidence boundary;
-  confirmation summary table; population-source decision (PARTIAL: ISA = prefecture
-  cross-check only, Census = likely main municipality source pending field check);
-  analytical implication (Chinese vs non-Chinese, not vs all foreigners); API/metadata
-  next-step implication; safety statement. ASCII-only.
+  confirmation summary table (with exact category codes); population-source decision
+  (CONFIRMED: Census 0003445244 = main municipality source, ISA = prefecture
+  cross-check); analytical implication (Chinese vs non-Chinese, municipality unit);
+  API/metadata next-step; safety statement. ASCII-only.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the batch-2 confirmation task, ISA/Census findings, resolution
-  status, and checks.
+  Refreshed to describe the keyed Census confirmation, exact statsDataId/codes,
+  resolution status, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -45,6 +45,7 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
+  literature/02_matrices/estat_isa_manual_table_search_confirmation_batch2.csv,
   literature/02_matrices/estat_isa_api_parameter_discovery_batch1.csv,
   literature/02_matrices/official_download_preprocessing_design_batch1.csv,
   literature/02_matrices/official_exact_table_layer_confirmation_batch1.csv,
@@ -65,10 +66,15 @@ UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx, ref/, data_raw/ (incl. isa_estat/*.xlsx), data_processed/,
   outputs/literature_discovery/, outputs/literature_verification/
 
+RAW API OUTPUTS
+  None saved into the repo. Metadata-probe scripts were run from the system TEMP
+  directory (outside the repo); no JSON responses were written into or committed to
+  the repo.
+
 NOTE ON GITIGNORE
   literature/02_matrices/*.csv is covered by the .gitignore `*.csv` rule; the new
-  confirmation CSV was added with an explicit `git add -f` of that single file
-  (consistent with the other tracked matrices CSVs). No `git add .` was used.
+  Census CSV was added with an explicit `git add -f` of that single file (consistent
+  with the other tracked matrices CSVs). No `git add .` was used.
 
 DELETED FILES
   (none)

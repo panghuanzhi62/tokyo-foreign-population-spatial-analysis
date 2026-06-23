@@ -1,14 +1,13 @@
-TOKYO-CHINA ROUND 02 - e-STAT/ISA MANUAL TABLE-SEARCH CONFIRMATION BATCH 2 - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 EXACT TABLE/CATEGORY CONFIRMATION BATCH 1 (KEYED) - VERIFICATION SUMMARY
 Generated: 2026-06-23
 
 TASK OBJECTIVE
-  Use official e-Stat/ISA/Census table-search and metadata pages to confirm exact
-  table identity for the population module: whether ISA 00250012 has any
-  municipality x nationality table, and whether Population Census 00200521 can serve
-  as a municipality/small-area source for Chinese residents, total foreign residents,
-  and non-Chinese foreign residents (= total - Chinese). Manual table-search/metadata
-  confirmation only. NO datasets downloaded. NO full extraction. NO preprocessing/
-  modeling. NO Introduction. NO novelty. Status: gap under verification.
+  Use keyed official e-Stat API metadata (getStatsList + getMetaInfo only) to confirm
+  the exact Census 00200521 table, statsDataId, category codes, geography, China and
+  total-foreign categories, time, and join-key for constructing Chinese residents,
+  total foreign residents, and non-Chinese foreign residents. Metadata/API-parameter
+  confirmation only. NO datasets downloaded. NO full extraction (no getStatsData).
+  NO preprocessing/modeling. NO Introduction. NO novelty. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -16,58 +15,59 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
+ENVIRONMENT NOTE
+  ESTAT_APP_ID was present at User scope (not in the spawned process env) and was
+  injected into the process from User scope for API calls only. It was never printed,
+  written to any file, or committed; no API URL containing the appId was saved.
+
 ARTIFACTS
-  manual table-search confirmation CSV created: YES
-    literature/02_matrices/estat_isa_manual_table_search_confirmation_batch2.csv (38 cols, 9 rows)
+  Census confirmation CSV created: YES
+    literature/02_matrices/census_00200521_exact_table_category_confirmation_batch1.csv (40 cols, 9 rows)
   synthesis note created: YES
-    literature/04_synthesis/estat_isa_manual_table_search_confirmation_batch2_note.md (sections A-G)
+    literature/04_synthesis/census_00200521_exact_table_category_confirmation_batch1_note.md (sections A-G)
 
 CONFIRMATION COVERAGE
   confirmation rows: 9
-  official sources covered: 3 (ISA Statistics on Foreign Residents 00250012; e-Stat
-    portal; Population Census 00200521) across 2 distinct registry source_id
-    (R02_OFF_TGT_001 e-Stat, R02_OFF_TGT_002 ISA)
+  official sources covered: 2 (Population Census 00200521 main; ISA 00250012 prefecture cross-check)
 
-KEY CONFIRMATIONS (official metadata only; ESTAT_APP_ID not set)
-  ISA statistics code 00250012: CONFIRMED
-  ISA provider tstat 000001018034: CONFIRMED
-  ISA nationality x prefecture table: CONFIRMED (exists)
-  ISA municipality x nationality table: NOT FOUND (classification is nationality x
-    residence-status x prefecture; no municipality x nationality in the DB listing)
-  ISA municipality total-foreign table: exists (total only; cannot isolate Chinese)
-  ISA exact statsDataId: NOT confirmed (titles/ids not exposed without appId)
-  Census 00200521: latest complete = 2020 (Reiwa 2); nationality/foreign tables
-    exist; municipality-level tabulation available (6,740 municipality files); small-
-    area category exists but nationality-by-country there not evident
+KEYED CONFIRMATIONS (metadata only)
+  statistics code 00200521: CONFIRMED
+  provider tstat 000001136464 (2020 Basic Complete Tabulation): CONFIRMED
+  census year 2020 (Reiwa 2; SURVEY_DATE 202010; time 2020000000): CONFIRMED
+  exact statsDataId: 0003445244 (TITLE 44-1 "Foreigners: population by sex and
+    nationality - national, prefecture, municipality"); 0003445245 DID variant
+  nationality dim cat02 (17 categories): CONFIRMED
+    China = code 102; foreign total = code 1; all-persons total = code 0; Japanese = 2
+  area dim: n=1965, levels 1/2/4/5/6 (municipality-scale incl. special wards and
+    designated-city wards); samples 13101 Chiyoda, 11201 Kawagoe, 12101 Chiba Chuo,
+    14101 Yokohama Tsurumi; 5-digit JIS codes
 
-RESOLUTION STATUS (conservative)
-  ISA statistics code confirmed: YES
-  ISA provider tstat confirmed: YES
-  ISA exact statsDataId confirmed: NO
-  ISA municipality x nationality confirmed: NO (not found)
-  ISA suitable as main source: NO (prefecture-level cross-check only)
-  Census 00200521 evaluated: YES
-  Census candidate table identified: PARTIAL (nationality + municipality geography
-    confirmed; exact China-at-municipality statsDataId/codes need field check)
-  Census suitable as main source: PARTIAL
-  population construction feasible: PARTIAL (prefecture via ISA confirmed;
-    municipality via Census indicated but exact table pending)
-  non-Chinese foreign construction feasible: PARTIAL (prefecture YES; municipality
-    pending Census field check)
-  recommended population source: Census_00200521 (main, municipality) + ISA 00250012
-    (prefecture cross-check)
+RESOLUTION STATUS
+  Census statistics code confirmed: YES
+  Census tstat confirmed: YES (000001136464)
+  Census year/vintage confirmed: YES (2020)
+  Census exact statsDataId confirmed: YES (0003445244)
+  municipality-level nationality table confirmed: YES
+  China category confirmed: YES (cat02=102)
+  total foreign category confirmed: YES (cat02=1)
+  non-Chinese foreign construction feasible: YES (code 1 minus code 102, same table/year/unit)
+  small-area nationality feasibility: UNCLEAR (country-detail stops at municipality/DID; not evident at small-area)
+  join-key to N03 feasible: YES (5-digit JIS == N03 gyosei kuiki code)
+  Census suitable as main source: YES
+  ISA role: prefecture cross-check only
+  recommended population source: Census_00200521
 
 ANALYTICAL IMPLICATION
-  Comparison must be Chinese vs non-Chinese foreign residents (= total - Chinese) at
-  the same unit/year, NOT Chinese vs all foreigners. Prefecture-only ISA (4 units) is
-  too coarse for the metropolitan spatial analysis; main population measure moves to
-  Census municipality level.
+  Main comparison = Chinese vs non-Chinese foreign residents (= total foreign minus
+  Chinese) at the same unit/year, NOT Chinese vs all foreigners. Municipality is the
+  main analysis unit (small-area nationality-by-country not available). "Chinese" =
+  Census-declared nationality, not ethnicity/origin.
 
 EVIDENCE-CLAIM SAFETY
   datasets downloaded: NO
-  full data extraction run: NO
+  full data extraction run: NO (getStatsData not called)
   raw API outputs committed: NO
-  API keys/appIds exposed: NO (ESTAT_APP_ID not set; only env-var placeholder referenced)
+  API keys/appIds exposed: NO
   preprocessing/modeling run: NO
   PDFs downloaded/staged: NO
   academic matrices modified (literature_matrix / gap_verification_matrix): NO
@@ -79,24 +79,21 @@ EVIDENCE-CLAIM SAFETY
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (batch2 CSV 38 cols x 9 rows; api-parameter discovery
-    batch1, design batch1, confirmation batch1, inspection plan, data-usability
-    inventory, official_source_registry, literature_matrix, gap_verification_matrix
-    all parse cleanly via csv.DictReader)
+  CSV validation result: PASS (census CSV 40 cols x 9 rows; + 8 prior matrices parse
+    cleanly via csv.DictReader)
   duplicate check result: PASS (no duplicate confirmation_id)
-  controlled-value check: PASS (confirmation_route, confirmation_status,
-    geographic_level, population_variable_supported, non_chinese_foreign_construct_possible,
-    suitable_for_main_spatial_analysis, suitable_for_prefecture_crosscheck, risk_level,
-    recommended_next_action all within allowed sets)
+  controlled-value check: PASS (confirmation_route, confirmation_status, geographic_level,
+    population_variable_supported, non_chinese_foreign_construct_possible,
+    suitable_for_main_spatial_analysis, risk_level, recommended_next_action all valid)
+  secret scan: PASS (no literal appId, no 40-char hex token in CSV/note)
   mojibake scan result: PASS (CSV/note/reports valid UTF-8, ASCII-only; no U+FFFD,
     no double-encoding byte patterns)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS (only the 5 intended files staged)
 
 NEXT RECOMMENDED STEP
-  "Census 00200521 exact table and category confirmation batch": confirm the exact
-  2020 Census nationality table at municipality level, that China is a discrete
-  category, the total foreign category, exact statsDataId(s), and the municipality
-  area-code join to NLNI N03 - before any metadata test or extraction. A keyed small
-  metadata test scaffold follows only once statsDataId/codes are fixed. No large
-  download; no Introduction; no novelty; gap remains under verification.
+  "Census 00200521 small metadata test script scaffold": design a tiny, parameterized
+  metadata/count test (e.g. cntGetFlg=Y or a narrow cdArea/cdCat slice) for table
+  0003445244 over the four target prefectures - still NOT a full extraction; appId from
+  env only; no raw outputs committed. Municipality-level main workflow; small-area
+  optional. No Introduction; no novelty; gap remains under verification.
