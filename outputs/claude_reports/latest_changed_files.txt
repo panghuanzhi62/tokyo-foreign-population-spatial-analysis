@@ -1,39 +1,39 @@
-TOKYO-CHINA ROUND 02 - APPROVED CENSUS 00200521 BOUNDED 251-MUNICIPALITY EXTRACTION - CHANGED FILES
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 POPULATION-TO-NLNI N03 JOIN VALIDATION DESIGN - CHANGED FILES
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/census_00200521_2020_municipality_population_qc_summary.csv      [new]
-  metadata/official_census_population_extraction_provenance.csv                           [new]
-  literature/04_synthesis/census_00200521_2020_municipality_population_extraction_run_note.md [new]
-  outputs/claude_reports/latest_verification_summary.txt                                   [modified]
-  outputs/claude_reports/latest_changed_files.txt                                          [modified]
-  outputs/claude_reports/latest_safety_check.txt                                           [modified]
+  literature/02_matrices/census_00200521_population_to_nlni_n03_join_validation_design.csv      [new]
+  literature/04_synthesis/census_00200521_population_to_nlni_n03_join_validation_design_note.md [new]
+  literature/02_matrices/census_00200521_population_n03_join_validation_checklist.csv           [new]
+  outputs/claude_reports/latest_verification_summary.txt                                        [modified]
+  outputs/claude_reports/latest_changed_files.txt                                               [modified]
+  outputs/claude_reports/latest_safety_check.txt                                                [modified]
 
 DETAIL
 
-literature/02_matrices/census_00200521_2020_municipality_population_qc_summary.csv  [new]
-  Aggregate QC summary, 30 columns x 1 row. Records run parameters, expected/actual rows
-  (502/502), area count (251), category count (2), per-prefecture counts (62/72/59/58),
-  aggregate rows present (0), duplicates (0), missing (0/0), QC gates (chinese <= total
-  YES; non_chinese >= 0 YES), islands flagged (9), and safety flags (raw saved local-only
-  YES; raw committed NO; processed local-only YES; appId exposed NO; provenance updated
-  YES; qc_status PASS). Contains NO per-area population values and NO appId.
+literature/02_matrices/census_00200521_population_to_nlni_n03_join_validation_design.csv  [new]
+  Join validation design, 21 columns x 14 rows. Covers population table, area-code
+  reference, N03 boundary, join key, ward/city handling, island handling, bidirectional
+  mismatch checks, future output, provenance, and safety. Columns capture component,
+  input dataset/path/committed/local-only, expected rows/features, key field/type/format,
+  N03 source/layer/year, target prefectures, join direction, validation check, expected
+  result, blocking issue, risk, next action, notes. No appId; no values.
 
-metadata/official_census_population_extraction_provenance.csv  [new]
-  Provenance log, 19 columns x 1 row (RUN_20260623_001). Records source/statsDataId/
-  cdTime/cdCat01/cat02 codes, target prefectures, area-code source, api_method,
-  local-only raw path + SHA-256 hash, local-only processed path, query date, license
-  terms, script path, raw_output_committed=NO, appId_exposed=NO, notes. No values; no appId.
+literature/04_synthesis/census_00200521_population_to_nlni_n03_join_validation_design_note.md  [new]
+  Design note (A-G): purpose; evidence boundary; inputs (committed + local-only +
+  boundary); join key logic; validation checklist table; future script recommendation;
+  next step. Records N03 metadata facts (CRS EPSG:6668, UTF-8, code field N03_007) and the
+  2025-vs-2020 vintage reconciliation need. ASCII-only.
 
-literature/04_synthesis/census_00200521_2020_municipality_population_extraction_run_note.md  [new]
-  Run note (A-F): purpose (user-approved run executed); evidence boundary; extraction
-  scope; QC summary; storage/commit boundary (raw + processed local-only, not committed);
-  next step. ASCII-only.
+literature/02_matrices/census_00200521_population_n03_join_validation_checklist.csv  [new]
+  Compact checklist, 8 columns x 14 rows (population / reference / boundary / join /
+  ward_city / island / output / safety). All design/checklist entries (DONE for items
+  verified this task, PARTIAL/PENDING for items deferred to the next step). No appId; no values.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the approved extraction, QC results, storage boundary, and checks.
+  Refreshed to describe the join validation design, local-file inspection, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -41,30 +41,30 @@ outputs/claude_reports/latest_changed_files.txt  [modified]
 outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
-LOCAL-ONLY OUTPUTS (NOT committed; NOT staged)
-  data_raw_official/census_00200521_2020_municipality/raw_getStatsData_0003445244_2020000000_2026-06-23.json
-    (raw API values; untracked in git; SHA-256 be5c59a5...918a42 recorded in provenance)
-  data_processed_official/population/census_00200521_2020_municipality_population.csv
-    (251-row processed table; gitignored *.csv; not staged)
-
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  scripts/11_official_data/census_00200521_municipality_population_extract.py (committed
-    guarded scaffold left unchanged; approved extraction run via a local-only runner),
+  scripts/11_official_data/census_00200521_municipality_population_extract.py,
   scripts/11_official_data/census_00200521_small_metadata_test.py,
-  literature/02_matrices/census_00200521_* (prior), metadata/official_census_population_extraction_provenance_template.csv,
+  literature/02_matrices/census_00200521_2020_municipality_population_qc_summary.csv,
+  literature/02_matrices/census_00200521_municipality_area_code_confirmation.csv,
+  literature/02_matrices/census_00200521_municipality_area_code_summary.csv,
+  metadata/official_census_population_extraction_provenance.csv,
+  metadata/official_census_population_extraction_provenance_template.csv,
   estat_isa_* and official_* matrices, literature_matrix.csv, gap_verification_matrix.csv,
   official_source_registry.csv, and other matrices/manuscript/data files.
 
+LOCAL-ONLY DATA INSPECTED BUT NOT MODIFIED / NOT COMMITTED
+  data_processed_official/population/census_00200521_2020_municipality_population.csv (251 rows; schema only)
+  data_raw_official/census_00200521_2020_municipality/raw_getStatsData_..._2026-06-23.json (not touched)
+  data_raw/N03-20250101_GML/ (N03 boundary; .prj and .cpg metadata read; geometry NOT processed)
+
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
-  data_raw_official/ (this run's raw JSON), data_processed_official/ (this run's processed CSV),
-  TokyoProject.docx, ref/, data_raw/ (incl. isa_estat/*.xlsx), data_processed/,
-  outputs/literature_discovery/, outputs/literature_verification/
+  data_raw_official/, data_processed_official/, data_raw/ (incl. N03-20250101_GML and isa_estat/*.xlsx),
+  data_processed/, TokyoProject.docx, ref/, outputs/literature_discovery/, outputs/literature_verification/
 
 NOTE ON GITIGNORE
-  literature/02_matrices/*.csv and metadata/*.csv match the .gitignore `*.csv` rule; the
-  QC summary CSV and provenance CSV were added with explicit `git add -f` of those
-  specific files. The run note .md was added normally. data_raw_official/ is untracked
-  and was NOT staged. No `git add .` was used.
+  literature/02_matrices/*.csv matches the .gitignore `*.csv` rule; the design CSV and
+  checklist CSV were added with explicit `git add -f`. The .md was added normally. No
+  boundary/GIS/raw/value file was staged. No `git add .` was used.
 
 DELETED FILES
   (none)

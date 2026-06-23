@@ -1,15 +1,14 @@
-TOKYO-CHINA ROUND 02 - APPROVED CENSUS 00200521 BOUNDED 251-MUNICIPALITY EXTRACTION - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 POPULATION-TO-NLNI N03 JOIN VALIDATION DESIGN - VERIFICATION SUMMARY
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Run the USER-APPROVED bounded extraction of Census 00200521 table 0003445244 for
-  exactly the 251 confirmed municipality-equivalent cdArea codes (Tokyo, Saitama,
-  Chiba, Kanagawa), retrieving only cat02=1 (total foreign) and cat02=102 (China) at
-  cdCat01=0, cdTime=2020000000. Raw output local-only and NOT committed; commit only QC
-  summary, provenance, run note, and reports. NO all-Japan / all-category / full
-  extraction. NO modeling. NO Introduction. NO novelty. Status: gap under verification.
+  Design the validation workflow for joining the local-only Census 2020 municipality
+  population table (251 rows) to official NLNI N03 municipality boundaries on the 5-digit
+  JIS code. Design/validation-planning only. The join was NOT run. NO GIS output. NO
+  boundary download. NO local processed value table committed. NO raw API output
+  committed. NO modeling. NO Introduction. NO novelty. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -17,71 +16,73 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-USER APPROVAL
-  recorded: YES (explicit approval for 251 areas, cat02 {1,102} only, local-only raw,
-  no raw commit, no all-Japan, no appId exposure)
-
 ENVIRONMENT NOTE
-  ESTAT_APP_ID present at User scope (len 40); injected from User scope into the runner
-  process for getStatsData only. Never printed, written, or committed; verified ABSENT
-  from the raw and processed local outputs.
+  ESTAT_APP_ID not needed for this task (no API calls made).
 
-EXTRACTION RESULT
-  getStatsData called: YES (bounded; chunks of 50 areas; restricted to the 251 confirmed codes)
-  bounded 251 extraction run: YES
-  expected rows: 502
-  actual rows: 502
-  target area count: 251
-  area count returned: 251
-  category count returned: 2
-  per-prefecture: Tokyo 62, Saitama 72, Chiba 59, Kanagawa 58 (match confirmed list)
-  aggregate rows present: 0
-  duplicate area-category rows: 0
-  missing area count: 0
-  missing category count: 0 (Census "-" = 0 applied)
-  Chinese <= total foreign QC: YES (every area)
-  non-Chinese >= 0 QC: YES (every area)
-  island municipalities flagged: 9 (retained, flagged)
-  Census notation: 6 "-" (=0) cells in 5 Tokyo island/mountain villages (Aogashima,
-    Hinohara, Toshima, Miyake, Mikurashima); treated as 0
+LOCAL-FILE INSPECTION (schema/metadata only)
+  processed population table: FOUND (data_processed_official/population/census_00200521_2020_municipality_population.csv)
+    row count: 251; fields: municipality_code, prefecture_code, total_foreign,
+    chinese_residents, non_chinese_foreign; municipality_code = string length 5
+  NLNI N03 boundary: PRESENT locally (data_raw/N03-20250101_GML/; gitignored)
+    vintage 2025-01-01 (to reconcile vs Census 2020); CRS JGD2011 geographic EPSG:6668
+    (from .prj); attribute encoding UTF-8 (from .cpg); expected code field N03_007
 
-STORAGE / COMMIT BOUNDARY
-  raw output saved local-only: YES
-    data_raw_official/census_00200521_2020_municipality/raw_getStatsData_0003445244_2020000000_2026-06-23.json
-    (SHA-256 in provenance; NOT committed; untracked in git)
-  raw output committed: NO
-  processed local table created: YES (data_processed_official/population/census_00200521_2020_municipality_population.csv;
-    251 rows; local-only; gitignored *.csv; NOT committed)
-  QC summary CSV created: YES (literature/02_matrices/census_00200521_2020_municipality_population_qc_summary.csv; aggregate only)
-  provenance log updated: YES (metadata/official_census_population_extraction_provenance.csv; no values, no appId)
+ARTIFACTS
+  join validation design CSV created: YES
+    literature/02_matrices/census_00200521_population_to_nlni_n03_join_validation_design.csv (21 cols, 14 rows)
+  synthesis note created: YES
+    literature/04_synthesis/census_00200521_population_to_nlni_n03_join_validation_design_note.md (A-G)
+  optional checklist CSV created: YES
+    literature/02_matrices/census_00200521_population_n03_join_validation_checklist.csv (8 cols, 14 rows)
+
+DESIGN COVERAGE
+  components: population_table, area_code_reference, n03_boundary, join_key,
+    ward_city_handling, island_handling, mismatch_check, output_boundary, provenance, safety
+  population side: 251 rows; code str/len5/unique; total>=chinese; non_chinese>=0; no aggregates
+  area-code reference: 251 included; 10 aggregates excluded; islands 9; per-pref 62/72/59/58
+  boundary side: N03 source confirm; N03_007 code field; CRS EPSG:6668; UTF-8; geometry validity
+  join logic: bidirectional unmatched checks; ward/city aggregation; island retention
+  outputs (future, not created): local-only GPKG + commit-safe summary CSV + run note
+  abort conditions and provenance/safety rows included
+
+KEY DESIGN FINDING
+  N03 boundary-year mismatch: local file is 2025-01-01 vs Census 2020; municipality code
+  stability 2020->2025 for the 4 prefectures must be reconciled (or a 2020/2021 N03
+  vintage obtained) before relying on the join. Designated-city ward-vs-city
+  representation in N03 must be confirmed (population uses ward-level for 251 units).
 
 SAFETY / EVIDENCE-CLAIM
+  local processed population table found: YES
+  population table row count inspected: 251
+  join run: NO
+  GIS output created: NO
+  N03 boundary downloaded: NO (an existing local file was inspected at metadata level only)
+  N03 boundary committed: NO
+  raw Census output committed: NO
+  processed population value table committed: NO
   appId/API key exposed: NO
-  all-Japan value retrieval run: NO
-  full extraction beyond 251 scope: NO
-  preprocessing/modeling run: NO
+  modeling run: NO
   manuscript text written: NO
   novelty asserted: NO
   final gap claimed: NO
-  academic matrices modified: NO
-  official registry modified: NO
   gap status: under verification
 
 CHECKS (this pass)
-  CSV validation result: PASS (QC summary 30 cols x 1 row; provenance 19 cols x 1 row;
-    area-code confirmation + prior matrices parse cleanly via csv.DictReader)
-  duplicate check result: PASS (no duplicate qc_id; no duplicate provenance run_id)
-  mojibake scan result: PASS (committed CSVs/note/reports ASCII-only valid UTF-8; no
-    U+FFFD; no double-encoding)
-  secret scan: PASS (no literal appId; no 40-char hex appId token in committed files;
-    raw/processed local outputs verified appId-free)
+  CSV validation result: PASS (design 21 cols x 14 rows; checklist 8 cols x 14 rows;
+    QC summary, provenance, area-code confirmation/summary, extraction design, exact-table
+    confirmation, official_source_registry, literature_matrix, gap_verification_matrix
+    all parse cleanly via csv.DictReader)
+  duplicate check result: PASS (no duplicate design_id; no duplicate check_id)
+  controlled-value check: PASS (component, input_committed, input_local_only, join_direction,
+    risk_level, recommended_next_action all within allowed sets)
+  mojibake scan result: PASS (design/checklist/note/reports ASCII-only valid UTF-8; no U+FFFD)
+  secret scan: PASS (no literal appId; no 40-char hex token)
   git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS (only the 6 intended files staged; data_raw_official/
-    and data_processed_official/ untracked and NOT staged)
+  sensitive-file check result: PASS (only the intended docs staged; no data/GIS/raw staged)
 
 NEXT RECOMMENDED STEP
-  "Census 00200521 population-to-NLNI N03 join validation design": design (not run) the
-  municipality-code join of the population table to NLNI N03 (matched/unmatched both
-  sides; ward-vs-city aggregation; island handling); commit only small derived
-  summaries. Modeling not recommended yet. No Introduction; no novelty; gap under
-  verification.
+  "Confirm NLNI N03 boundary source/year and schema for Tokyo, Saitama, Chiba, Kanagawa"
+  (conservative, due to the 2025-vs-2020 vintage mismatch): confirm N03 source, reconcile
+  municipality code stability 2020->2025 or obtain a 2020/2021 vintage, and confirm code
+  field N03_007 in a schema-only step, before the join validation script scaffold. No join;
+  no GIS output; no modeling. No Introduction; no novelty; gap under verification.
