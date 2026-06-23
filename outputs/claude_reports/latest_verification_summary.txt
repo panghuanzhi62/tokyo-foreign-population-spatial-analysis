@@ -1,14 +1,14 @@
-TOKYO-CHINA ROUND 02 - APPROVED ISA/MOJ T2 ZERO-FILLED LOCAL-ONLY PANEL BUILD - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - ISA/MOJ T2 DERIVED-GROWTH VARIABLE DESIGN - VERIFICATION SUMMARY
 Generated: 2026-06-24
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Run the user-approved LOCAL-ONLY build of the 251 x 4 MOJ/ISA registered Chinese
-  foreign-resident STOCK panel from the four verified t2 China-filtered value files, and
-  produce local QC outputs. Commit ONLY compact QC/provenance/run-note summaries. NO full
-  panel committed. NO raw Excel committed. NO modeling. NO manuscript text. NO novelty.
-  Gap: under verification.
+  Review the completed local-only ISA/MOJ t2 zero-filled Chinese stock panel QC and design
+  compact derived-growth variables for 2023-12 to 2025-06 registered Chinese foreign-resident
+  STOCK change. Design and QC-specification only. NO final analysis data. NO municipality-level
+  derived-growth values created or committed. NO full panel committed. NO local QC committed.
+  NO modeling. NO manuscript text. NO novelty. Gap: under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -16,63 +16,59 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-BUILD
-  approved command run: YES
-    python scripts/11_official_data/isa_moj_t2_chinese_stock_panel_build.py --project-root . --write-local-panel --force --write-qc-summary
-  build exit code: 0
-  panel created local-only: YES
-  local panel path: data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_2023_12_2025_06.csv
-  local QC path:    data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_panel_qc.csv
-  both local outputs are gitignored (data_processed_official + *.csv rules); not staged.
-
-MANDATORY QC GATES (all PASSED)
-  survey_time values: 2023-12, 2024-06, 2024-12, 2025-06 (count = 4)
-  rows per time point: 251 each
-  total rows: 1004 (= 251 x 4)
-  municipality_code x survey_time unique: YES (0 duplicate pairs)
-  municipality_code preserved as 5-character string: YES
-  each time point covers exactly the 251-code master frame: YES
-  extra codes: 0
-  duplicate codes: 0
-  aggregate rows: 0
-  zero-fill counts: 2023-12=6; 2024-06=5; 2024-12=6; 2025-06=4 (match expected)
-  zero-filled rows flagged zero_filled=1 (value 0); observed rows zero_filled=0; domain {0,1}
-  numeric values: YES
+LOCAL-ONLY PANEL (read-only inspection; NOT modified, NOT committed)
+  data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_2023_12_2025_06.csv (gitignored)
+  4 time points (2023-12,2024-06,2024-12,2025-06); 251 rows/timepoint; total 1004
+  municipality_code sets identical across all four time points: YES
+  base (2023-12) value==0: 6 municipalities; end (2025-06) value==0: 4
+  absolute change defined for all 251; pct change feasible for 245 (base>0)
+  raw log-difference undefined for 6 (zero base/end); log1p defined for all 251
   negative values: 0
 
-ARTIFACTS (commit-safe)
-  compact QC summary created: YES
-    literature/02_matrices/isa_moj_t2_zero_filled_panel_build_qc_summary.csv (23 cols, 1 row)
-  run note created: YES
-    literature/04_synthesis/isa_moj_t2_zero_filled_panel_build_run_note.md (A-G)
-  optional provenance CSV created: YES
-    metadata/isa_moj_t2_zero_filled_panel_build_provenance.csv (11 cols, 1 row)
+ARTIFACTS (commit-safe; design only, no municipality values)
+  derived-growth design CSV created: YES
+    literature/02_matrices/isa_moj_t2_derived_growth_variable_design.csv (13 cols, 6 rows DGV_001..006)
+  compact QC/design summary CSV created: YES
+    literature/02_matrices/isa_moj_t2_derived_growth_qc_design_summary.csv (24 cols, 1 row DGQC_001)
+  synthesis note created: YES
+    literature/04_synthesis/isa_moj_t2_derived_growth_variable_design_note.md (A-G)
+  optional command preview created: YES
+    literature/04_synthesis/isa_moj_t2_derived_growth_table_command_preview.txt
+    (no derived-growth script exists yet; states a scaffold is needed first)
+
+DESIGN OUTCOME
+  base time: 2023-12
+  end time: 2025-06
+  absolute change feasible: YES (defined for all 251)
+  log1p change feasible: YES (defined for all 251)
+  raw logdiff recommended as default: NO (undefined at zero base/end)
+  zero-base flag required: YES (mandatory whenever pct/logdiff used; 6 municipalities)
+  recommended primary variable: chinese_registered_change_2023_12_to_2025_06
+  recommended model candidate: chinese_registered_log1p_change_2023_12_to_2025_06
+  mandatory flag: chinese_registered_zero_base_2023_12
 
 SAFETY / EVIDENCE-CLAIM
-  panel committed: NO
-  raw Excel committed: NO
-  raw Excel modified: NO (opened read-only)
-  full value table committed: NO
+  municipality-level derived values created: NO
+  full panel committed: NO
+  local panel modified: NO
+  local QC committed: NO
   modeling run: NO
+  pre-service 2015-2020 growth feasible now: NO (deferred wide07 + name->JIS crosswalk)
+  measurement: MOJ/ISA REGISTERED Chinese foreign-resident STOCK change, NOT Census population growth
   novelty asserted: NO
   final gap claimed: NO
   gap status: under verification
 
-GROWTH IMPLICATION
-  growth variable feasible after QC: YES (2023-12..2025-06 registered Chinese stock change)
-  log-change caveat documented: YES (zero 2023-12 base; 6 zero-filled municipalities)
-  pre-service 2015-2020 growth feasible now: NO (deferred wide07 + name->JIS crosswalk)
-  measurement: MOJ/ISA REGISTERED Chinese foreign-resident STOCK change, NOT Census population growth
-
 CHECKS (this pass)
-  CSV validation result: PASS (qc summary 23x1; provenance 11x1; approval checklist +
-    t2 verification/design + master frame parse via csv.DictReader)
-  duplicate check result: PASS (qc_id unique T2QC_001; provenance_id unique T2PROV_001)
-  controlled-value check result: PASS (panel_committed=NO; local_only=YES; 1004; 0/0/0; neg 0)
-  mojibake scan result: PASS (qc/provenance/run-note/reports ASCII-only valid UTF-8; no U+FFFD)
+  CSV validation result: PASS (design 13x6; summary 24x1; build QC summary + provenance +
+    master frame parse via csv.DictReader)
+  duplicate check result: PASS (design_id DGV_001..006 unique; qc_id DGQC_001 unique)
+  controlled-value check result: PASS (recommended_use/model_readiness/commit_boundary/risk valid;
+    logdiff_recommended=NO; pre-service=NO; negatives/extra/dup/aggregate=0)
+  mojibake scan result: PASS (design/summary/note/preview/reports ASCII-only valid UTF-8; no U+FFFD)
   git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS (no raw Excel / full panel / value table / data dirs staged)
+  sensitive-file check result: PASS (no full panel / local QC / raw Excel / value table / data dirs staged)
 
 NEXT RECOMMENDED STEP
-  "Review local panel QC and approve compact derived-growth variable design." No modeling.
-  No Introduction; no novelty; gap under verification.
+  "Create local-only derived-growth table approval package." No modeling. No Introduction;
+  no novelty; gap under verification.
