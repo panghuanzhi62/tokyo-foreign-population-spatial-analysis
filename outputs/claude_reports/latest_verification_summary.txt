@@ -1,15 +1,15 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 CONTROLLED VALUE-EXTRACTION TEST BATCH 1 - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 BOUNDED 251-MUNICIPALITY EXTRACTION APPROVAL PACKAGE - VERIFICATION SUMMARY
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Run a very small, controlled getStatsData value-path test for Census 00200521 table
-  0003445244 over four sample municipalities (4 areas x 2 categories = 8 rows max) to
-  validate the value path and QC gates before any larger bounded extraction. Controlled
-  test only. NO 251-area extraction. NO all-Japan retrieval. NO full extraction. NO
-  final analysis data. NO preprocessing/modeling. NO Introduction. NO novelty. Status:
-  gap under verification.
+  Prepare an explicit APPROVAL PACKAGE for a future bounded 251-municipality value
+  extraction from Census 00200521 table 0003445244. Documentation only. The 251-area
+  extraction is NOT run; explicit user approval is required first. NO getStatsData call.
+  NO 251-area values. NO all-Japan retrieval. NO full extraction. NO final analysis
+  data. NO preprocessing/modeling. NO Introduction. NO novelty. Status: gap under
+  verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -18,47 +18,44 @@ BRANCH
   agentic-upgrade
 
 ENVIRONMENT NOTE
-  ESTAT_APP_ID present at User scope (len 40); injected from User scope into the
-  process for the metadata-only and controlled-value-test calls only. Never printed,
-  written, or committed; no API URL containing the appId was saved. Retrieved values
-  were used in memory for QC only and were NOT written or committed.
+  ESTAT_APP_ID checked for presence only (User scope, len 40); never printed, written,
+  or committed. No getStatsData call was made this task (only --help and --dry-run run).
 
-ARTIFACTS / CHANGES
-  script modified: YES (scripts/11_official_data/census_00200521_municipality_population_extract.py)
-  controlled-test flags added: YES (--run-controlled-value-test, --test-areas, --max-test-areas)
-  summary CSV created: YES
-    literature/02_matrices/census_00200521_controlled_value_test_batch1_summary.csv (27 cols, 1 row)
-  synthesis note created: YES
-    literature/04_synthesis/census_00200521_controlled_value_test_batch1_note.md (A-F)
+ARTIFACTS
+  approval package note created: YES
+    literature/04_synthesis/census_00200521_bounded_251_extraction_approval_package.md (A-M)
+  approval checklist CSV created: YES
+    literature/02_matrices/census_00200521_bounded_251_extraction_approval_checklist.csv (8 cols, 21 rows)
+  optional command preview created: YES
+    literature/04_synthesis/census_00200521_bounded_251_extraction_command_preview.txt (first line: DO NOT RUN warning; no appId)
 
-SCRIPT CHECKS / RESULTS
-  python -m py_compile: PASS (exit 0)
+APPROVAL PACKAGE CONTENT
+  approval items: 21 (all approved_by_user = PENDING)
+  user approval status: PENDING
+  future extraction command included: YES (clearly marked DO NOT RUN UNTIL USER EXPLICITLY APPROVES)
+  defined: confirmed source parameters; controlled-test evidence; future scope (251
+    areas x 2 categories = 502 rows max); local-only raw storage; derived-output plan;
+    provenance fields; QC gates; abort conditions; user approval checklist; next step
+  future scope (requires approval): statsDataId 0003445244; cdTime 2020000000; cdCat01
+    0; cat02 {1,102}; 251 confirmed cdArea codes; prefectures 13,11,12,14 only; no
+    all-Japan; no all-category
+
+SCRIPT CHECKS
   script --help passed: YES (exit 0)
   script --dry-run passed: YES (exit 0)
-  script --metadata-only passed: YES (exit 0; API reached)
-  guard test: refused a non-confirmed code (99999) -> exit 24
-  controlled value test run: YES (test areas 13101,11201,12101,14101)
-
-CONTROLLED VALUE TEST RESULT (sanitized)
-  API reached: YES
-  response status: 0
-  expected max rows: 8
-  actual rows retrieved: 8
-  test area count returned: 4
-  categories returned: 2
-  QC Chinese <= total foreign passed: YES
-  QC non-Chinese >= 0 passed: YES
-  missing area count: 0; missing category count: 0
-  (raw appId, raw API response, and the full value table are intentionally NOT reported)
+  getStatsData called: NO
+  --metadata-only run: NO (not needed)
+  --run-controlled-value-test run: NO
+  --run-bounded-extraction run: NO
 
 SAFETY / EVIDENCE-CLAIM
-  raw output saved: NO
-  appId/API key exposed: NO
-  full 251-area extraction run: NO
+  population values retrieved: NO
+  bounded 251 extraction run: NO
+  full extraction run: NO
   all-Japan value retrieval run: NO
-  final analysis data created: NO
+  raw API outputs committed: NO
+  appId/API key exposed: NO
   preprocessing/modeling run: NO
-  population values committed: NO (QC booleans/counts only)
   academic matrices modified: NO
   official registry modified: NO
   gap status: under verification
@@ -67,20 +64,18 @@ SAFETY / EVIDENCE-CLAIM
   final gap claimed: NO
 
 CHECKS (this pass)
-  script syntax check result: PASS (py_compile exit 0)
-  CSV validation result: PASS (summary CSV 27 cols x 1 row; scaffold summary + area-code
-    + prior matrices parse cleanly via csv.DictReader)
-  duplicate check result: PASS (no duplicate test_id)
-  mojibake scan result: PASS (script/note/summary/reports valid UTF-8, ASCII-only; no
-    U+FFFD; no double-encoding)
+  CSV validation result: PASS (approval checklist 8 cols x 21 rows; controlled-test
+    summary, area-code confirmation/summary, literature_matrix, gap_verification_matrix
+    all parse cleanly via csv.DictReader)
+  duplicate check result: PASS (no duplicate approval_item_id)
+  mojibake scan result: PASS (note/checklist/command-preview/reports valid UTF-8,
+    ASCII-only; no U+FFFD; no double-encoding)
   secret scan: PASS (no literal appId; no 40-char hex token in any staged file)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS (only the intended files staged)
 
 NEXT RECOMMENDED STEP
-  "Census 00200521 bounded 251-municipality extraction approval package": request
-  explicit approval before the 251-area extraction; specify local-only (gitignored) raw
-  storage; define post-extraction QC gates (chinese <= total_foreign; non_chinese >= 0;
-  all 251 areas present; no duplicate area rows); commit only small derived summaries
-  after QC. Full extraction not to be run without approval. No Introduction; no novelty;
-  gap under verification.
+  WAIT FOR EXPLICIT USER APPROVAL. After approval: "Run approved Census 00200521
+  bounded 251-municipality extraction" (enable the guarded getStatsData bounded call;
+  raw output local-only/gitignored; run all QC gates; commit only small QC/derived
+  summaries after QC). No Introduction; no novelty; gap remains under verification.

@@ -1,0 +1,45 @@
+DO NOT RUN UNTIL USER EXPLICITLY APPROVES.
+
+This file is a PREVIEW of the future bounded 251-municipality extraction command for
+Census 00200521 table 0003445244. It is documentation only. It contains NO appId and
+must NOT be executed until the user explicitly approves the approval package
+(literature/04_synthesis/census_00200521_bounded_251_extraction_approval_package.md)
+and the approval checklist
+(literature/02_matrices/census_00200521_bounded_251_extraction_approval_checklist.csv).
+
+Preconditions before this command may run (all must be satisfied):
+  - User has explicitly approved the 251-area extraction.
+  - ESTAT_APP_ID is set in the environment (never printed/written/committed).
+  - --outdir is a local-only, gitignored path (data_raw_official/...).
+  - Scope is exactly the 251 confirmed municipality cdArea codes; categories cat02 = 1 and 102 only.
+  - All-Japan and full extraction remain refused.
+
+Future command (DO NOT RUN YET):
+
+  python scripts/11_official_data/census_00200521_municipality_population_extract.py \
+    --project-root . \
+    --run-bounded-extraction \
+    --force \
+    --allow-write-raw \
+    --stats-data-id 0003445244 \
+    --cd-time 2020000000 \
+    --cd-cat01 0 \
+    --cat02-total 1 \
+    --cat02-china 102 \
+    --target-prefectures 13,11,12,14 \
+    --area-code-csv literature/02_matrices/census_00200521_municipality_area_code_confirmation.csv \
+    --outdir data_raw_official/census_00200521_2020_municipality \
+    --max-areas 300 \
+    --timeout-seconds 120
+
+Windows PowerShell single-line equivalent (DO NOT RUN YET):
+
+  python scripts/11_official_data/census_00200521_municipality_population_extract.py --project-root . --run-bounded-extraction --force --allow-write-raw --stats-data-id 0003445244 --cd-time 2020000000 --cd-cat01 0 --cat02-total 1 --cat02-china 102 --target-prefectures 13,11,12,14 --area-code-csv literature/02_matrices/census_00200521_municipality_area_code_confirmation.csv --outdir data_raw_official/census_00200521_2020_municipality --max-areas 300 --timeout-seconds 120
+
+Note: the current script's --run-bounded-extraction path is a guarded placeholder that
+does NOT yet perform value retrieval; enabling the actual getStatsData bounded call is
+part of the separately approved "Run approved Census 00200521 bounded 251-municipality
+extraction" task. Even then: raw output stays local-only and uncommitted; only small
+QC/derived summaries may be committed after the QC gates pass.
+
+DO NOT RUN UNTIL USER EXPLICITLY APPROVES.

@@ -1,43 +1,39 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 CONTROLLED VALUE-EXTRACTION TEST BATCH 1 - CHANGED FILES
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 BOUNDED 251-MUNICIPALITY EXTRACTION APPROVAL PACKAGE - CHANGED FILES
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  scripts/11_official_data/census_00200521_municipality_population_extract.py        [modified]
-  literature/02_matrices/census_00200521_controlled_value_test_batch1_summary.csv    [new]
-  literature/04_synthesis/census_00200521_controlled_value_test_batch1_note.md       [new]
-  outputs/claude_reports/latest_verification_summary.txt                             [modified]
-  outputs/claude_reports/latest_changed_files.txt                                    [modified]
-  outputs/claude_reports/latest_safety_check.txt                                     [modified]
+  literature/04_synthesis/census_00200521_bounded_251_extraction_approval_package.md     [new]
+  literature/02_matrices/census_00200521_bounded_251_extraction_approval_checklist.csv   [new]
+  literature/04_synthesis/census_00200521_bounded_251_extraction_command_preview.txt     [new]
+  outputs/claude_reports/latest_verification_summary.txt                                  [modified]
+  outputs/claude_reports/latest_changed_files.txt                                         [modified]
+  outputs/claude_reports/latest_safety_check.txt                                          [modified]
 
 DETAIL
 
-scripts/11_official_data/census_00200521_municipality_population_extract.py  [modified]
-  Added a safe controlled-test mode: flags --run-controlled-value-test, --test-areas,
-  --max-test-areas (default 10), and a cmd_controlled_value_test() function. The mode
-  runs getStatsData ONCE for the supplied test areas and cat02={1,102} at cdCat01=0,
-  cdTime=2020000000; parses values in memory for QC; prints a sanitized summary
-  (booleans + counts; no raw values); saves no raw output. Every test area must be a
-  confirmed in-scope code (non-confirmed codes refused; verified with 99999); refuses
-  over --max-test-areas and refuses a near-full (>=200) set. All-Japan and full 251-area
-  extraction remain blocked/deferred. appId read from env only; never printed/written/
-  committed. py_compile clean; --help/--dry-run/--metadata-only still pass.
+literature/04_synthesis/census_00200521_bounded_251_extraction_approval_package.md  [new]
+  Approval package (sections A-M): purpose; evidence boundary; confirmed source
+  parameters; controlled-test evidence; future extraction scope requiring approval
+  (251 areas x 2 categories = 502 rows max); the future command marked DO NOT RUN YET;
+  local-only raw storage; derived-output plan; provenance fields; QC gates; abort
+  conditions; user approval checklist; next step. ASCII-only; no appId.
 
-literature/02_matrices/census_00200521_controlled_value_test_batch1_summary.csv  [new]
-  Sanitized controlled-test summary, 27 columns x 1 row: parameters (statsDataId,
-  cdTime, cat codes), test area codes/count, expected/actual rows (8/8), areas (4) and
-  categories (2) returned, api_reached YES, response_status 0, QC gates (chinese <=
-  total YES; non_chinese >= 0 YES), missing counts (0/0), and safety flags (raw_output
-  NO, appId_exposed NO, full_extraction NO, all_japan NO, bounded_251 NO,
-  population_values_committed NO). No appId; no raw API output; no value-level table.
+literature/02_matrices/census_00200521_bounded_251_extraction_approval_checklist.csv  [new]
+  Approval checklist, 8 columns x 21 rows. One row per approval item across categories
+  parameter / scope / storage / qc / security / provenance / commit_policy / approval.
+  Every row approved_by_user = PENDING. Columns: approval_item_id, approval_category,
+  approval_item, required_before_extraction, approved_by_user, current_status,
+  blocking_if_not_approved, notes. No appId; no raw values.
 
-literature/04_synthesis/census_00200521_controlled_value_test_batch1_note.md  [new]
-  Controlled-test note (A-F): purpose; evidence boundary; test parameters; sanitized
-  result summary; script change summary; next step. ASCII-only.
+literature/04_synthesis/census_00200521_bounded_251_extraction_command_preview.txt  [new]
+  Command preview; first line is "DO NOT RUN UNTIL USER EXPLICITLY APPROVES." Contains
+  the future bounded-extraction command (wrapped and single-line PowerShell forms),
+  preconditions, and a closing DO-NOT-RUN warning. No appId.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the controlled value test, results, and safety.
+  Refreshed to describe the approval package, checks, and pending-approval status.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -46,27 +42,29 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
+  scripts/11_official_data/census_00200521_municipality_population_extract.py,
+  scripts/11_official_data/census_00200521_small_metadata_test.py,
+  literature/02_matrices/census_00200521_controlled_value_test_batch1_summary.csv,
   literature/02_matrices/census_00200521_bounded_extraction_script_scaffold_summary.csv,
   literature/02_matrices/census_00200521_municipality_area_code_confirmation.csv,
   literature/02_matrices/census_00200521_municipality_area_code_summary.csv,
   literature/02_matrices/census_00200521_municipality_population_extraction_design.csv,
   literature/02_matrices/census_00200521_exact_table_category_confirmation_batch1.csv,
-  literature/02_matrices/census_00200521_small_metadata_test_scaffold_summary.csv,
   metadata/official_census_population_extraction_provenance_template.csv,
   estat_isa_* and official_* matrices, literature_matrix.csv, gap_verification_matrix.csv,
   official_source_registry.csv, and other matrices/manuscript/data files.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx, ref/, data_raw/ (incl. isa_estat/*.xlsx), data_processed/,
+  data_raw_official/ (if present), data_processed_official/ (if present),
   outputs/literature_discovery/, outputs/literature_verification/
 
 RAW API OUTPUTS
-  None saved into the repo. The single getStatsData call returned 8 value cells which
-  were parsed in memory for QC only; no raw JSON/CSV was written or committed.
+  None. No getStatsData call was made this task; no raw output exists or was committed.
 
 NOTE ON GITIGNORE
-  scripts/*.py is tracked normally. The summary CSV matches the .gitignore `*.csv` rule
-  and was added with an explicit `git add -f` of that single file. The .md was added
+  literature/02_matrices/*.csv matches the .gitignore `*.csv` rule; the approval
+  checklist CSV was added with an explicit `git add -f`. The .md and .txt were added
   normally. No `git add .` was used.
 
 DELETED FILES

@@ -1,47 +1,39 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 CONTROLLED VALUE-EXTRACTION TEST BATCH 1 - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 BOUNDED 251-MUNICIPALITY EXTRACTION APPROVAL PACKAGE - SAFETY CHECK
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Controlled getStatsData value-path test for Census 00200521 table 0003445244 over four
-  sample municipalities (8 rows max). Controlled test only. No 251-area extraction, no
-  all-Japan retrieval, no full extraction, no final analysis data, no raw API outputs
-  committed, no preprocessing/modeling, no scraping/crawling, no manuscript text.
+  Prepare a documentation-only approval package for a future bounded 251-municipality
+  extraction. No value extraction of any kind in this task. No getStatsData, no
+  251-area retrieval, no all-Japan retrieval, no full extraction, no final analysis
+  data, no raw API outputs, no preprocessing/modeling, no scraping/crawling, no
+  manuscript text.
 
 API-KEY HANDLING
-  ESTAT_APP_ID: present at User scope; injected into the process from User scope for the
-    metadata-only and controlled-value-test calls only.
+  ESTAT_APP_ID: checked for presence only (User scope). Not injected for any data call
+    this task (only --help and --dry-run, which need no appId).
   appId printed: NO
   appId written to any file: NO
   appId committed: NO
-  appId included in any saved URL/CSV/note/report: NO (script builds URLs internally,
-    never prints them)
-  secret scan over script + note + summary CSV: no literal appId; no 40-char hex token. PASS.
+  appId included in any saved file/URL/CSV/note/report: NO
+  secret scan over note + checklist + command preview: no literal appId; no 40-char hex
+    token. RESULT: PASS.
 
 API CALLS MADE
-  getMetaInfo (verification) and ONE getStatsData for 4 confirmed areas x 2 categories
-  (8 value cells, parsed in memory for QC only). No all-Japan, no all-category, no
-  251-area, no full extraction. No second getStatsData call.
-
-CONTROLLED-TEST SAFETY FEATURES
-  --run-controlled-value-test requires --test-areas; every area must be a confirmed
-    in-scope code (non-confirmed refused; verified with 99999 -> exit 24).
-  refuses test-area count over --max-test-areas (default 10).
-  refuses a near-full (>=200) area set (cannot become the 251-area run).
-  bounded mode still requires prefectures 13,11,12,14 and --force; all-Japan refused.
-  raw output never saved by default; values used in memory for QC only.
+  None that retrieve values. getStatsData: NOT called. --run-controlled-value-test:
+  NOT run. --run-bounded-extraction: NOT run. --metadata-only: NOT run.
 
 ARTIFACT STATUS
-  script modified: YES (controlled-test flags added; py_compile clean)
-  summary CSV created: YES (27 cols x 1 row)
-  synthesis note created: YES (A-F)
+  approval package note created: YES (sections A-M)
+  approval checklist CSV created: YES (8 cols x 21 rows; all PENDING)
+  optional command preview created: YES (first line DO-NOT-RUN warning; no appId)
+  future extraction command included: YES (marked DO NOT RUN UNTIL USER EXPLICITLY APPROVES)
 
 DATA SAFETY
-  raw output saved: NO
-  population values committed: NO (QC booleans/counts only)
-  datasets downloaded: NO
-  full 251-area extraction run: NO
+  population values retrieved: NO
+  bounded 251 extraction run: NO
+  full data extraction run: NO
   all-Japan value retrieval run: NO
   final analysis data created: NO
   raw API outputs saved into repo: NO
@@ -49,10 +41,13 @@ DATA SAFETY
   PDFs downloaded/staged: NO
   DOCX files staged: NO
   TokyoProject.docx staged/modified: NO
-  ref/ data/ data_raw/ data_processed/ staged: NO
+  ref/ data/ data_raw/ data_processed/ data_raw_official/ data_processed_official/ staged: NO
   preprocessing/modeling run: NO
 
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
+  census_00200521_municipality_population_extract.py modified: NO
+  census_00200521_small_metadata_test.py modified: NO
+  census_00200521_controlled_value_test_batch1_summary.csv modified: NO
   census_00200521_bounded_extraction_script_scaffold_summary.csv modified: NO
   census_00200521_municipality_area_code_confirmation.csv modified: NO
   census_00200521_municipality_area_code_summary.csv modified: NO
@@ -65,13 +60,13 @@ READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
   .gitignore modified: NO
 
 ENCODING
-  script: UTF-8 (ASCII-only), py_compile clean.
-  note: UTF-8 (ASCII-only), no mojibake markers.
-  summary CSV: UTF-8 (ASCII-only), parses via csv.DictReader.
+  approval note: UTF-8 (ASCII-only), no mojibake markers.
+  checklist CSV: UTF-8 (ASCII-only), parses via csv.DictReader.
+  command preview: UTF-8 (ASCII-only).
   reports: ASCII-safe.
 
 EVIDENCE-CLAIM SAFETY
-  QC Chinese <= total foreign: YES; QC non-Chinese >= 0: YES (4/4 areas, 0 missing)
+  user approval status: PENDING (21 approval items; all approved_by_user = PENDING)
   Census source confirmed as main municipality source: YES
   ISA role: prefecture cross-check only
   gap status: under verification
@@ -80,25 +75,24 @@ EVIDENCE-CLAIM SAFETY
   final gap claimed: NO
 
 CHECKS
-  py_compile: PASS
-  script --help / --dry-run / --metadata-only: PASS
-  controlled value test: PASS (8/8 rows; QC gates pass)
+  script --help: PASS
+  script --dry-run: PASS
   CSV validation result: PASS
-  duplicate check result: PASS
+  duplicate check result: PASS (no duplicate approval_item_id)
   mojibake scan result: PASS
   secret scan: PASS
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
-FILES STAGED (explicit; no `git add .`; summary CSV added with `git add -f` due to *.csv gitignore)
-  scripts/11_official_data/census_00200521_municipality_population_extract.py
-  literature/02_matrices/census_00200521_controlled_value_test_batch1_summary.csv
-  literature/04_synthesis/census_00200521_controlled_value_test_batch1_note.md
+FILES STAGED (explicit; no `git add .`; checklist CSV added with `git add -f` due to *.csv gitignore)
+  literature/04_synthesis/census_00200521_bounded_251_extraction_approval_package.md
+  literature/02_matrices/census_00200521_bounded_251_extraction_approval_checklist.csv
+  literature/04_synthesis/census_00200521_bounded_251_extraction_command_preview.txt
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  "Census 00200521 bounded 251-municipality extraction approval package" (request
-  explicit approval; local-only raw storage; defined QC gates; commit only small derived
-  summaries after QC). No Introduction; no novelty; gap under verification.
+  WAIT FOR EXPLICIT USER APPROVAL, then "Run approved Census 00200521 bounded
+  251-municipality extraction" (raw output local-only; QC gates enforced; commit only
+  small QC/derived summaries). No Introduction; no novelty; gap under verification.
