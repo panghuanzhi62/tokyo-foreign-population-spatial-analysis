@@ -1,42 +1,43 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 MUNICIPALITY POPULATION EXTRACTION DESIGN - CHANGED FILES
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 MUNICIPALITY AREA-CODE CONFIRMATION - CHANGED FILES
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/census_00200521_municipality_population_extraction_design.csv       [new]
-  literature/04_synthesis/census_00200521_municipality_population_extraction_design_note.md  [new]
-  metadata/official_census_population_extraction_provenance_template.csv                      [new]
-  outputs/claude_reports/latest_verification_summary.txt                                      [modified]
-  outputs/claude_reports/latest_changed_files.txt                                             [modified]
-  outputs/claude_reports/latest_safety_check.txt                                              [modified]
+  literature/02_matrices/census_00200521_municipality_area_code_confirmation.csv     [new]
+  literature/04_synthesis/census_00200521_municipality_area_code_confirmation_note.md [new]
+  literature/02_matrices/census_00200521_municipality_area_code_summary.csv          [new]
+  outputs/claude_reports/latest_verification_summary.txt                             [modified]
+  outputs/claude_reports/latest_changed_files.txt                                    [modified]
+  outputs/claude_reports/latest_safety_check.txt                                     [modified]
 
 DETAIL
 
-literature/02_matrices/census_00200521_municipality_population_extraction_design.csv  [new]
-  Bounded municipality extraction design, 34 columns x 12 rows, UTF-8 (ASCII-only).
-  Rows: Chinese residents (cat02=102); total foreign (cat02=1); non-Chinese foreign
-  (derived = 1 minus 102); four target-prefecture geography rows (Tokyo/Saitama/Chiba/
-  Kanagawa) with area-code lists NOT invented; N03 join-key design; local-only
-  storage design; future extraction-script spec; quality-control plan; and provenance
-  design. Columns capture source, statistics code, tstat, statsDataId, census year,
-  cdTime/cdCat01/cat02 codes, target prefecture and code, area-code strategy,
-  municipality unit, join key and N03 compatibility, planned variable and formula,
-  planned API method/parameters, extraction scope, large-extraction risk, raw/processed
-  storage rules, provenance requirement, quality checks, script need and name, run
-  mode, manual-check flag, risk, next action, and notes. No appId value anywhere.
+literature/02_matrices/census_00200521_municipality_area_code_confirmation.csv  [new]
+  Municipality area-code confirmation, 26 columns x 261 rows, UTF-8. One row per area
+  in the four target prefectures from the e-Stat getMetaInfo area dimension of table
+  0003445244: 251 included municipality-equivalent units + 10 excluded aggregate rows
+  (4 prefecture totals, 5 designated-city parents, 1 Tokyo special-wards aggregate).
+  Columns capture source/statsDataId/year/cdTime, prefecture name+code, municipality
+  code+name (official Japanese label) and type, area-dimension source, area-code
+  confirmed flag, included-in-scope flag, special-ward / designated-city-ward / city /
+  town / village booleans, expected 5-digit join key, join-key status, leading-zero
+  and normalization flags, and notes (designated-city parent / special-wards aggregate
+  / island flags). Classified metadata only; NOT raw API output; no population values;
+  no appId.
 
-literature/04_synthesis/census_00200521_municipality_population_extraction_design_note.md  [new]
-  Design note (sections A-H): purpose; evidence boundary; confirmed source parameters;
-  extraction design summary table; proposed 9-step sequence; future script spec;
-  public-repo safety; next step. ASCII-only.
+literature/04_synthesis/census_00200521_municipality_area_code_confirmation_note.md  [new]
+  Confirmation note (A-G): purpose; evidence boundary; confirmed source parameters;
+  area-code summary table; join-key implications; extraction implication; next step.
+  ASCII-only.
 
-metadata/official_census_population_extraction_provenance_template.csv  [new]
-  Provenance template, 18 columns, header + one EXAMPLE row only. No real raw path,
-  no appId; raw_output_committed=NO, appId_exposed=NO. For future extraction logging.
+literature/02_matrices/census_00200521_municipality_area_code_summary.csv  [new]
+  Compact sanitized summary, 9 columns x 5 rows (one per prefecture + ALL_FOUR):
+  confirmed municipality rows, prefecture totals excluded, islands flagged, join-key
+  status, next action, notes. ASCII-only; no raw data; no appId.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the extraction design, coverage, confirmed parameters, and checks.
+  Refreshed to describe the area-code confirmation, counts, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -45,33 +46,29 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
   Refreshed public-repo safety check for this pass.
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
+  literature/02_matrices/census_00200521_municipality_population_extraction_design.csv,
+  metadata/official_census_population_extraction_provenance_template.csv,
   scripts/11_official_data/census_00200521_small_metadata_test.py,
   literature/02_matrices/census_00200521_small_metadata_test_scaffold_summary.csv,
   literature/02_matrices/census_00200521_exact_table_category_confirmation_batch1.csv,
-  literature/02_matrices/estat_isa_manual_table_search_confirmation_batch2.csv,
-  literature/02_matrices/estat_isa_api_parameter_discovery_batch1.csv,
-  literature/02_matrices/official_download_preprocessing_design_batch1.csv,
-  literature/02_matrices/official_exact_table_layer_confirmation_batch1.csv,
-  literature/02_matrices/official_table_layer_inspection_plan.csv,
-  literature/02_matrices/official_data_usability_inventory.csv,
-  literature/02_matrices/official_source_registry.csv,
-  literature/02_matrices/literature_matrix.csv,
-  literature/02_matrices/gap_verification_matrix.csv,
-  and other matrices/manuscript/data files.
+  literature/02_matrices/estat_isa_* and official_* matrices,
+  literature/02_matrices/literature_matrix.csv, gap_verification_matrix.csv,
+  official_source_registry.csv, and other matrices/manuscript/data files.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   TokyoProject.docx, ref/, data_raw/ (incl. isa_estat/*.xlsx), data_processed/,
   outputs/literature_discovery/, outputs/literature_verification/
 
 RAW API OUTPUTS
-  None. No data-value API calls were made (only the no-appId scaffold dry-run). No raw
-  output saved into or committed to the repo. Build helper scripts ran from system TEMP.
+  None saved into the repo. Only getMetaInfo (area metadata) was called; the raw JSON
+  stayed in memory in a TEMP-run helper script and was never written into or committed
+  to the repo. No getStatsData values were retrieved.
 
 NOTE ON GITIGNORE
-  literature/02_matrices/*.csv and metadata/*.csv match the .gitignore `*.csv` rule;
-  the new design CSV and provenance template were added with explicit `git add -f` of
-  those specific files (consistent with the other tracked matrices CSVs). The .md was
-  added normally. No `git add .` was used.
+  literature/02_matrices/*.csv matches the .gitignore `*.csv` rule; the new area-code
+  confirmation CSV and the summary CSV were added with explicit `git add -f` of those
+  specific files (consistent with the other tracked matrices CSVs). The .md was added
+  normally. No `git add .` was used.
 
 DELETED FILES
   (none)

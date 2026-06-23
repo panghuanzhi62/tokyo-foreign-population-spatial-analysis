@@ -1,39 +1,39 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 MUNICIPALITY POPULATION EXTRACTION DESIGN - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 MUNICIPALITY AREA-CODE CONFIRMATION - SAFETY CHECK
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Design a bounded municipality-level Census 00200521 population extraction workflow.
-  Design only. No full extraction, no all-municipality retrieval, no data-value API
-  calls, no raw API outputs committed, no preprocessing/modeling, no scraping/crawling,
-  no browser automation, no manuscript text.
+  Metadata-only confirmation of the municipality cdArea code list for Census 00200521
+  table 0003445244 (four target prefectures). No population values retrieved, no full
+  extraction, no all-Japan retrieval, no raw API outputs committed, no preprocessing/
+  modeling, no scraping/crawling, no browser automation, no manuscript text.
 
 API-KEY HANDLING
-  ESTAT_APP_ID: checked for presence only (User scope). Not injected for any data call
-    this task (scaffold dry-run needs no appId).
+  ESTAT_APP_ID: present at User scope; injected into the process from User scope for
+    the getMetaInfo call only.
   appId printed: NO
   appId written to any file: NO
   appId committed: NO
   appId included in any saved URL/CSV/note/report: NO
-  secret scan over design CSV + provenance template + note: no literal appId, no
-    40-char hex token. RESULT: PASS.
+  secret scan over area-code CSV + summary CSV + note: no literal appId; no 40-char
+    hex token. RESULT: PASS.
 
-API CALLS MADE
-  None that retrieve data values. Only the existing scaffold --dry-run (no API call).
-  getStatsData (value retrieval): NOT called. No bounded or full extraction run.
+API CALLS MADE (metadata only)
+  getMetaInfo (area dimension of statsDataId 0003445244) only.
+  getStatsData / value retrieval: NOT called. No bounded or full extraction; no
+  all-Japan retrieval.
 
 ARTIFACT STATUS
-  extraction design CSV created: YES (34 cols x 12 rows)
-  synthesis note created: YES (sections A-H)
-  optional provenance template created: YES (18 cols; header + 1 example row; no real path; no appId)
-  design rows: 12
+  area-code confirmation CSV created: YES (26 cols x 261 rows; 251 included + 10 aggregates)
+  synthesis note created: YES (A-G)
+  optional summary CSV created: YES (9 cols x 5 rows)
 
 DATA SAFETY
+  population values retrieved: NO
   datasets downloaded by Claude: NO
   full data extraction run: NO
-  all-municipality retrieval run: NO
-  all four prefectures' values retrieved: NO
+  all-Japan value retrieval run: NO
   raw API outputs saved into repo: NO
   raw API outputs committed: NO
   PDFs downloaded/staged: NO
@@ -43,21 +43,25 @@ DATA SAFETY
   preprocessing/modeling run: NO
 
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
+  census_00200521_municipality_population_extraction_design.csv modified: NO
+  official_census_population_extraction_provenance_template.csv modified: NO
   census_00200521_small_metadata_test.py modified: NO
   census_00200521_small_metadata_test_scaffold_summary.csv modified: NO
   census_00200521_exact_table_category_confirmation_batch1.csv modified: NO
-  estat_isa_* matrices modified: NO
-  official_* matrices modified: NO
+  estat_isa_* / official_* matrices modified: NO
   literature_matrix.csv / gap_verification_matrix.csv modified: NO
   official_source_registry.csv modified: NO
   .gitignore modified: NO
 
 ENCODING
-  design CSV: UTF-8 (ASCII-only), parses via csv.DictReader; no U+FFFD; no double-encoding.
-  provenance template: UTF-8 (ASCII-only), parses via csv.DictReader.
+  area-code CSV: valid UTF-8; parses via csv.DictReader; contains intentional official
+    Japanese municipality names (the municipality_name column); no U+FFFD replacement
+    chars and no double-encoding (mojibake) byte patterns.
+  summary CSV: UTF-8 (ASCII-only), parses via csv.DictReader.
   note + reports: UTF-8 (ASCII-only), no mojibake markers.
 
 EVIDENCE-CLAIM SAFETY
+  join-key to N03 feasible: YES (251 codes, 5-digit JIS == N03 gyosei kuiki code)
   Census source confirmed as main municipality source: YES
   ISA role: prefecture cross-check only
   gap status: under verification
@@ -66,23 +70,24 @@ EVIDENCE-CLAIM SAFETY
   final gap claimed: NO
 
 CHECKS
-  CSV validation result: PASS (design CSV + provenance template + 8 source CSVs parse cleanly)
-  duplicate check result: PASS (no duplicate design_id)
-  controlled-value check result: PASS (planned_variable, run_mode, risk_level, recommended_next_action valid)
+  CSV validation result: PASS (area-code CSV + summary CSV + 8 source CSVs parse cleanly)
+  duplicate check result: PASS (no duplicate area_id; no duplicate included municipality_code)
+  controlled-value check result: PASS (area_code_confirmed, included_in_target_scope,
+    join_key_status, leading_zero_required, normalization_needed valid)
   mojibake scan result: PASS
   secret scan: PASS
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
 FILES STAGED (explicit; no `git add .`; CSVs added with `git add -f` due to *.csv gitignore)
-  literature/02_matrices/census_00200521_municipality_population_extraction_design.csv
-  literature/04_synthesis/census_00200521_municipality_population_extraction_design_note.md
-  metadata/official_census_population_extraction_provenance_template.csv
+  literature/02_matrices/census_00200521_municipality_area_code_confirmation.csv
+  literature/04_synthesis/census_00200521_municipality_area_code_confirmation_note.md
+  literature/02_matrices/census_00200521_municipality_area_code_summary.csv
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  "Census 00200521 municipality area-code list confirmation" (metadata-only; derive
-  target municipality codes from getMetaInfo area dim; no values; no raw output
-  committed; appId from env). No Introduction; no novelty; gap under verification.
+  "Census 00200521 bounded municipality extraction script scaffold" (restrict cdArea to
+  the confirmed 251 codes; refuse all-Japan by default; --dry-run/--metadata-only first;
+  appId from env; raw outputs local-only). No Introduction; no novelty; gap under verification.
