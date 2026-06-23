@@ -1,14 +1,14 @@
-TOKYO-CHINA ROUND 02 - CENSUS 00200521 MUNICIPALITY AREA-CODE CONFIRMATION - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - CENSUS 00200521 BOUNDED MUNICIPALITY EXTRACTION SCRIPT SCAFFOLD - VERIFICATION SUMMARY
 Generated: 2026-06-23
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Confirm, from official e-Stat metadata only, the municipality cdArea code list for
-  Census 00200521 table 0003445244 (2020) for the four target prefectures, before
-  writing the bounded extraction script. Metadata-only (getMetaInfo area dimension).
-  NO population values retrieved. NO full extraction. NO all-Japan retrieval. NO
-  preprocessing/modeling. NO Introduction. NO novelty. Status: gap under verification.
+  Create the bounded municipality extraction script scaffold for Census 00200521 table
+  0003445244 using the confirmed 251 municipality-equivalent cdArea codes (Tokyo,
+  Saitama, Chiba, Kanagawa). Scaffold only. NO population values retrieved. NO bounded
+  extraction. NO full extraction. NO all-Japan retrieval. NO preprocessing/modeling.
+  NO Introduction. NO novelty. Status: gap under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -18,36 +18,42 @@ BRANCH
 
 ENVIRONMENT NOTE
   ESTAT_APP_ID present at User scope (len 40); injected from User scope into the
-  process for the getMetaInfo call only. Never printed, written, or committed; no API
-  URL containing the appId was saved. Only getMetaInfo (area metadata) was called;
-  getStatsData (values) was NOT called.
+  process for the --metadata-only getMetaInfo call only. Never printed, written, or
+  committed; no API URL containing the appId was saved. getStatsData (values) NOT called.
 
 ARTIFACTS
-  area-code confirmation CSV created: YES
-    literature/02_matrices/census_00200521_municipality_area_code_confirmation.csv (26 cols, 261 rows)
+  script scaffold created: YES
+    scripts/11_official_data/census_00200521_municipality_population_extract.py (py_compile clean)
   synthesis note created: YES
-    literature/04_synthesis/census_00200521_municipality_area_code_confirmation_note.md (A-G)
+    literature/04_synthesis/census_00200521_bounded_municipality_extraction_script_scaffold_note.md (A-G)
   optional summary CSV created: YES
-    literature/02_matrices/census_00200521_municipality_area_code_summary.csv (9 cols, 5 rows)
+    literature/02_matrices/census_00200521_bounded_extraction_script_scaffold_summary.csv (24 cols, 1 row)
 
-AREA-CODE RESULTS
-  municipality area rows confirmed (included target units): 251
-  prefectures covered: Tokyo / Saitama / Chiba / Kanagawa
-  Tokyo count: 62 (23 special wards + 26 cities + 5 towns + 8 villages)
-  Saitama count: 72 (39 cities + 10 Saitama-shi wards + 22 towns + 1 village)
-  Chiba count: 59 (36 cities + 6 Chiba-shi wards + 16 towns + 1 village)
-  Kanagawa count: 58 (16 cities + 28 designated-city wards + 13 towns + 1 village)
-  composition: 23 special wards; 44 designated-city wards; 117 cities; 56 towns; 11 villages
-  prefecture total rows excluded: 4 (11000, 12000, 13000, 14000)
-  other aggregates excluded: 5 designated-city parents (11100,12100,14100,14130,14150)
-    + 1 Tokyo special-wards aggregate (13100) = 6; total excluded aggregate rows = 10
-  island municipalities flagged: 9 (Tokyo Izu/Ogasawara; included but flagged; exclusion deferred)
-  CSV total rows: 261 (251 included + 10 excluded aggregates)
-  join-key to N03 feasible: YES (all 251 codes are 5-digit JIS == N03 gyosei kuiki code;
-    expected_direct_5digit_join)
+SCRIPT CHECKS / RESULTS
+  script --help passed: YES (exit 0; works without ESTAT_APP_ID)
+  script --dry-run passed: YES (no API call; no appId required)
+  script --metadata-only run: YES
+  API reached via metadata-only: YES (getMetaInfo STATUS 0)
+  target area count loaded: 251
+  Tokyo count: 62
+  Saitama count: 72
+  Chiba count: 59
+  Kanagawa count: 58
+  metadata-only verification: cat01=0 present; cat02 China=102 present; cat02
+    foreign-total=1 present; time=2020000000 present; confirmed target areas present
+    in live area dimension: 251/251
+  run-bounded-extraction: NOT run (guard refuses without --force; exit 11)
+
+GUARD / SAFETY DESIGN
+  --run-bounded-extraction refuses unless --force is also supplied
+  refuses any prefecture set other than the confirmed 13,11,12,14 (all-Japan refused)
+  refuses if area count exceeds --max-areas (default 300)
+  refuses to write raw output unless --allow-write-raw and a local-only/gitignored path
+  appId read from env only; never printed/written/committed
 
 SAFETY / EVIDENCE-CLAIM
   population values retrieved: NO
+  bounded extraction run: NO
   full extraction run: NO
   all-Japan value retrieval run: NO
   raw API outputs committed: NO
@@ -62,21 +68,17 @@ SAFETY / EVIDENCE-CLAIM
   final gap claimed: NO
 
 CHECKS (this pass)
-  CSV validation result: PASS (area-code CSV 26 cols x 261 rows; summary CSV 9 cols x
-    5 rows; + 8 prior matrices parse cleanly via csv.DictReader)
-  duplicate check result: PASS (no duplicate area_id; no duplicate municipality_code among included)
-  controlled-value check: PASS (area_code_confirmed, included_in_target_scope,
-    join_key_status, leading_zero_required, normalization_needed all within allowed sets)
-  secret scan: PASS (no literal appId; no 40-char hex token in committed files)
-  mojibake scan result: PASS (note/summary/reports ASCII-only; area-code CSV is valid
-    UTF-8 containing intentional official Japanese municipality names; no U+FFFD; no
+  CSV validation result: PASS (scaffold summary 24 cols x 1 row; area-code confirmation
+    + prior matrices parse cleanly via csv.DictReader)
+  mojibake scan result: PASS (script/note/summary/reports valid UTF-8; no U+FFFD; no
     double-encoding byte patterns)
+  secret scan: PASS (no literal appId; no 40-char hex token in any staged file)
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS (only the intended files staged)
 
 NEXT RECOMMENDED STEP
-  "Census 00200521 bounded municipality extraction script scaffold": create the
-  extraction script that restricts cdArea to the confirmed 251 codes and refuses
-  all-Japan extraction by default; begin with --dry-run and --metadata-only before any
-  bounded value retrieval; appId from env only; raw outputs local-only. No
-  Introduction; no novelty; gap remains under verification.
+  "Census 00200521 controlled bounded value-extraction test batch 1": a small,
+  explicitly authorized bounded value retrieval (a handful of municipalities first) to
+  validate the extraction path and QC gates (chinese <= total_foreign; non_chinese
+  >= 0), raw output local-only, commit only small derived summaries if approved. Full
+  extraction NOT recommended yet. No Introduction; no novelty; gap under verification.
