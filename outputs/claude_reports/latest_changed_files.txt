@@ -1,42 +1,45 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ T2 LOCAL-ONLY DERIVED-GROWTH TABLE APPROVAL PACKAGE - CHANGED FILES
+TOKYO-CHINA ROUND 02 - ISA/MOJ T2 DERIVED-GROWTH TABLE SCRIPT SCAFFOLD - CHANGED FILES
 Generated: 2026-06-24
 
 TASK STATUS: COMPLETED
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/isa_moj_t2_local_only_derived_growth_table_approval_checklist.csv  [new]  (git add -f; *.csv gitignore)
-  literature/04_synthesis/isa_moj_t2_local_only_derived_growth_table_approval_package.md     [new]
-  literature/04_synthesis/isa_moj_t2_local_only_derived_growth_table_command_preview.txt      [new]
-  outputs/claude_reports/latest_verification_summary.txt                                      [modified]
-  outputs/claude_reports/latest_changed_files.txt                                             [modified]
-  outputs/claude_reports/latest_safety_check.txt                                              [modified]
+  scripts/11_official_data/isa_moj_t2_derived_growth_table_build.py                        [new]
+  literature/04_synthesis/isa_moj_t2_derived_growth_table_script_scaffold_note.md          [new]
+  literature/02_matrices/isa_moj_t2_derived_growth_table_script_scaffold_summary.csv       [new]  (git add -f; *.csv gitignore)
+  outputs/claude_reports/latest_verification_summary.txt                                    [modified]
+  outputs/claude_reports/latest_changed_files.txt                                           [modified]
+  outputs/claude_reports/latest_safety_check.txt                                            [modified]
 
-LOCAL-ONLY OUTPUTS (NOT touched this task; remain gitignored/untracked, NOT staged)
+LOCAL-ONLY OUTPUTS (read-only inspected; NOT staged; remain gitignored/untracked)
   data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_2023_12_2025_06.csv
   data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_panel_qc.csv
 
 DETAIL
 
-literature/04_synthesis/isa_moj_t2_local_only_derived_growth_table_approval_package.md  [new]
-  Approval package note (A-J): purpose (approval only, no build); evidence boundary; candidate
-  input scope (local panel, 2023-12->2025-06, 251 municipalities, 6 zero-base); approved
-  candidate variables (absolute change primary descriptive, log1p primary model, zero-base
-  mandatory flag, optional pct/growth-positive, raw logdiff not default); future local-only
-  table + QC paths; script/command status (none exists; scaffold needed first); mandatory QC
-  gates; user approval checklist; next step.
+scripts/11_official_data/isa_moj_t2_derived_growth_table_build.py  [new]
+  Derived-growth table build scaffold (Python 3 stdlib). argparse CLI: --project-root,
+  --input-panel, --input-qc, --outdir, --base-time, --end-time, --dry-run, --schema-only,
+  --write-local-derived-table, --write-qc-summary, --force. --help/--dry-run need no panel;
+  --dry-run confirms paths + 5 candidate variables (raw logdiff NOT default); --schema-only
+  read-only inspects the local panel (required columns; 251 base/end rows; identical code sets;
+  5-char codes; numeric). --write-local-derived-table is guarded (refuses without --force,
+  refuses non-local outdir, aborts on missing columns / wrong row counts / mismatched sets /
+  non-numeric / negative; warns if zero-base != 6), writes ONLY under data_processed_official/
+  isa_moj_panel, and is NOT exercised. compute_record implements all five variables. py_compile clean.
 
-literature/02_matrices/isa_moj_t2_local_only_derived_growth_table_approval_checklist.csv  [new]
-  Approval checklist, 8 columns x 16 rows (DGAPPR_001..DGAPPR_016). Categories: input, scope,
-  spatial_frame, variable, flag, output, safety, measurement, deferral, gate. All
-  approved_by_user=PENDING. No municipality values.
+literature/04_synthesis/isa_moj_t2_derived_growth_table_script_scaffold_note.md  [new]
+  Scaffold note (A-G): purpose; evidence boundary; input scope; candidate variables (absolute
+  primary, log1p model, zero-base mandatory, pct robustness, raw logdiff not default); safety
+  gates; safe commands; next step (build approval package).
 
-literature/04_synthesis/isa_moj_t2_local_only_derived_growth_table_command_preview.txt  [new]
-  Command preview; first line "DO NOT RUN UNTIL USER EXPLICITLY APPROVES." States no command
-  is available yet because a derived-growth table script scaffold is required first. No
-  appId / API key; no invented command.
+literature/02_matrices/isa_moj_t2_derived_growth_table_script_scaffold_summary.csv  [new]
+  Scaffold summary, 13 columns x 1 row (DGTS_001): script path, input panel, base/end times,
+  candidate variables, writes_table_by_default=NO, local_only_output=YES, requires_force=YES,
+  modeling_run=NO, pre-service feasible now=NO, next action. No municipality values.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the approval package, approval state, and checks.
+  Refreshed to describe the scaffold, schema-only inspection, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -46,10 +49,10 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
   raw Excel (data_raw/isa_estat/*.xlsx), the local-only panel + QC under data_processed_official
-  (NOT touched), scripts/, the ISA/MOJ t2 verification/design/scaffold/build files + derived-growth
-  design files + earlier approval-package files, census_* / official_* matrices, metadata/*, N03
-  design files, literature_matrix.csv, gap_verification_matrix.csv, official_source_registry.csv,
-  TokyoProject.docx, and other matrices/manuscript/data files.
+  (read-only inspected, NOT modified), other scripts/, the ISA/MOJ t2 verification/design/
+  scaffold/build files + derived-growth design/approval/command-preview files, census_* /
+  official_* matrices, metadata/*, N03 design files, literature_matrix.csv,
+  gap_verification_matrix.csv, official_source_registry.csv, TokyoProject.docx, and other files.
 
 UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   data_raw/ (incl. isa_estat/*.xlsx and txt log), data_raw_official/, data_processed/,
@@ -57,9 +60,10 @@ UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   outputs/literature_discovery/, outputs/literature_verification/
 
 NOTE ON GITIGNORE
-  The checklist CSV matches the .gitignore `*.csv` rule and was added with explicit `git add -f`.
-  The .md and .txt were added normally. The full panel + local QC under data_processed_official
-  are gitignored and were NOT staged. No municipality-level derived values exist. No `git add .` used.
+  The scaffold summary CSV matches the .gitignore `*.csv` rule and was added with explicit
+  `git add -f`. The .py and .md were added normally. The full panel + local QC under
+  data_processed_official are gitignored and were NOT staged. No municipality-level derived
+  values were created. No `git add .` was used.
 
 DELETED FILES
   (none)
