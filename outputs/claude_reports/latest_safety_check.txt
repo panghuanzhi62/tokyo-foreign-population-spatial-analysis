@@ -1,28 +1,30 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ T2 DERIVED-GROWTH VARIABLE DESIGN - SAFETY CHECK
+TOKYO-CHINA ROUND 02 - ISA/MOJ T2 LOCAL-ONLY DERIVED-GROWTH TABLE APPROVAL PACKAGE - SAFETY CHECK
 Generated: 2026-06-24
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Design compact derived-growth variables from the local-only MOJ/ISA t2 zero-filled Chinese
-  stock panel. Design + QC-specification only. No final analysis data, no municipality-level
-  derived values, no full panel committed, no local QC committed, no modeling, no manuscript
-  text. No API calls.
+  Approval package for a FUTURE local-only derived-growth table from the ISA/MOJ t2 zero-filled
+  Chinese stock panel. Approval documents only. No derived-growth table, no municipality-level
+  values, no full panel committed, no local QC committed, no modeling, no manuscript text. No
+  API calls.
 
 API-KEY HANDLING
   ESTAT_APP_ID: not needed and not used this task. appId printed/written/committed: NO.
-  secret scan over design + summary + note + preview + reports: no literal appId; no 40-char
-  hex token. PASS.
+  secret scan over note + checklist CSV + command preview + reports: no literal appId; no
+  40-char hex token. PASS.
 
-DESIGN-TASK SAFETY
-  panel read: read-only (for QC/design facts only); local panel modified: NO
+RUN SAFETY
+  derived-growth table created: NO
   municipality-level derived values created: NO
-  municipality-level derived values committed: NO
   modeling run: NO
+  table-generation command run: NO (none exists; scaffold required first)
+  no command was invented or run.
 
 DATA SAFETY
   full panel committed: NO (gitignored under data_processed_official; not staged)
   local QC committed: NO (gitignored; not staged)
+  local panel modified: NO (not touched this task)
   raw Excel modified: NO
   raw Excel committed: NO
   full municipality value table committed: NO
@@ -30,30 +32,30 @@ DATA SAFETY
   PDFs/DOCX/GIS committed: NO
   TokyoProject.docx staged/modified: NO
   ref/ data/ data_raw/ data_raw_official/ data_processed/ staged: NO
-  data_processed_official/isa_moj_panel/* (panel + local QC) staged: NO
+  data_processed_official/isa_moj_panel/* (panel + local QC + future derived table) staged: NO
 
 READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
   scripts/ modified: NO
   raw Excel + local panel + local QC modified: NO
-  isa_moj_t2_* verification/design/scaffold/build/approval/QC files modified: NO
+  isa_moj_t2_* verification/design/scaffold/build/derived-growth design/approval files modified: NO
   census_00200521_municipality_area_code_confirmation.csv modified: NO
-  other metadata/* modified: NO
+  metadata/* modified: NO
   literature_matrix.csv / gap_verification_matrix.csv modified: NO
   official_source_registry.csv modified: NO
   .gitignore modified: NO
 
 ENCODING
-  design CSV: UTF-8 (ASCII-only), parses via csv.DictReader.
-  summary CSV: UTF-8 (ASCII-only), parses via csv.DictReader.
-  note + command preview: UTF-8 (ASCII-only), no mojibake markers.
+  note: UTF-8 (ASCII-only), no mojibake markers.
+  checklist CSV: UTF-8 (ASCII-only), parses via csv.DictReader.
+  command preview: UTF-8 (ASCII-only).
   reports: ASCII-safe.
 
-DESIGN OUTCOME / EVIDENCE-CLAIM SAFETY
+EVIDENCE-CLAIM SAFETY
+  approval items: 16 (all approved_by_user=PENDING)
+  user approval status: PENDING
   base time: 2023-12 ; end time: 2025-06
-  absolute change feasible: YES ; log1p change feasible: YES
-  raw logdiff recommended as default: NO ; zero-base flag required: YES (6 municipalities)
-  recommended primary variable: chinese_registered_change_2023_12_to_2025_06
-  recommended model candidate: chinese_registered_log1p_change_2023_12_to_2025_06
+  absolute change approved candidate: YES ; log1p change approved candidate: YES
+  zero-base flag approved candidate: YES ; raw logdiff approved default: NO
   pre-service 2015-2020 growth feasible now: NO (requires name->code crosswalk)
   "Chinese" = registered nationality (ISA), NOT ethnicity and NOT Census population.
   variables = registered Chinese foreign-resident STOCK change, NOT Census population growth.
@@ -62,22 +64,21 @@ DESIGN OUTCOME / EVIDENCE-CLAIM SAFETY
 
 CHECKS
   CSV validation result: PASS
-  duplicate check result: PASS (design_id DGV_001..006; qc_id DGQC_001)
-  controlled-value check result: PASS
+  duplicate check result: PASS (approval_item_id unique: DGAPPR_001..DGAPPR_016)
+  controlled-value check result: PASS (all PENDING; YES/NO valid)
   mojibake scan result: PASS
   secret scan: PASS
   git diff --check result: PASS (exit 0)
   sensitive-file check result: PASS
 
-FILES STAGED (explicit; no `git add .`; CSVs added with `git add -f` due to *.csv gitignore)
-  literature/02_matrices/isa_moj_t2_derived_growth_variable_design.csv
-  literature/02_matrices/isa_moj_t2_derived_growth_qc_design_summary.csv
-  literature/04_synthesis/isa_moj_t2_derived_growth_variable_design_note.md
-  literature/04_synthesis/isa_moj_t2_derived_growth_table_command_preview.txt
+FILES STAGED (explicit; no `git add .`; checklist CSV added with `git add -f` due to *.csv gitignore)
+  literature/02_matrices/isa_moj_t2_local_only_derived_growth_table_approval_checklist.csv
+  literature/04_synthesis/isa_moj_t2_local_only_derived_growth_table_approval_package.md
+  literature/04_synthesis/isa_moj_t2_local_only_derived_growth_table_command_preview.txt
   outputs/claude_reports/latest_verification_summary.txt
   outputs/claude_reports/latest_changed_files.txt
   outputs/claude_reports/latest_safety_check.txt
 
 NEXT STEP
-  "Create local-only derived-growth table approval package." No modeling. No Introduction;
-  no novelty; gap under verification.
+  "Create ISA/MOJ t2 derived-growth table script scaffold", then build approval, then run only
+  after explicit user approval. No modeling. No Introduction; no novelty; gap under verification.

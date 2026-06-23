@@ -1,48 +1,42 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ T2 DERIVED-GROWTH VARIABLE DESIGN - CHANGED FILES
+TOKYO-CHINA ROUND 02 - ISA/MOJ T2 LOCAL-ONLY DERIVED-GROWTH TABLE APPROVAL PACKAGE - CHANGED FILES
 Generated: 2026-06-24
 
 TASK STATUS: COMPLETED
 
 FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/isa_moj_t2_derived_growth_variable_design.csv        [new]  (git add -f; *.csv gitignore)
-  literature/02_matrices/isa_moj_t2_derived_growth_qc_design_summary.csv      [new]  (git add -f; *.csv gitignore)
-  literature/04_synthesis/isa_moj_t2_derived_growth_variable_design_note.md    [new]
-  literature/04_synthesis/isa_moj_t2_derived_growth_table_command_preview.txt  [new]
-  outputs/claude_reports/latest_verification_summary.txt                       [modified]
-  outputs/claude_reports/latest_changed_files.txt                              [modified]
-  outputs/claude_reports/latest_safety_check.txt                               [modified]
+  literature/02_matrices/isa_moj_t2_local_only_derived_growth_table_approval_checklist.csv  [new]  (git add -f; *.csv gitignore)
+  literature/04_synthesis/isa_moj_t2_local_only_derived_growth_table_approval_package.md     [new]
+  literature/04_synthesis/isa_moj_t2_local_only_derived_growth_table_command_preview.txt      [new]
+  outputs/claude_reports/latest_verification_summary.txt                                      [modified]
+  outputs/claude_reports/latest_changed_files.txt                                             [modified]
+  outputs/claude_reports/latest_safety_check.txt                                              [modified]
 
-LOCAL-ONLY OUTPUTS (read-only inspected; NOT staged; remain gitignored/untracked)
+LOCAL-ONLY OUTPUTS (NOT touched this task; remain gitignored/untracked, NOT staged)
   data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_2023_12_2025_06.csv
   data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_panel_qc.csv
 
 DETAIL
 
-literature/02_matrices/isa_moj_t2_derived_growth_variable_design.csv  [new]
-  Derived-growth variable design, 13 columns x 6 rows (DGV_001..DGV_006): variable name,
-  formula, input timepoints (2023-12;2025-06), input panel path, requires_zero_base_handling,
-  zero_base_rule, recommended_use, model_readiness, commit_boundary (design_only_no_values),
-  measurement_label (registered stock change, not Census population), risk, notes. No values.
+literature/04_synthesis/isa_moj_t2_local_only_derived_growth_table_approval_package.md  [new]
+  Approval package note (A-J): purpose (approval only, no build); evidence boundary; candidate
+  input scope (local panel, 2023-12->2025-06, 251 municipalities, 6 zero-base); approved
+  candidate variables (absolute change primary descriptive, log1p primary model, zero-base
+  mandatory flag, optional pct/growth-positive, raw logdiff not default); future local-only
+  table + QC paths; script/command status (none exists; scaffold needed first); mandatory QC
+  gates; user approval checklist; next step.
 
-literature/02_matrices/isa_moj_t2_derived_growth_qc_design_summary.csv  [new]
-  Compact QC/design summary, 24 columns x 1 row (DGQC_001): panel path/rows, base/end times,
-  base/end rows 251/251, municipality_sets_identical=YES, absolute/pct/log1p feasibility,
-  logdiff_recommended=NO, zero_base_municipality_count=6, negatives/extra/dup/aggregate=0,
-  recommended primary + model candidate, pre-service feasible now=NO, next action. No values.
+literature/02_matrices/isa_moj_t2_local_only_derived_growth_table_approval_checklist.csv  [new]
+  Approval checklist, 8 columns x 16 rows (DGAPPR_001..DGAPPR_016). Categories: input, scope,
+  spatial_frame, variable, flag, output, safety, measurement, deferral, gate. All
+  approved_by_user=PENDING. No municipality values.
 
-literature/04_synthesis/isa_moj_t2_derived_growth_variable_design_note.md  [new]
-  Synthesis note (A-G): purpose; evidence boundary; input panel status; recommended variables
-  (primary = absolute change, model = log1p change, mandatory zero-base flag; raw logdiff not
-  default); interpretation (registered stock change, not population growth); model implication
-  (post-service side after service dataset; pre-service deferred); next step.
-
-literature/04_synthesis/isa_moj_t2_derived_growth_table_command_preview.txt  [new]
-  Command preview; first line "DO NOT RUN UNTIL USER EXPLICITLY APPROVES." States that no
-  derived-growth script exists yet, so a script scaffold is needed first before any command
-  can be previewed. No appId / API key.
+literature/04_synthesis/isa_moj_t2_local_only_derived_growth_table_command_preview.txt  [new]
+  Command preview; first line "DO NOT RUN UNTIL USER EXPLICITLY APPROVES." States no command
+  is available yet because a derived-growth table script scaffold is required first. No
+  appId / API key; no invented command.
 
 outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the derived-growth design, read-only panel inspection, and checks.
+  Refreshed to describe the approval package, approval state, and checks.
 
 outputs/claude_reports/latest_changed_files.txt  [modified]
   This file.
@@ -52,8 +46,8 @@ outputs/claude_reports/latest_safety_check.txt  [modified]
 
 NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
   raw Excel (data_raw/isa_estat/*.xlsx), the local-only panel + QC under data_processed_official
-  (read-only inspected, NOT modified), scripts/, the ISA/MOJ t2 verification/design/scaffold/
-  build files + approval-package files, census_* / official_* matrices, other metadata/*, N03
+  (NOT touched), scripts/, the ISA/MOJ t2 verification/design/scaffold/build files + derived-growth
+  design files + earlier approval-package files, census_* / official_* matrices, metadata/*, N03
   design files, literature_matrix.csv, gap_verification_matrix.csv, official_source_registry.csv,
   TokyoProject.docx, and other matrices/manuscript/data files.
 
@@ -63,10 +57,9 @@ UNTRACKED / IGNORED FILES LEFT UNTOUCHED (NOT staged)
   outputs/literature_discovery/, outputs/literature_verification/
 
 NOTE ON GITIGNORE
-  The two new CSVs match the .gitignore `*.csv` rule and were added with explicit `git add -f`.
+  The checklist CSV matches the .gitignore `*.csv` rule and was added with explicit `git add -f`.
   The .md and .txt were added normally. The full panel + local QC under data_processed_official
-  are gitignored and were NOT staged. No municipality-level derived values were created. No
-  `git add .` was used.
+  are gitignored and were NOT staged. No municipality-level derived values exist. No `git add .` used.
 
 DELETED FILES
   (none)
