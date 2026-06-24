@@ -1,14 +1,14 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ T2 DERIVED-GROWTH TABLE SCRIPT SCAFFOLD - VERIFICATION SUMMARY
+TOKYO-CHINA ROUND 02 - ISA/MOJ T2 DERIVED-GROWTH DEPENDENT-VARIABLE BUILD - VERIFICATION SUMMARY
 Generated: 2026-06-24
 
 TASK STATUS: COMPLETED
 
 TASK OBJECTIVE
-  Create a safe script scaffold for building a LOCAL-ONLY derived-growth table from the
-  existing local-only ISA/MOJ t2 zero-filled registered Chinese stock panel. Script scaffold
-  only. NO derived-growth table built. NO municipality-level derived values. NO full panel
-  committed. NO local QC committed. NO modeling. NO manuscript text. NO novelty. Gap: under
-  verification.
+  Build the LOCAL-ONLY ISA/MOJ t2 derived-growth table (the dependent variable) from the
+  validated four-period zero-filled registered Chinese stock panel, and produce commit-safe QC.
+  NO approval package. NO modeling. NO final analysis data committed. NO derived table /
+  municipality-level values / full panel / local QC committed. NO manuscript text. NO novelty.
+  Gap: under verification.
 
 REPO PATH
   E:\rsch\laborJapan
@@ -16,63 +16,72 @@ REPO PATH
 BRANCH
   agentic-upgrade
 
-ARTIFACTS
-  script scaffold created: YES
-    scripts/11_official_data/isa_moj_t2_derived_growth_table_build.py (py_compile clean)
-  script note created: YES
-    literature/04_synthesis/isa_moj_t2_derived_growth_table_script_scaffold_note.md (A-G)
-  optional scaffold summary CSV created: YES
-    literature/02_matrices/isa_moj_t2_derived_growth_table_script_scaffold_summary.csv (13 cols, 1 row)
+BUILD
+  approved build command run: YES
+    python scripts/11_official_data/isa_moj_t2_derived_growth_table_build.py --project-root . --write-local-derived-table --force --write-qc-summary
+  build exit code: 0
+  local derived table created: YES
+  local derived table path: data_processed_official/isa_moj_panel/isa_moj_t2_derived_growth_2023_12_2025_06.csv
+  local QC path:            data_processed_official/isa_moj_panel/isa_moj_t2_derived_growth_qc.csv
+  both local outputs are gitignored (data_processed_official + *.csv rules); not staged.
 
-SCRIPT CHECKS / RESULTS
-  script --help passed: YES (exit 0; works without reading the panel)
-  script --dry-run passed: YES (exit 0; confirms paths + candidate variables; no table write)
-  script --schema-only passed: YES (exit 0; read-only panel inspect)
-  write-local-derived-table run: NO (guard REFUSED without --force, exit 11)
+MANDATORY QC GATES (all PASSED)
+  rows: 251 (exactly one per master-frame municipality)
+  municipality_code 5-char string: YES
+  all codes in 251 master frame: YES ; extra codes: 0
+  duplicate municipality_code rows: 0
+  aggregate rows: 0
+  base numeric: YES ; end numeric: YES
+  negative base/end values: 0
+  absolute change defined rows: 251
+  log1p change defined rows: 251
+  zero-base flag count: 6
+  percent change NA for exactly the 6 zero-base municipalities: YES
+  variable formulas verified (change / log1p / zero_base / growth_positive): YES
 
-SCHEMA-ONLY READ-ONLY INSPECTION (no table written)
-  required columns present: YES (survey_time, municipality_code, chinese_registered, zero_filled)
-  base time 2023-12 rows: 251 (expected 251)
-  end  time 2025-06 rows: 251 (expected 251)
-  municipality_code sets identical (base vs end): YES
-  municipality_code all 5-char: YES
-  chinese_registered all numeric: YES
-  schema check passed: YES
+ARTIFACTS (commit-safe)
+  compact QC summary created: YES
+    literature/02_matrices/isa_moj_t2_derived_growth_table_build_qc_summary.csv (23 cols, 1 row)
+  run note created: YES
+    literature/04_synthesis/isa_moj_t2_derived_growth_table_build_run_note.md (A-G)
+  provenance CSV created: YES
+    metadata/isa_moj_t2_derived_growth_table_build_provenance.csv (15 cols, 1 row)
 
-SCAFFOLD SCOPE
-  base time: 2023-12
-  end time: 2025-06
-  absolute change implemented in scaffold: YES (chinese_registered_change_2023_12_to_2025_06)
-  log1p change implemented in scaffold: YES (chinese_registered_log1p_change_2023_12_to_2025_06)
-  zero-base flag implemented in scaffold: YES (chinese_registered_zero_base_2023_12)
-  raw logdiff implemented as default: NO (undefined at zero base/end)
-  optional: pct change (base>0 + flag); growth-positive binary flag
-  write path enforces: 251 rows, 5-char codes, identical sets, numeric, non-negative; warns if
-    zero-base count != 6; refuses without --force; refuses non-local outdir
+DEPENDENT VARIABLE
+  base time: 2023-12 ; end time: 2025-06
+  recommended dependent variable (modeling): chinese_registered_log1p_change_2023_12_to_2025_06
+  primary descriptive: chinese_registered_change_2023_12_to_2025_06
+  mandatory retained flag: chinese_registered_zero_base_2023_12 (6)
+  raw logdiff as default: NO
+  measurement: MOJ/ISA REGISTERED Chinese foreign-resident STOCK change, NOT Census population growth
 
 SAFETY / EVIDENCE-CLAIM
-  write-local-derived-table run: NO
-  derived-growth table created: NO
-  municipality-level derived values created: NO
+  derived table committed: NO
+  municipality-level values committed: NO
   full panel committed: NO
-  local panel modified: NO (read-only inspection)
+  local QC committed: NO
+  raw Excel committed: NO
   modeling run: NO
   pre-service 2015-2020 growth feasible now: NO (deferred wide07 + name->JIS crosswalk)
-  measurement: MOJ/ISA REGISTERED Chinese foreign-resident STOCK change, NOT Census population growth
   novelty asserted: NO
   final gap claimed: NO
   gap status: under verification
 
 CHECKS (this pass)
-  script syntax check result: PASS (py_compile exit 0)
-  CSV validation result: PASS (scaffold summary 13x1; derived-growth design + approval checklist
-    + master frame parse via csv.DictReader)
-  duplicate check result: PASS (summary_id unique: DGTS_001)
-  controlled-value check result: PASS (writes_table_by_default=NO; requires_force=YES; modeling=NO)
-  mojibake scan result: PASS (script/note/summary/reports ASCII-only valid UTF-8; no U+FFFD)
+  CSV validation result: PASS (qc summary 23x1; provenance 15x1; derived-growth design +
+    scaffold summary + master frame parse via csv.DictReader)
+  duplicate check result: PASS (qc_id DGBQC_001; provenance_id DGBPROV_001 unique)
+  controlled-value check result: PASS (derived_table_committed=NO; rows=251; 0/0/0; zero-base=6)
+  mojibake scan result: PASS (qc/provenance/run-note/reports ASCII-only valid UTF-8; no U+FFFD)
   git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS (no full panel / local QC / derived table / raw Excel / data dirs staged)
+  sensitive-file check result: PASS (no derived table / full panel / local QC / raw Excel / data dirs staged)
+
+NOTE ON ABORTED APPROVAL-PACKAGE FILES
+  The earlier (interrupted) approval-package files for this build remain UNTRACKED in the
+  working tree and were NOT staged/committed (per instruction): build approval package md +
+  command preview .txt (+ a gitignored checklist csv). Left unstaged.
 
 NEXT RECOMMENDED STEP
-  "ISA/MOJ t2 derived-growth table build approval package" before any local derived table is
-  written. No modeling. No Introduction; no novelty; gap under verification.
+  CORE EXPLANATORY-VARIABLE construction: migrant-oriented service infrastructure, rail
+  accessibility, housing cost, and commercial density. No modeling. No Introduction; no
+  novelty; gap under verification.
