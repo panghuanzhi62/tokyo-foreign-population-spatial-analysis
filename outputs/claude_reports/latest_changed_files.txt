@@ -1,72 +1,25 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ T2 DERIVED-GROWTH DEPENDENT-VARIABLE BUILD - CHANGED FILES
-Generated: 2026-06-24
+LATEST CHANGED FILES
+====================
+task: Assess Tokyo Chinese population service growth design feasibility
+date: 2026-06-25
+branch: agentic-upgrade
 
-TASK STATUS: COMPLETED
+Created:
+- literature/04_synthesis/tokyo_chinese_population_service_growth_design_feasibility_note.md
+- literature/02_matrices/tokyo_chinese_population_service_growth_literature_scoping.csv
+- literature/02_matrices/tokyo_chinese_population_service_growth_data_feasibility.csv
+- literature/02_matrices/tokyo_chinese_population_service_growth_identification_risk.csv
+- literature/02_matrices/tokyo_chinese_population_service_growth_next_steps.csv
 
-FILES STAGED THIS PASS (explicit add only; no `git add .`)
-  literature/02_matrices/isa_moj_t2_derived_growth_table_build_qc_summary.csv   [new]  (git add -f; *.csv gitignore)
-  metadata/isa_moj_t2_derived_growth_table_build_provenance.csv                 [new]  (git add -f; *.csv gitignore)
-  literature/04_synthesis/isa_moj_t2_derived_growth_table_build_run_note.md      [new]
-  outputs/claude_reports/latest_verification_summary.txt                         [modified]
-  outputs/claude_reports/latest_changed_files.txt                                [modified]
-  outputs/claude_reports/latest_safety_check.txt                                 [modified]
+Modified:
+- outputs/claude_reports/latest_verification_summary.txt
+- outputs/claude_reports/latest_changed_files.txt
+- outputs/claude_reports/latest_safety_check.txt
 
-LOCAL-ONLY OUTPUTS PRODUCED BUT NOT STAGED (gitignored; remain untracked)
-  data_processed_official/isa_moj_panel/isa_moj_t2_derived_growth_2023_12_2025_06.csv  (251 rows; dependent variable)
-  data_processed_official/isa_moj_panel/isa_moj_t2_derived_growth_qc.csv
+Not created/committed (by design):
+- no raw data, no POI table, no geocoded data, no full panel
+- no manuscript, PDF, DOCX, GIS, or ref files
+- no modeling outputs
 
-DETAIL
-
-literature/02_matrices/isa_moj_t2_derived_growth_table_build_qc_summary.csv  [new]
-  Compact commit-safe QC summary, 23 columns x 1 row (DGBQC_001): local table/QC paths,
-  derived_table_created_local_only=YES, derived_table_committed=NO, rows=251, base/end times,
-  5-char codes, extra/duplicate/aggregate=0/0/0, base/end numeric, negatives=0, absolute &
-  log1p defined=251/251, zero_base_count=6, pct NA for zero-base=YES, recommended DV
-  (log1p change), next action. No municipality values.
-
-metadata/isa_moj_t2_derived_growth_table_build_provenance.csv  [new]
-  Provenance, 15 columns x 1 row (DGBPROV_001): source panel, script, local output paths,
-  run_date 2026-06-24, rows 251, base/end, raw_excel_committed=NO, derived_table_committed=NO,
-  full_panel_committed=NO, modeling_run=NO, gap_status=under_verification. No values.
-
-literature/04_synthesis/isa_moj_t2_derived_growth_table_build_run_note.md  [new]
-  Run note (A-G): purpose (local-only dependent-variable build); evidence boundary; output
-  scope (local-only paths + columns); QC result (all gates passed); recommended dependent
-  variable (log1p change; absolute descriptive; zero_base retained; raw logdiff not default);
-  scope boundary (pre-service deferred); next step (core explanatory variables).
-
-outputs/claude_reports/latest_verification_summary.txt  [modified]
-  Refreshed to describe the dependent-variable build, QC gates, and checks.
-
-outputs/claude_reports/latest_changed_files.txt  [modified]
-  This file.
-
-outputs/claude_reports/latest_safety_check.txt  [modified]
-  Refreshed public-repo safety check for this pass.
-
-NOT MODIFIED (per task constraints; confirmed unchanged vs HEAD)
-  scripts/ (incl. isa_moj_t2_derived_growth_table_build.py), raw Excel (data_raw/isa_estat/*.xlsx),
-  the local-only input panel + QC under data_processed_official (read by the build; NOT modified),
-  the ISA/MOJ t2 verification/design/scaffold/build files + derived-growth design/scaffold files,
-  census_* / official_* matrices, other metadata/*, N03 design files, literature_matrix.csv,
-  gap_verification_matrix.csv, official_source_registry.csv, TokyoProject.docx, and other files.
-
-UNTRACKED FILES LEFT UNTOUCHED (NOT staged)
-  data_raw/ (incl. isa_estat/*.xlsx, txt log, local results txt), data_raw_official/,
-  data_processed/, data_processed_official/isa_moj_panel/* (local-only input panel + QC +
-  new derived table + derived QC), TokyoProject.docx, ref/, outputs/literature_discovery/,
-  outputs/literature_verification/, and the ABORTED approval-package files left over from the
-  interrupted prior task (isa_moj_t2_derived_growth_table_build_approval_package.md,
-  isa_moj_t2_derived_growth_table_build_command_preview.txt, and a gitignored approval
-  checklist csv) - all left UNSTAGED per instruction.
-
-NOTE ON GITIGNORE
-  The QC summary CSV and provenance CSV match the .gitignore `*.csv` rule and were added with
-  explicit `git add -f`. The .md was added normally. The derived table + local QC + full panel
-  under data_processed_official are gitignored and were NOT staged. No `git add .` was used.
-
-DELETED FILES
-  (none)
-
-EXACT COMMIT HASH
-  Reported in final response.
+Note: pre-existing staged files from a prior task (service_infrastructure_2024_*) were left
+to the user; this task staged ONLY the files listed above.

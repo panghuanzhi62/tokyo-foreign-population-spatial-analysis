@@ -1,93 +1,31 @@
-TOKYO-CHINA ROUND 02 - ISA/MOJ T2 DERIVED-GROWTH DEPENDENT-VARIABLE BUILD - SAFETY CHECK
-Generated: 2026-06-24
+LATEST SAFETY CHECK
+===================
+task: research design feasibility assessment (literature + data-source availability)
+date: 2026-06-25
+branch: agentic-upgrade
 
-TASK STATUS: COMPLETED
+modeling run: NO
+raw data committed: NO
+POI table committed: NO
+geocoded data committed: NO
+full panel committed: NO
+manuscript/PDF/DOCX/ref committed: NO
+GIS files committed: NO
+git add . used: NO (only explicit per-file staging)
 
-TASK OBJECTIVE
-  Build the LOCAL-ONLY ISA/MOJ t2 derived-growth table (dependent variable) from the validated
-  zero-filled panel; produce commit-safe QC/run-note/provenance. No approval package, no
-  modeling, no final analysis data committed, no derived table / full panel / local QC
-  committed, no manuscript text. No API calls.
+novelty asserted: NO
+final gap claimed: NO
+gap status: under verification
 
-API-KEY HANDLING
-  ESTAT_APP_ID: not needed and not used this task. appId printed/written/committed: NO.
-  secret scan over qc summary + provenance + run note + reports: no literal appId; no 40-char
-  hex token. PASS.
+do-not-modify list respected: YES (raw Excel, data_raw/, data_processed/, data_processed_official/,
+data_raw_official/, ref/, manuscript, PDF, DOCX, GIS, TokyoProject.docx, existing ISA/MOJ DV files,
+Census extraction outputs, N03 design files, official source registry, decision log, prior approval
+packages - all untouched)
 
-BUILD / RUN SAFETY
-  approved build command run: YES (--write-local-derived-table --force --write-qc-summary), exit 0
-  output written ONLY under data_processed_official/isa_moj_panel (local-only path guard)
-  modeling run: NO
-
-DATA SAFETY
-  local derived table created: YES (251 rows)
-  derived table committed: NO (gitignored under data_processed_official; not staged)
-  municipality-level values committed: NO
-  local QC committed: NO (gitignored; not staged)
-  full panel committed: NO
-  local input panel modified: NO (opened read-only by the build)
-  raw Excel modified: NO
-  raw Excel committed: NO
-  datasets downloaded: NO
-  PDFs/DOCX/GIS committed: NO
-  TokyoProject.docx staged/modified: NO
-  ref/ data/ data_raw/ data_raw_official/ data_processed/ staged: NO
-  data_processed_official/isa_moj_panel/* (panel + QC + derived table + derived QC) staged: NO
-
-READ-ONLY SOURCE INTEGRITY (unchanged vs HEAD)
-  scripts/ modified: NO
-  raw Excel + input panel + local QC modified: NO
-  isa_moj_t2_* verification/design/scaffold/build/derived-growth design/scaffold files modified: NO
-  census_00200521_municipality_area_code_confirmation.csv modified: NO
-  other metadata/* modified: NO
-  literature_matrix.csv / gap_verification_matrix.csv modified: NO
-  official_source_registry.csv modified: NO
-  .gitignore modified: NO
-
-ABORTED APPROVAL-PACKAGE FILES (interrupted prior task)
-  isa_moj_t2_derived_growth_table_build_approval_package.md, _command_preview.txt, and a
-  gitignored _approval_checklist.csv remain UNTRACKED and were NOT staged/committed (per
-  instruction). They did not block this build.
-
-ENCODING
-  qc summary CSV: UTF-8 (ASCII-only), parses via csv.DictReader.
-  provenance CSV: UTF-8 (ASCII-only), parses via csv.DictReader.
-  run note: UTF-8 (ASCII-only), no mojibake markers.
-  reports: ASCII-safe.
-
-QC GATES (all PASSED)
-  251 rows; 5-char codes; all in 251 frame; extra 0; duplicate 0; aggregate 0; base/end numeric;
-  negative 0; absolute defined 251; log1p defined 251; zero-base 6; pct NA for the 6 zero-base;
-  formulas verified.
-
-EVIDENCE-CLAIM SAFETY
-  base time: 2023-12 ; end time: 2025-06
-  recommended dependent variable: chinese_registered_log1p_change_2023_12_to_2025_06
-  raw logdiff as default: NO ; zero-base flag retained: YES (6)
-  pre-service 2015-2020 growth feasible now: NO (requires name->code crosswalk)
-  "Chinese" = registered nationality (ISA), NOT ethnicity and NOT Census population.
-  dependent variable = registered Chinese foreign-resident STOCK change, NOT Census population growth.
-  gap status: under verification
-  Introduction written: NO ; novelty asserted: NO ; final gap claimed: NO
-
-CHECKS
-  CSV validation result: PASS
-  duplicate check result: PASS (qc_id DGBQC_001; provenance_id DGBPROV_001)
-  controlled-value check result: PASS
-  mojibake scan result: PASS
-  secret scan: PASS
-  git diff --check result: PASS (exit 0)
-  sensitive-file check result: PASS
-
-FILES STAGED (explicit; no `git add .`; CSVs added with `git add -f` due to *.csv gitignore)
-  literature/02_matrices/isa_moj_t2_derived_growth_table_build_qc_summary.csv
-  metadata/isa_moj_t2_derived_growth_table_build_provenance.csv
-  literature/04_synthesis/isa_moj_t2_derived_growth_table_build_run_note.md
-  outputs/claude_reports/latest_verification_summary.txt
-  outputs/claude_reports/latest_changed_files.txt
-  outputs/claude_reports/latest_safety_check.txt
-
-NEXT STEP
-  CORE EXPLANATORY-VARIABLE construction: migrant-oriented service infrastructure, rail
-  accessibility, housing cost, and commercial density. No modeling. No Introduction; no
-  novelty; gap under verification.
+CSV validation passed: YES
+duplicate check passed: YES (citation_id, source_id, risk_id, next_step_id all unique)
+controlled-value check passed: YES
+mojibake scan passed: YES
+git diff --check passed: YES
+sensitive-file check passed: YES
+untracked files left untouched: YES (data_raw_official/ and prior approval-package files untouched)
