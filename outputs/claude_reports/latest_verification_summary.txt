@@ -1,38 +1,40 @@
 LATEST VERIFICATION SUMMARY
 ===========================
-task objective: research design feasibility assessment based on literature and data-source availability
+task objective: DF_M01 registered support organizations M-source feasibility
 task status: COMPLETED
 date: 2026-06-25
 repo: E:\rsch\laborJapan
 branch: agentic-upgrade
 
-feasibility note created: YES (literature/04_synthesis/tokyo_chinese_population_service_growth_design_feasibility_note.md)
-literature scoping CSV created: YES (literature/02_matrices/tokyo_chinese_population_service_growth_literature_scoping.csv)
-data feasibility CSV created: YES (literature/02_matrices/tokyo_chinese_population_service_growth_data_feasibility.csv)
-identification risk CSV created: YES (literature/02_matrices/tokyo_chinese_population_service_growth_identification_risk.csv)
-optional next-steps CSV created: YES (literature/02_matrices/tokyo_chinese_population_service_growth_next_steps.csv)
+source profile CSV created: YES (literature/02_matrices/service_infrastructure_df_m01_source_profile.csv)
+sample QC summary created: YES (literature/02_matrices/service_infrastructure_df_m01_sample_qc_summary.csv)
+feasibility note created: YES (literature/04_synthesis/service_infrastructure_df_m01_registered_support_organizations_feasibility_note.md)
+acquisition plan created: YES (literature/04_synthesis/service_infrastructure_df_m01_acquisition_plan.md)
 
-direct literature match found: NO (no A_direct_match located in this rapid scoping search)
-close literature matches: 6
-service 2024 data feasible: PARTIAL
-X variable feasible: YES
-Y variable feasible: YES
-controls feasible: PARTIAL (all feasible; non-Chinese foreign stock needs an extraction step)
-identification strength: temporally_ordered (descriptive and temporally_ordered feasible; mechanism_consistent partial; causal not supported)
-recommended design decision: PARTIAL_GO_REQUIRES_SERVICE_SOURCE_VALIDATION
-recommended immediate next task: acquire/sample and date the first A-class M source (DF_M01 registered support organizations); geocode to 251-code frame
+raw sample acquired local-only: YES (current JP+EN registry Excel under data_raw_official; NOT committed)
+raw sample committed: NO
+address-level records committed: NO
+geocoded data committed: NO
+final M dataset created: NO
+final M dataset committed: NO
+
+source: official ISA/MOJ registered support organizations registry (toroku shien kikan torokubo)
+provider: Immigration Services Agency of Japan / MOJ
+edition: as of 2026-06-18; 11439 organizations national
+time_validity_class: B_observable_by_2024_or_2025
+can infer 2024 stock: PARTIAL (registration date gives registered-by-2024; true active-2024 needs archived ~2024-12 snapshot due to right-censoring)
+can link to 251 municipality frame: YES (address parse + name-to-JIS crosswalk; 3737 Greater Tokyo orgs; 100 percent municipality-parseable; ~173/251 populated)
+recommended_use: partial_M_component_with_limitations
+decision: USE_AS_PARTIAL_M_COMPONENT_WITH_LIMITATIONS
+recommended next task: build full local-only DF_M01 collection/parser (org+office address parse, name-to-JIS crosswalk, registration-date 2024 filter, archived 2024-12 snapshot for A-class upgrade); local-only municipality counts only
 
 modeling run: NO
-raw data committed: NO
-POI table committed: NO
-geocoded data committed: NO
 novelty asserted: NO
-final gap claimed: NO
-gap status: under verification
+causal mediation claimed: NO
 
-CSV validation result: PASS (csv.DictReader parsed all 4 new CSVs; consistent column counts)
-duplicate check result: PASS (no duplicate citation_id, source_id, risk_id, next_step_id)
-controlled-value check result: PASS (match_class, time_validity_class, category values within allowed sets)
-mojibake scan result: PASS (no mojibake markers in new files)
+CSV validation result: PASS (csv.DictReader; consistent columns)
+duplicate check result: PASS (source_id and qc_id unique)
+controlled-value check result: PASS (controlled fields within allowed sets)
+mojibake scan result: PASS (ASCII-only outputs; no markers)
 git diff --check result: PASS (no whitespace errors)
-sensitive-file check result: PASS (only feasibility docs/CSVs and reports staged; no raw/POI/geocoded/GIS/manuscript/PDF/DOCX/ref files)
+sensitive-file check result: PASS (only profile/QC CSVs, note, plan, and reports staged; no raw/address/geocoded/final-M/data/GIS/manuscript/PDF/DOCX/ref staged)

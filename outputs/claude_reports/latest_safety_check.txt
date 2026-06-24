@@ -1,31 +1,32 @@
 LATEST SAFETY CHECK
 ===================
-task: research design feasibility assessment (literature + data-source availability)
+task: DF_M01 registered support organizations M-source feasibility
 date: 2026-06-25
 branch: agentic-upgrade
 
 modeling run: NO
-raw data committed: NO
-POI table committed: NO
+final M dataset created: NO
+final M dataset committed: NO
+raw sample acquired local-only: YES
+raw sample committed: NO
+address-level records committed: NO
 geocoded data committed: NO
-full panel committed: NO
-manuscript/PDF/DOCX/ref committed: NO
-GIS files committed: NO
-git add . used: NO (only explicit per-file staging)
+municipality counts committed: NO
+data/GIS/manuscript/PDF/DOCX/ref committed: NO
+git add . used: NO (explicit per-file staging only)
 
 novelty asserted: NO
+causal mediation claimed: NO
 final gap claimed: NO
 gap status: under verification
 
-do-not-modify list respected: YES (raw Excel, data_raw/, data_processed/, data_processed_official/,
-data_raw_official/, ref/, manuscript, PDF, DOCX, GIS, TokyoProject.docx, existing ISA/MOJ DV files,
-Census extraction outputs, N03 design files, official source registry, decision log, prior approval
-packages - all untouched)
+approval-package created: NO (per instruction: no new approval package)
+code-based normalization run: NO (per instruction)
 
 CSV validation passed: YES
-duplicate check passed: YES (citation_id, source_id, risk_id, next_step_id all unique)
+duplicate check passed: YES (source_id, qc_id unique)
 controlled-value check passed: YES
 mojibake scan passed: YES
 git diff --check passed: YES
 sensitive-file check passed: YES
-untracked files left untouched: YES (data_raw_official/ and prior approval-package files untouched)
+untracked files left untouched: YES (data_raw_official local sample and prior-task leftovers not staged)

@@ -1,25 +1,24 @@
 LATEST CHANGED FILES
 ====================
-task: Assess Tokyo Chinese population service growth design feasibility
+task: Assess DF M01 registered support organizations service source
 date: 2026-06-25
 branch: agentic-upgrade
 
 Created:
-- literature/04_synthesis/tokyo_chinese_population_service_growth_design_feasibility_note.md
-- literature/02_matrices/tokyo_chinese_population_service_growth_literature_scoping.csv
-- literature/02_matrices/tokyo_chinese_population_service_growth_data_feasibility.csv
-- literature/02_matrices/tokyo_chinese_population_service_growth_identification_risk.csv
-- literature/02_matrices/tokyo_chinese_population_service_growth_next_steps.csv
+- literature/02_matrices/service_infrastructure_df_m01_source_profile.csv
+- literature/02_matrices/service_infrastructure_df_m01_sample_qc_summary.csv
+- literature/04_synthesis/service_infrastructure_df_m01_registered_support_organizations_feasibility_note.md
+- literature/04_synthesis/service_infrastructure_df_m01_acquisition_plan.md
 
 Modified:
 - outputs/claude_reports/latest_verification_summary.txt
 - outputs/claude_reports/latest_changed_files.txt
 - outputs/claude_reports/latest_safety_check.txt
 
-Not created/committed (by design):
-- no raw data, no POI table, no geocoded data, no full panel
-- no manuscript, PDF, DOCX, GIS, or ref files
-- no modeling outputs
+Acquired local-only (NOT committed):
+- data_raw_official/service_infrastructure/DF_M01_registered_support_organizations/registered_support_organizations_JP_2026-06-18.xlsx
+- data_raw_official/service_infrastructure/DF_M01_registered_support_organizations/registered_support_organizations_EN_2026-06-18.xlsx
 
-Note: pre-existing staged files from a prior task (service_infrastructure_2024_*) were left
-to the user; this task staged ONLY the files listed above.
+Not created/committed (by design):
+- no final M dataset, no municipality counts, no address-level records, no geocoded records
+- no manuscript, PDF, DOCX, GIS, or ref files; no modeling outputs
