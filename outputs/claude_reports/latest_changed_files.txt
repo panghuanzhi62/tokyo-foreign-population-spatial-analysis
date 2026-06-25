@@ -1,26 +1,33 @@
 LATEST CHANGED FILES
 ====================
-task: Assess DF M04 real estate broker source
+task: Run DF M01 MVP Tokyo XMY models
 date: 2026-06-26
 branch: agentic-upgrade
+status: PARTIAL (missing-input gate; models not fitted)
 
 Created:
-- literature/02_matrices/service_infrastructure_df_m04_source_profile.csv
-- literature/02_matrices/service_infrastructure_df_m04_sample_qc_summary.csv
-- literature/04_synthesis/service_infrastructure_df_m04_real_estate_broker_feasibility_note.md
-- literature/04_synthesis/service_infrastructure_df_m04_acquisition_plan.md
+- scripts/07_modeling/build_dfm01_mvp_model_panel.py
+- scripts/07_modeling/run_dfm01_mvp_models.py
+- outputs/modeling/dfm01_mvp/model_readiness_inventory.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_model_run_note.md
+- literature/04_synthesis/dfm01_mvp_model_interpretation_note.md
 
 Modified:
 - outputs/claude_reports/latest_verification_summary.txt
 - outputs/claude_reports/latest_changed_files.txt
 - outputs/claude_reports/latest_safety_check.txt
 
-Saved local-only (NOT committed):
-- data_raw_official/service_infrastructure/DF_M04_real_estate_broker_registry/SOURCE_METADATA_LOCAL_ONLY.md (metadata/reproducibility note only; no raw records)
+Created LOCAL-ONLY (NOT committed):
+- data_processed_official/model_panel/tokyo_china_dfm01_mvp_model_panel_local_only.csv (251 rows; X/Y/M/non_chinese_foreign assembled; 4 controls absent)
 
-Local run logs (NOT committed; ignored via .git/info/exclude):
+Local run logs / handoff (NOT committed; outputs/claude_run_logs/ ignored via .git/info/exclude):
 - outputs/claude_run_logs/latest_claude_window_output.txt
-- outputs/claude_run_logs/<timestamp>_df_m04_real_estate_broker_source_validation.txt
+- outputs/claude_run_logs/<timestamp>_dfm01_mvp_xmy_modeling.txt
+- outputs/claude_run_logs/latest_chatgpt_handoff.md
 
-Not created/committed (by design): raw records, address-level records, geocoded records, final
-M dataset, manuscript/PDF/DOCX/GIS/ref, modeling outputs. No heavy scraping performed.
+NOT created (no models fitted): dfm01_mvp_model_coefficients_primary.csv, dfm01_mvp_model_coefficients_robustness.csv,
+dfm01_mvp_model_fit_summary.csv, dfm01_mvp_missingness_summary.csv, dfm01_mvp_descriptive_statistics.csv,
+dfm01_mvp_correlation_matrix.csv, dfm01_mvp_vif_summary.csv, dfm01_mvp_influence_cases.csv
+
+Not created/committed (by design): raw data, address-level records, geocoded records, final M dataset,
+manuscript/PDF/DOCX/GIS/ref, modeling outputs. No geocoding performed.

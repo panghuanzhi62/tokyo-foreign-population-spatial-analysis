@@ -1,41 +1,45 @@
 LATEST SAFETY CHECK
 ===================
-task: DF_M04 real-estate broker registry (takken) M-source feasibility
+task: DF_M01 MVP X-M-Y model implementation
 date: 2026-06-26
 branch: agentic-upgrade
+status: PARTIAL (missing-input gate; models not fitted)
 
-modeling run: NO
-ISA/MOJ normalization run: NO
+modeling run: NO (missing-input gate; required controls absent)
+new M-source searching: NO
+ISA/MOJ normalization run: NO (existing approved panel reused; no normalization required)
+geocoding performed: NO
 approval package created: NO
-research-gap review revisited: NO
-remote-visibility diagnosis revisited: NO (used commit-specific raw URLs + local evidence only)
-heavy scraping performed: NO
+remote-visibility diagnosis revisited: NO
+DF_M02/DF_M03/DF_M04 used in main M: NO
+proxy invented for missing controls: NO
 
-raw sample acquired local-only: NO (metadata/reproducibility note only)
-raw sample committed: NO
+model panel created local-only: YES (251 rows)
+model panel committed: NO
+raw data committed: NO
 address-level records committed: NO
 geocoded data committed: NO
 final M dataset created: NO
 final M dataset committed: NO
 data_raw_official staged: NO
-data_processed_official staged: NO
+data_processed_official staged: NO (incl local-only model panel)
 data/GIS/manuscript/PDF/DOCX/ref committed: NO
 git add . used: NO (explicit per-file staging only)
 
 novelty asserted: NO
 causal mediation claimed: NO
-final gap claimed: NO
 gap status: under verification
-time_validity_class: B_observable_by_2024_or_2025 (Tokyo online service C_current_only)
-recommended_use: control_candidate
-decision: USE_AS_ROBUSTNESS_OR_CONTROL
+
+missing required controls: rail_accessibility, housing_cost, commercial_density, population_density
+available controls: non_chinese_foreign_stock, prefecture_FE
 
 local run logs written: YES (outputs/claude_run_logs/; ignored via .git/info/exclude; NOT committed)
+latest_chatgpt_handoff.md written: YES (local-only; NOT committed)
 
 CSV validation passed: YES
-duplicate check passed: YES (source_id, qc_id unique)
-controlled-value check passed: YES
-mojibake scan passed: YES
+duplicate check passed: YES (readiness inventory input_name unique)
+controlled-value check passed: YES (status in AVAILABLE/MISSING)
+mojibake scan passed: YES (committed files ASCII-only)
 git diff --check passed: YES
 sensitive-file check passed: YES
-untracked files left untouched: YES (data_raw_official metadata note, run logs, prior-task leftovers all unstaged)
+untracked files left untouched: YES (data_raw_official, local-only model panel, run logs, prior-task leftovers all unstaged)

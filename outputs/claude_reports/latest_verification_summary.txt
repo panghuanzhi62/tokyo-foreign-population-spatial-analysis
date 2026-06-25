@@ -1,39 +1,46 @@
 LATEST VERIFICATION SUMMARY
 ===========================
-task objective: DF_M04 real-estate broker registry (takken) M-source feasibility
-task status: COMPLETED
+task objective: DF_M01 MVP X-M-Y model implementation (Tokyo-China; DF_M01-only main M)
+task status: PARTIAL (missing-input gate; models not fitted)
 date: 2026-06-26
 repo: E:\rsch\laborJapan
 branch: agentic-upgrade
 
-source profile CSV created: YES (literature/02_matrices/service_infrastructure_df_m04_source_profile.csv)
-sample QC summary created: YES (literature/02_matrices/service_infrastructure_df_m04_sample_qc_summary.csv; sample_acquired=NO)
-feasibility note created: YES (literature/04_synthesis/service_infrastructure_df_m04_real_estate_broker_feasibility_note.md)
-acquisition plan created: YES (literature/04_synthesis/service_infrastructure_df_m04_acquisition_plan.md; conditional)
+design: X (Chinese registered stock 2023-12) -> M (DF_M01 registered support-org count; primary registered_by_2024_12, robustness registered_by_2024_06) -> Y (Chinese stock growth; primary 2024-12 to 2025-06, robustness 2024-06 to 2025-06)
+M definition (cautious): institutional migrant-support service infrastructure (registered institutional support organizations); NOT a complete migrant-service ecosystem
 
-raw sample acquired local-only: NO (source is search-only; saved only a local-only metadata/reproducibility note)
-raw sample committed: NO
-address-level records committed: NO
-geocoded data committed: NO
-final M dataset created: NO
-final M dataset committed: NO
+model panel created local-only: YES (data_processed_official/model_panel/tokyo_china_dfm01_mvp_model_panel_local_only.csv; 251 rows)
+model panel committed: NO
+primary models run: NO (missing-input gate)
+robustness models run: NO (missing-input gate)
 
-source: MLIT Construction and Real Estate Operator Enterprise Information Search System (takken operator search); national, searchable web database; secondary Tokyo metro online service (post-2025-04-01 only)
-file_format: searchable_database_html ; downloadable: NO (no CSV/Excel/bulk/API found); bulk_collection_reproducible: NO
-time_validity_class: B_observable_by_2024_or_2025 (primary MLIT); Tokyo online service C_current_only
-can infer 2024 stock: PARTIAL (per-record license dates exist but not bulk-accessible; right-censoring)
-can link to 251 municipality frame: PARTIAL (per-record head-office addresses include municipality and are parseable IF acquired; acquisition is the blocker)
-recommended_use: control_candidate
-decision: USE_AS_ROBUSTNESS_OR_CONTROL (parked: not migrant-oriented, no reproducible bulk path)
-recommended next task: proceed to the next migrant-oriented A-class source (or move to composite M from validated migrant-oriented components); keep DF_M04 as a control/robustness candidate to revisit only if a reproducible takken list emerges
+DF_M01 used as M: YES
+DF_M02 used in main M: NO
+DF_M03 used in main M: NO
+DF_M04 used in main M: NO
+
+controls included (available, 251/251): non_chinese_foreign_stock (2020 census), prefecture_FE
+controls MISSING (no processed municipality-level field for 251 frame): rail_accessibility, housing_cost (land price), commercial_density (no source anywhere), population_density
+reason not fitted: rail/land-price/population-density exist only as raw GIS shapefiles needing geocoding (forbidden this task); commercial_density has no source; proxies must not be invented; Models 3 and 4 cannot be specified without commercial_density and housing_cost
+
+outputs created (committable):
+- outputs/modeling/dfm01_mvp/model_readiness_inventory.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_model_run_note.md (missing-input determination)
+- literature/04_synthesis/dfm01_mvp_model_interpretation_note.md
+- scripts/07_modeling/build_dfm01_mvp_model_panel.py
+- scripts/07_modeling/run_dfm01_mvp_models.py
+NOT created (no models fitted): coefficients_primary/robustness, fit_summary, missingness_summary, descriptive_statistics, correlation_matrix, vif_summary, influence_cases
 
 modeling run: NO
-novelty asserted: NO
 causal mediation claimed: NO
+novelty asserted: NO
+raw data committed: NO
+address-level records committed: NO
+geocoded data committed: NO
+final M dataset committed: NO
 
 CSV validation result: PASS (csv.DictReader; consistent columns)
-duplicate check result: PASS (source_id and qc_id unique)
-controlled-value check result: PASS (controlled fields within allowed sets)
-mojibake scan result: PASS (committed outputs ASCII-only)
 git diff --check result: PASS (no whitespace errors)
-sensitive-file check result: PASS (only profile/QC CSVs, two notes, three reports staged; no raw/address/geocoded/final-M/data_raw_official staged)
+sensitive-file check result: PASS (no raw/address/geocoded/final-M/data_processed_official/data_raw_official/model-panel staged)
+
+recommended next task: in a separate approved step, build a local-only processed municipality-level controls table for the 251 frame (population_density, housing_cost, rail_accessibility from existing GIS layers; commercial_density via economic-census acquisition), then re-run build + run scripts to fit the 4 primary and 4 robustness models
