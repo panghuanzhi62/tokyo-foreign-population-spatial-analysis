@@ -1,40 +1,35 @@
 LATEST VERIFICATION SUMMARY
 ===========================
-task objective: DF_M01 registered support organizations M-source feasibility
+task objective: DF_M01 local-only municipality counts construction test
 task status: COMPLETED
 date: 2026-06-25
 repo: E:\rsch\laborJapan
 branch: agentic-upgrade
 
-source profile CSV created: YES (literature/02_matrices/service_infrastructure_df_m01_source_profile.csv)
-sample QC summary created: YES (literature/02_matrices/service_infrastructure_df_m01_sample_qc_summary.csv)
-feasibility note created: YES (literature/04_synthesis/service_infrastructure_df_m01_registered_support_organizations_feasibility_note.md)
-acquisition plan created: YES (literature/04_synthesis/service_infrastructure_df_m01_acquisition_plan.md)
+parser script created: YES (scripts/06_service_infrastructure/build_df_m01_registered_support_counts.py)
+local-only municipality counts created: YES (data_processed_official/service_infrastructure/DF_M01_registered_support_organizations/ ; NOT committed)
+commit-safe QC summary created: YES (literature/02_matrices/service_infrastructure_df_m01_municipality_counts_qc_summary.csv)
+build note created: YES (literature/04_synthesis/service_infrastructure_df_m01_municipality_counts_build_note.md)
+archive upgrade note created: YES (literature/04_synthesis/service_infrastructure_df_m01_archived_2024_snapshot_upgrade_note.md)
 
-raw sample acquired local-only: YES (current JP+EN registry Excel under data_raw_official; NOT committed)
-raw sample committed: NO
+raw records committed: NO
 address-level records committed: NO
-geocoded data committed: NO
-final M dataset created: NO
+geocoded records committed: NO
 final M dataset committed: NO
 
-source: official ISA/MOJ registered support organizations registry (toroku shien kikan torokubo)
-provider: Immigration Services Agency of Japan / MOJ
-edition: as of 2026-06-18; 11439 organizations national
-time_validity_class: B_observable_by_2024_or_2025
-can infer 2024 stock: PARTIAL (registration date gives registered-by-2024; true active-2024 needs archived ~2024-12 snapshot due to right-censoring)
-can link to 251 municipality frame: YES (address parse + name-to-JIS crosswalk; 3737 Greater Tokyo orgs; 100 percent municipality-parseable; ~173/251 populated)
-recommended_use: partial_M_component_with_limitations
-decision: USE_AS_PARTIAL_M_COMPONENT_WITH_LIMITATIONS
-recommended next task: build full local-only DF_M01 collection/parser (org+office address parse, name-to-JIS crosswalk, registration-date 2024 filter, archived 2024-12 snapshot for A-class upgrade); local-only municipality counts only
+can construct municipality counts: YES
+municipality code link success: 3749 of 3751 Greater Tokyo records (99.95 percent, support_office role); org role 3735 of 3741
+municipalities with positive count: 207 of 251 current snapshot; 200 of 251 registered by 2024-12-31 (support_office)
+time_validity_class: B_observable_by_2024_or_2025 (unchanged; no archive snapshot acquired)
+recommended next task: proceed to second A-class source (designated Japanese-language institutions or licensed employment-placement offices); then build composite M; pursue archived 2024 snapshot in parallel
 
 modeling run: NO
 novelty asserted: NO
 causal mediation claimed: NO
 
-CSV validation result: PASS (csv.DictReader; consistent columns)
-duplicate check result: PASS (source_id and qc_id unique)
+CSV validation result: PASS (csv.DictReader; 8 rows; consistent columns)
+duplicate check result: PASS (qc_id unique DFM01MC_001..008)
 controlled-value check result: PASS (controlled fields within allowed sets)
-mojibake scan result: PASS (ASCII-only outputs; no markers)
+mojibake scan result: PASS (committed outputs ASCII-only; no markers; parser CJK literals intentional and valid)
 git diff --check result: PASS (no whitespace errors)
-sensitive-file check result: PASS (only profile/QC CSVs, note, plan, and reports staged; no raw/address/geocoded/final-M/data/GIS/manuscript/PDF/DOCX/ref staged)
+sensitive-file check result: PASS (only parser, QC CSV, two notes, three reports staged; no raw/address/geocoded/final-M/data_raw_official/data_processed_official/GIS/manuscript/PDF/DOCX/ref staged)
