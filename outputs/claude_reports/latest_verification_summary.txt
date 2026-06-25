@@ -1,36 +1,31 @@
 LATEST VERIFICATION SUMMARY
 ===========================
-task objective: DF_M02 Japanese-language education institutions M-source feasibility
+task objective: DF_M03 licensed employment placement offices M-source feasibility
 task status: COMPLETED
 date: 2026-06-25
 repo: E:\rsch\laborJapan
 branch: agentic-upgrade
 
-note: GitHub report consistency was checked first; local HEAD = origin/agentic-upgrade = 821d2c3
-and the committed reports already described the DF_M01 task identically at HEAD and origin, so no
-report-fix commit was needed (the public raw-URL lag was a CDN cache, not a repo inconsistency).
+source profile CSV created: YES (literature/02_matrices/service_infrastructure_df_m03_source_profile.csv)
+sample QC summary created: YES (literature/02_matrices/service_infrastructure_df_m03_sample_qc_summary.csv; sample_acquired=NO)
+feasibility note created: YES (literature/04_synthesis/service_infrastructure_df_m03_licensed_employment_placement_feasibility_note.md)
+acquisition plan created: YES (literature/04_synthesis/service_infrastructure_df_m03_acquisition_plan.md)
 
-source profile CSV created: YES (literature/02_matrices/service_infrastructure_df_m02_source_profile.csv)
-sample QC summary created: YES (literature/02_matrices/service_infrastructure_df_m02_sample_qc_summary.csv)
-feasibility note created: YES (literature/04_synthesis/service_infrastructure_df_m02_japanese_language_education_feasibility_note.md)
-acquisition plan created: YES (literature/04_synthesis/service_infrastructure_df_m02_acquisition_plan.md)
-
-raw sample acquired local-only: YES (MOJ kokuji list PDF; NOT committed)
+raw sample acquired local-only: NO (source is search-only; saved only a local-only metadata/reproducibility note)
 raw sample committed: NO
 address-level records committed: NO
-geocoded records committed: NO
+geocoded data committed: NO
 final M dataset created: NO
 final M dataset committed: NO
 
-source: MOJ/ISA notified Japanese-language education institutions list (kokuji), as of 2026-05-12; PDF, 60 pages
+source: MHLW Jinzai Service Comprehensive Site (yuryo shokugyo shokai jigyosha search); searchable web database
+file_format: searchable_database_html ; downloadable: NO (no CSV/Excel/bulk/API found)
 time_validity_class: B_observable_by_2024_or_2025
-can infer 2024 stock: PARTIAL (no per-record dates in kokuji list; nintei list is date-anchored but transitional)
-can link to 251 municipality frame: PARTIAL (NO directly; kokuji address is prefecture-only with 0 municipality tokens; municipality requires per-institution geocoding)
-recommended_use: partial_M_component_with_limitations
-decision: USE_AS_PARTIAL_M_COMPONENT_WITH_LIMITATIONS
-recommended next task: proceed to the next clean-address A-class source (licensed employment placement or real-estate brokers); in parallel evaluate the MEXT nintei list and a geocoding step
-
-key sample numbers (approximate, vertical-text extraction): national ~1390 institutions; Greater Tokyo ~670 (Tokyo 488, Saitama 69, Chiba 68, Kanagawa 45); 0 municipality tokens in address column; 0 per-record dates
+can infer 2024 stock: PARTIAL (per-record permit dates exist but not bulk-accessible; right-censoring)
+can link to 251 municipality frame: PARTIAL (per-record addresses include municipality and are parseable IF acquired; acquisition is the blocker)
+recommended_use: robustness_component
+decision: HOLD_PENDING_SOURCE_VALIDATION
+recommended next task: proceed to the next clean-address bulk-downloadable A-class source - real estate broker (takken) license search (MLIT/prefectures); keep DF_M03 on hold pending a reproducible list
 
 modeling run: NO
 novelty asserted: NO
@@ -41,4 +36,4 @@ duplicate check result: PASS (source_id and qc_id unique)
 controlled-value check result: PASS (controlled fields within allowed sets)
 mojibake scan result: PASS (committed outputs ASCII-only)
 git diff --check result: PASS (no whitespace errors)
-sensitive-file check result: PASS (only profile/QC CSVs, two notes, three reports staged; no raw/PDF/address/geocoded/final-M/data_raw_official staged)
+sensitive-file check result: PASS (only profile/QC CSVs, two notes, three reports staged; no raw/address/geocoded/final-M/data_raw_official staged)
