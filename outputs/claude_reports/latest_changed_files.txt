@@ -1,14 +1,14 @@
 LATEST CHANGED FILES
 ====================
-task: Assess DF M03 licensed employment placement source
-date: 2026-06-25
+task: Assess DF M04 real estate broker source
+date: 2026-06-26
 branch: agentic-upgrade
 
 Created:
-- literature/02_matrices/service_infrastructure_df_m03_source_profile.csv
-- literature/02_matrices/service_infrastructure_df_m03_sample_qc_summary.csv
-- literature/04_synthesis/service_infrastructure_df_m03_licensed_employment_placement_feasibility_note.md
-- literature/04_synthesis/service_infrastructure_df_m03_acquisition_plan.md
+- literature/02_matrices/service_infrastructure_df_m04_source_profile.csv
+- literature/02_matrices/service_infrastructure_df_m04_sample_qc_summary.csv
+- literature/04_synthesis/service_infrastructure_df_m04_real_estate_broker_feasibility_note.md
+- literature/04_synthesis/service_infrastructure_df_m04_acquisition_plan.md
 
 Modified:
 - outputs/claude_reports/latest_verification_summary.txt
@@ -16,11 +16,11 @@ Modified:
 - outputs/claude_reports/latest_safety_check.txt
 
 Saved local-only (NOT committed):
-- data_raw_official/service_infrastructure/DF_M03_licensed_employment_placement_offices/SOURCE_METADATA_local_only.txt (metadata/reproducibility note only; no raw records)
+- data_raw_official/service_infrastructure/DF_M04_real_estate_broker_registry/SOURCE_METADATA_LOCAL_ONLY.md (metadata/reproducibility note only; no raw records)
 
 Local run logs (NOT committed; ignored via .git/info/exclude):
 - outputs/claude_run_logs/latest_claude_window_output.txt
-- outputs/claude_run_logs/<timestamp>_df_m03_employment_placement_source_validation.txt
+- outputs/claude_run_logs/<timestamp>_df_m04_real_estate_broker_source_validation.txt
 
 Not created/committed (by design): raw records, address-level records, geocoded records, final
 M dataset, manuscript/PDF/DOCX/GIS/ref, modeling outputs. No heavy scraping performed.

@@ -1,14 +1,14 @@
 LATEST SAFETY CHECK
 ===================
-task: DF_M03 licensed employment placement offices M-source feasibility
-date: 2026-06-25
+task: DF_M04 real-estate broker registry (takken) M-source feasibility
+date: 2026-06-26
 branch: agentic-upgrade
 
 modeling run: NO
 ISA/MOJ normalization run: NO
 approval package created: NO
 research-gap review revisited: NO
-github raw-cache diagnosis revisited: NO (reports consistent)
+remote-visibility diagnosis revisited: NO (used commit-specific raw URLs + local evidence only)
 heavy scraping performed: NO
 
 raw sample acquired local-only: NO (metadata/reproducibility note only)
@@ -26,8 +26,9 @@ novelty asserted: NO
 causal mediation claimed: NO
 final gap claimed: NO
 gap status: under verification
-time_validity_class: B_observable_by_2024_or_2025
-decision: HOLD_PENDING_SOURCE_VALIDATION
+time_validity_class: B_observable_by_2024_or_2025 (Tokyo online service C_current_only)
+recommended_use: control_candidate
+decision: USE_AS_ROBUSTNESS_OR_CONTROL
 
 local run logs written: YES (outputs/claude_run_logs/; ignored via .git/info/exclude; NOT committed)
 

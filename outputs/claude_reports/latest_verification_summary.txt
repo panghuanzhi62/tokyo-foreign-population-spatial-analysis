@@ -1,15 +1,15 @@
 LATEST VERIFICATION SUMMARY
 ===========================
-task objective: DF_M03 licensed employment placement offices M-source feasibility
+task objective: DF_M04 real-estate broker registry (takken) M-source feasibility
 task status: COMPLETED
-date: 2026-06-25
+date: 2026-06-26
 repo: E:\rsch\laborJapan
 branch: agentic-upgrade
 
-source profile CSV created: YES (literature/02_matrices/service_infrastructure_df_m03_source_profile.csv)
-sample QC summary created: YES (literature/02_matrices/service_infrastructure_df_m03_sample_qc_summary.csv; sample_acquired=NO)
-feasibility note created: YES (literature/04_synthesis/service_infrastructure_df_m03_licensed_employment_placement_feasibility_note.md)
-acquisition plan created: YES (literature/04_synthesis/service_infrastructure_df_m03_acquisition_plan.md)
+source profile CSV created: YES (literature/02_matrices/service_infrastructure_df_m04_source_profile.csv)
+sample QC summary created: YES (literature/02_matrices/service_infrastructure_df_m04_sample_qc_summary.csv; sample_acquired=NO)
+feasibility note created: YES (literature/04_synthesis/service_infrastructure_df_m04_real_estate_broker_feasibility_note.md)
+acquisition plan created: YES (literature/04_synthesis/service_infrastructure_df_m04_acquisition_plan.md; conditional)
 
 raw sample acquired local-only: NO (source is search-only; saved only a local-only metadata/reproducibility note)
 raw sample committed: NO
@@ -18,14 +18,14 @@ geocoded data committed: NO
 final M dataset created: NO
 final M dataset committed: NO
 
-source: MHLW Jinzai Service Comprehensive Site (yuryo shokugyo shokai jigyosha search); searchable web database
-file_format: searchable_database_html ; downloadable: NO (no CSV/Excel/bulk/API found)
-time_validity_class: B_observable_by_2024_or_2025
-can infer 2024 stock: PARTIAL (per-record permit dates exist but not bulk-accessible; right-censoring)
-can link to 251 municipality frame: PARTIAL (per-record addresses include municipality and are parseable IF acquired; acquisition is the blocker)
-recommended_use: robustness_component
-decision: HOLD_PENDING_SOURCE_VALIDATION
-recommended next task: proceed to the next clean-address bulk-downloadable A-class source - real estate broker (takken) license search (MLIT/prefectures); keep DF_M03 on hold pending a reproducible list
+source: MLIT Construction and Real Estate Operator Enterprise Information Search System (takken operator search); national, searchable web database; secondary Tokyo metro online service (post-2025-04-01 only)
+file_format: searchable_database_html ; downloadable: NO (no CSV/Excel/bulk/API found); bulk_collection_reproducible: NO
+time_validity_class: B_observable_by_2024_or_2025 (primary MLIT); Tokyo online service C_current_only
+can infer 2024 stock: PARTIAL (per-record license dates exist but not bulk-accessible; right-censoring)
+can link to 251 municipality frame: PARTIAL (per-record head-office addresses include municipality and are parseable IF acquired; acquisition is the blocker)
+recommended_use: control_candidate
+decision: USE_AS_ROBUSTNESS_OR_CONTROL (parked: not migrant-oriented, no reproducible bulk path)
+recommended next task: proceed to the next migrant-oriented A-class source (or move to composite M from validated migrant-oriented components); keep DF_M04 as a control/robustness candidate to revisit only if a reproducible takken list emerges
 
 modeling run: NO
 novelty asserted: NO
