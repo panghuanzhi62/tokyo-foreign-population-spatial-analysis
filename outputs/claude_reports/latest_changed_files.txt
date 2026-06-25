@@ -1,28 +1,29 @@
 LATEST CHANGED FILES
 ====================
-task: Build DF M01 local municipality count parser
+task: Validate DF M02 Japanese language education institutions M source
 date: 2026-06-25
 branch: agentic-upgrade
 
 Created:
-- scripts/06_service_infrastructure/build_df_m01_registered_support_counts.py
-- literature/02_matrices/service_infrastructure_df_m01_municipality_counts_qc_summary.csv
-- literature/04_synthesis/service_infrastructure_df_m01_municipality_counts_build_note.md
-- literature/04_synthesis/service_infrastructure_df_m01_archived_2024_snapshot_upgrade_note.md
+- literature/02_matrices/service_infrastructure_df_m02_source_profile.csv
+- literature/02_matrices/service_infrastructure_df_m02_sample_qc_summary.csv
+- literature/04_synthesis/service_infrastructure_df_m02_japanese_language_education_feasibility_note.md
+- literature/04_synthesis/service_infrastructure_df_m02_acquisition_plan.md
 
 Modified:
 - outputs/claude_reports/latest_verification_summary.txt
 - outputs/claude_reports/latest_changed_files.txt
 - outputs/claude_reports/latest_safety_check.txt
 
-Produced local-only (NOT committed):
-- data_processed_official/service_infrastructure/DF_M01_registered_support_organizations/df_m01_counts_by_municipality_2024_06_30.csv
-- ..._2024_12_31.csv ; ..._2025_06_30.csv ; ..._current_snapshot.csv (and _role_org variants)
-- df_m01_parse_qc_local_only.csv
+Acquired local-only (NOT committed):
+- data_raw_official/service_infrastructure/DF_M02_japanese_language_education_institutions/moj_kokuji_japanese_language_institutions_2026-05-12.pdf
 
 Local run logs (NOT committed; ignored via .git/info/exclude):
 - outputs/claude_run_logs/latest_claude_window_output.txt
-- outputs/claude_run_logs/<timestamp>_df_m01_counts_parser.txt
+- outputs/claude_run_logs/<timestamp>_df_m02_japanese_language_source_validation.txt
 
 Not created/committed (by design): final M dataset, address-level records, geocoded records,
-raw data, manuscript/PDF/DOCX/GIS/ref, modeling outputs.
+raw PDFs, manuscript/PDF/DOCX/GIS/ref, modeling outputs.
+
+GitHub report consistency: HEAD = origin = 821d2c3 before this task; prior DF_M01 reports were
+already consistent at HEAD and origin (no report-fix commit was needed).

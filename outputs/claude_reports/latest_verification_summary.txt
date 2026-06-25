@@ -1,35 +1,44 @@
 LATEST VERIFICATION SUMMARY
 ===========================
-task objective: DF_M01 local-only municipality counts construction test
+task objective: DF_M02 Japanese-language education institutions M-source feasibility
 task status: COMPLETED
 date: 2026-06-25
 repo: E:\rsch\laborJapan
 branch: agentic-upgrade
 
-parser script created: YES (scripts/06_service_infrastructure/build_df_m01_registered_support_counts.py)
-local-only municipality counts created: YES (data_processed_official/service_infrastructure/DF_M01_registered_support_organizations/ ; NOT committed)
-commit-safe QC summary created: YES (literature/02_matrices/service_infrastructure_df_m01_municipality_counts_qc_summary.csv)
-build note created: YES (literature/04_synthesis/service_infrastructure_df_m01_municipality_counts_build_note.md)
-archive upgrade note created: YES (literature/04_synthesis/service_infrastructure_df_m01_archived_2024_snapshot_upgrade_note.md)
+note: GitHub report consistency was checked first; local HEAD = origin/agentic-upgrade = 821d2c3
+and the committed reports already described the DF_M01 task identically at HEAD and origin, so no
+report-fix commit was needed (the public raw-URL lag was a CDN cache, not a repo inconsistency).
 
-raw records committed: NO
+source profile CSV created: YES (literature/02_matrices/service_infrastructure_df_m02_source_profile.csv)
+sample QC summary created: YES (literature/02_matrices/service_infrastructure_df_m02_sample_qc_summary.csv)
+feasibility note created: YES (literature/04_synthesis/service_infrastructure_df_m02_japanese_language_education_feasibility_note.md)
+acquisition plan created: YES (literature/04_synthesis/service_infrastructure_df_m02_acquisition_plan.md)
+
+raw sample acquired local-only: YES (MOJ kokuji list PDF; NOT committed)
+raw sample committed: NO
 address-level records committed: NO
 geocoded records committed: NO
+final M dataset created: NO
 final M dataset committed: NO
 
-can construct municipality counts: YES
-municipality code link success: 3749 of 3751 Greater Tokyo records (99.95 percent, support_office role); org role 3735 of 3741
-municipalities with positive count: 207 of 251 current snapshot; 200 of 251 registered by 2024-12-31 (support_office)
-time_validity_class: B_observable_by_2024_or_2025 (unchanged; no archive snapshot acquired)
-recommended next task: proceed to second A-class source (designated Japanese-language institutions or licensed employment-placement offices); then build composite M; pursue archived 2024 snapshot in parallel
+source: MOJ/ISA notified Japanese-language education institutions list (kokuji), as of 2026-05-12; PDF, 60 pages
+time_validity_class: B_observable_by_2024_or_2025
+can infer 2024 stock: PARTIAL (no per-record dates in kokuji list; nintei list is date-anchored but transitional)
+can link to 251 municipality frame: PARTIAL (NO directly; kokuji address is prefecture-only with 0 municipality tokens; municipality requires per-institution geocoding)
+recommended_use: partial_M_component_with_limitations
+decision: USE_AS_PARTIAL_M_COMPONENT_WITH_LIMITATIONS
+recommended next task: proceed to the next clean-address A-class source (licensed employment placement or real-estate brokers); in parallel evaluate the MEXT nintei list and a geocoding step
+
+key sample numbers (approximate, vertical-text extraction): national ~1390 institutions; Greater Tokyo ~670 (Tokyo 488, Saitama 69, Chiba 68, Kanagawa 45); 0 municipality tokens in address column; 0 per-record dates
 
 modeling run: NO
 novelty asserted: NO
 causal mediation claimed: NO
 
-CSV validation result: PASS (csv.DictReader; 8 rows; consistent columns)
-duplicate check result: PASS (qc_id unique DFM01MC_001..008)
+CSV validation result: PASS (csv.DictReader; consistent columns)
+duplicate check result: PASS (source_id and qc_id unique)
 controlled-value check result: PASS (controlled fields within allowed sets)
-mojibake scan result: PASS (committed outputs ASCII-only; no markers; parser CJK literals intentional and valid)
+mojibake scan result: PASS (committed outputs ASCII-only)
 git diff --check result: PASS (no whitespace errors)
-sensitive-file check result: PASS (only parser, QC CSV, two notes, three reports staged; no raw/address/geocoded/final-M/data_raw_official/data_processed_official/GIS/manuscript/PDF/DOCX/ref staged)
+sensitive-file check result: PASS (only profile/QC CSVs, two notes, three reports staged; no raw/PDF/address/geocoded/final-M/data_raw_official staged)

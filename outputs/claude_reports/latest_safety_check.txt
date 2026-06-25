@@ -1,19 +1,20 @@
 LATEST SAFETY CHECK
 ===================
-task: DF_M01 local-only municipality counts construction test
+task: DF_M02 Japanese-language education institutions M-source feasibility
 date: 2026-06-25
 branch: agentic-upgrade
 
 modeling run: NO
-ISA/MOJ normalization run: NO (per instruction)
-approval package created: NO (per instruction)
-research-gap review revisited: NO (per instruction)
+ISA/MOJ normalization run: NO
+approval package created: NO
+research-gap review revisited: NO
 
-raw records committed: NO
+raw sample acquired local-only: YES (kokuji PDF)
+raw sample committed: NO
 address-level records committed: NO
 geocoded records committed: NO
+final M dataset created: NO
 final M dataset committed: NO
-local-only municipality counts committed: NO
 data_raw_official staged: NO
 data_processed_official staged: NO
 data/GIS/manuscript/PDF/DOCX/ref committed: NO
@@ -25,12 +26,12 @@ final gap claimed: NO
 gap status: under verification
 time_validity_class: B_observable_by_2024_or_2025
 
-local run logs written: YES (outputs/claude_run_logs/; ignored locally via .git/info/exclude; NOT committed)
+local run logs written: YES (outputs/claude_run_logs/; ignored via .git/info/exclude; NOT committed)
 
 CSV validation passed: YES
-duplicate check passed: YES (qc_id unique)
+duplicate check passed: YES (source_id, qc_id unique)
 controlled-value check passed: YES
 mojibake scan passed: YES
 git diff --check passed: YES
 sensitive-file check passed: YES
-untracked files left untouched: YES (data_raw_official, data_processed_official local outputs, run logs, prior-task leftovers all unstaged)
+untracked files left untouched: YES (data_raw_official PDFs, run logs, prior-task leftovers all unstaged)
