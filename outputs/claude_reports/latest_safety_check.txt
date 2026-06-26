@@ -1,30 +1,34 @@
 LATEST SAFETY CHECK
 ===================
-task: DF_M01 MVP controls completion / coverage-gap assessment
+task: DF_M01 MVP remaining controls construction
 date: 2026-06-26
 branch: agentic-upgrade
-status: COMPLETED (controls joined local-only; full models NOT run)
+status: COMPLETED (area + 2024 pop density built; commercial_density missing; models NOT rerun)
 
-new data downloaded: NO
-GIS processing run: NO (N03 area not extracted; deferred)
+new data downloaded: NO (only existing local N03 / xlsx used)
+GIS processing run: YES (LOCAL ONLY - N03 area derived; no GIS files committed)
 commercial-density proxy invented: NO
-DF_M04 brokers / POIs substituted for commercial_density: NO
+DF_M04 / POI / restaurant substituted for commercial_density: NO
 new M-source searching: NO
-models rerun: NO (readiness not achieved)
+models rerun: NO (commercial_density 0/251; Models 3/4 require it)
 modeling run: NO
+218-case reduced model run: NO (not authorized)
 
-controls table created local-only: YES (251 rows)
-rail joined: PARTIAL (227/251)
-housing joined: PARTIAL (218/251)
-population density joined/constructed: PARTIAL (218/251)
-commercial_density ready: NO (0/251)
-model readiness decision: NOT_READY_MISSING_COMMERCIAL_AND_COVERAGE_GAPS
+area_km2 constructed: YES (251/251)
+population_density_2024 constructed: YES (251/251)
+commercial_density constructed: NO (0/251)
+rail_accessibility coverage: 227/251
+housing_cost coverage: 218/251
+all controls ready: NO
+model readiness decision: NOT_READY_MISSING_COMMERCIAL_DENSITY
 
 raw data committed: NO
 GIS files committed: NO
 xlsx files committed: NO
 local-only controls table committed: NO
 local-only model panel committed: NO
+local-only area / population-density tables committed: NO
+final M dataset committed: NO
 data_raw staged: NO
 data_raw_official staged: NO
 data_processed_official staged: NO
@@ -39,9 +43,9 @@ local run logs written: YES (outputs/claude_run_logs/; ignored via .git/info/exc
 latest_chatgpt_handoff.md written: YES (local-only; NOT committed)
 
 CSV validation passed: YES
-duplicate check passed: YES (coverage_gap municipality_code unique; inventory control unique)
+duplicate check passed: YES (municipality_code unique in QC tables; control unique in inventory)
 controlled-value check passed: YES
-mojibake scan passed: YES (committed reports/notes ASCII-only; coverage_gap CSV contains legitimate UTF-8 municipality names, no mojibake markers)
+mojibake scan passed: YES (committed reports/notes/inventories ASCII-only; QC CSVs with municipality names contain legitimate UTF-8, no mojibake markers)
 git diff --check passed: YES
 sensitive-file check passed: YES
-untracked files left untouched: YES (data_raw, data_raw_official, local-only controls table, local-only model panel, run logs, prior-task leftovers all unstaged)
+untracked files left untouched: YES (data_raw, data_raw_official, all local-only model_panel tables, run logs, prior-task leftovers all unstaged)

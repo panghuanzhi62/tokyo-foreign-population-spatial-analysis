@@ -1,25 +1,23 @@
 LATEST VERIFICATION SUMMARY
 ===========================
-task objective: DF_M01 MVP controls completion / coverage-gap assessment
-task status: COMPLETED (controls joined local-only; gaps documented; full models NOT run)
+task objective: DF_M01 MVP remaining controls construction (area, 2024 population density, commercial density)
+task status: COMPLETED (area + 2024 pop density built 251/251; commercial_density missing; models NOT rerun)
 date: 2026-06-26
 repo: E:\rsch\laborJapan
 branch: agentic-upgrade
 
-controls table created local-only: YES (data_processed_official/model_panel/tokyo_china_dfm01_mvp_controls_joined_local_only.csv; 251 rows)
-join key: N03_007 -> municipality_code (no aggregation, no GIS)
+area_km2 constructed: YES (251/251; N03-20250101 boundary, geodesic WGS84, dissolved by N03_007; validated vs known areas)
+population_density_2024 constructed: YES (251/251; Basic Resident Register 2024-01-01 total pop / area_km2; 2024 vintage, A_direct_2024)
+commercial_density constructed: NO (0/251; no local establishment source; not acquired - e-Stat needs API appId / not reproducible here; no proxy/substitution)
 
-rail joined: PARTIAL (227/251; 218 from v5 log_dist_to_station_m + 9 backfilled from 227-row tokyo_pop_with_station_features.csv)
-housing joined: PARTIAL (218/251; v5 log_median_land_price_jpy; L01-24 land price 2024)
-population density joined or constructed: PARTIAL (218/251 for 2020 v5 density AND for 2024 density where area exists; population_2024 itself is 251/251 but area only 218/251)
-commercial_density ready: NO (0/251; no local establishment-count source)
+rail_accessibility coverage: 227/251 (PARTIAL; v5 log_dist_to_station_m + 9 pop_with_station backfill)
+housing_cost coverage: 218/251 (PARTIAL; v5 log_median_land_price_jpy, L01-24 2024)
+commercial_density coverage: 0/251
 
-coverage: v5 = 218/251; rail extended to 227/251; housing/density 218/251; 2024 total population 251/251
-remaining missing municipalities (no v5 controls): 33 (Tokyo islands 9 + Tokyo mountain 2 + Chiba Boso/eastern 20 + Saitama Chichibu 2)
-area for the 33: MISSING (area_km2 only in N03 boundary shapefile; GIS deferred)
-
-model readiness decision: NOT_READY_MISSING_COMMERCIAL_AND_COVERAGE_GAPS
-models rerun: NO (full readiness not achieved)
+all controls ready: NO
+model readiness decision: NOT_READY_MISSING_COMMERCIAL_DENSITY
+models rerun: NO
+reason models not rerun: commercial_density is 0/251 (Models 3 and 4 require it); 218-case reduced model not authorized
 modeling run: NO
 causal mediation claimed: NO
 novelty asserted: NO
@@ -28,15 +26,21 @@ raw data committed: NO
 GIS files committed: NO
 local-only controls table committed: NO
 local-only model panel committed: NO
+final M dataset committed: NO
 
 outputs created (committable):
-- outputs/modeling/dfm01_mvp/dfm01_mvp_controls_coverage_gap.csv (251 rows)
-- outputs/modeling/dfm01_mvp/dfm01_mvp_controls_completion_inventory.csv (4 control rows)
-- literature/04_synthesis/dfm01_mvp_controls_completion_note.md
-- scripts/07_modeling/build_dfm01_mvp_controls_table.py
+- outputs/modeling/dfm01_mvp/dfm01_mvp_area_build_qc_summary.csv (251 rows)
+- outputs/modeling/dfm01_mvp/dfm01_mvp_population_density_2024_qc_summary.csv (251 rows)
+- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_source_inventory.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_build_qc_summary.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_missing_source_note.md
+- outputs/modeling/dfm01_mvp/dfm01_mvp_remaining_controls_build_inventory.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_remaining_controls_build_note.md
+- literature/04_synthesis/dfm01_mvp_remaining_controls_build_note.md
+- scripts/07_modeling/build_municipality_area_251.py
 
 CSV validation result: PASS (csv.DictReader; consistent columns)
 git diff --check result: PASS (no whitespace errors)
-sensitive-file check result: PASS (no raw/GIS/xlsx/local-only-panel/local-only-controls/data_raw staged)
+sensitive-file check result: PASS (no raw/GIS/xlsx/local-only-controls/local-only-panel/data_raw staged)
 
-recommended next task: acquire/construct commercial_density (Economic Census / e-Stat establishment counts) for the 251 frame and derive municipality area for the 33 missing from the N03 boundary layer (separate approved steps), then rerun the 4 primary + 4 robustness DF_M01 MVP models (HC3) with diagnostics
+recommended next task: acquire official Economic Census municipality establishment counts from e-Stat (toukei codes 00200553/00200552) for the 251 frame, compute commercial_density = establishments/area_km2 (area already built), decide rail/housing gap-fill vs documented complete-case, then rerun the 4 primary + 4 robustness DF_M01 MVP models (HC3) with diagnostics

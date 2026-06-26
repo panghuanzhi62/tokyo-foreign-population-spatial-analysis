@@ -1,0 +1,7 @@
+metric,value,notes
+local_source_found,NO,no Economic Census / establishment-count file in repo
+acquired_this_step,NO,e-Stat acquisition not reproducible without API appId in this environment; not attempted to avoid fragile scrape
+coverage_for_251_frame,0/251,
+definition_intended,total establishments per km2,
+substitution_used,NONE,no DF_M04 / POI / restaurant substitution per instruction
+recommended_action,acquire_from_estat_economic_census,
