@@ -1,51 +1,63 @@
 LATEST SAFETY CHECK
 ===================
-task: Preserve Gemini M-source audit for future composite-M development
+task: MOE Japan literature and official-source supplement package
 date: 2026-06-27
 branch: agentic-upgrade
 status: COMPLETED
 
-models rerun: NO
-new M-source searching: NO (preserving an existing external audit only)
-composite M built: NO
+new Tokyo models run: NO
 new data downloaded: NO
-scholars contacted: NO
-current DF_M01 MVP interpretation changed: NO
+new M-source searching: NO (only sources supporting the Japanese materials section)
+outreach emails drafted: NO
+whole application rewritten: NO
+applicant identity inserted into B-section materials: NO
+composite M built: NO
+causal mediation claimed: NO
+novelty asserted: NO
+gap status: under verification (0 A_direct_overlap)
 
-preserved note created: YES
-preserved matrix created: YES (8 rows; controlled values enforced)
+deliverables created:
+- literature notes inventory CSV: YES (10 rows)
+- literature supplement matrix CSV: YES (22 rows, categories A-E)
+- official source supplement matrix CSV: YES (15 rows)
+- application-ready insertion text (Chinese): YES
+- gap verification note: YES
 
 raw data committed: NO
 GIS files committed: NO
 local-only model panel committed: NO
 local-only controls table committed: NO
-local-only weights committed: NO
+local-only spatial weights committed: NO
+final M dataset committed: NO
 correspondence/email committed: NO
-downloaded files committed: NO
+PDF/DOCX/ref committed: NO
 data_raw staged: NO
 data_raw_official staged: NO
 data_processed_official staged: NO
 data/manuscript/PDF/DOCX/ref committed: NO
-git add . used: NO (explicit per-file staging only)
+git add . used: NO (explicit per-file staging only; *.csv via git add -f for the 3 listed CSVs)
 
-novelty asserted: NO
-causal mediation claimed: NO
-gap status: under verification
-
-note marked as external audit requiring local validation: YES
-DF_M01 MVP result files overwritten: NO
+honesty controls:
+- named-but-undocumented sources (Yamashita Kiyomi, Zhang Huijing, Chen Tianxi, Nie Dening,
+  Ren Na and Chen Yande, Zhu Anxin) and Sun 2026 marked needs_verification; no fabricated DOIs
+- OTIT supervising-organization list flagged needs_verification / UNKNOWN (not in repo)
+- hazard/spatial layers marked license-and-usability-to-confirm before use
+- no-overclaim wording enforced (no "fills a blank" / "first study")
 
 local run logs written: YES (outputs/claude_run_logs/; ignored via .git/info/exclude; NOT committed)
 latest_chatgpt_handoff.md written: YES (local-only; NOT committed)
 
-CSV validation passed: YES (csv.DictReader; 18 columns; 8 data rows)
-duplicate check passed: YES (source_id unique)
-controlled-value check passed: YES (include_in_current_MVP in {YES,NO}; future_action in {already_used_in_MVP,validate_later,hold,exclude})
-mojibake scan passed: YES (no mojibake markers; CJK source names are legitimate intended content)
+CSV validation passed: YES (csv.DictReader; controlled-value checks PASS;
+  inventory 11 cols/10 rows; lit matrix 18 cols/22 rows; official matrix 15 cols/15 rows)
+duplicate check passed: YES
+controlled-value check passed: YES
+mojibake scan passed: YES (committed reports ASCII-only; CSV/MD intentionally UTF-8 Japanese/Chinese,
+  no replacement characters)
 git diff --check passed: YES
-sensitive-file check passed: YES (only the 5 listed files staged)
-untracked files left untouched: YES (data_raw_official, data_processed_official, local-only panels/weights, run logs, prior-task leftovers all unstaged)
+sensitive-file check passed: YES
+untracked files left untouched: YES (data_raw_official, data_processed_official, prior-task
+  leftovers all unstaged)
 
-recommended next task: validate NEW_M05 (CLAIR) and NEW_M06 (OTIT) locally before any composite-M
-construction; keep composite M as extension/robustness only; do not change the MVP result without a
-separate validation and construction step.
+recommended next task: verify the named-but-undocumented Japanese/Chinese sources and Sun 2026's
+full citation, then deep-read Wang and Fujii 2021 and Zhang 2020; defer final gap claim and
+introduction drafting.

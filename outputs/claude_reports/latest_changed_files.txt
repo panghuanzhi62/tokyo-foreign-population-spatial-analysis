@@ -1,28 +1,35 @@
 LATEST CHANGED FILES
 ====================
-task: Preserve Gemini M source audit for future extension
+task: MOE Japan literature and official-source supplement package
 date: 2026-06-27
 branch: agentic-upgrade
 status: COMPLETED
 
-Created:
-- literature/04_synthesis/gemini_m_source_audit_preserved_note.md
-- literature/04_synthesis/gemini_m_source_audit_preserved_matrix.csv
+Created (committed):
+- literature/04_synthesis/moe_japan_literature_notes_inventory.csv (git add -f; *.csv ignored)
+- literature/04_synthesis/moe_japan_literature_supplement_matrix.csv (git add -f; *.csv ignored)
+- literature/04_synthesis/moe_japan_official_source_supplement_matrix.csv (git add -f; *.csv ignored)
+- literature/04_synthesis/moe_japan_literature_application_insertions.md
+- literature/04_synthesis/moe_japan_literature_gap_verification_note.md
 
-Modified:
+Modified (committed):
 - outputs/claude_reports/latest_verification_summary.txt
 - outputs/claude_reports/latest_changed_files.txt
 - outputs/claude_reports/latest_safety_check.txt
 
-Nature: preserved external Gemini M-source audit, stored as a future-source-development record.
-Does NOT modify or overwrite any DF_M01 MVP result file; does NOT change the MVP interpretation.
+Read-only inputs (consolidated, NOT modified): the 10 literature/03_notes protocol/query
+notes; round02_japanese_source_synthesis.md; literature_matrix.csv; official_source_registry.csv;
+the DF_M01..M04 service-infrastructure source profiles; existing_local_data_reuse_audit.md;
+dfm01_mvp_commercial_density_build_note.md.
 
 Local run logs / handoff (NOT committed; outputs/claude_run_logs/ ignored via .git/info/exclude):
 - outputs/claude_run_logs/latest_claude_window_output.txt
-- outputs/claude_run_logs/<timestamp>_preserve_gemini_m_source_audit.txt
+- outputs/claude_run_logs/<timestamp>_moe_japan_literature_supplement.txt
 - outputs/claude_run_logs/latest_chatgpt_handoff.md
 
-Not committed (by design): no models rerun; no composite M built; no new M-source searching; no
-raw/GIS/local-only-panel/local-only-controls/local-only-weights/downloaded/correspondence files
-staged. No causal-mediation claim. Untracked data_raw_official/, data_processed_official/, and
-prior-task leftover files left untouched (not staged).
+Not committed (by design): no new Tokyo models run; no new M-source searching beyond the
+Japanese materials section; no outreach emails; application NOT rewritten. No raw data, GIS
+files, local-only model panel, local-only controls table, local-only spatial weights, final M
+dataset, correspondence/email, or PDF/DOCX/ref files staged. Untracked data_raw_official/,
+data_processed_official/, and prior-task leftover files left untouched (not staged). git add .
+NOT used (explicit per-file staging only).
