@@ -1,23 +1,25 @@
 LATEST SAFETY CHECK
 ===================
-task: DF_M01 MVP growth-side spatial robustness
+task: DF_M01 MVP manuscript-facing results consolidation
 date: 2026-06-26
 branch: agentic-upgrade
 status: COMPLETED
 
+new models run: NO (consolidation of existing results only)
 new data downloaded: NO
 new M-source searching: NO
 composite M built: NO
-new packages installed: NO (used existing libpysal/spreg/geopandas/statsmodels)
-spatial weights built: YES (queen + KNN-6; LOCAL-ONLY, not committed)
-manuscript rewritten: NO
+scholars contacted: NO
+full manuscript rewritten: NO
 causal mediation claimed: NO
 main interpretation changed: NO
 
-SLX run: YES ; spatial error run: YES (GM_Error; ML_Error summary bug) ; spatial lag run: YES (ML_Lag)
-Model 2 M->Y null survives: YES
-Model 4 M*housing null survives: YES
-residual spatial autocorrelation after spatial robustness: RESOLVED (by spatial lag)
+baseline results consolidated: YES
+robustness results consolidated: YES (6 families)
+spatial robustness included: YES
+manuscript results section created: YES
+external 300-word summary created: YES
+next-step recommendation created: YES (A. one-page visual brief)
 main interpretation: GROWTH_SIDE_NULL_SURVIVES_SPATIAL_ROBUSTNESS
 
 raw data committed: NO
@@ -39,9 +41,9 @@ local run logs written: YES (outputs/claude_run_logs/; ignored via .git/info/exc
 latest_chatgpt_handoff.md written: YES (local-only; NOT committed)
 
 CSV validation passed: YES
-duplicate check passed: YES (model_id unique within each CSV)
-controlled-value check passed: YES (conclusion + spatial_residual_status within allowed sets)
-mojibake scan passed: YES (committed reports/notes/CSVs ASCII-only)
+duplicate check passed: YES (baseline model_id unique; robustness_family unique; limitation_id unique)
+controlled-value check passed: YES
+mojibake scan passed: YES (committed tables/notes/reports ASCII-only)
 git diff --check passed: YES
 sensitive-file check passed: YES
-untracked files left untouched: YES (data_raw, data_raw_official, local-only .gal weights, local-only model_panel tables, run logs, prior-task leftovers all unstaged)
+untracked files left untouched: YES (data_raw, data_raw_official, local-only model_panel tables and weights, run logs, prior-task leftovers all unstaged)

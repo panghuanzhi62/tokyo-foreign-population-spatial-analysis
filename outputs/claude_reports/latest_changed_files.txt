@@ -1,29 +1,30 @@
 LATEST CHANGED FILES
 ====================
-task: Run DF M01 MVP spatial robustness models
+task: Consolidate DF M01 MVP manuscript results
 date: 2026-06-26
 branch: agentic-upgrade
 status: COMPLETED
 
 Created:
-- scripts/07_modeling/run_dfm01_mvp_spatial_robustness.py
-- outputs/modeling/dfm01_mvp/dfm01_mvp_spatial_robustness_coefficients.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_spatial_robustness_fit_summary.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_spatial_robustness_residual_morans_i.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_spatial_robustness_note.md
-- literature/04_synthesis/dfm01_mvp_spatial_robustness_interpretation_note.md
+- outputs/modeling/dfm01_mvp/dfm01_mvp_manuscript_table_baseline_results.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_manuscript_table_robustness_summary.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_manuscript_table_limitations.csv
+- literature/04_synthesis/dfm01_mvp_manuscript_results_section.md
+- literature/04_synthesis/dfm01_mvp_external_summary_300w.md
+- literature/04_synthesis/dfm01_mvp_next_step_recommendation.md
 
 Modified:
 - outputs/claude_reports/latest_verification_summary.txt
 - outputs/claude_reports/latest_changed_files.txt
 - outputs/claude_reports/latest_safety_check.txt
 
-Read-only inputs (NOT modified, NOT staged): local-only model panel; data_raw/N03-20250101_GML/ boundary.
+Read-only inputs (consolidated, NOT modified): existing dfm01_mvp model/robustness/spatial result
+CSVs and notes under outputs/modeling/dfm01_mvp/ and literature/04_synthesis/.
 
 Local run logs / handoff (NOT committed; outputs/claude_run_logs/ ignored via .git/info/exclude):
 - outputs/claude_run_logs/latest_claude_window_output.txt
-- outputs/claude_run_logs/<timestamp>_dfm01_spatial_robustness_models.txt
+- outputs/claude_run_logs/<timestamp>_dfm01_manuscript_results_consolidation.txt
 - outputs/claude_run_logs/latest_chatgpt_handoff.md
 
-Not committed (by design): raw GIS layers, local-only weights (.gal), local-only model panel,
-local-only controls tables, final M dataset. Main interpretation unchanged; no causal-mediation claim.
+Not committed (by design): no new models run; no raw/GIS/local-only-weights/local-only-panel/
+final-M files staged. No causal-mediation claim; no full manuscript rewrite.
