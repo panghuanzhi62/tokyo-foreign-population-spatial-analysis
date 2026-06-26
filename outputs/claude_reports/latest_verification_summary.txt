@@ -1,29 +1,32 @@
 LATEST VERIFICATION SUMMARY
 ===========================
-task objective: DF_M01 MVP residual spatial autocorrelation diagnostics
+task objective: DF_M01 MVP growth-side spatial robustness models
 task status: COMPLETED
 date: 2026-06-26
 repo: E:\rsch\laborJapan
 branch: agentic-upgrade
 
-complete-case sample confirmed: YES (218; same as MVP rerun; sample QC = 251 rows with included flag)
-queen weights built: YES (row-standardized; 218 units; 1 island = 12205 Katsuura-shi; 2 components; neighbors min/median/max 0/5/11)
-KNN-6 sensitivity weights built: YES (no isolates; addresses the island)
-residual Moran's I run: YES (Moran's I implemented directly; 999 permutations, seed=12345; esda unavailable)
+sample N: 218 complete-case (mainland populated Greater Tokyo); queen ML models drop the 1 island (12205) -> N=217
+queen weights used: YES
+KNN-6 weights used: YES
+packages: libpysal 4.14.1, spreg 1.8.5, geopandas 1.1.2, statsmodels 0.14.6 (esda MISSING -> Moran's I implemented directly)
 
-residual spatial autocorrelation results (all SIGNIFICANT NEGATIVE; stable across queen and KNN-6):
-- primary Model 2: queen I=-0.102 p_perm=0.015 ; knn6 I=-0.079 p_perm=0.019 -> YES
-- primary Model 4: queen I=-0.104 p_perm=0.015 ; knn6 I=-0.078 p_perm=0.022 -> YES
-- reduced-collinearity (drop population_density) Model 2: queen I=-0.094 p_perm=0.020 ; knn6 I=-0.077 p_perm=0.024 -> YES
-- reduced-collinearity Model 4: queen I=-0.104 p_perm=0.015 ; knn6 I=-0.078 p_perm=0.023 -> YES
+SLX run: YES (OLS + spatially lagged covariates, HC3; queen and KNN-6)
+spatial error run: YES (spreg GM_Error; ML_Error has a spreg 1.8.5/numpy-2 summary bug so GMM used; queen and KNN-6)
+spatial lag run: YES (spreg ML_Lag; queen and KNN-6)
 
-primary Model 2 spatial flag: YES
-primary Model 4 spatial flag: YES
-reduced-collinearity Model 2 spatial flag: YES
-reduced-collinearity Model 4 spatial flag: YES
-spatial interpretation: SPATIAL_RESIDUALS_REQUIRE_SPATIAL_MODEL_ROBUSTNESS
+focal service coefficient (M->Y), all NULL:
+- OLS 0.013 p=0.17 ; SLX queen 0.010 p=0.33 ; SLX knn6 0.013 p=0.18
+- SEM queen 0.013 p=0.26 ; SEM knn6 0.013 p=0.29 ; SAR queen 0.011 p=0.33 ; SAR knn6 0.013 p=0.25
+Model 4 interaction (M*housing), all NULL (p 0.17-0.44).
+spatial parameters NEGATIVE: SAR rho -0.37 to -0.39 (p<0.005); SEM lambda -0.33 to -0.41 (GMM).
 
-main interpretation changed: NO (WEAK_PARTIAL_MECHANISM_EVIDENCE unchanged; M->Y null robust - negative autocorrelation does not manufacture a null; X->M and Model 3 are service-side, unaffected)
+Model 2 M->Y null survives: YES
+Model 4 M*housing null survives: YES
+residual spatial autocorrelation after spatial robustness: RESOLVED (spatial-lag SAR: post-model Moran's I ~0, p~0.88; SLX and SEM-raw-residual still significant)
+
+main interpretation changed: NO
+main interpretation: GROWTH_SIDE_NULL_SURVIVES_SPATIAL_ROBUSTNESS (overall WEAK_PARTIAL_MECHANISM_EVIDENCE unchanged; X->M positive, M->Y robustly null; negative spatial dependence = dispersion, not diffusion)
 causal mediation claimed: NO
 novelty asserted: NO
 raw data committed: NO
@@ -36,4 +39,4 @@ CSV validation result: PASS
 git diff --check result: PASS
 sensitive-file check result: PASS
 
-recommended next task: fit spatial-error and/or spatial-lag (SLX) robustness versions of Models 2 and 4 on the 218 complete-case sample using the queen and KNN-6 weights, to confirm the growth-side null and interactions under explicit spatial dependence; do not claim causal mediation
+recommended next task: consolidate baseline + collinearity + scaling + timing + spatial robustness into one manuscript-facing DF_M01 MVP results section (estimand = mainland populated Greater Tokyo N=218); do not claim causal mediation

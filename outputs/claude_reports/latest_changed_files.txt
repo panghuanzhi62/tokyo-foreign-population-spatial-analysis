@@ -1,32 +1,29 @@
 LATEST CHANGED FILES
 ====================
-task: Add DF M01 MVP residual spatial diagnostics
+task: Run DF M01 MVP spatial robustness models
 date: 2026-06-26
 branch: agentic-upgrade
 status: COMPLETED
 
 Created:
-- scripts/07_modeling/run_dfm01_mvp_spatial_diagnostics.py
-- outputs/modeling/dfm01_mvp/dfm01_mvp_spatial_sample_qc.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_spatial_weights_qc.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_residual_morans_i.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_residual_spatial_diagnostics_note.md
-- literature/04_synthesis/dfm01_mvp_spatial_residual_diagnostics_note.md
+- scripts/07_modeling/run_dfm01_mvp_spatial_robustness.py
+- outputs/modeling/dfm01_mvp/dfm01_mvp_spatial_robustness_coefficients.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_spatial_robustness_fit_summary.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_spatial_robustness_residual_morans_i.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_spatial_robustness_note.md
+- literature/04_synthesis/dfm01_mvp_spatial_robustness_interpretation_note.md
 
 Modified:
 - outputs/claude_reports/latest_verification_summary.txt
 - outputs/claude_reports/latest_changed_files.txt
 - outputs/claude_reports/latest_safety_check.txt
 
-Created LOCAL-ONLY (NOT committed):
-- data_processed_official/model_panel/dfm01_mvp_queen_weights_218_local_only.gal
-
 Read-only inputs (NOT modified, NOT staged): local-only model panel; data_raw/N03-20250101_GML/ boundary.
 
 Local run logs / handoff (NOT committed; outputs/claude_run_logs/ ignored via .git/info/exclude):
 - outputs/claude_run_logs/latest_claude_window_output.txt
-- outputs/claude_run_logs/<timestamp>_dfm01_residual_spatial_diagnostics.txt
+- outputs/claude_run_logs/<timestamp>_dfm01_spatial_robustness_models.txt
 - outputs/claude_run_logs/latest_chatgpt_handoff.md
 
 Not committed (by design): raw GIS layers, local-only weights (.gal), local-only model panel,
-local-only controls tables, final M dataset. No new main model; no causal-mediation claim.
+local-only controls tables, final M dataset. Main interpretation unchanged; no causal-mediation claim.
