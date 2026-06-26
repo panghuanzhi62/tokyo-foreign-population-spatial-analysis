@@ -1,42 +1,40 @@
 LATEST VERIFICATION SUMMARY
 ===========================
-task objective: DF_M01 MVP commercial-density construction + full model rerun
-task status: COMPLETED (commercial_density built 251/251; models rerun on complete-case N=218)
+task objective: DF_M01 MVP robustness and diagnostics
+task status: COMPLETED
 date: 2026-06-26
 repo: E:\rsch\laborJapan
 branch: agentic-upgrade
 
-commercial_density constructed: YES (251/251)
-commercial_density coverage: 251/251
-commercial_density source: e-Stat 00200553 (2021 Economic Census for Business Activity, establishment tabulation), table 0004005655; tab=102-2021 establishments, cat01=AR all-industries-excl-public-service, totals; commercial_density = establishments / area_km2
-commercial_density year: 2021
+complete-case audit created: YES (218 included vs 33 excluded; binding constraint housing_cost; excluded = peripheral Chiba/Tokyo/Saitama, Kanagawa 0)
+collinearity robustness run: YES (baseline + 4 reduced-collinearity specs A/B/C/D; HC3; N=218)
+alternative M scaling diagnostics run: YES (raw count, log1p, per-10k foreigners, per-10k population; Model 2 variants)
+timing robustness summarized: YES (2024_12 vs 2024_06 windows)
+residual spatial check: SKIPPED (no compatible existing 251/218 weights file; new weights out of scope)
 
-control coverage: area_km2 251/251 ; population_density_2024 251/251 ; commercial_density 251/251 ; rail_accessibility 227/251 ; housing_cost 218/251
-all controls ready: YES (all four specified controls constructed; complete-case limited by housing/rail)
-expected complete-case N: 218 (primary and robustness); 33 excluded = Tokyo islands/mountain, Chiba Boso/eastern, Saitama Chichibu (estimand = mainland populated Greater Tokyo)
-model readiness decision: READY_FULL_251_WITH_ACCEPTABLE_MISSINGNESS
+main interpretation: WEAK_PARTIAL_MECHANISM_EVIDENCE
 
-models rerun: YES (4 primary + 4 robustness; OLS HC3; full diagnostics)
-reason models not rerun: NOT_APPLICABLE
-Model 1 key result: M~X z_log_chinese_stock_2023_12 = 0.427, p<0.001 (prior Chinese stock -> support-org infrastructure; X->M positive)
-Model 2 key result: Y~M z_log_service_2024_12 = 0.013, p=0.17 (service -> subsequent Chinese growth NOT supported; M->Y null); growth adj R2 ~0.02
-Model 3 key result: M ~ X*commercial_density interaction = 0.106, p=0.040 (positive); commercial density dominates service-location model
-Model 4 key result: Y ~ M*housing_cost interaction = -0.008, p=0.27 (null)
-main interpretation: weak (mechanism-consistent for X->M only; M->Y unsupported)
+key robustness findings:
+- X->M (Model 1): robust positive (0.40-0.43, p<=0.002 in 4/5 specs; attenuates to marginal p=0.077 only when population_density dropped); stable across timing windows (0.427->0.441)
+- M->Y (Model 2): ROBUSTLY NULL across all 5 collinearity specs (p 0.11-0.76), all 4 service scalings (p 0.17-0.96), and both timing windows (0.013 p=0.17 -> 0.007 p=0.51)
+- Model 3 X*commercial interaction: survives reduced-collinearity (baseline 0.106 p=0.040; STRENGTHENS under drop-popdensity 0.329 p<0.001 and residualized 0.145 p=0.006; marginal under winsorize 0.098 p=0.071) -> PARTIAL/robust
+- Model 4 M*housing interaction: robustly null
 
-modeling run: YES
+baseline Model 1 interpretation changed: NO
+baseline Model 2 interpretation changed: NO
+Model 3 interaction robust: PARTIAL
+Model 4 interaction robust: NO
+
 causal mediation claimed: NO
 novelty asserted: NO
 raw data committed: NO
 GIS files committed: NO
-local-only controls table committed: NO
 local-only model panel committed: NO
+local-only controls table committed: NO
 final M dataset committed: NO
-
-outputs created (committable): commercial_density source inventory, build QC (251), missing-source note (NOT_APPLICABLE), commercial build note, synthesis note, model coefficients primary/robustness, fit summary, missingness summary, descriptive statistics, correlation matrix, VIF summary, influence cases, model run note, scripts (economic_census_establishments_extract.py; updated build/run model scripts)
 
 CSV validation result: PASS
 git diff --check result: PASS
-sensitive-file check result: PASS (no raw/GIS/xlsx/local-only-table/local-only-panel/data_raw/data_raw_official staged)
+sensitive-file check result: PASS
 
-recommended next task: extend rail/housing to full 251 for a full-coverage robustness run; consider per-capita / per-foreign-resident M specification; add residual Moran's I if an existing spatial-weights file is available; do not claim causal mediation
+recommended next task: build queen-contiguity spatial weights for the 218 complete-case municipalities from the local N03-20250101 boundary and compute residual Moran's I for Models 2 and 4 (primary + reduced-collinearity) to close the last robustness gap before manuscript framing; do not claim causal mediation

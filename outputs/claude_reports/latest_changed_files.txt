@@ -1,44 +1,35 @@
 LATEST CHANGED FILES
 ====================
-task: Build commercial density and rerun DF M01 MVP models
+task: Run DF M01 MVP robustness diagnostics
 date: 2026-06-26
 branch: agentic-upgrade
-status: COMPLETED (commercial_density 251/251; models rerun complete-case N=218)
+status: COMPLETED
 
 Created:
-- scripts/11_official_data/economic_census_establishments_extract.py
-- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_build_note.md
-- literature/04_synthesis/dfm01_mvp_commercial_density_build_note.md
-- outputs/modeling/dfm01_mvp/dfm01_mvp_model_coefficients_primary.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_model_coefficients_robustness.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_model_fit_summary.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_missingness_summary.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_descriptive_statistics.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_correlation_matrix.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_vif_summary.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_influence_cases.csv
+- scripts/07_modeling/run_dfm01_mvp_robustness.py
+- outputs/modeling/dfm01_mvp/dfm01_mvp_complete_case_exclusion_audit.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_complete_case_exclusion_note.md
+- outputs/modeling/dfm01_mvp/dfm01_mvp_collinearity_robustness_coefficients.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_collinearity_robustness_fit_summary.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_collinearity_robustness_note.md
+- outputs/modeling/dfm01_mvp/dfm01_mvp_alternative_m_scaling_coefficients.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_alternative_m_scaling_note.md
+- outputs/modeling/dfm01_mvp/dfm01_mvp_timing_robustness_note.md
+- outputs/modeling/dfm01_mvp/dfm01_mvp_residual_spatial_check.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_residual_spatial_check_note.md
+- literature/04_synthesis/dfm01_mvp_robustness_interpretation_note.md
 
 Modified:
-- scripts/07_modeling/build_dfm01_mvp_model_panel.py (now populates real controls; log1p densities)
-- scripts/07_modeling/run_dfm01_mvp_models.py (full diagnostics + complete-case + missingness)
-- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_source_inventory.csv (e-Stat source used)
-- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_build_qc_summary.csv (251-row QC)
-- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_missing_source_note.md (NOT_APPLICABLE)
-- outputs/modeling/dfm01_mvp/dfm01_mvp_model_run_note.md
 - outputs/claude_reports/latest_verification_summary.txt
 - outputs/claude_reports/latest_changed_files.txt
 - outputs/claude_reports/latest_safety_check.txt
 
-Created/updated LOCAL-ONLY (NOT committed):
-- data_raw_official/economic_census_establishments/raw_getStatsData_0004005655_2021_*.json (raw e-Stat API)
-- data_processed_official/model_panel/tokyo_china_commercial_density_251_local_only.csv
-- data_processed_official/model_panel/tokyo_china_dfm01_mvp_controls_joined_local_only.csv (commercial added)
-- data_processed_official/model_panel/tokyo_china_dfm01_mvp_model_panel_local_only.csv (controls populated)
+Read-only inputs (NOT modified): local-only model panel, population-density table (for population_2024).
 
 Local run logs / handoff (NOT committed; outputs/claude_run_logs/ ignored via .git/info/exclude):
 - outputs/claude_run_logs/latest_claude_window_output.txt
-- outputs/claude_run_logs/<timestamp>_commercial_density_build.txt
+- outputs/claude_run_logs/<timestamp>_dfm01_mvp_robustness_diagnostics.txt
 - outputs/claude_run_logs/latest_chatgpt_handoff.md
 
-Not committed (by design): raw e-Stat JSON, GIS layers, local-only controls tables, local-only model panel,
-e-Stat appId. No substitution proxy used.
+Not committed (by design): local-only model panel, local-only controls tables, raw e-Stat JSON,
+GIS layers, final M dataset. No new main model; no causal-mediation claim; spatial check skipped.

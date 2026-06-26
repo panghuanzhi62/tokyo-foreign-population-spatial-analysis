@@ -1,27 +1,30 @@
 LATEST SAFETY CHECK
 ===================
-task: DF_M01 MVP commercial-density construction + full model rerun
+task: DF_M01 MVP robustness and diagnostics
 date: 2026-06-26
 branch: agentic-upgrade
-status: COMPLETED (commercial_density 251/251; models rerun complete-case N=218)
+status: COMPLETED
 
-commercial_density source: official e-Stat 2021 Economic Census (00200553, table 0004005655)
-commercial-density proxy invented: NO
-DF_M04 / POI / restaurant / broker / Google substituted: NO
+new data downloaded: NO
 new M-source searching: NO
-new data downloaded: YES (official e-Stat Economic Census establishment counts, API; raw local-only)
-e-Stat appId exposed/printed/committed: NO (read from ESTAT_APP_ID env only)
-GIS processing run: NO (area reused from prior local build)
-models rerun: YES (4 primary + 4 robustness; HC3); complete-case N=218 reported with excluded composition
-exploratory reduced model (no commercial_density) run: NO (full-specification model used)
+composite M built: NO
+new main model created: NO (robustness/diagnostics only)
+exploratory reduced model promoted to main: NO
+spatial weights created: NO (residual spatial check SKIPPED; no compatible existing weights)
+manuscript rewritten: NO
 causal mediation claimed: NO
+
+complete-case audit created: YES
+collinearity robustness run: YES (HC3; baseline + A/B/C/D)
+alternative M scaling diagnostics run: YES (diagnostics only; denominator-endogeneity noted)
+timing robustness summarized: YES
+residual spatial check: SKIPPED
+main interpretation: WEAK_PARTIAL_MECHANISM_EVIDENCE
 
 raw data committed: NO
 GIS files committed: NO
-xlsx files committed: NO
-raw e-Stat JSON committed: NO
-local-only controls table committed: NO
 local-only model panel committed: NO
+local-only controls table committed: NO
 final M dataset committed: NO
 data_raw staged: NO
 data_raw_official staged: NO
@@ -31,15 +34,14 @@ git add . used: NO (explicit per-file staging only)
 
 novelty asserted: NO
 gap status: under verification
-model readiness decision: READY_FULL_251_WITH_ACCEPTABLE_MISSINGNESS
 
 local run logs written: YES (outputs/claude_run_logs/; ignored via .git/info/exclude; NOT committed)
 latest_chatgpt_handoff.md written: YES (local-only; NOT committed)
 
 CSV validation passed: YES
-duplicate check passed: YES (municipality_code unique in QC tables)
+duplicate check passed: YES
 controlled-value check passed: YES
-mojibake scan passed: YES (committed reports/notes/inventories ASCII-only; QC CSVs with municipality names + influence_cases contain legitimate UTF-8, no mojibake markers)
+mojibake scan passed: YES (committed reports/notes ASCII-only; audit CSV has legitimate UTF-8 only where needed, no mojibake markers)
 git diff --check passed: YES
 sensitive-file check passed: YES
-untracked files left untouched: YES (data_raw, data_raw_official incl raw e-Stat JSON, all local-only model_panel tables, run logs, prior-task leftovers all unstaged)
+untracked files left untouched: YES (data_raw, data_raw_official, all local-only model_panel tables, run logs, prior-task leftovers all unstaged)

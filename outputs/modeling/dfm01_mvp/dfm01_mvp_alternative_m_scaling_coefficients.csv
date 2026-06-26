@@ -1,0 +1,5 @@
+m_variant,term,coef,std_err_hc3,p_value,n,rsquared_adj
+service_count_raw,z_alt_service,-0.000243,0.004492,0.95689,218,0.01454
+log1p_service_count,z_alt_service,0.012512,0.009066,0.167568,218,0.01948
+service_per_10000_foreigners,z_alt_service,0.001132,0.009385,0.904009,218,0.01468
+service_per_10000_total_population,z_alt_service,-0.00154,0.005599,0.783338,218,0.01479
