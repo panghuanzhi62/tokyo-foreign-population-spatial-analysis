@@ -96,6 +96,16 @@ def main():
     # ---- Control that IS available: non-Chinese foreign stock (2020 census) ----
     ncf = {r["municipality_code"]: to_float(r["non_chinese_foreign"]) for r in load_csv(census_path)}
 
+    # ---- Constructed/reused controls from the local-only controls table + 2024 pop density ----
+    ctrl_path = root/"data_processed_official/model_panel/tokyo_china_dfm01_mvp_controls_joined_local_only.csv"
+    popdens_path = root/"data_processed_official/model_panel/tokyo_china_population_density_2024_251_local_only.csv"
+    ctrl = {r["municipality_code"]: r for r in load_csv(ctrl_path)} if ctrl_path.exists() else {}
+    popdens = {r["municipality_code"]: r for r in load_csv(popdens_path)} if popdens_path.exists() else {}
+    rail_c = {k: to_float(v.get("rail_accessibility")) for k, v in ctrl.items()}
+    housing_c = {k: to_float(v.get("housing_cost")) for k, v in ctrl.items()}
+    commercial_c = {k: to_float(v.get("commercial_density")) for k, v in ctrl.items()}
+    popdens_c = {k: to_float(v.get("population_density_2024")) for k, v in popdens.items()}
+
     # ---- Assemble per-municipality rows ----
     rows = []
     for code in frame:
@@ -114,11 +124,11 @@ def main():
             "chinese_stock_2025_06": y2506,
             "df_m01_support_count_2024_06": m06.get(code),
             "df_m01_support_count_2024_12": m12.get(code),
-            # Required controls: only non_chinese_foreign_stock is available.
-            "rail_accessibility": None,
-            "housing_cost": None,
-            "commercial_density": None,
-            "population_density": None,
+            # Required controls (constructed/reused; commercial+popdens at 251, rail/housing partial).
+            "rail_accessibility": rail_c.get(code),
+            "housing_cost": housing_c.get(code),
+            "commercial_density": commercial_c.get(code),
+            "population_density": popdens_c.get(code),
             "non_chinese_foreign_stock": ncf.get(code),
             "prefecture_fe": pref.get(code, ""),
         }
@@ -140,6 +150,16 @@ def main():
             row["chinese_growth_abs_2024_06_2025_06"] = None
         rows.append(row)
 
+    # ---- Log1p the right-skewed magnitude controls before standardizing (consistent with
+    #      the logged stock/service/land-price); rail/housing are already on a log scale.
+    for r in rows:
+        cd = r.get("commercial_density")
+        pd_ = r.get("population_density")
+        ncf_ = r.get("non_chinese_foreign_stock")
+        r["log_commercial_density"] = math.log1p(cd) if cd is not None else None
+        r["log_population_density"] = math.log1p(pd_) if pd_ is not None else None
+        r["log_non_chinese_foreign_stock"] = math.log1p(ncf_) if ncf_ is not None else None
+
     # ---- Z-standardize continuous predictors that exist ----
     z_specs = {
         "z_log_chinese_stock_2023_12": "log_chinese_stock_2023_12",
@@ -147,9 +167,9 @@ def main():
         "z_log_service_2024_06": "log_service_2024_06",
         "z_rail_accessibility": "rail_accessibility",
         "z_housing_cost": "housing_cost",
-        "z_commercial_density": "commercial_density",
-        "z_population_density": "population_density",
-        "z_non_chinese_foreign_stock": "non_chinese_foreign_stock",
+        "z_commercial_density": "log_commercial_density",
+        "z_population_density": "log_population_density",
+        "z_non_chinese_foreign_stock": "log_non_chinese_foreign_stock",
     }
     for zcol, src in z_specs.items():
         zs = zscore([r[src] for r in rows])

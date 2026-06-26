@@ -1,38 +1,44 @@
 LATEST CHANGED FILES
 ====================
-task: Build remaining DF M01 control inputs
+task: Build commercial density and rerun DF M01 MVP models
 date: 2026-06-26
 branch: agentic-upgrade
-status: COMPLETED (area + 2024 pop density built; commercial_density missing; models NOT rerun)
+status: COMPLETED (commercial_density 251/251; models rerun complete-case N=218)
 
 Created:
-- scripts/07_modeling/build_municipality_area_251.py
-- outputs/modeling/dfm01_mvp/dfm01_mvp_area_build_qc_summary.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_population_density_2024_qc_summary.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_source_inventory.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_build_qc_summary.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_missing_source_note.md
-- outputs/modeling/dfm01_mvp/dfm01_mvp_remaining_controls_build_inventory.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_remaining_controls_build_note.md
-- literature/04_synthesis/dfm01_mvp_remaining_controls_build_note.md
+- scripts/11_official_data/economic_census_establishments_extract.py
+- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_build_note.md
+- literature/04_synthesis/dfm01_mvp_commercial_density_build_note.md
+- outputs/modeling/dfm01_mvp/dfm01_mvp_model_coefficients_primary.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_model_coefficients_robustness.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_model_fit_summary.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_missingness_summary.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_descriptive_statistics.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_correlation_matrix.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_vif_summary.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_influence_cases.csv
 
 Modified:
+- scripts/07_modeling/build_dfm01_mvp_model_panel.py (now populates real controls; log1p densities)
+- scripts/07_modeling/run_dfm01_mvp_models.py (full diagnostics + complete-case + missingness)
+- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_source_inventory.csv (e-Stat source used)
+- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_build_qc_summary.csv (251-row QC)
+- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_missing_source_note.md (NOT_APPLICABLE)
+- outputs/modeling/dfm01_mvp/dfm01_mvp_model_run_note.md
 - outputs/claude_reports/latest_verification_summary.txt
 - outputs/claude_reports/latest_changed_files.txt
 - outputs/claude_reports/latest_safety_check.txt
 
 Created/updated LOCAL-ONLY (NOT committed):
-- data_processed_official/model_panel/tokyo_china_municipality_area_251_local_only.csv (251 rows)
-- data_processed_official/model_panel/tokyo_china_population_density_2024_251_local_only.csv (251 rows)
-- data_processed_official/model_panel/tokyo_china_dfm01_mvp_controls_joined_local_only.csv (updated; 251 rows)
-
-Inspected (NOT staged): data_raw/N03-20250101_GML/ (area extracted, GIS not committed),
-data_raw/000959256.xlsx, tblT001141H5339.txt, HDDSWH5339/MESH05339.shp, data_raw/isa_estat/.
+- data_raw_official/economic_census_establishments/raw_getStatsData_0004005655_2021_*.json (raw e-Stat API)
+- data_processed_official/model_panel/tokyo_china_commercial_density_251_local_only.csv
+- data_processed_official/model_panel/tokyo_china_dfm01_mvp_controls_joined_local_only.csv (commercial added)
+- data_processed_official/model_panel/tokyo_china_dfm01_mvp_model_panel_local_only.csv (controls populated)
 
 Local run logs / handoff (NOT committed; outputs/claude_run_logs/ ignored via .git/info/exclude):
 - outputs/claude_run_logs/latest_claude_window_output.txt
-- outputs/claude_run_logs/<timestamp>_remaining_controls_build.txt
+- outputs/claude_run_logs/<timestamp>_commercial_density_build.txt
 - outputs/claude_run_logs/latest_chatgpt_handoff.md
 
-Not created/committed (by design): no model rerun, no commercial-density proxy, no raw/GIS/xlsx/
-local-only-table/local-only-panel/data_raw files staged.
+Not committed (by design): raw e-Stat JSON, GIS layers, local-only controls tables, local-only model panel,
+e-Stat appId. No substitution proxy used.

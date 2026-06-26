@@ -1,46 +1,42 @@
 LATEST VERIFICATION SUMMARY
 ===========================
-task objective: DF_M01 MVP remaining controls construction (area, 2024 population density, commercial density)
-task status: COMPLETED (area + 2024 pop density built 251/251; commercial_density missing; models NOT rerun)
+task objective: DF_M01 MVP commercial-density construction + full model rerun
+task status: COMPLETED (commercial_density built 251/251; models rerun on complete-case N=218)
 date: 2026-06-26
 repo: E:\rsch\laborJapan
 branch: agentic-upgrade
 
-area_km2 constructed: YES (251/251; N03-20250101 boundary, geodesic WGS84, dissolved by N03_007; validated vs known areas)
-population_density_2024 constructed: YES (251/251; Basic Resident Register 2024-01-01 total pop / area_km2; 2024 vintage, A_direct_2024)
-commercial_density constructed: NO (0/251; no local establishment source; not acquired - e-Stat needs API appId / not reproducible here; no proxy/substitution)
+commercial_density constructed: YES (251/251)
+commercial_density coverage: 251/251
+commercial_density source: e-Stat 00200553 (2021 Economic Census for Business Activity, establishment tabulation), table 0004005655; tab=102-2021 establishments, cat01=AR all-industries-excl-public-service, totals; commercial_density = establishments / area_km2
+commercial_density year: 2021
 
-rail_accessibility coverage: 227/251 (PARTIAL; v5 log_dist_to_station_m + 9 pop_with_station backfill)
-housing_cost coverage: 218/251 (PARTIAL; v5 log_median_land_price_jpy, L01-24 2024)
-commercial_density coverage: 0/251
+control coverage: area_km2 251/251 ; population_density_2024 251/251 ; commercial_density 251/251 ; rail_accessibility 227/251 ; housing_cost 218/251
+all controls ready: YES (all four specified controls constructed; complete-case limited by housing/rail)
+expected complete-case N: 218 (primary and robustness); 33 excluded = Tokyo islands/mountain, Chiba Boso/eastern, Saitama Chichibu (estimand = mainland populated Greater Tokyo)
+model readiness decision: READY_FULL_251_WITH_ACCEPTABLE_MISSINGNESS
 
-all controls ready: NO
-model readiness decision: NOT_READY_MISSING_COMMERCIAL_DENSITY
-models rerun: NO
-reason models not rerun: commercial_density is 0/251 (Models 3 and 4 require it); 218-case reduced model not authorized
-modeling run: NO
+models rerun: YES (4 primary + 4 robustness; OLS HC3; full diagnostics)
+reason models not rerun: NOT_APPLICABLE
+Model 1 key result: M~X z_log_chinese_stock_2023_12 = 0.427, p<0.001 (prior Chinese stock -> support-org infrastructure; X->M positive)
+Model 2 key result: Y~M z_log_service_2024_12 = 0.013, p=0.17 (service -> subsequent Chinese growth NOT supported; M->Y null); growth adj R2 ~0.02
+Model 3 key result: M ~ X*commercial_density interaction = 0.106, p=0.040 (positive); commercial density dominates service-location model
+Model 4 key result: Y ~ M*housing_cost interaction = -0.008, p=0.27 (null)
+main interpretation: weak (mechanism-consistent for X->M only; M->Y unsupported)
+
+modeling run: YES
 causal mediation claimed: NO
 novelty asserted: NO
-
 raw data committed: NO
 GIS files committed: NO
 local-only controls table committed: NO
 local-only model panel committed: NO
 final M dataset committed: NO
 
-outputs created (committable):
-- outputs/modeling/dfm01_mvp/dfm01_mvp_area_build_qc_summary.csv (251 rows)
-- outputs/modeling/dfm01_mvp/dfm01_mvp_population_density_2024_qc_summary.csv (251 rows)
-- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_source_inventory.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_build_qc_summary.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_commercial_density_missing_source_note.md
-- outputs/modeling/dfm01_mvp/dfm01_mvp_remaining_controls_build_inventory.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_remaining_controls_build_note.md
-- literature/04_synthesis/dfm01_mvp_remaining_controls_build_note.md
-- scripts/07_modeling/build_municipality_area_251.py
+outputs created (committable): commercial_density source inventory, build QC (251), missing-source note (NOT_APPLICABLE), commercial build note, synthesis note, model coefficients primary/robustness, fit summary, missingness summary, descriptive statistics, correlation matrix, VIF summary, influence cases, model run note, scripts (economic_census_establishments_extract.py; updated build/run model scripts)
 
-CSV validation result: PASS (csv.DictReader; consistent columns)
-git diff --check result: PASS (no whitespace errors)
-sensitive-file check result: PASS (no raw/GIS/xlsx/local-only-controls/local-only-panel/data_raw staged)
+CSV validation result: PASS
+git diff --check result: PASS
+sensitive-file check result: PASS (no raw/GIS/xlsx/local-only-table/local-only-panel/data_raw/data_raw_official staged)
 
-recommended next task: acquire official Economic Census municipality establishment counts from e-Stat (toukei codes 00200553/00200552) for the 251 frame, compute commercial_density = establishments/area_km2 (area already built), decide rail/housing gap-fill vs documented complete-case, then rerun the 4 primary + 4 robustness DF_M01 MVP models (HC3) with diagnostics
+recommended next task: extend rail/housing to full 251 for a full-coverage robustness run; consider per-capita / per-foreign-resident M specification; add residual Moran's I if an existing spatial-weights file is available; do not claim causal mediation
