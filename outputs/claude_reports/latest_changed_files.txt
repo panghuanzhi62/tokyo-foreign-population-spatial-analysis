@@ -1,29 +1,33 @@
 LATEST CHANGED FILES
 ====================
-task: Inventory existing DF M01 MVP controls
+task: Assess DF M01 MVP controls completion gaps
 date: 2026-06-26
 branch: agentic-upgrade
-status: COMPLETED (inventory/mapping only)
+status: COMPLETED (controls joined local-only; gaps documented; full models NOT run)
 
 Created:
-- outputs/modeling/dfm01_mvp/dfm01_mvp_existing_controls_inventory.csv (8 candidate rows)
-- literature/04_synthesis/dfm01_mvp_existing_controls_inventory_note.md
+- scripts/07_modeling/build_dfm01_mvp_controls_table.py
+- outputs/modeling/dfm01_mvp/dfm01_mvp_controls_coverage_gap.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_controls_completion_inventory.csv
+- literature/04_synthesis/dfm01_mvp_controls_completion_note.md
 
 Modified:
 - outputs/claude_reports/latest_verification_summary.txt
 - outputs/claude_reports/latest_changed_files.txt
 - outputs/claude_reports/latest_safety_check.txt
 
+Created LOCAL-ONLY (NOT committed):
+- data_processed_official/model_panel/tokyo_china_dfm01_mvp_controls_joined_local_only.csv (251 rows; 3 found controls joined + 2024 population + partial 2024 density)
+
 Inspected (NOT modified, NOT staged):
-- data_raw/tokyo_features_v1..v5, tokyo_mgwr_ready, tokyo_pop_* CSVs
-- data_raw/000959256.xlsx (2024-01-01 Basic Resident Register total population)
-- data_raw/000959264.xlsx (2024-01-01 Basic Resident Register foreign residents)
-- data_raw/isa_estat/, data_raw/landPrice/, data_raw/N02-22_GML/, data_raw/N03-20250101_GML/
+- data_raw/tokyo_features_v5_extended_with_density.csv, tokyo_features_v2.csv, tokyo_pop_with_station_features.csv
+- data_raw/000959256.xlsx (2024 total population), 000959264.xlsx (2024 foreign residents)
+- data_raw/isa_estat/, data_raw/N03-20250101_GML/ (area not extracted; GIS deferred)
 
 Local run logs / handoff (NOT committed; outputs/claude_run_logs/ ignored via .git/info/exclude):
 - outputs/claude_run_logs/latest_claude_window_output.txt
-- outputs/claude_run_logs/<timestamp>_existing_controls_inventory.txt
+- outputs/claude_run_logs/<timestamp>_controls_completion_gaps.txt
 - outputs/claude_run_logs/latest_chatgpt_handoff.md
 
-Not created/committed (by design): controls not built, GIS not processed, no downloads,
-no model rerun, no proxies, no raw/GIS/xlsx/model-panel/data_raw files staged.
+Not created/committed (by design): no downloads, no GIS run, no commercial-density proxy,
+no models rerun, no raw/GIS/xlsx/local-only-panel/local-only-controls/data_raw files staged.
