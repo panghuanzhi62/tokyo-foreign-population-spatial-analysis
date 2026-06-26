@@ -1,6 +1,6 @@
 LATEST SAFETY CHECK
 ===================
-task: DF_M01 MVP robustness and diagnostics
+task: DF_M01 MVP residual spatial diagnostics
 date: 2026-06-26
 branch: agentic-upgrade
 status: COMPLETED
@@ -8,21 +8,19 @@ status: COMPLETED
 new data downloaded: NO
 new M-source searching: NO
 composite M built: NO
-new main model created: NO (robustness/diagnostics only)
-exploratory reduced model promoted to main: NO
-spatial weights created: NO (residual spatial check SKIPPED; no compatible existing weights)
+new main model created: NO (residual diagnostics only; OLS residuals reused; coefficients not reinterpreted)
+spatial weights built: YES (queen + KNN-6; LOCAL-ONLY .gal saved, NOT committed)
 manuscript rewritten: NO
 causal mediation claimed: NO
+main interpretation changed: NO
 
-complete-case audit created: YES
-collinearity robustness run: YES (HC3; baseline + A/B/C/D)
-alternative M scaling diagnostics run: YES (diagnostics only; denominator-endogeneity noted)
-timing robustness summarized: YES
-residual spatial check: SKIPPED
-main interpretation: WEAK_PARTIAL_MECHANISM_EVIDENCE
+complete-case sample confirmed: YES (218)
+residual Moran's I run: YES (all 4 models, queen + KNN-6; significant negative; flag=YES)
+spatial interpretation: SPATIAL_RESIDUALS_REQUIRE_SPATIAL_MODEL_ROBUSTNESS
 
 raw data committed: NO
 GIS files committed: NO
+local-only weights committed: NO (.gal not staged)
 local-only model panel committed: NO
 local-only controls table committed: NO
 final M dataset committed: NO
@@ -39,9 +37,9 @@ local run logs written: YES (outputs/claude_run_logs/; ignored via .git/info/exc
 latest_chatgpt_handoff.md written: YES (local-only; NOT committed)
 
 CSV validation passed: YES
-duplicate check passed: YES
-controlled-value check passed: YES
-mojibake scan passed: YES (committed reports/notes ASCII-only; audit CSV has legitimate UTF-8 only where needed, no mojibake markers)
+duplicate check passed: YES (spatial_sample_qc municipality_code unique; morans_i model_id+weights_type unique)
+controlled-value check passed: YES (spatial_autocorrelation_flag in YES/NO/BORDERLINE/NOT_RUN)
+mojibake scan passed: YES (committed reports/notes ASCII-only; sample QC has legitimate UTF-8 names, no mojibake markers)
 git diff --check passed: YES
 sensitive-file check passed: YES
-untracked files left untouched: YES (data_raw, data_raw_official, all local-only model_panel tables, run logs, prior-task leftovers all unstaged)
+untracked files left untouched: YES (data_raw, data_raw_official, local-only .gal weights, all local-only model_panel tables, run logs, prior-task leftovers all unstaged)
