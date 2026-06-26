@@ -1,48 +1,50 @@
 LATEST VERIFICATION SUMMARY
 ===========================
-task objective: DF_M01 MVP one-page visual brief preparation
+task objective: Preserve Gemini M-source audit for future composite-M development
 task status: COMPLETED
 date: 2026-06-27
 repo: E:\rsch\laborJapan
 branch: agentic-upgrade
 
-one-page brief created: YES (literature/04_synthesis/dfm01_mvp_one_page_visual_brief.md; sections 1-7)
-print-ready markdown created: YES (literature/04_synthesis/dfm01_mvp_one_page_visual_brief_print.md)
-key findings CSV created: YES (outputs/modeling/dfm01_mvp/dfm01_mvp_one_page_brief_key_findings.csv; 7 rows)
+preserved note created: YES (literature/04_synthesis/gemini_m_source_audit_preserved_note.md; sections A-G)
+preserved matrix created: YES (literature/04_synthesis/gemini_m_source_audit_preserved_matrix.csv; 8 source rows, 18 columns)
 
-source inputs (read-only, NOT modified):
-- literature/04_synthesis/dfm01_mvp_manuscript_results_section.md
-- literature/04_synthesis/dfm01_mvp_external_summary_300w.md
-- literature/04_synthesis/dfm01_mvp_next_step_recommendation.md
-- outputs/modeling/dfm01_mvp/dfm01_mvp_manuscript_table_baseline_results.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_manuscript_table_robustness_summary.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_manuscript_table_limitations.csv
+nature of artifact: external Gemini audit of candidate M-variable sources, preserved as a
+future-source-development record. Clearly marked as requiring local validation. Does NOT overwrite
+or change the completed DF_M01-only MVP result.
 
-consolidated baseline numbers carried into the brief (N=218, HC3):
-- Model 1 (M~X): z_log_chinese_stock_2023_12 = 0.427, p<0.001, adj R2 0.842 (X->M positive, robust)
-- Model 2 (Y~M): z_log_service_2024_12 = 0.013, p=0.168, adj R2 0.019 (M->Y null)
-- Model 3 (M~X*commercial): interaction 0.106, p=0.040 (partially robust)
-- Model 4 (Y~M*housing): interaction -0.008, p=0.267 (null)
-- Spatial robustness: SLX + spatial-error + spatial-lag; service p 0.18-0.33 (null survives)
+source candidates preserved: DF_M01 (current MVP M; partial_M_component_with_limitations),
+NEW_M05 (CLAIR consultation desks; validate_later), NEW_M06 (OTIT supervising orgs; validate_later),
+DF_M02 (MEXT language institutions; hold), NEW_M07 (MLIT residential support corps; hold),
+DF_M03 (MHLW employment placement; hold/search-only), DF_M04 (real estate brokers; exclude),
+NEW_M08 (administrative scriveners; hold/search-only).
 
-main interpretation: GROWTH_SIDE_NULL_SURVIVES_SPATIAL_ROBUSTNESS; institutional migrant-support
-services are strongly aligned with prior Chinese population (X->M, amplified in commercially dense
-municipalities) but do not robustly predict short-term subsequent Chinese registered-stock growth
-(M->Y null) after urban opportunity controls, alternative scaling, timing, and spatial dependence
+Gemini executive verdict: no source clearly stronger than DF_M01 for the main MVP M; DF_M01
+remains the strongest reproducible official bulk source; CLAIR and OTIT identified as potentially
+valuable complementary sources; composite-M recommendation treated as a FUTURE extension, not a
+blocker for the completed MVP.
 
-causal mediation claimed: NO
-novelty asserted: NO
-models rerun: NO (consolidation/synthesis only)
+current DF_M01 MVP interpretation: UNCHANGED. Prior Chinese stock is associated with DF_M01
+institutional support infrastructure; DF_M01 support infrastructure does not robustly predict
+short-term subsequent Chinese registered-stock growth; no causal mediation claim.
+
+current DF_M01 MVP interpretation changed: NO
+composite M built: NO
+models rerun: NO
+new M-source searching performed: NO (preserving an existing external audit only)
 raw data committed: NO
 GIS files committed: NO
-local-only weights committed: NO
 local-only model panel committed: NO
-final M dataset committed: NO
+local-only controls table committed: NO
+local-only weights committed: NO
+correspondence committed: NO
+downloaded files committed: NO
 
 CSV validation result: PASS
 git diff --check result: PASS
 sensitive-file check result: PASS
 
-recommended next task: review the one-page brief, then decide whether to validate M05/M06
-complementary M sources or prepare external outreach; defer full manuscript drafting; do not
-claim causal mediation
+recommended next task: when extending beyond the MVP, validate NEW_M05 (CLAIR) fields and
+municipality linkage and NEW_M06 (OTIT) fields/CHN marker/parsability; if both usable, draft a
+composite-M design note and compare DF_M01-only vs composite-M; keep composite M as extension or
+robustness only; do not claim causal mediation.
