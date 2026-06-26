@@ -1,29 +1,38 @@
 LATEST VERIFICATION SUMMARY
 ===========================
-task objective: DF_M01 MVP manuscript-facing results consolidation
+task objective: DF_M01 MVP one-page visual brief preparation
 task status: COMPLETED
-date: 2026-06-26
+date: 2026-06-27
 repo: E:\rsch\laborJapan
 branch: agentic-upgrade
 
-baseline results consolidated: YES (dfm01_mvp_manuscript_table_baseline_results.csv; Models 1-4)
-robustness results consolidated: YES (dfm01_mvp_manuscript_table_robustness_summary.csv; 6 families: complete_case_audit, collinearity_robustness, alternative_m_scaling, timing_robustness, residual_morans_i, spatial_robustness)
-spatial robustness included: YES (SLX + spatial-error + spatial-lag; growth-side null survives)
-manuscript-facing results section created: YES (literature/04_synthesis/dfm01_mvp_manuscript_results_section.md; sections 4.1-4.6)
-external 300-word summary created: YES (literature/04_synthesis/dfm01_mvp_external_summary_300w.md)
-next-step recommendation created: YES (literature/04_synthesis/dfm01_mvp_next_step_recommendation.md; recommends A. one-page visual brief)
-limitations table created: YES (dfm01_mvp_manuscript_table_limitations.csv; 7 limitations)
+one-page brief created: YES (literature/04_synthesis/dfm01_mvp_one_page_visual_brief.md; sections 1-7)
+print-ready markdown created: YES (literature/04_synthesis/dfm01_mvp_one_page_visual_brief_print.md)
+key findings CSV created: YES (outputs/modeling/dfm01_mvp/dfm01_mvp_one_page_brief_key_findings.csv; 7 rows)
 
-consolidated baseline numbers (N=218, HC3):
-- Model 1 (M~X): z_log_chinese_stock_2023_12 = 0.427, p<0.001, adj R2 0.842 (X->M positive)
+source inputs (read-only, NOT modified):
+- literature/04_synthesis/dfm01_mvp_manuscript_results_section.md
+- literature/04_synthesis/dfm01_mvp_external_summary_300w.md
+- literature/04_synthesis/dfm01_mvp_next_step_recommendation.md
+- outputs/modeling/dfm01_mvp/dfm01_mvp_manuscript_table_baseline_results.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_manuscript_table_robustness_summary.csv
+- outputs/modeling/dfm01_mvp/dfm01_mvp_manuscript_table_limitations.csv
+
+consolidated baseline numbers carried into the brief (N=218, HC3):
+- Model 1 (M~X): z_log_chinese_stock_2023_12 = 0.427, p<0.001, adj R2 0.842 (X->M positive, robust)
 - Model 2 (Y~M): z_log_service_2024_12 = 0.013, p=0.168, adj R2 0.019 (M->Y null)
 - Model 3 (M~X*commercial): interaction 0.106, p=0.040 (partially robust)
 - Model 4 (Y~M*housing): interaction -0.008, p=0.267 (null)
+- Spatial robustness: SLX + spatial-error + spatial-lag; service p 0.18-0.33 (null survives)
 
-main interpretation: GROWTH_SIDE_NULL_SURVIVES_SPATIAL_ROBUSTNESS; institutional migrant-support services are strongly aligned with prior Chinese population (X->M, amplified in commercially dense municipalities) but do not robustly predict short-term subsequent Chinese registered-stock growth (M->Y null) after urban opportunity controls, alternative scaling, timing, and spatial dependence
+main interpretation: GROWTH_SIDE_NULL_SURVIVES_SPATIAL_ROBUSTNESS; institutional migrant-support
+services are strongly aligned with prior Chinese population (X->M, amplified in commercially dense
+municipalities) but do not robustly predict short-term subsequent Chinese registered-stock growth
+(M->Y null) after urban opportunity controls, alternative scaling, timing, and spatial dependence
+
 causal mediation claimed: NO
 novelty asserted: NO
-new models run: NO (consolidation only)
+models rerun: NO (consolidation/synthesis only)
 raw data committed: NO
 GIS files committed: NO
 local-only weights committed: NO
@@ -34,4 +43,6 @@ CSV validation result: PASS
 git diff --check result: PASS
 sensitive-file check result: PASS
 
-recommended next task: prepare a one-page visual brief consolidating the DF_M01 MVP results; defer outreach and full manuscript drafting until reviewed; do not claim causal mediation
+recommended next task: review the one-page brief, then decide whether to validate M05/M06
+complementary M sources or prepare external outreach; defer full manuscript drafting; do not
+claim causal mediation

@@ -1,30 +1,30 @@
 LATEST CHANGED FILES
 ====================
-task: Consolidate DF M01 MVP manuscript results
-date: 2026-06-26
+task: Prepare DF M01 MVP one page visual brief
+date: 2026-06-27
 branch: agentic-upgrade
 status: COMPLETED
 
 Created:
-- outputs/modeling/dfm01_mvp/dfm01_mvp_manuscript_table_baseline_results.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_manuscript_table_robustness_summary.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_manuscript_table_limitations.csv
-- literature/04_synthesis/dfm01_mvp_manuscript_results_section.md
-- literature/04_synthesis/dfm01_mvp_external_summary_300w.md
-- literature/04_synthesis/dfm01_mvp_next_step_recommendation.md
+- literature/04_synthesis/dfm01_mvp_one_page_visual_brief.md
+- literature/04_synthesis/dfm01_mvp_one_page_visual_brief_print.md
+- outputs/modeling/dfm01_mvp/dfm01_mvp_one_page_brief_key_findings.csv
 
 Modified:
 - outputs/claude_reports/latest_verification_summary.txt
 - outputs/claude_reports/latest_changed_files.txt
 - outputs/claude_reports/latest_safety_check.txt
 
-Read-only inputs (consolidated, NOT modified): existing dfm01_mvp model/robustness/spatial result
-CSVs and notes under outputs/modeling/dfm01_mvp/ and literature/04_synthesis/.
+Read-only inputs (consolidated, NOT modified): existing dfm01_mvp manuscript results section,
+external 300-word summary, next-step recommendation, and the baseline / robustness / limitations
+tables under outputs/modeling/dfm01_mvp/ and literature/04_synthesis/.
 
 Local run logs / handoff (NOT committed; outputs/claude_run_logs/ ignored via .git/info/exclude):
 - outputs/claude_run_logs/latest_claude_window_output.txt
-- outputs/claude_run_logs/<timestamp>_dfm01_manuscript_results_consolidation.txt
+- outputs/claude_run_logs/<timestamp>_dfm01_one_page_visual_brief.txt
 - outputs/claude_run_logs/latest_chatgpt_handoff.md
 
 Not committed (by design): no new models run; no raw/GIS/local-only-weights/local-only-panel/
-final-M files staged. No causal-mediation claim; no full manuscript rewrite.
+local-only-controls/final-M files staged. No causal-mediation claim; no full manuscript draft.
+Untracked data_raw_official/, data_processed_official/, and prior-task leftover files left
+untouched (not staged).

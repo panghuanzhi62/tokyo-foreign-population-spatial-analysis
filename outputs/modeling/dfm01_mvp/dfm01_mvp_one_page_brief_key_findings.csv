@@ -1,0 +1,8 @@
+brief_section,item,evidence,interpretation,caution
+2_data_and_design,Analytical sample,"mainland populated complete-case Greater Tokyo, N=218 (33 peripheral/tiny excluded)",estimand = mainland populated Greater Tokyo with complete rail/housing controls,non-random exclusion; do not generalize to smallest peripheral units
+4_key_results,X->M (Model 1),"z_log_chinese_stock_2023_12 = 0.427, p<0.001, adj R2 0.842",support infrastructure is spatially aligned with prior Chinese population,"association only, not a causal effect"
+4_key_results,M->Y (Model 2),"z_log_service_2024_12 = 0.013, p=0.168, adj R2 0.019",no robust short-term service-to-growth association,"null across baseline, scaling, timing, and spatial models; short outcome window"
+4_key_results,X x commercial -> M (Model 3),"interaction 0.106, p=0.040",alignment stronger in commercially dense municipalities,partially robust; marginal under winsorization
+4_key_results,M x housing -> Y (Model 4),"interaction -0.008, p=0.267",growth-side relationship not conditioned by housing cost,robustly null
+4_key_results,Spatial robustness,"SLX + spatial-error + spatial-lag, queen and KNN-6; service p 0.18-0.33",growth-side null survives explicit spatial-dependence modelling,"spatial params negative (dispersion, not diffusion); spatial-lag resolves residual autocorrelation"
+5_main_interpretation,Consolidated finding,GROWTH_SIDE_NULL_SURVIVES_SPATIAL_ROBUSTNESS,services follow prior population (amplified by commercial density) but do not robustly drive short-term growth,temporally ordered associations only; no causal mediation

@@ -1,25 +1,22 @@
 LATEST SAFETY CHECK
 ===================
-task: DF_M01 MVP manuscript-facing results consolidation
-date: 2026-06-26
+task: DF_M01 MVP one-page visual brief preparation
+date: 2026-06-27
 branch: agentic-upgrade
 status: COMPLETED
 
-new models run: NO (consolidation of existing results only)
+models rerun: NO (synthesis of existing consolidated results only)
 new data downloaded: NO
 new M-source searching: NO
 composite M built: NO
 scholars contacted: NO
-full manuscript rewritten: NO
+full manuscript drafted: NO
 causal mediation claimed: NO
 main interpretation changed: NO
 
-baseline results consolidated: YES
-robustness results consolidated: YES (6 families)
-spatial robustness included: YES
-manuscript results section created: YES
-external 300-word summary created: YES
-next-step recommendation created: YES (A. one-page visual brief)
+one-page brief created: YES
+print-ready markdown created: YES
+key findings CSV created: YES
 main interpretation: GROWTH_SIDE_NULL_SURVIVES_SPATIAL_ROBUSTNESS
 
 raw data committed: NO
@@ -40,10 +37,14 @@ gap status: under verification
 local run logs written: YES (outputs/claude_run_logs/; ignored via .git/info/exclude; NOT committed)
 latest_chatgpt_handoff.md written: YES (local-only; NOT committed)
 
-CSV validation passed: YES
-duplicate check passed: YES (baseline model_id unique; robustness_family unique; limitation_id unique)
+CSV validation passed: YES (csv.DictReader; 5 columns; 7 data rows)
+duplicate check passed: YES
 controlled-value check passed: YES
-mojibake scan passed: YES (committed tables/notes/reports ASCII-only)
+mojibake scan passed: YES (committed brief/print/CSV/reports ASCII-only)
 git diff --check passed: YES
 sensitive-file check passed: YES
-untracked files left untouched: YES (data_raw, data_raw_official, local-only model_panel tables and weights, run logs, prior-task leftovers all unstaged)
+untracked files left untouched: YES (data_raw_official, data_processed_official, local-only model
+panel/weights, run logs, prior-task leftovers all unstaged)
+
+recommended next task: review the one-page brief, then decide M05/M06 validation vs external
+outreach; defer full manuscript drafting; no causal-mediation claim
