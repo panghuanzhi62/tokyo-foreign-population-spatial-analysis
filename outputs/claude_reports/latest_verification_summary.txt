@@ -1,46 +1,37 @@
 LATEST VERIFICATION SUMMARY
 ===========================
-task objective: DF_M01 MVP X-M-Y model implementation (Tokyo-China; DF_M01-only main M)
-task status: PARTIAL (missing-input gate; models not fitted)
+task objective: DF_M01 MVP existing controls inventory (local Tokyo data_raw mapping)
+task status: COMPLETED (inventory/mapping only; no controls built; no models rerun)
 date: 2026-06-26
 repo: E:\rsch\laborJapan
 branch: agentic-upgrade
 
-design: X (Chinese registered stock 2023-12) -> M (DF_M01 registered support-org count; primary registered_by_2024_12, robustness registered_by_2024_06) -> Y (Chinese stock growth; primary 2024-12 to 2025-06, robustness 2024-06 to 2025-06)
-M definition (cautious): institutional migrant-support service infrastructure (registered institutional support organizations); NOT a complete migrant-service ecosystem
+local controls searched: YES (data_raw tokyo_features_v1-v5, mgwr_ready, pop tables, numeric xlsx, isa_estat/landPrice/N02/N03 folders noted)
 
-model panel created local-only: YES (data_processed_official/model_panel/tokyo_china_dfm01_mvp_model_panel_local_only.csv; 251 rows)
-model panel committed: NO
-primary models run: NO (missing-input gate)
-robustness models run: NO (missing-input gate)
+rail_accessibility candidate found: YES (partial coverage)
+housing_cost candidate found: YES (partial coverage)
+commercial_density candidate found: NO
+population_density candidate found: YES (partial coverage)
+all controls ready to join: NO (commercial_density missing; found controls cover only 218/251)
 
-DF_M01 used as M: YES
-DF_M02 used in main M: NO
-DF_M03 used in main M: NO
-DF_M04 used in main M: NO
+best rail candidate: tokyo_features_v5_extended_with_density.csv field log_dist_to_station_m (N02-22 stations ~2022; B_baseline_structural)
+best housing candidate: tokyo_features_v5 field log_median_land_price_jpy (L01-24 land price 2024; A_direct_2024)
+best commercial candidate: NONE (no establishment/Economic-Census data locally; construct_new_source)
+best population-density candidate: tokyo_features_v5 field population_density (2020 census pop + N03 area; B_baseline_structural); supplementary 000959256.xlsx = 2024-01-01 total population for all 251 (density needs area, deferred)
 
-controls included (available, 251/251): non_chinese_foreign_stock (2020 census), prefecture_FE
-controls MISSING (no processed municipality-level field for 251 frame): rail_accessibility, housing_cost (land price), commercial_density (no source anywhere), population_density
-reason not fitted: rail/land-price/population-density exist only as raw GIS shapefiles needing geocoding (forbidden this task); commercial_density has no source; proxies must not be invented; Models 3 and 4 cannot be specified without commercial_density and housing_cost
+coverage note: feature tables key on N03_007 (JIS5) and join directly to 251 frame, but v5 family = 218/251, v1/pop family = 227/251; 33 missing are mostly Chiba/Tokyo towns and villages
+decision: PARTIAL_CONTROLS_FOUND
 
-outputs created (committable):
-- outputs/modeling/dfm01_mvp/model_readiness_inventory.csv
-- outputs/modeling/dfm01_mvp/dfm01_mvp_model_run_note.md (missing-input determination)
-- literature/04_synthesis/dfm01_mvp_model_interpretation_note.md
-- scripts/07_modeling/build_dfm01_mvp_model_panel.py
-- scripts/07_modeling/run_dfm01_mvp_models.py
-NOT created (no models fitted): coefficients_primary/robustness, fit_summary, missingness_summary, descriptive_statistics, correlation_matrix, vif_summary, influence_cases
-
+models rerun: NO
 modeling run: NO
 causal mediation claimed: NO
 novelty asserted: NO
 raw data committed: NO
-address-level records committed: NO
-geocoded data committed: NO
-final M dataset committed: NO
+GIS files committed: NO
+local-only model panel committed: NO
 
-CSV validation result: PASS (csv.DictReader; consistent columns)
+CSV validation result: PASS (csv.DictReader; consistent columns; candidate_id unique)
 git diff --check result: PASS (no whitespace errors)
-sensitive-file check result: PASS (no raw/address/geocoded/final-M/data_processed_official/data_raw_official/model-panel staged)
+sensitive-file check result: PASS (only inventory CSV, mapping note, three reports staged; no raw/GIS/xlsx/model-panel/data_raw staged)
 
-recommended next task: in a separate approved step, build a local-only processed municipality-level controls table for the 251 frame (population_density, housing_cost, rail_accessibility from existing GIS layers; commercial_density via economic-census acquisition), then re-run build + run scripts to fit the 4 primary and 4 robustness models
+recommended next task: in a separate approved step, join the 3 found controls from tokyo_features_v5 to the DF_M01 MVP panel on N03_007, then handle the 33-municipality coverage gap and the still-missing commercial_density (Economic Census or stated-limitation reduced model)
