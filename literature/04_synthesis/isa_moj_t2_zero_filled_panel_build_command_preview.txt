@@ -1,0 +1,3 @@
+DO NOT RUN UNTIL USER EXPLICITLY APPROVES.
+
+python scripts/11_official_data/isa_moj_t2_chinese_stock_panel_build.py --project-root . --write-local-panel --force --write-qc-summary

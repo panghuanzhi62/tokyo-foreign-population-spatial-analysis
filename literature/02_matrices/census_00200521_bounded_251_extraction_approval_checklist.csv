@@ -1,0 +1,22 @@
+approval_item_id,approval_category,approval_item,required_before_extraction,approved_by_user,current_status,blocking_if_not_approved,notes
+APR_001,parameter,exact statsDataId = 0003445244,yes,PENDING,confirmed_ready,yes,2020 Census table 44-1 (foreigners by nationality x municipality)
+APR_002,parameter,exact cdTime = 2020000000,yes,PENDING,confirmed_ready,yes,2020 (Reiwa 2)
+APR_003,parameter,exact cdCat01 = 0 (sex total),yes,PENDING,confirmed_ready,yes,
+APR_004,parameter,exact cat02 total foreign = 1; cat02 China = 102,yes,PENDING,confirmed_ready,yes,only these two categories
+APR_005,scope,exactly 251 confirmed municipality-equivalent cdArea codes,yes,PENDING,confirmed_ready,yes,"from census_00200521_municipality_area_code_confirmation.csv, included_in_target_scope=yes"
+APR_006,scope,"no aggregate rows (4 prefecture totals, 5 designated-city parents, 1 special-wards aggregate excluded)",yes,PENDING,confirmed_ready,yes,
+APR_007,scope,no all-Japan query; no all-category query; no unrelated variables,yes,PENDING,confirmed_ready,yes,
+APR_008,storage,raw output local-only: data_raw_official/census_00200521_2020_municipality/ (gitignored),yes,PENDING,confirmed_ready,yes,
+APR_009,storage,raw API output NOT committed to the public repo,yes,PENDING,confirmed_ready,yes,
+APR_010,qc,QC expected rows = 502 (251 areas x 2 categories),yes,PENDING,confirmed_ready,yes,
+APR_011,qc,QC area count returned = 251,yes,PENDING,confirmed_ready,yes,
+APR_012,qc,QC category count returned = 2,yes,PENDING,confirmed_ready,yes,
+APR_013,qc,QC Chinese residents <= total foreign for every area,yes,PENDING,confirmed_ready,yes,
+APR_014,qc,QC non_chinese_foreign >= 0 for every area,yes,PENDING,confirmed_ready,yes,
+APR_015,qc,no duplicate area-category rows; municipality codes preserved as strings,yes,PENDING,confirmed_ready,yes,
+APR_016,qc,"prefecture counts match confirmed list (Tokyo 62, Saitama 72, Chiba 59, Kanagawa 58); 9 islands flagged",yes,PENDING,confirmed_ready,yes,
+APR_017,security,appId not exposed (read from ESTAT_APP_ID env only; never printed/written/committed),yes,PENDING,confirmed_ready,yes,
+APR_018,provenance,provenance log completed (official_census_population_extraction_provenance_template fields; raw_output_hash recorded),yes,PENDING,confirmed_ready,yes,
+APR_019,commit_policy,derived/QC summary only may be committed after QC; no raw value table unless explicitly approved and small,yes,PENDING,confirmed_ready,yes,
+APR_020,scope,no full all-Japan extraction (explicitly refused),yes,PENDING,confirmed_ready,yes,
+APR_021,approval,user explicit approval required before any 251-area value extraction,yes,PENDING,awaiting_user,yes,

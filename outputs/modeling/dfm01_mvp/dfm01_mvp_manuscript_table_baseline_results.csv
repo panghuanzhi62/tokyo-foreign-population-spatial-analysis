@@ -1,0 +1,5 @@
+model_id,dependent_variable,focal_predictor,focal_coefficient,focal_p_value,interaction_term,interaction_coefficient,interaction_p_value,sample_n,adjusted_r2_or_model_fit,interpretation
+Model 1,"z_log_service_2024_12 (DF_M01 support orgs, by 2024-12)",z_log_chinese_stock_2023_12,0.427,<0.001,,,,218,adj R2 0.842,prior Chinese stock is positively associated with support-organization infrastructure (X-M aligned)
+Model 2,chinese_growth_log_2024_12_2025_06,z_log_service_2024_12,0.013,0.168,,,,218,adj R2 0.019,support-org infrastructure is not associated with subsequent short-term Chinese registered-stock growth (M-Y null)
+Model 3,z_log_service_2024_12 (DF_M01 support orgs),z_log_chinese_stock_2023_12,0.349,0.002,z_log_chinese_stock_2023_12 x z_commercial_density,0.106,0.040,218,adj R2 0.845,stock-to-service alignment is amplified in commercially dense municipalities (partially robust)
+Model 4,chinese_growth_log_2024_12_2025_06,z_log_service_2024_12,0.014,0.139,z_log_service_2024_12 x z_housing_cost,-0.008,0.267,218,adj R2 0.023,no robust moderation of a service-to-growth relationship by housing cost (null)

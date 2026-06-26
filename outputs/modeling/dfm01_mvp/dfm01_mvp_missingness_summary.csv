@@ -1,0 +1,16 @@
+variable,n_present,n_missing,coverage
+z_log_service_2024_12,251,0,251/251
+z_log_service_2024_06,251,0,251/251
+z_log_chinese_stock_2023_12,251,0,251/251
+z_rail_accessibility,227,24,227/251
+z_housing_cost,218,33,218/251
+z_commercial_density,251,0,251/251
+z_population_density,251,0,251/251
+z_non_chinese_foreign_stock,251,0,251/251
+chinese_growth_log_2024_12_2025_06,251,0,251/251
+chinese_growth_log_2024_06_2025_06,251,0,251/251
+COMPLETE_CASE_primary,218,33,218/251
+COMPLETE_CASE_robustness,218,33,218/251
+excluded_primary_prefecture_11,2,,
+excluded_primary_prefecture_12,20,,
+excluded_primary_prefecture_13,11,,

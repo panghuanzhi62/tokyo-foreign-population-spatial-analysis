@@ -1,0 +1,6 @@
+summary_id,prefecture_name,prefecture_code,municipality_rows_confirmed,prefecture_total_rows_excluded,island_municipalities_flagged,join_key_status,recommended_next_action,notes
+SUM_001,Tokyo,13,62,1,9,expected_direct_5digit_join,create_bounded_extraction_script,"23 special wards + 26 cities + 5 towns + 8 villages; special-wards aggregate (13100) excluded; 9 island municipalities flagged (Izu/Ogasawara), exclusion deferred"
+SUM_002,Saitama,11,72,1,0,expected_direct_5digit_join,create_bounded_extraction_script,39 cities + Saitama-shi 10 wards + 22 towns + 1 village; designated-city parent (11100) excluded
+SUM_003,Chiba,12,59,1,0,expected_direct_5digit_join,create_bounded_extraction_script,36 cities + Chiba-shi 6 wards + 16 towns + 1 village; designated-city parent (12100) excluded
+SUM_004,Kanagawa,14,58,1,0,expected_direct_5digit_join,create_bounded_extraction_script,"16 cities + 28 designated-city wards (Yokohama 18, Kawasaki 7, Sagamihara 3) + 13 towns + 1 village; 3 designated-city parents (14100,14130,14150) excluded"
+SUM_005,ALL_FOUR,13;11;12;14,251,4,9,expected_direct_5digit_join,create_bounded_extraction_script,"total included municipality-equivalent (ward-level) units = 251; aggregates excluded: 4 prefecture totals + 5 designated-city parents + 1 Tokyo special-wards aggregate = 10; codes are 5-digit JIS, direct N03 join"

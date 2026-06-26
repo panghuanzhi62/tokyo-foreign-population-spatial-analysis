@@ -1,0 +1,15 @@
+check_id,check_group,check_item,required_before_join,expected_status,blocking_if_failed,recommended_next_action,notes
+CK_001,population,local processed population table present with 251 rows,YES,DONE,YES,create_join_validation_script,"verified this task: 251 rows, schema OK"
+CK_002,population,"municipality_code string, length 5, no duplicates",YES,DONE,YES,create_join_validation_script,verified: str len 5; uniqueness from extraction QC
+CK_003,population,total_foreign>=chinese; non_chinese>=0; no aggregates,YES,DONE,YES,create_join_validation_script,extraction QC PASS
+CK_004,reference,"area-code confirmation: 251 included, 10 aggregates excluded, 9 islands",YES,DONE,YES,create_join_validation_script,committed reference file
+CK_005,boundary,NLNI N03 source confirmed (MLIT),YES,PARTIAL,YES,confirm_n03_boundary_source,local N03-20250101 present
+CK_006,boundary,N03 vintage reconciled with Census 2020 (code stability 2020->2025),YES,PENDING,YES,confirm_n03_boundary_source,local file is 2025-01-01; reconcile or get 2020/2021 vintage
+CK_007,boundary,N03 code field identified (expected N03_007) as string,YES,PARTIAL,YES,inspect_n03_schema,confirm in schema-only step
+CK_008,boundary,N03 CRS recorded; encoding recorded; geometry validity checked,YES,PARTIAL,YES,inspect_n03_schema,CRS EPSG:6668 + UTF-8 confirmed; geometry validity later
+CK_009,join,population->boundary: 0 unmatched (or explained),YES,PENDING,YES,create_join_validation_script,
+CK_010,join,boundary->population: 0 unmatched among 251 (or explained),YES,PENDING,YES,create_join_validation_script,
+CK_011,ward_city,ward-level features align; no aggregate joined,YES,PENDING,YES,handle_ward_city_aggregation,251 ward-level units
+CK_012,island,9 islands retained/flagged; not dropped,YES,PENDING,YES,handle_island_policy,
+CK_013,output,GIS output local-only; only summaries committed,YES,PENDING,YES,design_only_hold,
+CK_014,safety,no raw/value/GIS/boundary committed; no appId,YES,PENDING,YES,design_only_hold,

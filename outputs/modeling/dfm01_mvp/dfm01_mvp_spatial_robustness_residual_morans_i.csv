@@ -1,0 +1,15 @@
+model_id,model_family,weights_type,sample_n,residual_morans_i,expected_i,permutation_p_value,spatial_residual_status,notes
+model2_OLS,OLS_baseline,none,218,-0.10189,-0.00461,0.015,STILL_SIGNIFICANT,999 perms seed=12345
+model4_OLS,OLS_baseline,none,218,-0.10364,-0.00461,0.015,STILL_SIGNIFICANT,999 perms seed=12345
+model2_SLX_queen,SLX,queen,218,-0.10442,-0.00461,0.008,STILL_SIGNIFICANT,999 perms seed=12345
+model4_SLX_queen,SLX,queen,218,-0.10525,-0.00461,0.008,STILL_SIGNIFICANT,999 perms seed=12345
+model2_SLX_knn6,SLX,knn6,218,-0.08667,-0.00461,0.012,STILL_SIGNIFICANT,999 perms seed=12345
+model4_SLX_knn6,SLX,knn6,218,-0.08923,-0.00461,0.009,STILL_SIGNIFICANT,999 perms seed=12345
+model2_SEM_queen,spatial_error,queen,217,-0.10722,-0.00463,0.018,STILL_SIGNIFICANT,999 perms seed=12345
+model2_SLAG_queen,spatial_lag,queen,217,-0.00021,-0.00463,0.888,RESOLVED,999 perms seed=12345
+model4_SEM_queen,spatial_error,queen,217,-0.10811,-0.00463,0.016,STILL_SIGNIFICANT,999 perms seed=12345
+model4_SLAG_queen,spatial_lag,queen,217,-0.00034,-0.00463,0.9,RESOLVED,999 perms seed=12345
+model2_SEM_knn6,spatial_error,knn6,218,-0.0862,-0.00461,0.013,STILL_SIGNIFICANT,999 perms seed=12345
+model2_SLAG_knn6,spatial_lag,knn6,218,-0.00045,-0.00461,0.877,RESOLVED,999 perms seed=12345
+model4_SEM_knn6,spatial_error,knn6,218,-0.0844,-0.00461,0.013,STILL_SIGNIFICANT,999 perms seed=12345
+model4_SLAG_knn6,spatial_lag,knn6,218,-0.00064,-0.00461,0.888,RESOLVED,999 perms seed=12345

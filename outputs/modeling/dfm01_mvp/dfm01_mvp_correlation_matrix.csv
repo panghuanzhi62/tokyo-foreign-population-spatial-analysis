@@ -1,0 +1,9 @@
+,z_log_service_2024_12,z_log_chinese_stock_2023_12,z_rail_accessibility,z_housing_cost,z_commercial_density,z_population_density,z_non_chinese_foreign_stock,chinese_growth_log_2024_12_2025_06
+z_log_service_2024_12,1.0,0.8292,-0.4366,0.6466,0.7006,0.6056,0.8228,0.0239
+z_log_chinese_stock_2023_12,0.8292,1.0,-0.4852,0.75,0.8044,0.8124,0.9249,-0.0181
+z_rail_accessibility,-0.4366,-0.4852,1.0,-0.5219,-0.6147,-0.5863,-0.4257,0.0228
+z_housing_cost,0.6466,0.75,-0.5219,1.0,0.9326,0.8793,0.6727,0.0831
+z_commercial_density,0.7006,0.8044,-0.6147,0.9326,1.0,0.9539,0.7456,0.0795
+z_population_density,0.6056,0.8124,-0.5863,0.8793,0.9539,1.0,0.7575,0.0815
+z_non_chinese_foreign_stock,0.8228,0.9249,-0.4257,0.6727,0.7456,0.7575,1.0,0.021
+chinese_growth_log_2024_12_2025_06,0.0239,-0.0181,0.0228,0.0831,0.0795,0.0815,0.021,1.0

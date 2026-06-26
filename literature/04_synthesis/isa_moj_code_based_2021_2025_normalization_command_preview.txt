@@ -1,0 +1,21 @@
+DO NOT RUN UNTIL USER EXPLICITLY APPROVES.
+
+ISA/MOJ code-based 2021-12 to 2025-06 normalization - FUTURE command preview
+(this is a preview only; it is NOT executed in the approval-package task)
+
+Scaffold: scripts/11_official_data/isa_moj_chinese_stock_panel_normalize.py
+
+Future command (matches scaffold --help flags):
+
+  python scripts/11_official_data/isa_moj_chinese_stock_panel_normalize.py --project-root . --code-based-only --write-local-panel --force --write-qc-summary
+
+Guards that remain active:
+- --write-local-panel refuses without --force.
+- outdir must be a local-only path (data_processed_official/isa_moj_panel); non-local refused.
+- --include-name-only-wide07 is NOT used (wide07 deferred; refuses without --name-crosswalk).
+
+Local-only output (NOT committed):
+  data_processed_official/isa_moj_panel/isa_moj_chinese_stock_code_based_2021_12_2025_06.csv
+
+Commit-safe after an approved run: QC summary CSV, run note, provenance record, fixed reports.
+No appId / API key is involved (no API calls). Do not run modeling.

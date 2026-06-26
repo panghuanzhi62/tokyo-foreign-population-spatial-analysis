@@ -1,0 +1,33 @@
+﻿name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - agentic-upgrade
+  pull_request:
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Sync dependencies
+        run: uv sync --locked
+
+      - name: Ruff check
+        run: uv run ruff check src/tokyo_foreigners tests
+
+      - name: Pytest
+        run: uv run pytest -q

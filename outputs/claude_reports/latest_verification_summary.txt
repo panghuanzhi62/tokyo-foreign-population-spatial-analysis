@@ -1,0 +1,88 @@
+LATEST VERIFICATION SUMMARY
+===========================
+task objective: MOE Japan literature and official-source supplement package
+task status: COMPLETED
+date: 2026-06-27
+repo: E:\rsch\laborJapan
+branch: agentic-upgrade
+
+MoE project (Japanese materials section support):
+"Zhongguoji renkou fuRi liudong de juzhu kongjian fenhua jizhi yu kongjian fengxian
+shibie yanjiu -- yi Dongjing dushiquan wei li" (residence-space differentiation
+mechanism and destination spatial-risk identification for Chinese-national migration
+to Japan; Tokyo metropolitan area).
+
+local notes inventoried: YES (10 notes under literature/03_notes/ -> inventory CSV)
+literature supplement matrix created: YES (22 rows, categories A-E)
+official source matrix created: YES (15 rows)
+application-ready insertion text created: YES (sections A/B/C, Chinese)
+gap verification note created: YES (sections A-G)
+
+files created (literature/04_synthesis/):
+- moe_japan_literature_notes_inventory.csv (11 cols, 10 rows)
+- moe_japan_literature_supplement_matrix.csv (18 cols, 22 rows)
+- moe_japan_official_source_supplement_matrix.csv (15 cols, 15 rows)
+- moe_japan_literature_application_insertions.md
+- moe_japan_literature_gap_verification_note.md
+
+source inputs (read-only, NOT modified):
+- literature/03_notes/ (10 protocol/query notes)
+- literature/04_synthesis/round02_japanese_source_synthesis.md
+- literature/02_matrices/literature_matrix.csv
+- literature/02_matrices/official_source_registry.csv
+- literature/02_matrices/service_infrastructure_df_m01..m04_source_profile.csv
+- literature/04_synthesis/existing_local_data_reuse_audit.md
+- literature/04_synthesis/dfm01_mvp_commercial_density_build_note.md
+
+strongest Japanese literature additions (verified, DOI):
+- Zhang 2020 (10.4157/grj.93.1) Chinese white-collar housing choice, Tokyo metro
+- Adu-Gyamfi and Shaw 2021 (10.3390/ijerph18084061) foreign-resident disaster
+  vulnerability, Tokyo (spatial-risk comparator + method)
+- Sugasawa and Harano 2023 (10.1016/j.jjie.2023.101273) rental discrimination, Tokyo
+  23 wards
+- Wang and Fujii 2021 (10.24528/lifology.40.0_54) Chinese residents in Greater Tokyo
+  public housing (supporting; full text not read)
+- Lim et al. 2024 (10.1007/s10901-024-10160-3) foreign-resident residential satisfaction,
+  Toshima, Tokyo
+
+strongest official source additions (already collected locally):
+- ISA Statistics on foreign residents (Chinese stock/growth panel)
+- e-Stat Census 2020 (00200521) and Economic Census 2021 (00200553; commercial density)
+- NLNI N03 boundaries, N02 railway, L01 land price
+- DF_M01 registered-support-organization registry (migrant-support infrastructure)
+
+honesty flags:
+- Sun 2026 (Cities) and named-but-undocumented sources (Yamashita Kiyomi, Zhang Huijing,
+  Chen Tianxi, Nie Dening, Ren Na and Chen Yande, Zhu Anxin) marked needs_verification;
+  not cited as evidence; no DOIs fabricated.
+- OTIT supervising-organization (kanri dantai) list NOT documented in repo;
+  current_local_status=needs_verification; can_support_application_claim=UNKNOWN.
+- Hazard layers identified_not_collected; license/usability to confirm before use.
+- gap status: under verification; no A_direct_overlap; novelty NOT asserted.
+
+no-overclaim wording enforced: YES ("relatively limited" / "room for extension" /
+"requires further systematic testing"; no "fills a blank" / "first study").
+applicant identity in B-section materials: NONE.
+
+new Tokyo models run: NO
+new M-source searching: NO (beyond what supports the Japanese materials section)
+outreach emails drafted: NO
+application rewritten: NO (supplement package only)
+
+raw data committed: NO
+GIS files committed: NO
+local-only model panel committed: NO
+local-only controls table committed: NO
+local-only spatial weights committed: NO
+final M dataset committed: NO
+correspondence/email committed: NO
+PDF/DOCX/ref committed: NO
+
+CSV validation result: PASS (csv.DictReader; controlled-value checks PASS)
+git diff --check result: PASS
+sensitive-file check result: PASS
+
+recommended next task: complete bibliographic verification of the named-but-undocumented
+Japanese/Chinese sources and confirm Sun 2026's full citation, then deep-read Wang and
+Fujii 2021 and Zhang 2020 to promote them to core citations; defer any final gap claim
+and introduction drafting until verification is complete.

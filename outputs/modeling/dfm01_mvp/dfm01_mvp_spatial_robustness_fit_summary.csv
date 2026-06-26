@@ -1,0 +1,15 @@
+model_id,model_family,weights_type,sample_n,adj_or_pseudo_r2,logLik,aic
+model2_OLS,OLS_baseline,none,218,0.01948,,
+model4_OLS,OLS_baseline,none,218,0.02337,,
+model2_SLX_queen,SLX,queen,218,0.03119,,
+model4_SLX_queen,SLX,queen,218,0.02916,,
+model2_SLX_knn6,SLX,knn6,218,0.0256,,
+model4_SLX_knn6,SLX,knn6,218,0.02694,,
+model2_SEM_queen,spatial_error,queen,217,0.06271,,
+model2_SLAG_queen,spatial_lag,queen,217,0.13262,285.37,-546.741
+model4_SEM_queen,spatial_error,queen,217,0.07,,
+model4_SLAG_queen,spatial_lag,queen,217,0.14015,286.297,-546.594
+model2_SEM_knn6,spatial_error,knn6,218,0.06264,,
+model2_SLAG_knn6,spatial_lag,knn6,218,0.11688,285.626,-547.252
+model4_SEM_knn6,spatial_error,knn6,218,0.07108,,
+model4_SLAG_knn6,spatial_lag,knn6,218,0.12283,286.481,-546.961

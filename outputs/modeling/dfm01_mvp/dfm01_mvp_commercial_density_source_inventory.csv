@@ -1,0 +1,6 @@
+candidate_source,content,provides_establishment_counts,notes
+e-Stat 00200553 table 0004005655,"2021 Economic Census for Business Activity, establishment tabulation, jigyosho-su by municipality",YES,"USED: tab=102-2021 establishments, cat01=AR all-industries-excl-public-service, cat02/03 totals, time 2021; acquired via e-Stat API (ESTAT_APP_ID env)"
+data_raw/000959256.xlsx,Basic Resident Register total population 2024,NO,"population, not establishments"
+data_raw/000959264.xlsx,Basic Resident Register foreign residents 2024,NO,"foreign population, not establishments"
+data_raw/isa_estat/,ISA/MOJ foreign-resident T2 statistics,NO,"X/Y source, not establishments"
+tblT001141H5339.txt / MESH05339.shp,2020 Census population mesh (T001141),NO,"population mesh, not establishments"

@@ -1,0 +1,14 @@
+input_role,input_name,status,n_present,n_expected,source_path,note
+municipality_frame,251_greater_tokyo_frame,AVAILABLE,251,251,data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_2023_12_2025_06.csv,"251 municipalities, prefectures 11/12/13/14"
+X,chinese_stock_2023_12,AVAILABLE,251,251,data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_2023_12_2025_06.csv,ISA-MOJ T2 panel
+Y,chinese_stock_2024_06,AVAILABLE,251,251,data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_2023_12_2025_06.csv,ISA-MOJ T2 panel
+Y,chinese_stock_2024_12,AVAILABLE,251,251,data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_2023_12_2025_06.csv,ISA-MOJ T2 panel
+Y,chinese_stock_2025_06,AVAILABLE,251,251,data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_2023_12_2025_06.csv,ISA-MOJ T2 panel
+M_primary,df_m01_support_count_2024_12,AVAILABLE,251,251,data_processed_official/service_infrastructure/DF_M01_registered_support_organizations/df_m01_counts_by_municipality_2024_12_31.csv,registered_by_2024_12 snapshot; not active stock
+M_robustness,df_m01_support_count_2024_06,AVAILABLE,251,251,data_processed_official/service_infrastructure/DF_M01_registered_support_organizations/df_m01_counts_by_municipality_2024_06_30.csv,registered_by_2024_06 snapshot
+control,non_chinese_foreign_stock,AVAILABLE,251,251,data_processed_official/population/census_00200521_2020_municipality_population.csv,2020 census foreign residents (non-Chinese); vintage caveat
+control,prefecture_fe,AVAILABLE,251,251,derived from municipality_code prefix,categorical fixed effects 11/12/13/14
+control,rail_accessibility,MISSING,0,251,raw only: data_raw/N02-22_GML/.../N02-22_Station.shp,no processed municipality-level field for 251 frame; raw station shapefile needs GIS/geocoding (forbidden this task)
+control,housing_cost,MISSING,0,251,"raw only: data_raw/landPrice/L01-24_{11,12,13,14}_GML/*.shp",official land-price posting points for all 4 prefectures; needs GIS aggregation to municipality (forbidden this task); no processed 251-frame field
+control,commercial_density,MISSING,0,251,none in repo,no source file anywhere; would require new economic-census acquisition
+control,population_density,MISSING,0,251,raw only: total pop + N03 area shapefile,processed population file holds only foreign counts (no total population); area only in N03 boundary shapefile; needs GIS (forbidden this task)

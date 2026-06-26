@@ -1,0 +1,16 @@
+variable,included_n,excluded_n,included_mean,excluded_mean,included_median,excluded_median
+chinese_stock_2023_12,218,33,2178.6927,54.5758,808.0,10.0
+chinese_growth_log_2024_12_2025_06,218,33,0.0307,0.05,0.0302,0.0
+df_m01_support_count_2024_12,218,33,13.2294,1.1515,5.0,0.0
+population_2024,218,33,166594.1009,14905.2424,131321.0,6968.0
+area_km2,218,33,51.2225,72.6001,30.8158,46.2536
+commercial_density,218,33,248.6739,10.2639,127.0995,9.0403
+population_density,218,33,5976.9864,215.8278,4773.5902,156.6942
+non_chinese_foreign_stock,218,33,2797.133,198.5758,1766.0,71.0
+prefecture_11_count,70,2,,,,
+prefecture_12_count,39,20,,,,
+prefecture_13_count,51,11,,,,
+prefecture_14_count,58,0,,,,
+excluded_missing_housing_only,,9,,,,
+excluded_missing_rail_only,,0,,,,
+excluded_missing_both_rail_housing,,24,,,,

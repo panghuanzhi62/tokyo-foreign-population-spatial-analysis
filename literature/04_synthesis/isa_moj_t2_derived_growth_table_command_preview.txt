@@ -1,0 +1,21 @@
+DO NOT RUN UNTIL USER EXPLICITLY APPROVES.
+
+ISA/MOJ t2 derived-growth table - command preview (design stage).
+
+STATUS: No derived-growth script exists yet.
+  A search of scripts/ for a *derived_growth* / *growth* builder returned none.
+  Therefore no runnable command can be previewed at this stage.
+
+NEXT (future, requires explicit approval):
+  1. Create a derived-growth table SCRIPT SCAFFOLD that reads the local-only panel
+     (data_processed_official/isa_moj_panel/isa_moj_chinese_stock_t2_2023_12_2025_06.csv)
+     and computes the designed variables:
+       - chinese_registered_change_2023_12_to_2025_06        (primary descriptive)
+       - chinese_registered_log1p_change_2023_12_to_2025_06  (primary model candidate)
+       - chinese_registered_zero_base_2023_12                (mandatory flag)
+     writing ONLY to a local-only outdir under data_processed_official/isa_moj_panel.
+  2. Then prepare a "local-only derived-growth table approval package".
+  3. Only after explicit user approval, run the future build with --force.
+
+No script is run in this design task. No appId / API key is involved (no API calls).
+The full panel and any municipality-level derived values remain LOCAL-ONLY and are not committed.

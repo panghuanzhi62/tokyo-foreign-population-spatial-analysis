@@ -1,0 +1,2 @@
+check,status,reason,models_intended
+residual_morans_I,SKIPPED,no compatible existing 251/218 spatial-weights file (.gal/.gwt/.npz/.pkl) found; src/tokyo_foreigners/spatial_diagnostics.py + notebook exist but target the old Tokyo-only N03 frame; creating new weights is out of scope this task,"primary M2, primary M4, best reduced-collinearity M2/M4"

@@ -1,0 +1,6 @@
+control,status,coverage_count,source,temporal_reference,year_class,ready,recommended_action,notes
+area_km2,CONSTRUCTED,251/251,N03-20250101 boundary (geodesic WGS84),N03 2025-01-01 boundaries,B_baseline_structural,YES,none,dissolved by N03_007; validated vs known areas (Oshima/Choshi/Saitama-Nishi)
+population_density_2024,CONSTRUCTED,251/251,BRR 2024-01-01 total pop (000959256.xlsx) / area_km2,2024-01-01 population; 2025 boundary area,A_direct_2024,YES,prefer_over_v5_2020_density,full 251 coverage; stronger 2024 vintage than v5 2020 density
+rail_accessibility,PARTIAL_REUSED,227/251,v5 log_dist_to_station_m + pop_with_station backfill,N02-22 stations ~2022,B_baseline_structural,PARTIAL,fill_remaining_24_or_complete_case,227/251; 24 still missing
+housing_cost,PARTIAL_REUSED,218/251,v5 log_median_land_price_jpy,L01-24 land price 2024,A_direct_2024,PARTIAL,fill_remaining_33_or_complete_case,218/251; 33 still missing
+commercial_density,MISSING,0/251,none locally,none,D_unusable,NO,acquire_from_estat_economic_census,no establishment-count source in repo; no substitution permitted

@@ -1,0 +1,15 @@
+check_id,item,value_or_parameter,result,notes
+SMT_001,statistics_code,00200521,confirmed,Population Census / Kokusei Chosa
+SMT_002,provider_tstat,000001136464,confirmed,2020 Basic Complete Tabulation (Jinko-to Kihon Shukei)
+SMT_003,statsDataId,0003445244,confirmed,Foreigners: population by sex and nationality - national/prefecture/municipality (TITLE 44-1)
+SMT_004,cdTime,2020000000,present,2020 (Reiwa 2); via getMetaInfo time dimension
+SMT_005,cdCat01_sex_total,0,used,sex total
+SMT_006,china_cat02,102,present,China nationality code present in cat02 (getMetaInfo)
+SMT_007,foreign_total_cat02,1,present,foreign-total code present in cat02 (distinct from code 0 = all persons)
+SMT_008,test_areas,"13101,11201,12101,14101",4_of_4_present,"Chiyoda-ku, Kawagoe-shi, Chiba-shi Chuo-ku, Yokohama-shi Tsurumi-ku"
+SMT_009,getMetaInfo_status,STATUS=0,ok,metadata call succeeded
+SMT_010,count_test_getStatsData_cntGetFlg_Y,COUNT=8 (expected 8),PASS,STATUS=0; 4 areas x 2 categories; NO data values retrieved
+SMT_011,construction_feasibility,non_chinese=cat02(1)-cat02(102),YES,"china & total codes present, count>0, single table/year/unit"
+SMT_012,raw_output_saved,none,NO,cntGetFlg=Y returns count only; nothing written to repo
+SMT_013,appId_exposed,ESTAT_APP_ID (env only),NO,read from env; never printed/written/committed; URLs omit appId
+SMT_014,full_extraction_or_all_municipality,not_run,NO,"only 4 sample areas, 2 categories, count-only"
